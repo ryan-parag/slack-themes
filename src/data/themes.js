@@ -1234,5 +1234,18 @@ export default [
       activePresence: '#ab47bc',
       mentionBadge: '#c792ea',
     }
+  }, {
+  name: 'SoleVenture',
+  colors:
+    {
+      columnBg: '#0F1726',
+      menuBgHover: '#261a54',
+      activeItem: '#6c5ce7',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#261a54',
+      textColor: '#dee1e5',
+      activePresence: '#28DCAA',
+      mentionBadge: '#E5624F',
+    }
   }
 ]
