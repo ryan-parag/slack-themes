@@ -7,8 +7,7 @@ import 'modern-normalize/modern-normalize.css';
 // Import Components
 import GlobalStyle from './components/globals';
 import Container from './components/container';
-import Header from './components/header';
-
+import Logo from './components/logo';
 import themes from './data/themes';
 const Counter = React.lazy(() => import('./components/counter'));
 
@@ -27,7 +26,7 @@ const App = () => {
 
 	return (
 		<Container>
-			<Header>Hello World ⚡</Header>
+			<Logo />
 			<p>Example site using Styled React Boilerplate!</p>
 			{themes.map(theme => (
 				<div>{theme.name}</div>
