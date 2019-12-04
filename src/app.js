@@ -1,5 +1,6 @@
 import React, {Suspense} from 'react';
 import {hot} from 'react-hot-loader/root';
+import styled from 'styled-components';
 
 // Import modern-normalize & fonts
 import 'modern-normalize/modern-normalize.css';
@@ -7,7 +8,7 @@ import 'modern-normalize/modern-normalize.css';
 // Import Components
 import GlobalStyle from './components/globals';
 import Container from './components/container';
-import Logo from './components/logo';
+import { H1,H2,H3,H4,H5,H6 } from './components/text';
 import themes from './data/themes';
 const Counter = React.lazy(() => import('./components/counter'));
 
@@ -24,12 +25,25 @@ const App = () => {
 		});
 	}
 
+const SlackTheme = styled.div`
+	color: ${props => props.color || "inherit"};
+	background: ${props => props.background || "transparent"};
+	padding: 8px;
+	margin-bottom: 8px;
+	font-size: 1.4rem;
+`;
+
 	return (
 		<Container>
-			<Logo />
+			<H1>Header 1</H1>
+			<H2>Header 2</H2>
+			<H3>Header 3</H3>
+			<H4>Header 4</H4>
+			<H5>Header 5</H5>
+			<H6>Header 6</H6>
 			<p>Example site using Styled React Boilerplate!</p>
 			{themes.map(theme => (
-				<div>{theme.name}</div>
+				<SlackTheme color={theme.colors.activeItemText} background={theme.colors.activeItem} >{theme.name}</SlackTheme>
 			))}
 			<Suspense fallback={<div>Loading...</div>}>
 				<Counter/>
