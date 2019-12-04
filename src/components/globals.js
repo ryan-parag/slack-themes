@@ -65,6 +65,8 @@ const GlobalStyle = createGlobalStyle`
     transition: all 120ms ease-out 0s;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeSpeed;
+    margin: 0;
+    padding: 0;
   }
 
   h1,h2,h3 {
