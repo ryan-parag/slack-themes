@@ -11,8 +11,8 @@ import GlobalStyle from './components/globals';
 import Container from './components/container';
 import { H1,H2,H3,H4,H5,H6 } from './components/text';
 import themes from './data/themes';
-import slackWidget from './components/slackWidget';
-import ThemeGrid from './components/themeGrid';
+import SlackWidget from './components/SlackWidget';
+import ThemeGrid from './components/ThemeGrid';
 
 const Counter = React.lazy(() => import('./components/counter'));
 
@@ -29,14 +29,6 @@ const App = () => {
 		});
 	}
 
-const SlackTheme = styled.div`
-	color: ${props => props.color || "inherit"};
-	background: ${props => props.background || "transparent"};
-	padding: 8px;
-	margin-bottom: 8px;
-	font-size: 1.4rem;
-`;
-
 	return (
 		<Container>
 			<H1>Header 1</H1>
@@ -46,9 +38,21 @@ const SlackTheme = styled.div`
 			<H5>Header 5</H5>
 			<H6>Header 6</H6>
 			<p>Example site using Styled React Boilerplate!</p>
-			{themes.map(theme => {
-				<slackWidget title={theme.name} />
-			})}
+			<ThemeGrid>
+				{themes.map(theme => (
+					<SlackWidget 
+						title={theme.name}
+						columnBg={theme.colors.columnBg}
+						menuBgHover={theme.colors.menuBgHover}
+						activeItem={theme.colors.activeItem}
+						activeItemText={theme.colors.activeItemText}
+						hoverItem={theme.colors.hoverItem}
+						textColor={theme.colors.textColor}
+						activePresence={theme.colors.activePresence}
+						mentionBadge={theme.colors.mentionBadge}
+					/>
+				))}
+			</ThemeGrid>
 			<Suspense fallback={<div>Loading...</div>}>
 				<Counter/>
 			</Suspense>

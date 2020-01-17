@@ -1,65 +1,68 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const widgetContainer = styled.div`
+const WidgetContainer = styled.div`
   user-select: none;
   width: 100%;
-  box-shadow: 0px 5px 5px -3px rgba(black,.2), 0px 8px 10px 1px rgba(black, .14), 0px 3px 14px 2px rgba(black, .12);
-  border-radius: 8px
-  background: red;
-  color: yellow;
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,.2), 0px 8px 10px 1px rgba(0,0,0, .14), 0px 3px 14px 2px rgba(0,0,0, .12);
+  border-radius: 8px;
+  background: ${props => props.columnBg || "transparent"};
+  color: ${props => props.textColor || "transparent"};
   position: relative;
 `;
 
-const widgetHeader = styled.div`
+const WidgetHeader = styled.div`
   padding: 0.8rem;
   &:hover {
-    background: slateblue;
+    background: ${props => props.menuBgHover || "transparent"};
   }
 `;
 
-const widgetTitle = styled.div`
+const WidgetTitle = styled.div`
   font-size: 1.8rem;
 `;
 
-const widgetBody = styled.div`
+const WidgetBody = styled.div`
   padding: 0;
 `;
 
-const widgetList = styled.ul`
+const WidgetList = styled.ul`
   padding: 0;
   margin: 0;
   list-style-type: none;
   background: transparent;
 `;
 
-const widgetListItem = styled.li`
+const WidgetListItem = styled.li`
   padding: 1.6rem 4rem 1.6rem 2.4rem;
   width: 100%;
   position: relative;
-  color: purple;
+  color: ${props => props.textColor || "transparent"};
   margin-bottom: 0;
   &:before {
     width: 0.8rem;
     height: 0.8rem;
     content: '';
-    background: grey;
+    background: ${props => props.activePresence || "transparent"};
     position: absolute;
     top: 50%;
     left: 0.8rem;
     transform: translateY(-50%);
   }
   &:hover {
-    background: tomato;
+    background: ${props => props.hoverItem || "transparent"};
   }
 `;
 
-const widgetListItemActive= styled(widgetListItem)`
-  background: black;
-  color: white;
+const WidgetListItemActive= styled(WidgetListItem)`
+  background: ${props => props.activeItem || "transparent"};
+  color: ${props => props.activeItemText || "transparent"};
+  &:hover {
+    background: ${props => props.activeItem || "transparent"};
+  }
 `;
 
-const widgetText = styled.span`
+const WidgetText = styled.span`
   height: 0.8rem;
   background: currentColor;
   display: block;
@@ -67,40 +70,40 @@ const widgetText = styled.span`
   border-radius: 999px;
 `;
 
-const widgetMention = styled.span`
+const WidgetMention = styled.span`
   height: 1.2rem;
   width: 2.4rem;
   position: absolute;
   top: 50%;
   right: 0.8rem;
   transform: translateY(-50%);
-  background: green;
+  background: ${props => props.mentionBadge || "transparent"};
   border-radius: 999px;
 `;
 
-const slackWidget = (title) => {
+const SlackWidget = (props) => {
   return (
-    <widgetContainer>
-      <widgetHeader>
-        <widgetTitle>
-          title
-        </widgetTitle>
-      </widgetHeader>
-      <widgetBody>
-        <widgetList>
-          <widgetListItemActive>
-            <widgetText />
-          </widgetListItemActive>
-          <widgetListItem>
-            <widgetMention />
-          </widgetListItem>
-          <widgetListItem>
-            <widgetText />
-          </widgetListItem>
-        </widgetList>
-      </widgetBody>
-    </widgetContainer>
+    <WidgetContainer {...props}>
+      <WidgetHeader {...props}>
+        <WidgetTitle {...props}>
+          {props.title}
+        </WidgetTitle>
+      </WidgetHeader>
+      <WidgetBody {...props}>
+        <WidgetList {...props}>
+          <WidgetListItemActive {...props}>
+            <WidgetText {...props} />
+          </WidgetListItemActive>
+          <WidgetListItem {...props}>
+            <WidgetMention {...props} />
+          </WidgetListItem>
+          <WidgetListItem {...props}>
+            <WidgetText {...props} />
+          </WidgetListItem>
+        </WidgetList>
+      </WidgetBody>
+    </WidgetContainer>
   )
 }
 
-export default slackWidget;
+export default SlackWidget;
