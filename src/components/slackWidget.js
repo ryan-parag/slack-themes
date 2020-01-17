@@ -13,6 +13,8 @@ const WidgetContainer = styled.div`
 
 const WidgetHeader = styled.div`
   padding: 0.8rem;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   &:hover {
     background: ${props => props.menuBgHover || "transparent"};
   }
@@ -51,6 +53,8 @@ const WidgetListItem = styled.li`
   }
   &:hover {
     background: ${props => props.hoverItem || "transparent"};
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 `;
 
@@ -59,6 +63,8 @@ const WidgetListItemActive= styled(WidgetListItem)`
   color: ${props => props.activeItemText || "transparent"};
   &:hover {
     background: ${props => props.activeItem || "transparent"};
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 `;
 
@@ -95,6 +101,7 @@ const SlackWidget = (props) => {
             <WidgetText {...props} />
           </WidgetListItemActive>
           <WidgetListItem {...props}>
+            <WidgetText {...props} />
             <WidgetMention {...props} />
           </WidgetListItem>
           <WidgetListItem {...props}>
