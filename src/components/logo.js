@@ -20,10 +20,13 @@ const LogoText = styled.span`
 
 
 
-/*export default = () => {
-  return
+const Logo = () => {
+  return (
     <LogoContainer>
       <LogoIcon src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/813538/slack-themes-icon.svg" />
       <LogoText>Slack Themes</LogoText>
     </LogoContainer>
-};*/
+  )
+};
+
+export default Logo;

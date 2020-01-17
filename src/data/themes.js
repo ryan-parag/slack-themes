@@ -1247,5 +1247,83 @@ export default [
       activePresence: '#28DCAA',
       mentionBadge: '#E5624F',
     }
+  }, {
+  name: 'Gruvbox',
+  colors:
+    {
+      columnBg: '#282828',
+      menuBgHover: '#181818',
+      activeItem: '#383433',
+      activeItemText: '#FBF1C7',
+      hoverItem: '#181818',
+      textColor: '#838383',
+      activePresence: '#B4BB26',
+      mentionBadge: '#FB4A33',
+    }
+  }, {
+  name: 'Spacegrey',
+  colors:
+    {
+      columnBg: '#2B303B',
+      menuBgHover: '#343D46',
+      activeItem: '#1C1F26',
+      activeItemText: '#EBCB8B',
+      hoverItem: '#343D46',
+      textColor: '#C0C5CE',
+      activePresence: '#A3BE8C',
+      mentionBadge: '#BF616A',
+    }
+  }, {
+  name: 'Design Details',
+  colors:
+    {
+      columnBg: '#49928F',
+      menuBgHover: '#3D7D7B',
+      activeItem: '#FFFFFF',
+      activeItemText: '#000000',
+      hoverItem: '#3D7D7B',
+      textColor: '#FFFFFF',
+      activePresence: '#FFFFFF',
+      mentionBadge: '#F86754',
+    }
+  }, {
+  name: 'Killer Bee',
+  colors:
+    {
+      columnBg: '#000000',
+      menuBgHover: '#0F0F0F',
+      activeItem: '#fdd231',
+      activeItemText: '#000000',
+      hoverItem: '#0F0F0F',
+      textColor: '#ffffff',
+      activePresence: '#fdd231',
+      mentionBadge: '#fdd231',
+    }
+  }, {
+  name: 'Hendrix',
+  colors:
+    {
+      columnBg: '#121212',
+      menuBgHover: '#414141',
+      activeItem: '#8f12ff',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#414141',
+      textColor: '#8c8c8c',
+      activePresence: '#8f12ff',
+      mentionBadge: '#7a00e8',
+    }
+  }, {
+  name: 'Dragon Ball Z',
+  colors:
+    {
+      columnBg: '#F77B16',
+      menuBgHover: '#E86B25',
+      activeItem: '#ffffff',
+      activeItemText: '#251538',
+      hoverItem: '#E86B25',
+      textColor: '#75201A',
+      activePresence: '#ffffff',
+      mentionBadge: '#547DE3',
+    }
   }
 ]

@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import {hot} from 'react-hot-loader/root';
-import styled from 'styled-components';
+
 
 // Import modern-normalize & fonts
 import 'modern-normalize/modern-normalize.css';
@@ -8,8 +8,12 @@ import 'modern-normalize/modern-normalize.css';
 // Import Components
 import GlobalStyle from './components/globals';
 import Container from './components/container';
-import { H1,H2,H3,H4,H5,H6 } from './components/text';
 import themes from './data/themes';
+import Logo from './components/Logo';
+import SlackWidget from './components/SlackWidget';
+import ThemeGrid from './components/ThemeGrid';
+import { H1,H2,H3,H4,H5,H6 } from './components/text';
+
 const Counter = React.lazy(() => import('./components/counter'));
 
 // Main page
@@ -25,26 +29,33 @@ const App = () => {
 		});
 	}
 
-const SlackTheme = styled.div`
-	color: ${props => props.color || "inherit"};
-	background: ${props => props.background || "transparent"};
-	padding: 8px;
-	margin-bottom: 8px;
-	font-size: 1.4rem;
-`;
-
 	return (
 		<Container>
-			<H1>Header 1</H1>
-			<H2>Header 2</H2>
-			<H3>Header 3</H3>
-			<H4>Header 4</H4>
-			<H5>Header 5</H5>
-			<H6>Header 6</H6>
-			<p>Example site using Styled React Boilerplate!</p>
-			{themes.map(theme => (
-				<SlackTheme color={theme.colors.activeItemText} background={theme.colors.activeItem} >{theme.name}</SlackTheme>
-			))}
+			<Logo />
+			<H2>Pick a theme for Slack</H2>
+			<H5>Having trouble keeping track of all of your Slack workspaces?</H5>
+			<p>Choose and copy one of the themes below to personalize a Slack workspace.</p>
+			<p>How to:</p>
+			<ol>
+				<li>Copy a theme</li>
+				<li>Paste in a Slack Channel</li>
+				<li>Click the <strong>Switch sidebar theme</strong> button that Slack generates for you.</li>
+			</ol>
+			<ThemeGrid>
+				{themes.map(theme => (
+					<SlackWidget 
+						title={theme.name}
+						columnBg={theme.colors.columnBg}
+						menuBgHover={theme.colors.menuBgHover}
+						activeItem={theme.colors.activeItem}
+						activeItemText={theme.colors.activeItemText}
+						hoverItem={theme.colors.hoverItem}
+						textColor={theme.colors.textColor}
+						activePresence={theme.colors.activePresence}
+						mentionBadge={theme.colors.mentionBadge}
+					/>
+				))}
+			</ThemeGrid>
 			<Suspense fallback={<div>Loading...</div>}>
 				<Counter/>
 			</Suspense>
