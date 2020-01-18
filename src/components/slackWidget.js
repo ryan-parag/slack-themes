@@ -9,14 +9,18 @@ const WidgetContainer = styled.div`
   background: ${props => props.columnBg || "transparent"};
   color: ${props => props.textColor || "transparent"};
   position: relative;
+  margin-bottom: 1.6rem;
 `;
 
 const WidgetHeader = styled.div`
   padding: 0.8rem;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  transition: all 200ms ease-out 0s;
   &:hover {
     background: ${props => props.menuBgHover || "transparent"};
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 `;
 
@@ -41,6 +45,7 @@ const WidgetListItem = styled.li`
   position: relative;
   color: ${props => props.textColor || "transparent"};
   margin-bottom: 0;
+  transition: all 200ms ease-out 0s;
   &:before {
     width: 0.8rem;
     height: 0.8rem;
@@ -61,6 +66,7 @@ const WidgetListItem = styled.li`
 const WidgetListItemActive= styled(WidgetListItem)`
   background: ${props => props.activeItem || "transparent"};
   color: ${props => props.activeItemText || "transparent"};
+  transition: all 200ms ease-out 0s;
   &:hover {
     background: ${props => props.activeItem || "transparent"};
     border-bottom-left-radius: 0;

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 // Import button component
-import Button from './button';
+import Button from './Button';
 
 // Simple counter using React Hooks
 const Counter = () => {
