@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React, { Suspense } from 'react';
 import {hot} from 'react-hot-loader/root';
 
 
@@ -31,12 +31,6 @@ const App = () => {
 		});
 	}
 
-	function handleClick(string) {
-		console.log(`
-			${string.name} -- ${string.colors.columnBg},${string.colors.menuBgHover},${string.colors.activeItem},${string.colors.activeItemText},${string.colors.hoverItem},${string.colors.textColor},${string.colors.activePresence},${string.colors.mentionBadge}
-		`);
-  }
-
 	return (
 		<Container>
 			<Suspense fallback={<div>Loading...</div>}>
@@ -56,24 +50,17 @@ const App = () => {
 				<ContainerItemLarge>
 					<ThemeGrid>
 						{themes.map(theme => (
-							<div
-								key={theme.name}
-							>
-								<SlackWidget 
-									title={theme.name}
-									columnBg={theme.colors.columnBg}
-									menuBgHover={theme.colors.menuBgHover}
-									activeItem={theme.colors.activeItem}
-									activeItemText={theme.colors.activeItemText}
-									hoverItem={theme.colors.hoverItem}
-									textColor={theme.colors.textColor}
-									activePresence={theme.colors.activePresence}
-									mentionBadge={theme.colors.mentionBadge}
-								/>
-								<ButtonBlock onClick={() => handleClick(theme)}>
-									Copy {theme.name}
-									</ButtonBlock>
-							</div>
+							<SlackWidget 
+								title={theme.name}
+								columnBg={theme.colors.columnBg}
+								menuBgHover={theme.colors.menuBgHover}
+								activeItem={theme.colors.activeItem}
+								activeItemText={theme.colors.activeItemText}
+								hoverItem={theme.colors.hoverItem}
+								textColor={theme.colors.textColor}
+								activePresence={theme.colors.activePresence}
+								mentionBadge={theme.colors.mentionBadge}
+							/>
 						))}
 					</ThemeGrid>
 				</ContainerItemLarge>

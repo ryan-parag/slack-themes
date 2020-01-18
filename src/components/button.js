@@ -13,6 +13,7 @@ const Button = styled.button`
     text-align: center;
     display: inline-block;
     font-size: 1.6rem;
+    transition: all 120ms ease-out 0s;
     &:hover {
         background: ${theme.neutral.grey3};
 		color: ${theme.neutral.grey0};

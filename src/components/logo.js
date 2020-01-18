@@ -5,6 +5,7 @@ const LogoContainer = styled.div`
   display: inline-flex;
   align-items: center;
   margin-bottom: 3.2rem;
+  user-select: none;
 `;
 
 const LogoIcon = styled.div`

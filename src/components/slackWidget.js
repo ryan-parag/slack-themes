@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components';
+import Button from './Button';
 
 const WidgetContainer = styled.div`
   user-select: none;
@@ -93,29 +94,60 @@ const WidgetMention = styled.span`
   border-radius: 999px;
 `;
 
+const ButtonBlock = styled(Button)`
+  width: 100%;
+  display: block;
+`;
+
+const CopyInput = styled.textarea`
+  position: absolute;
+  left: -9999px;
+`;
+
 const SlackWidget = (props) => {
+
+  const [copySuccess, setCopySuccess] = useState('');
+  const textAreaRef = useRef(null);
+
+  function copyToClipboard(e) {
+    textAreaRef.current.select();
+    document.execCommand('copy');
+    e.target.focus();
+    setCopySuccess('Copied!');
+    console.log('asdf')
+  };
+
   return (
-    <WidgetContainer {...props}>
-      <WidgetHeader {...props}>
-        <WidgetTitle {...props}>
-          {props.title}
-        </WidgetTitle>
-      </WidgetHeader>
-      <WidgetBody {...props}>
-        <WidgetList {...props}>
-          <WidgetListItemActive {...props}>
-            <WidgetText {...props} />
-          </WidgetListItemActive>
-          <WidgetListItem {...props}>
-            <WidgetText {...props} />
-            <WidgetMention {...props} />
-          </WidgetListItem>
-          <WidgetListItem {...props}>
-            <WidgetText {...props} />
-          </WidgetListItem>
-        </WidgetList>
-      </WidgetBody>
-    </WidgetContainer>
+    <div {...props} key={props.title}>
+      <WidgetContainer {...props}>
+        <WidgetHeader {...props}>
+          <WidgetTitle {...props}>
+            {props.title}
+          </WidgetTitle>
+        </WidgetHeader>
+        <WidgetBody {...props}>
+          <WidgetList {...props}>
+            <WidgetListItemActive {...props}>
+              <WidgetText {...props} />
+            </WidgetListItemActive>
+            <WidgetListItem {...props}>
+              <WidgetText {...props} />
+              <WidgetMention {...props} />
+            </WidgetListItem>
+            <WidgetListItem {...props}>
+              <WidgetText {...props} />
+            </WidgetListItem>
+          </WidgetList>
+        </WidgetBody>
+      </WidgetContainer>
+      <ButtonBlock {...props} onClick={copyToClipboard}>
+       Copy {props.title}
+      </ButtonBlock>
+      <CopyInput {...props}
+        ref={textAreaRef}
+        value={`${props.title} Theme -- ${props.columnBg},${props.menuBgHover},${props.activeItem},${props.activeItemText},${props.hoverItem},${props.textColor},${props.activePresence},${props.mentionBadge}`}
+      />
+    </div>
   )
 }
 
