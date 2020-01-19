@@ -1,6 +1,6 @@
 import React from 'react';
 import { Badge } from './Badge';
-import { H1,H2,H3,H4,H5,H6 } from './text';
+import { H2,H5 } from './text';
 import Logo from './Logo';
 import { ContainerItemSmall } from './ContainerItem';
 
