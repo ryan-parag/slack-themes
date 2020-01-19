@@ -1,8 +1,8 @@
 import React from 'react';
-import { Badge } from './Badge';
+import { Badge } from './badge';
 import { H2,H5 } from './text';
-import Logo from './Logo';
-import { ContainerItemSmall } from './ContainerItem';
+import Logo from './logo';
+import { ContainerItemSmall } from './containerItem';
 
 const Intro = () => {
   return (

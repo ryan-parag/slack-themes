@@ -8,9 +8,9 @@ import 'modern-normalize/modern-normalize.css';
 
 // Import Components
 import GlobalStyle from './components/globals';
-import Container from './components/Container';
-import Intro from './components/Intro';
-import ThemeList from "./components/ThemeList";
+import Container from './components/container';
+import Intro from './components/intro';
+import ThemeList from "./components/themeList";
 
 // Main page
 const App = () => {
