@@ -14,9 +14,8 @@ import SlackWidget from './components/SlackWidget';
 import ThemeGrid from './components/ThemeGrid';
 import { H1,H2,H3,H4,H5,H6 } from './components/text';
 import { ContainerItemSmall, ContainerItemLarge } from './components/ContainerItem';
-import { ButtonBlock } from './components/Button';
-
-const Counter = React.lazy(() => import('./components/counter'));
+import { Badge } from './components/Badge';
+import SearchInput from './components/SearchInput';
 
 // Main page
 const App = () => {
@@ -43,11 +42,18 @@ const App = () => {
 					<ol>
 						<li>Copy a theme</li>
 						<li>Paste in a Slack Channel</li>
-						<li>Click the <strong>Switch sidebar theme</strong> button that Slack generates for you.</li>
+						<li>Click the <Badge>Switch sidebar theme</Badge> button that Slack generates for you.</li>
 					</ol>
-					<Counter/>
+					<p>
+						<small>
+							Don't see a theme you're looking for? <a href="#" target="_blank">Submit a theme</a>.
+							<br />
+							Designed and Developed by <a href="#" target="_blank">Ryan Parag</a>
+						</small>
+					</p>
 				</ContainerItemSmall>
 				<ContainerItemLarge>
+					<SearchInput />
 					<ThemeGrid>
 						{themes.map(theme => (
 							<SlackWidget 
