@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import {hot} from 'react-hot-loader/root';
+import {Helmet} from "react-helmet";
 
 
 // Import modern-normalize & fonts
@@ -26,6 +27,10 @@ const App = () => {
 
 	return (
 		<Container>
+			<Helmet>
+					<meta charSet="utf-8" />
+					<title>Slack Themes</title>
+			</Helmet>
 			<Suspense fallback={<div>Loading...</div>}>
 				<Intro />
 				<ThemeList />
