@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import theme from '../theme/theme';
+import theme from '../../theme';
 
 // Button with ripple animation
 const Button = styled.button`

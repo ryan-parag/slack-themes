@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import theme from '../theme/theme';
+import theme from '../../theme';
 
 const TextFieldContainer = styled.div`
   margin-bottom: 2.4rem;
