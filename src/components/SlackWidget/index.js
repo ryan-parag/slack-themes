@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components';
-import Button from './Button';
+import Button from '../Button';
 
 const WidgetContainer = styled.div`
   user-select: none;
@@ -114,7 +114,6 @@ const SlackWidget = (props) => {
     document.execCommand('copy');
     e.target.focus();
     setCopySuccess('Copied!');
-    console.log('asdf')
   };
 
   return (

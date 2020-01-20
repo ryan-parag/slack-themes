@@ -62,3 +62,6 @@ typings/
 
 # dist directory
 dist
+
+# ds store
+.DS_Store

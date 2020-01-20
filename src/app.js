@@ -1,14 +1,15 @@
-import React, { Suspense } from 'react';
-import {hot} from 'react-hot-loader/root';
+import React, { Suspense } from "react";
+import {hot} from "react-hot-loader/root";
+import {Helmet} from "react-helmet";
 
 
 // Import modern-normalize & fonts
-import 'modern-normalize/modern-normalize.css';
+import "modern-normalize/modern-normalize.css";
 
 // Import Components
-import GlobalStyle from './components/globals';
-import Container from './components/Container';
-import Intro from './components/Intro';
+import GlobalStyle from "./components/Globals";
+import Container from "./components/Container";
+import Intro from "./components/Intro";
 import ThemeList from "./components/ThemeList";
 
 // Main page
@@ -26,6 +27,10 @@ const App = () => {
 
 	return (
 		<Container>
+			<Helmet>
+					<meta charSet="utf-8" />
+					<title>Slack Themes</title>
+			</Helmet>
 			<Suspense fallback={<div>Loading...</div>}>
 				<Intro />
 				<ThemeList />

@@ -1,5 +1,5 @@
 import {createGlobalStyle} from 'styled-components';
-import theme from '../theme/theme';
+import theme from '../../theme';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://rsms.me/inter/inter.css');
