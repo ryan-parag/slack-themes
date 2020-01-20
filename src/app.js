@@ -1,15 +1,15 @@
-import React, { Suspense } from 'react';
-import {hot} from 'react-hot-loader/root';
+import React, { Suspense } from "react";
+import {hot} from "react-hot-loader/root";
 import {Helmet} from "react-helmet";
 
 
 // Import modern-normalize & fonts
-import 'modern-normalize/modern-normalize.css';
+import "modern-normalize/modern-normalize.css";
 
 // Import Components
-import GlobalStyle from './components/globals';
-import Container from './components/container';
-import Intro from './components/intro';
+import GlobalStyle from "./components/globals";
+import Container from "./components/container";
+import Intro from "./components/intro";
 import ThemeList from "./components/themeList";
 
 // Main page
