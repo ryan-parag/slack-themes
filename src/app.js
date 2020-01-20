@@ -11,6 +11,7 @@ import GlobalStyle from "./components/Globals";
 import Container from "./components/Container";
 import Intro from "./components/Intro";
 import ThemeList from "./components/ThemeList";
+import Footer from "./components/Footer";
 
 // Main page
 const App = () => {
@@ -26,17 +27,20 @@ const App = () => {
 	}
 
 	return (
-		<Container>
-			<Helmet>
-					<meta charSet="utf-8" />
-					<title>Slack Themes</title>
-			</Helmet>
-			<Suspense fallback={<div>Loading...</div>}>
-				<Intro />
-				<ThemeList />
-			</Suspense>
-			<GlobalStyle/>
-		</Container>
+		<div>
+			<Container>
+				<Helmet>
+						<meta charSet="utf-8" />
+						<title>Slack Themes</title>
+				</Helmet>
+				<Suspense fallback={<div>Loading...</div>}>
+					<Intro />
+					<ThemeList />
+				</Suspense>
+				<GlobalStyle/>
+			</Container>
+			<Footer />
+		</div>
 	);
 };
 

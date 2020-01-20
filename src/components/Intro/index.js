@@ -20,8 +20,6 @@ const Intro = () => {
       <p>
         <small>
           Don't see a theme you're looking for? <a href="#" target="_blank">Submit a theme</a>.
-          <br />
-          Designed and Developed by <a href="#" target="_blank">Ryan Parag</a>
         </small>
       </p>
     </ContainerItemSmall>
