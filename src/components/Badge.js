@@ -7,7 +7,7 @@ export const Badge = styled.div`
   background: ${theme.neutral.grey0};
   line-height: 1;
   border-radius: 0.4rem;
-  color: v${theme.neutral.grey3};
+  color: ${theme.neutral.grey3};
   font-size: .875em;
   border: 1px solid;
   box-shadow: 0px 2px 4px 1px rgba(0,0,0, .14);

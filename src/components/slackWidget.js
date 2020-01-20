@@ -114,7 +114,6 @@ const SlackWidget = (props) => {
     document.execCommand('copy');
     e.target.focus();
     setCopySuccess('Copied!');
-    console.log('asdf')
   };
 
   return (

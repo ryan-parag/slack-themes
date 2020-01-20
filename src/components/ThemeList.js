@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import SlackWidget from './slackWidget';
-import ThemeGrid from './themeGrid';
-import SearchInput from './searchInput';
-import { ContainerItemLarge } from './containerItem';
+import SlackWidget from './SlackWidget';
+import ThemeGrid from './ThemeGrid';
+import SearchInput from './SearchInput';
+import { ContainerItemLarge } from './ContainerItem';
 import themes from '../data/themes';
 
 const ThemeList = () => {

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import theme from '../theme/theme';
 
@@ -45,41 +45,15 @@ const TextFieldIcon = styled.div`
 `;
 
 const SearchInput = () => {
-
-  const searchField = useRef(null);
-  const searchInput = useRef(null);
-
-  const pinSearch = () => {
-    searchField.current.style.position = 'fixed';
-    searchField.current.style.top = '0';
-    searchField.current.style.left = '0';
-    searchField.current.style.right = '0';
-    searchField.current.style.zIndex = '100';
-    searchInput.current.style.borderRadius = '0';
-    searchInput.current.style.borderWidth = '0px';
-    searchInput.current.style.borderBottomWidth = '1px';
-  }
-
-  const unpinSearch = () => {
-    searchField.current.style.position = 'relative';
-    searchInput.current.style.borderWidth = '1px';
-    searchInput.current.style.borderRadius = '0.4rem';
-  }
-
-  window.addEventListener('scroll', () => {
-    let pinState = window.scrollY > window.innerHeight*.8;
-    pinState ? pinSearch() : unpinSearch();
-  })
-
   return (
-    <TextFieldContainer ref={searchField}>
+    <TextFieldContainer>
       <TextFieldIcon>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
       </svg>
       </TextFieldIcon>
-      <TextFieldInputWithIcon placeholder="Search for a theme..." ref={searchInput} />
+      <TextFieldInputWithIcon placeholder="Search for a theme..." />
     </TextFieldContainer>
   );
 }
