@@ -48,8 +48,9 @@ class SearchInput extends Component {
 
   filterUpdate() {
     const val = this.myValue.value
-    console.log(val)
+    this.props.filterUpdate(val)
   }
+
 
   render() {
     return (
@@ -63,7 +64,7 @@ class SearchInput extends Component {
         <TextFieldInputWithIcon
           placeholder="Search for a theme..."
           type="text"
-          ref={ (value) => this.myValue = value }
+          ref={ (value) => {this.myValue = value} }
           onChange={this.filterUpdate.bind(this)}
         />
       </TextFieldContainer>

@@ -7,9 +7,11 @@ import themes from '../../data/themes';
 
 class ThemeList extends Component {
   render() {
-
-    const { themes } = this.props;
+    const { themes, filterText } = this.props;
     const themesList = themes
+      .filter(theme => {
+        return theme.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
+      })
       .map(theme => {
         return (
           <SlackWidget 
@@ -28,7 +30,10 @@ class ThemeList extends Component {
 
     return (
       <ContainerItemLarge>
-        <SearchInput />
+        <SearchInput
+          filterText={this.props.filterText}
+          filterUpdate={this.props.filterUpdate.bind(this)}
+        />
         <ThemeGrid>
           {themesList}
         </ThemeGrid>
