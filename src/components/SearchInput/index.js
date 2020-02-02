@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import theme from '../../theme';
 
@@ -44,6 +44,35 @@ const TextFieldIcon = styled.div`
   color: ${theme.neutral.grey3};
 `;
 
+class SearchInput extends Component {
+
+  filterUpdate() {
+    const val = this.myValue.value
+    console.log(val)
+  }
+
+  render() {
+    return (
+      <TextFieldContainer>
+        <TextFieldIcon>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        </TextFieldIcon>
+        <TextFieldInputWithIcon
+          placeholder="Search for a theme..."
+          type="text"
+          ref={ (value) => this.myValue = value }
+          onChange={this.filterUpdate.bind(this)}
+        />
+      </TextFieldContainer>
+    )
+  }
+}
+
+/*
+
 const SearchInput = () => {
 
   const searchField = useRef(null);
@@ -83,5 +112,7 @@ const SearchInput = () => {
     </TextFieldContainer>
   );
 }
+
+*/
 
 export default SearchInput;

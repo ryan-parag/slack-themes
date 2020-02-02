@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import {hot} from "react-hot-loader/root";
 import {Helmet} from "react-helmet";
+import themes from './data/themes';
 
 
 // Import modern-normalize & fonts
@@ -35,7 +36,7 @@ const App = () => {
 				</Helmet>
 				<Suspense fallback={<div>Loading...</div>}>
 					<Intro />
-					<ThemeList />
+					<ThemeList themes={themes} />
 				</Suspense>
 				<GlobalStyle/>
 			</Container>
