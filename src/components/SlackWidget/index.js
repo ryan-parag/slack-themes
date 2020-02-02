@@ -7,8 +7,6 @@ const WidgetContainer = styled.div`
   width: 100%;
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,.2), 0px 8px 10px 1px rgba(0,0,0, .14), 0px 3px 14px 2px rgba(0,0,0, .12);
   border-radius: 8px;
-  background: ${props => props.columnBg || "transparent"};
-  color: ${props => props.textColor || "transparent"};
   position: relative;
   margin-bottom: 1.6rem;
 `;
@@ -44,7 +42,6 @@ const WidgetListItem = styled.li`
   padding: 1.6rem 4rem 1.6rem 2.4rem;
   width: 100%;
   position: relative;
-  color: ${props => props.textColor || "transparent"};
   margin-bottom: 0;
   transition: all 200ms ease-out 0s;
   &:before {
@@ -65,8 +62,6 @@ const WidgetListItem = styled.li`
 `;
 
 const WidgetListItemActive= styled(WidgetListItem)`
-  background: ${props => props.activeItem || "transparent"};
-  color: ${props => props.activeItemText || "transparent"};
   transition: all 200ms ease-out 0s;
   &:hover {
     background: ${props => props.activeItem || "transparent"};
@@ -90,7 +85,6 @@ const WidgetMention = styled.span`
   top: 50%;
   right: 0.8rem;
   transform: translateY(-50%);
-  background: ${props => props.mentionBadge || "transparent"};
   border-radius: 999px;
 `;
 
@@ -118,7 +112,10 @@ const SlackWidget = (props) => {
 
   return (
     <div {...props} key={props.title}>
-      <WidgetContainer {...props}>
+      <WidgetContainer {...props} style={{
+        background: props.columnBg,
+        color: props.textColor
+      }}>
         <WidgetHeader {...props}>
           <WidgetTitle {...props}>
             {props.title}
@@ -126,14 +123,23 @@ const SlackWidget = (props) => {
         </WidgetHeader>
         <WidgetBody {...props}>
           <WidgetList {...props}>
-            <WidgetListItemActive {...props}>
+            <WidgetListItemActive {...props} style={{
+              color: props.activeItemText,
+              background: props.activeItem
+            }}>
               <WidgetText {...props} />
             </WidgetListItemActive>
-            <WidgetListItem {...props}>
+            <WidgetListItem {...props} style={{
+              color: props.textColor
+            }}>
               <WidgetText {...props} />
-              <WidgetMention {...props} />
+              <WidgetMention {...props} style={{
+                background: props.mentionBadge
+              }} />
             </WidgetListItem>
-            <WidgetListItem {...props}>
+            <WidgetListItem {...props} style={{
+              color: props.textColor
+            }}>
               <WidgetText {...props} />
             </WidgetListItem>
           </WidgetList>

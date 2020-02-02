@@ -19,7 +19,7 @@ const Intro = () => {
       </ol>
       <p>
         <small>
-          Don't see a theme you're looking for? <a href="#" target="_blank">Submit a theme</a>.
+          Don't see a theme you're looking for? <a href="https://forms.gle/ko6NiYzx6zEHiGb46" target="_blank">Submit a theme</a>.
         </small>
       </p>
     </ContainerItemSmall>
