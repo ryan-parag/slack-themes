@@ -17,7 +17,7 @@ const WidgetHeader = styled.div`
   border-top-right-radius: 8px;
   transition: all 200ms ease-out 0s;
   &:hover {
-    background: ${props => props.menuBgHover || "transparent"};
+    background: ${props => props.color || "transparent"};
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
   }
@@ -48,14 +48,13 @@ const WidgetListItem = styled.li`
     width: 0.8rem;
     height: 0.8rem;
     content: '';
-    background: ${props => props.activePresence || "transparent"};
     position: absolute;
     top: 50%;
     left: 0.8rem;
     transform: translateY(-50%);
   }
   &:hover {
-    background: ${props => props.hoverItem || "transparent"};
+    background: ${props => props.color || "transparent"};
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
   }
@@ -64,7 +63,6 @@ const WidgetListItem = styled.li`
 const WidgetListItemActive= styled(WidgetListItem)`
   transition: all 200ms ease-out 0s;
   &:hover {
-    background: ${props => props.activeItem || "transparent"};
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
   }
@@ -110,47 +108,60 @@ const SlackWidget = (props) => {
     setCopySuccess('Copied!');
   };
 
+  const theme = props.theme
+  const themeName = theme.name
+  const columnBg = theme.colors.columnBg
+  const menuBgHover = theme.colors.menuBgHover
+  const activeItem = theme.colors.activeItem
+  const activeItemText = theme.colors.activeItemText
+  const hoverItem = theme.colors.hoverItem
+  const textColor = theme.colors.textColor
+  const activePresence = theme.colors.activePresence
+  const mentionBadge = theme.colors.mentionBadge
+  const copyString = `${themeName} -- ${columnBg},${menuBgHover},${activeItem},${activeItemText},${hoverItem},${textColor},${activePresence},${mentionBadge}`
+
   return (
-    <div {...props} key={props.title}>
-      <WidgetContainer {...props} style={{
-        background: props.columnBg,
-        color: props.textColor
+    <div key={themeName}>
+      <WidgetContainer style={{
+        background: columnBg,
+        color: textColor
       }}>
-        <WidgetHeader {...props}>
-          <WidgetTitle {...props}>
-            {props.title}
+        <WidgetHeader color={menuBgHover}>
+          <WidgetTitle>
+            {themeName}
           </WidgetTitle>
         </WidgetHeader>
-        <WidgetBody {...props}>
-          <WidgetList {...props}>
-            <WidgetListItemActive {...props} style={{
-              color: props.activeItemText,
-              background: props.activeItem
+        <WidgetBody>
+          <WidgetList>
+            <WidgetListItemActive style={{
+              color: activeItemText,
+              background: activeItem
             }}>
-              <WidgetText {...props} />
+              <WidgetText />
             </WidgetListItemActive>
-            <WidgetListItem {...props} style={{
-              color: props.textColor
+            <WidgetListItem color={hoverItem} style={{
+              color: textColor
             }}>
-              <WidgetText {...props} />
-              <WidgetMention {...props} style={{
-                background: props.mentionBadge
+              <WidgetText />
+              <WidgetMention style={{
+                background: mentionBadge
               }} />
             </WidgetListItem>
-            <WidgetListItem {...props} style={{
-              color: props.textColor
+            <WidgetListItem color={hoverItem} style={{
+              color: textColor
             }}>
-              <WidgetText {...props} />
+              <WidgetText />
             </WidgetListItem>
           </WidgetList>
         </WidgetBody>
       </WidgetContainer>
-      <ButtonBlock {...props} onClick={copyToClipboard}>
-       Copy {props.title}
+      <ButtonBlock onClick={copyToClipboard}>
+       Copy {themeName}
       </ButtonBlock>
-      <CopyInput {...props}
+      <CopyInput
         ref={textAreaRef}
-        value={`${props.title} Theme -- ${props.columnBg},${props.menuBgHover},${props.activeItem},${props.activeItemText},${props.hoverItem},${props.textColor},${props.activePresence},${props.mentionBadge}`}
+        value={copyString}
+        readOnly
       />
     </div>
   )

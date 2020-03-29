@@ -30,7 +30,6 @@ class App extends Component {
 	}
 
 	render() {
-		console.log('filterState', this.state.filterText)
 		// Register service worker
 		if ('serviceWorker' in navigator) {
 			window.addEventListener('load', () => {

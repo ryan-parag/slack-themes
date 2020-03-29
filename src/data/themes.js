@@ -1325,5 +1325,31 @@ export default [
       activePresence: '#ffffff',
       mentionBadge: '#547DE3',
     }
+  }, {
+  name: 'Andy Weir',
+  colors:
+    {
+      columnBg: '#11171E',
+      menuBgHover: '#19212B',
+      activeItem: '#D2722B',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#19212B',
+      textColor: '#FFFFFF',
+      activePresence: '#2BAC76',
+      mentionBadge: '#CD2553',
+    }
+  }, {
+  name: 'Chris Leyva',
+  colors:
+    {
+      columnBg: '#191D21',
+      menuBgHover: '#341D5C',
+      activeItem: '#673AB7',
+      activeItemText: '#EDE7F6',
+      hoverItem: '#341D5C',
+      textColor: '#CFD8DC',
+      activePresence: '#00D2F3',
+      mentionBadge: '#00D2F3',
+    }
   }
 ]
