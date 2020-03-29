@@ -3,14 +3,15 @@ import SlackWidget from '../SlackWidget';
 import ThemeGrid from '../ThemeGrid';
 import SearchInput from '../SearchInput';
 import { ContainerItemLarge } from '../ContainerItem';
+import EmptyState from '../EmptyState';
 
 class ThemeList extends Component {
   render() {
     const { themes, filterText } = this.props;
-    const themesList = themes
-      .filter(theme => {
-        return theme.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
-      })
+    const filteredThemes = themes.filter(theme => {
+      return theme.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
+    })
+    const themesList = filteredThemes
       .map(theme => {
         return (
           <SlackWidget 
@@ -26,9 +27,13 @@ class ThemeList extends Component {
           filterText={this.props.filterText}
           filterUpdate={this.props.filterUpdate.bind(this)}
         />
-        <ThemeGrid>
-          {themesList}
-        </ThemeGrid>
+        { filteredThemes.length === 0 ?
+          <EmptyState filterText={filterText} />
+          :
+          <ThemeGrid>
+            {themesList}
+          </ThemeGrid>
+        }
       </ContainerItemLarge>
     )
 

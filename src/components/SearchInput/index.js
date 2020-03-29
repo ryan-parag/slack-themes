@@ -73,8 +73,10 @@ class SearchInput extends Component {
     }
   
     const unpinSearch = () => {
-      searchField.classList.remove('pinned')
-      searchInput.classList.remove('pinned')
+      if(searchField.classList.contains('pinned')) {
+        searchField.classList.remove('pinned')
+        searchInput.classList.remove('pinned')
+      }
     }
 
     let pinState = window.scrollY > window.innerHeight*.8;
