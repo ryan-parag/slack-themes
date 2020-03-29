@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components';
 import Button from '../Button';
 
@@ -101,11 +101,16 @@ const SlackWidget = (props) => {
   const [copySuccess, setCopySuccess] = useState('');
   const textAreaRef = useRef(null);
 
+  const [buttonText, setButtonText] = useState('Copy ' + props.theme.name);
+
   function copyToClipboard(e) {
     textAreaRef.current.select();
     document.execCommand('copy');
     e.target.focus();
-    setCopySuccess('Copied!');
+    setButtonText('Copied ✓')
+    setTimeout(() => {
+      setButtonText('Copy ' + props.theme.name)
+    }, 1000)
   };
 
   const theme = props.theme
@@ -156,7 +161,7 @@ const SlackWidget = (props) => {
         </WidgetBody>
       </WidgetContainer>
       <ButtonBlock onClick={copyToClipboard}>
-       Copy {themeName}
+      {buttonText}
       </ButtonBlock>
       <CopyInput
         ref={textAreaRef}

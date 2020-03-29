@@ -56,6 +56,27 @@ const TextFieldIcon = styled.div`
   color: ${theme.neutral.grey3};
 `;
 
+const TextFieldReset = styled.button`
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  color: ${theme.primary};
+  position: absolute;
+  top: 50%;
+  right: 1.2rem;
+  transform: translateY(-50%);
+  border-radius: 0.4rem;
+  display: inline-flex;
+  width: 3.2rem;
+  height: 3.2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  &:hover, &:focus {
+    background: rgba(0,0,0,0.05);
+  }
+`;
+
 class SearchInput extends Component {
 
   filterUpdate() {
@@ -95,6 +116,22 @@ class SearchInput extends Component {
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
         </TextFieldIcon>
+        {
+          this.props.filterText.length > 1 ?
+            <TextFieldReset
+              ref={ (value) => {this.myValue = value} }
+              onChange={this.filterUpdate.bind(this)}
+              value=""
+            >
+              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="15" y1="9" x2="9" y2="15"></line>
+                <line x1="9" y1="9" x2="15" y2="15"></line>
+              </svg>
+            </TextFieldReset>
+            :
+            null
+        }
         <TextFieldInputWithIcon
           placeholder="Search for a theme..."
           type="text"
