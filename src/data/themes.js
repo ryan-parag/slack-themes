@@ -1442,5 +1442,109 @@ export default [
       activePresence: '#00FFB3',
       mentionBadge: '#FF58AB',
     }
+  }, {
+  name: 'Synthwave',
+  colors:
+    {
+      columnBg: '#2B213A',
+      menuBgHover: '#241B30',
+      activeItem: '#171520',
+      activeItemText: '#F12AB6',
+      hoverItem: '#241B30',
+      textColor: '#F4F0E9',
+      activePresence: '#6A939B',
+      mentionBadge: '#FF882F',
+    }
+  }, {
+  name: 'Horizon',
+  colors:
+    {
+      columnBg: '#FDF0EE',
+      menuBgHover: '#FCE5DF',
+      activeItem: '#1D1F27',
+      activeItemText: '#E8A786',
+      hoverItem: '#FCE5DF',
+      textColor: '#504C4F',
+      activePresence: '#28D395',
+      mentionBadge: '#EA5378',
+    }
+  }, {
+  name: 'Eva Light',
+  colors:
+    {
+      columnBg: '#EBEEF5',
+      menuBgHover: '#E3E6ED',
+      activeItem: '#EDF0F7',
+      activeItemText: '#424242',
+      hoverItem: '#E3E6ED',
+      textColor: '#757578',
+      activePresence: '#53A053',
+      mentionBadge: '#437AED',
+    }
+  }, {
+  name: 'Eva Dark',
+  colors:
+    {
+      columnBg: '#282C34',
+      menuBgHover: '#2F323B',
+      activeItem: '#2C313A',
+      activeItemText: '#D7DAE0',
+      hoverItem: '#2F323B',
+      textColor: '#8E99B1',
+      activePresence: '#56B7C3',
+      mentionBadge: '#A78CFA',
+    }
+  }, {
+  name: 'Vue',
+  colors:
+    {
+      columnBg: '#002B37',
+      menuBgHover: '#434C57',
+      activeItem: '#004A5D',
+      activeItemText: '#E8E8D4',
+      hoverItem: '#434C57',
+      textColor: '#AEB1A8',
+      activePresence: '#00CBDF',
+      mentionBadge: '#FF256B',
+    }
+  }, {
+  name: 'Hacker\'s Haze',
+  colors:
+    {
+      columnBg: '#0F0F0F',
+      menuBgHover: '#232323',
+      activeItem: '#0F0F0F',
+      activeItemText: '#09FF00',
+      hoverItem: '#232323',
+      textColor: '#6E7F65',
+      activePresence: '#09FF00',
+      mentionBadge: '#854885',
+    }
+  }, {
+  name: 'Nintendo',
+  colors:
+    {
+      columnBg: '#D42D26',
+      menuBgHover: '#B62520',
+      activeItem: '#212224',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#B62520',
+      textColor: '#FFC5C1',
+      activePresence: '#54BDE3',
+      mentionBadge: '#54BDE3',
+    }
+  }, {
+  name: 'Basecamp',
+  colors:
+    {
+      columnBg: '#F5F2EF',
+      menuBgHover: '#FBF9F8',
+      activeItem: '#61B176',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#FBF9F8',
+      textColor: '#2C3C45',
+      activePresence: '#FADB67',
+      mentionBadge: '#ED612C',
+    }
   }
 ]
