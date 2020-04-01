@@ -13,14 +13,20 @@ const WidgetContainer = styled.div`
 
 const WidgetHeader = styled.div`
   padding: 0.8rem;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
   transition: all 200ms ease-out 0s;
   &:hover {
     background: ${props => props.color || "transparent"};
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
   }
+`;
+
+const WidgetTopBar = styled.div`
+  text-align: center;
+  padding: 0.8rem;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 `;
 
 const WidgetTitle = styled.div`
@@ -120,14 +126,15 @@ const SlackWidget = (props) => {
   const theme = props.theme
   const themeName = theme.name
   const columnBg = theme.colors.columnBg
-  const menuBgHover = theme.colors.menuBgHover
+  const topNavBg = theme.colors.topNavBg
+  const topNavText = theme.colors.topNavText
   const activeItem = theme.colors.activeItem
   const activeItemText = theme.colors.activeItemText
   const hoverItem = theme.colors.hoverItem
   const textColor = theme.colors.textColor
   const activePresence = theme.colors.activePresence
   const mentionBadge = theme.colors.mentionBadge
-  const copyString = `${themeName} -- ${columnBg},${menuBgHover},${activeItem},${activeItemText},${hoverItem},${textColor},${activePresence},${mentionBadge}`
+  const copyString = `${themeName} -- ${columnBg},#121016,${activeItem},${activeItemText},${hoverItem},${textColor},${activePresence},${mentionBadge},${topNavBg},${topNavText}`
 
   return (
     <div key={themeName}>
@@ -135,7 +142,13 @@ const SlackWidget = (props) => {
         background: columnBg,
         color: textColor
       }}>
-        <WidgetHeader color={menuBgHover}>
+        <WidgetTopBar style={{
+          color: topNavText,
+          background: topNavBg
+        }}>
+          Theme
+        </WidgetTopBar>
+        <WidgetHeader color={hoverItem}>
           <WidgetTitle>
             {themeName}
           </WidgetTitle>
