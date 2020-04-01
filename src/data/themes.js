@@ -1351,5 +1351,96 @@ export default [
       activePresence: '#00D2F3',
       mentionBadge: '#00D2F3',
     }
+  }, {
+  name: 'Seti UI',
+  colors:
+    {
+      columnBg: '#15191B',
+      menuBgHover: '#0E1112',
+      activeItem: '#0E1112',
+      activeItemText: '#CBCB3F',
+      hoverItem: '#0E1112',
+      textColor: '#D4D7D6',
+      activePresence: '#89C149',
+      mentionBadge: '#CC392C',
+    }
+  }, {
+  name: 'Predawn',
+  colors:
+    {
+      columnBg: '#333333',
+      menuBgHover: '#2D2D2D',
+      activeItem: '#1F1F1F',
+      activeItemText: '#8BBFBF',
+      hoverItem: '#2D2D2D',
+      textColor: '#CCD2D2',
+      activePresence: '#B4D388',
+      mentionBadge: '#F1825F',
+    }
+  }, {
+  name: 'Agila',
+  colors:
+    {
+      columnBg: '#252A34',
+      menuBgHover: '#3B4453',
+      activeItem: '#1A1E24',
+      activeItemText: '#F1677D',
+      hoverItem: '#3B4453',
+      textColor: '#CDD3DF',
+      activePresence: '#98C790',
+      mentionBadge: '#FB924C',
+    }
+  }, {
+  name: 'Radical',
+  colors:
+    {
+      columnBg: '#141323',
+      menuBgHover: '#241630',
+      activeItem: '#241630',
+      activeItemText: '#F80073',
+      hoverItem: '#241630',
+      textColor: '#DEF2F3',
+      activePresence: '#CAFE4A',
+      mentionBadge: '#F80073',
+    }
+  }, {
+  name: 'Tokyo Night',
+  colors:
+    {
+      columnBg: '#1E2336',
+      menuBgHover: '#282E44',
+      activeItem: '#282E44',
+      activeItemText: '#B6BFE5',
+      hoverItem: '#282E44',
+      textColor: '#8C94B8',
+      activePresence: '#8DCE59',
+      mentionBadge: '#8366AF',
+    }
+  }, {
+  name: 'Atlantic Night',
+  colors:
+    {
+      columnBg: '#000720',
+      menuBgHover: '#1C2341',
+      activeItem: '#000720',
+      activeItemText: '#F88070',
+      hoverItem: '#1C2341',
+      textColor: '#5C6B80',
+      activePresence: '#98FB98',
+      mentionBadge: '#6BB9F0',
+    }
+  }, {
+  name: 'A Touch of Lilac',
+  colors:
+    {
+      columnBg: '#211429',
+      menuBgHover: '#2A1A35',
+      activeItem: '#180113',
+      activeItemText: '#D5C077',
+      hoverItem: '#2A1A35',
+      textColor: '#F5F2F8',
+      activePresence: '#00FFB3',
+      mentionBadge: '#FF58AB',
+    }
   }
 ]
