@@ -52,6 +52,7 @@ const WidgetListItem = styled.li`
     top: 50%;
     left: 0.8rem;
     transform: translateY(-50%);
+    background: ${props => props.activeColor || "transparent"}
   }
   &:hover {
     background: ${props => props.color || "transparent"};
@@ -62,6 +63,9 @@ const WidgetListItem = styled.li`
 
 const WidgetListItemActive= styled(WidgetListItem)`
   transition: all 200ms ease-out 0s;
+  &:before {
+    background: currentColor;
+  }
   &:hover {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -144,7 +148,7 @@ const SlackWidget = (props) => {
             }}>
               <WidgetText />
             </WidgetListItemActive>
-            <WidgetListItem color={hoverItem} style={{
+            <WidgetListItem activeColor={activePresence} color={hoverItem} style={{
               color: textColor
             }}>
               <WidgetText />
@@ -152,7 +156,7 @@ const SlackWidget = (props) => {
                 background: mentionBadge
               }} />
             </WidgetListItem>
-            <WidgetListItem color={hoverItem} style={{
+            <WidgetListItem activeColor={activePresence} color={hoverItem} style={{
               color: textColor
             }}>
               <WidgetText />
