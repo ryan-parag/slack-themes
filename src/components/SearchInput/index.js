@@ -79,9 +79,24 @@ const TextFieldReset = styled.button`
 
 class SearchInput extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputText: '',
+    };
+  }
+
   filterUpdate() {
     const val = this.myValue.value
     this.props.filterUpdate(val)
+    this.setState({
+      inputText: val
+    })
+  }
+
+  filterClear() {
+    this.props.filterUpdate('')
+    this.myValue.value = ''
   }
 
   inputState() {
@@ -120,7 +135,7 @@ class SearchInput extends Component {
           this.props.filterText.length > 1 ?
             <TextFieldReset
               ref={ (value) => {this.myValue = value} }
-              onChange={this.filterUpdate.bind(this)}
+              onClick={this.filterClear.bind(this)}
               value=""
             >
               <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
