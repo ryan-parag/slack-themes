@@ -308,20 +308,6 @@ export default [
       topNavText: '#FFFFFF'
     }
   }, {
-  name: 'Horizon',
-  colors:
-    {
-      columnBg: '#1D1F27',
-      topNavBg: '#21252E',
-      activeItem: '#21252E',
-      activeItemText: '#CD987E',
-      hoverItem: '#21252E',
-      textColor: '#B8B8B8',
-      activePresence: '#27D797',
-      mentionBadge: '#D2506F',
-      topNavText: '#CD987E'
-    }
-  }, {
   name: 'Figma',
   colors:
     {
