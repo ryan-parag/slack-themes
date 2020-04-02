@@ -13,6 +13,20 @@ export default [
       mentionBadge: '#5188F3',
       topNavText: '#000000'
     }
+  },{
+  name: 'Masonite Dark V2',
+  colors: 
+    {
+      columnBg: '#1B1B1D',
+      topNavBg: '#171718',
+      activeItem: '#99C221',
+      activeItemText: '#000000',
+      hoverItem: '#171718',
+      textColor: '#F3F3F3',
+      activePresence: '#99C221',
+      mentionBadge: '#F13A59',
+      topNavText: '#F5F5F5'
+    }
   }, {
   name: 'Masonite Light',
   colors: 
@@ -26,6 +40,20 @@ export default [
       activePresence: '#99C221',
       mentionBadge: '#5188F3',
       topNavText: '#222b04'
+    }
+  },{
+  name: 'Masonite Light V2',
+  colors: 
+    {
+      columnBg: '#F5F5F5',
+      topNavBg: '#FFFFFF',
+      activeItem: '#99C221',
+      activeItemText: '#000000',
+      hoverItem: '#FFF3DC',
+      textColor: '#1B1B1D',
+      activePresence: '#99C221',
+      mentionBadge: '#F13A59',
+      topNavText: '#7C878E'
     }
   }, {
   name: 'Advisar Dark',
