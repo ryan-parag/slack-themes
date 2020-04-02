@@ -3,9 +3,9 @@ import theme from '../../theme';
 
 // Button with ripple animation
 const Button = styled.button`
-    background: transparent;
-    border: 1px solid ${theme.neutral.grey3};
-    color: ${theme.neutral.grey3};
+    background: ${props => props.bg ? props.bg : 'transparent'};
+    border: 1px solid currentColor;
+    color: ${props => props.color ? props.color : theme.neutral.grey3};
     border-radius: 0.4rem;
     padding: 0.8rem 1.6rem;
     cursor: pointer;

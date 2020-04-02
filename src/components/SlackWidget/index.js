@@ -19,14 +19,20 @@ const WidgetHeader = styled.div`
   }
 `;
 
-const WidgetTopBar = styled.div`
+const WidgetTopBar = styled.button`
   text-align: center;
   padding: 0.8rem;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-size: 14px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  cursor: pointer;
+  border: 0;
+  display: block;
+  width: 100%;
+  transition: all 200ms ease-out 0s;
+  &:hover {
+    filter: brightness(1.2);
+  }
 `;
 
 const WidgetTitle = styled.div`
@@ -114,7 +120,7 @@ const SlackWidget = (props) => {
   const [copySuccess, setCopySuccess] = useState('');
   const textAreaRef = useRef(null);
 
-  const [buttonText, setButtonText] = useState('Copy ' + props.theme.name);
+  const [buttonText, setButtonText] = useState('Click to Copy');
 
   function copyToClipboard(e) {
     textAreaRef.current.select();
@@ -122,7 +128,7 @@ const SlackWidget = (props) => {
     e.target.focus();
     setButtonText('Copied ✓')
     setTimeout(() => {
-      setButtonText('Copy ' + props.theme.name)
+      setButtonText('Click to Copy')
     }, 1000)
   };
 
@@ -148,8 +154,10 @@ const SlackWidget = (props) => {
         <WidgetTopBar style={{
           color: topNavText,
           background: topNavBg
-        }}>
-          Theme
+        }}
+        onClick={copyToClipboard}
+        >
+          {buttonText}
         </WidgetTopBar>
         <WidgetHeader color={hoverItem}>
           <WidgetTitle>
@@ -180,9 +188,9 @@ const SlackWidget = (props) => {
           </WidgetList>
         </WidgetBody>
       </WidgetContainer>
-      <ButtonBlock onClick={copyToClipboard}>
+      {/* <ButtonBlock onClick={copyToClipboard} color={topNavBg} bg={topNavText}>
       {buttonText}
-      </ButtonBlock>
+      </ButtonBlock> */}
       <CopyInput
         ref={textAreaRef}
         value={copyString}
