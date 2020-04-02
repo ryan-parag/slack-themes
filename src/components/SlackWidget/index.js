@@ -62,6 +62,9 @@ const WidgetListItem = styled.li`
   }
   &:hover {
     background: ${props => props.color || "transparent"};
+  }
+  &:last-of-type:hover {
+    background: ${props => props.color || "transparent"};
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
   }

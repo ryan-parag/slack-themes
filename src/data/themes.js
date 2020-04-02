@@ -1665,5 +1665,103 @@ export default [
       mentionBadge: '#ED612C',
       topNavText: '#FFFFFF'
     }
+  }, {
+    name: 'Cultured Code',
+    colors:
+    {
+      columnBg: '#F5F6F8',
+      topNavBg: '#FFFFFF',
+      activeItem: '#DADEE3',
+      activeItemText: '#26292E',
+      hoverItem: '#CEE2FC',
+      textColor: '#24272A',
+      activePresence: '#1C5CDE',
+      mentionBadge: '#F23562',
+      topNavText: '#818489'
+    }
+  }, {
+    name: 'Cultured Code Dark',
+    colors:
+    {
+      columnBg: '#1C1F23',
+      topNavBg: '#23262A',
+      activeItem: '#3D3F41',
+      activeItemText: '#C8C8CA',
+      hoverItem: '#2B4170',
+      textColor: '#F9F9F9',
+      activePresence: '#569AFF',
+      mentionBadge: '#CB2547',
+      topNavText: '#818489'
+    }
+  }, {
+    name: 'DuoTone Dark Sky',
+    colors:
+    {
+      columnBg: '#2C2734',
+      topNavBg: '#544D60',
+      activeItem: '#765F4C',
+      activeItemText: '#FEC38F',
+      hoverItem: '#715f95',
+      textColor: '#F1EBFF',
+      activePresence: '#FEC38F',
+      mentionBadge: '#AE91E8',
+      topNavText: '#CAB2FA'
+    }
+  }, {
+    name: 'DuoTone Dark Space',
+    colors:
+    {
+      columnBg: '#24242e',
+      topNavBg: '#49495a',
+      activeItem: '#644c40',
+      activeItemText: '#fe7734',
+      hoverItem: '#5b5b7b',
+      textColor: '#bebeef',
+      activePresence: '#fe7734',
+      mentionBadge: '#7272a1',
+      topNavText: '#bebeef'
+    }
+  }, {
+    name: 'DuoTone Dark Sea',
+    colors:
+    {
+      columnBg: '#1d262f',
+      topNavBg: '#444c55',
+      activeItem: '#42675a',
+      activeItemText: '#34febb',
+      hoverItem: '#586f89',
+      textColor: '#d6e9ff',
+      activePresence: '#34febb',
+      mentionBadge: '#5d8cc0',
+      topNavText: '#88b4e7'
+    }
+  }, {
+    name: 'DuoTone Dark Forest',
+    colors:
+    {
+      columnBg: '#2a2d2a',
+      topNavBg: '#585f58',
+      activeItem: '#747a52',
+      activeItemText: '#e7f98b',
+      hoverItem: '#738273',
+      textColor: '#ddf8dd',
+      activePresence: '#e7f98b',
+      mentionBadge: '#869886',
+      topNavText: '#a9bca9'
+    }
+  }, {
+    name: 'DuoTone Dark Earth',
+    colors:
+    {
+      columnBg: '#2c2826',
+      topNavBg: '#564b43',
+      activeItem: '#726546',
+      activeItemText: '#fecb52',
+      hoverItem: '#705e51',
+      textColor: '#ffdac2',
+      activePresence: '#fecb52',
+      mentionBadge: '#98755d',
+      topNavText: '#bd987f'
+    }
   }
 ]
