@@ -55,7 +55,7 @@ const Checkbox = (props) => {
           )
         }
       </CheckboxIcon>
-      {props.children}
+      <small>{props.children}</small>
     </CheckboxLabel>
   )
 }
