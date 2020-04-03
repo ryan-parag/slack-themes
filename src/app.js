@@ -19,13 +19,20 @@ class App extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			filterText: ''
+			filterText: '',
+			isNeutralNav: false,
 		}
 	}
 
 	filterUpdate(value) {
 		this.setState({
 			filterText: value
+		})
+	}
+
+	neutralNavToggle() {
+		this.setState({
+			isNeutralNav: !this.state.isNeutralNav
 		})
 	}
 
@@ -49,11 +56,15 @@ class App extends Component {
 							<title>Slack Themes</title>
 					</Helmet>
 					<Suspense fallback={<div>Loading...</div>}>
-						<Intro />
+						<Intro
+							isNeutralNav={this.state.isNeutralNav}
+							neutralNavToggle={this.neutralNavToggle.bind(this)}
+						/>
 						<ThemeList
 							themes={this.props.themes}
 							filterText={this.state.filterText}
 							filterUpdate={this.filterUpdate.bind(this)}
+							isNeutralNav={this.state.isNeutralNav}
 						/>
 					</Suspense>
 					<GlobalStyle/>
