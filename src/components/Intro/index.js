@@ -3,14 +3,19 @@ import { Badge } from '../Badge';
 import { H2,H5 } from '../Text';
 import Logo from '../Logo';
 import { ContainerItemSmall } from '../ContainerItem';
+import Checkbox from '../Checkbox';
 
-const Intro = () => {
+const Intro = ({neutralNavToggle,isNeutralNav}) => {
   return (
     <ContainerItemSmall>
       <Logo />
       <H2>Pick a theme for Slack</H2>
       <H5>Having trouble keeping track of all of your Slack workspaces?</H5>
       <p>Choose and copy one of the themes below to personalize a Slack workspace.</p>
+      <Checkbox
+        isChecked={isNeutralNav}
+        method={neutralNavToggle.bind(this)}
+      />
       <p>How to:</p>
       <ol>
         <li>Copy a theme</li>

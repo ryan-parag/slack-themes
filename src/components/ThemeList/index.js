@@ -17,6 +17,7 @@ class ThemeList extends Component {
           <SlackWidget 
             theme={theme}
             key={theme.name}
+            isNeutralNav={this.props.isNeutralNav}
           />
         )
       })

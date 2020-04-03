@@ -1,14 +1,34 @@
 import React, { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components';
 import Button from '../Button';
+import theme from '../../theme';
 
-const WidgetContainer = styled.div`
+const WidgetContainer = styled.button`
   user-select: none;
   width: 100%;
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,.2), 0px 8px 10px 1px rgba(0,0,0, .14), 0px 3px 14px 2px rgba(0,0,0, .12);
   border-radius: 8px;
   position: relative;
   margin-bottom: 1.6rem;
+  display: block;
+  padding: 0;
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 200ms ease-out 0s;
+  &:hover {
+    box-shadow: 0px 10px 12px 1px rgba(0,0,0, .12), 0px 5px 18px 2px rgba(0,0,0, .1),0px 12px 32px 2px rgba(0,0,0, .08);
+  }
+  &:hover, &:focus {
+    transform: scale(1.03);
+  }
+  &:focus {
+    box-shadow: 0px 0px 0px 4px ${theme.primary};
+  }
+  &:active {
+    transform: scale(1);
+    box-shadow: 0px 2px 2px rgba(0,0,0, .2), 0px 5px 8px rgba(0,0,0, .12);
+  }
 `;
 
 const WidgetHeader = styled.div`
@@ -19,7 +39,7 @@ const WidgetHeader = styled.div`
   }
 `;
 
-const WidgetTopBar = styled.button`
+const WidgetTopBar = styled.div`
   text-align: center;
   padding: 0.8rem;
   font-size: 14px;
@@ -30,9 +50,6 @@ const WidgetTopBar = styled.button`
   display: block;
   width: 100%;
   transition: all 200ms ease-out 0s;
-  &:hover {
-    filter: brightness(1.2);
-  }
 `;
 
 const WidgetTitle = styled.div`
@@ -135,8 +152,8 @@ const SlackWidget = (props) => {
   const theme = props.theme
   const themeName = theme.name
   const columnBg = theme.colors.columnBg
-  const topNavBg = theme.colors.topNavBg
-  const topNavText = theme.colors.topNavText
+  const topNavBg = props.isNeutralNav ? theme.colors.columnBg : theme.colors.topNavBg
+  const topNavText = props.isNeutralNav ? theme.colors.textColor : theme.colors.topNavText
   const activeItem = theme.colors.activeItem
   const activeItemText = theme.colors.activeItemText
   const hoverItem = theme.colors.hoverItem
@@ -147,15 +164,17 @@ const SlackWidget = (props) => {
 
   return (
     <div key={themeName}>
-      <WidgetContainer style={{
-        background: columnBg,
-        color: textColor
-      }}>
+      <WidgetContainer
+        style={{
+          background: columnBg,
+          color: textColor
+        }}
+        onClick={copyToClipboard}
+      >
         <WidgetTopBar style={{
           color: topNavText,
           background: topNavBg
         }}
-        onClick={copyToClipboard}
         >
           {buttonText}
         </WidgetTopBar>
@@ -188,9 +207,6 @@ const SlackWidget = (props) => {
           </WidgetList>
         </WidgetBody>
       </WidgetContainer>
-      {/* <ButtonBlock onClick={copyToClipboard} color={topNavBg} bg={topNavText}>
-      {buttonText}
-      </ButtonBlock> */}
       <CopyInput
         ref={textAreaRef}
         value={copyString}

@@ -11,6 +11,7 @@ export default {
     grey2: "#A1A3A7",
     grey1: "#E3E3E4",
     grey0: "#FFFFFF",
+    white80: "rgba(255,255,255,0.8)",
   },
   primary: "#99C221",
   subtle: "rgba(0,0,0, 0.05)",

@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       <span>
-        Designed and Developed by <a href="https://grapalab.com" target="_blank">Ryan Parag</a>
+        Designed and Developed by <a href="https://grapalab.com" target="_blank">Ryan Parag</a> and <a href="https://matt-broughton.com" target="_blank">Matthew Broughton</a>
       </span>
     </FooterContainer>
   )
