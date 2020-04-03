@@ -15,7 +15,9 @@ const Intro = ({neutralNavToggle,isNeutralNav}) => {
       <Checkbox
         isChecked={isNeutralNav}
         method={neutralNavToggle.bind(this)}
-      />
+      >
+        Change Top Navigation to neutral color
+      </Checkbox>
       <p>How to:</p>
       <ol>
         <li>Copy a theme</li>
