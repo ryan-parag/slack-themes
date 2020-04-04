@@ -5,7 +5,7 @@ import Logo from '../Logo';
 import { ContainerItemSmall } from '../ContainerItem';
 import Checkbox from '../Checkbox';
 
-const Intro = ({neutralNavToggle,isNeutralNav}) => {
+const Intro = (props) => {
   return (
     <ContainerItemSmall>
       <Logo />
@@ -13,10 +13,24 @@ const Intro = ({neutralNavToggle,isNeutralNav}) => {
       <H5>Having trouble keeping track of all of your Slack workspaces?</H5>
       <p>Choose and copy one of the themes below to personalize a Slack workspace.</p>
       <Checkbox
-        isChecked={isNeutralNav}
-        method={neutralNavToggle.bind(this)}
+        isChecked={props.theme}
+        method={props.toggleTheme.bind(this)}
       >
-        Change Top Navigation to a neutral color
+        {props.theme}
+      </Checkbox>
+      <br/>
+      <Checkbox
+        isChecked={props.isNeutralNav}
+        method={props.neutralNavToggle.bind(this)}
+      >
+        Change Top Navigation to neutral color
+      </Checkbox>
+      <br/>
+      <Checkbox
+        isChecked={props.themeLabel}
+        method={props.themeLabelToggle.bind(this)}
+      >
+        Add Theme Label when copying
       </Checkbox>
       <p>How to:</p>
       <ol>

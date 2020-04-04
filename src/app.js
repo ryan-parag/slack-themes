@@ -1,6 +1,7 @@
 import React, { Component,Suspense } from "react";
 import {hot} from "react-hot-loader/root";
 import {Helmet} from "react-helmet";
+import { ThemeProvider } from 'styled-components';
 
 
 // Import modern-normalize & fonts
@@ -12,6 +13,7 @@ import Container from "./components/Container";
 import Intro from "./components/Intro";
 import ThemeList from "./components/ThemeList";
 import Footer from "./components/Footer";
+import { lightTheme, darkTheme } from './theme/theme';
 
 // Main page
 class App extends Component {
@@ -21,6 +23,8 @@ class App extends Component {
 		this.state = {
 			filterText: '',
 			isNeutralNav: false,
+			themeLabel: false,
+			theme: 'dark'
 		}
 	}
 
@@ -33,6 +37,18 @@ class App extends Component {
 	neutralNavToggle() {
 		this.setState({
 			isNeutralNav: !this.state.isNeutralNav
+		})
+	}
+
+	themeLabelToggle() {
+		this.setState({
+			themeLabel: !this.state.themeLabel
+		})
+	}
+
+	toggleTheme() {
+		this.setState({
+			theme: this.state.theme === 'light' ? 'dark' : 'light'
 		})
 	}
 
@@ -49,7 +65,8 @@ class App extends Component {
 		}
 
 		return (
-			<div>
+			<ThemeProvider theme={this.state.theme === 'light' ? lightTheme : darkTheme}>
+				<GlobalStyle/>
 				<Container>
 					<Helmet>
 							<meta charSet="utf-8" />
@@ -59,18 +76,22 @@ class App extends Component {
 						<Intro
 							isNeutralNav={this.state.isNeutralNav}
 							neutralNavToggle={this.neutralNavToggle.bind(this)}
+							themeLabel={this.state.themeLabel}
+							themeLabelToggle={this.themeLabelToggle.bind(this)}
+							toggleTheme={this.toggleTheme.bind(this)}
+							theme={this.state.theme}
 						/>
 						<ThemeList
 							themes={this.props.themes}
 							filterText={this.state.filterText}
 							filterUpdate={this.filterUpdate.bind(this)}
 							isNeutralNav={this.state.isNeutralNav}
+							themeLabel={this.state.themeLabel}
 						/>
 					</Suspense>
-					<GlobalStyle/>
 				</Container>
 				<Footer />
-			</div>
+			</ThemeProvider>
 		);
 	}
 };

@@ -15,6 +15,9 @@ const WidgetContainer = styled.button`
   border-radius: 8px;
   text-align: left;
   cursor: pointer;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   transition: all 200ms ease-out 0s;
   &:hover {
     box-shadow: 0px 10px 12px 1px rgba(0,0,0, .12), 0px 5px 18px 2px rgba(0,0,0, .1),0px 12px 32px 2px rgba(0,0,0, .08);
@@ -160,7 +163,7 @@ const SlackWidget = (props) => {
   const textColor = theme.colors.textColor
   const activePresence = theme.colors.activePresence
   const mentionBadge = theme.colors.mentionBadge
-  const copyString = `${themeName} -- ${columnBg},#121016,${activeItem},${activeItemText},${hoverItem},${textColor},${activePresence},${mentionBadge},${topNavBg},${topNavText}`
+  const copyString = `${props.themeLabel ? themeName + ' -- ' : ''}${columnBg},#121016,${activeItem},${activeItemText},${hoverItem},${textColor},${activePresence},${mentionBadge},${topNavBg},${topNavText}`
 
   return (
     <div key={themeName}>
