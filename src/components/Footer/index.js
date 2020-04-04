@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from '../Button';
 
 const FooterContainer = styled.footer`
   text-align: center;
@@ -11,9 +12,10 @@ const FooterContainer = styled.footer`
 const Footer = () => {
   return (
     <FooterContainer>
-      <span>
+      <p>
         Designed and Developed by <a href="https://grapalab.com" target="_blank">Ryan Parag</a> and <a href="https://matt-broughton.com" target="_blank">Matthew Broughton</a>
-      </span>
+      </p>
+      <Button>Contribute on GitHub</Button>
     </FooterContainer>
   )
 }

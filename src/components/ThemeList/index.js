@@ -18,6 +18,7 @@ class ThemeList extends Component {
             theme={theme}
             key={theme.name}
             isNeutralNav={this.props.isNeutralNav}
+            themeLabel={this.props.themeLabel}
           />
         )
       })

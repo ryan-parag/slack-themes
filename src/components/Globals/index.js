@@ -1,9 +1,6 @@
 import {createGlobalStyle} from 'styled-components';
-import theme from '../../theme';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://rsms.me/inter/inter.css');
-
   :root {
     --root-color: var(--neutral-8);
     --root-bg: var(--neutral-0);
@@ -29,8 +26,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 1.8rem;
-    color: ${theme.neutral.grey8};
-    background: ${theme.neutral.grey0};
+    color: ${({ theme }) => theme.rootColor};
+    background: ${({ theme }) => theme.rootBg};
     transition: all 120ms ease-out 0s;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeSpeed;
@@ -52,12 +49,12 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.6;
     margin-top: 0.8rem;
     margin-bottom: 1.6rem;
-    color: ${theme.neutral.grey3};
+    color: ${({ theme }) => theme.textColor};
   }
 
   ul, ol {
-    color: ${theme.neutral.grey3};
-    background: ${theme.subtle};
+    color: ${({ theme }) => theme.textColor};
+    background: ${({ theme }) => theme.subtle};
     padding: 1.6rem 1.6rem 1.6rem 4.8rem;
     border-radius: 0.4rem;
     li {
@@ -70,8 +67,8 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
     transition: all 120ms ease-out 0s;
     &:hover {
-      background: rgba(0,0,0,0.1);
-      box-shadow: 0px 0px 0px 3px rgba(0,0,0,.1);
+      background: ${({ theme }) => theme.disabledColor};
+      box-shadow: 0px 0px 0px 3px ${({ theme }) => theme.disabledColor};
     }
   }
 
