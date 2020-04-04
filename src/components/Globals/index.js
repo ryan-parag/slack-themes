@@ -1,8 +1,6 @@
 import {createGlobalStyle} from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://rsms.me/inter/inter.css');
-
   :root {
     --root-color: var(--neutral-8);
     --root-bg: var(--neutral-0);
