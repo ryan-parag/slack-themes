@@ -21,7 +21,7 @@ class App extends Component {
 			filterText: '',
 			isNeutralNav: false,
 			themeLabel: false,
-			show: true,
+			show: false,
 			theme: 'dark',
 		}
 	}
