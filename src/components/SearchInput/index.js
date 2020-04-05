@@ -1,6 +1,5 @@
 import React, { Component, useRef } from 'react';
 import styled from 'styled-components';
-import theme from '../../theme';
 
 const TextFieldContainer = styled.div`
   margin-bottom: 2.4rem;
@@ -23,16 +22,16 @@ const TextFieldInput = styled.input`
   font-size: 1.8rem;
   border-radius: 0.4rem;
   box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.15) , 0px 4px 8px 0px rgba(0,0,0,0.15);
-  border: 1px solid ${theme.neutral.grey2};
-  background: ${theme.neutral.grey0};
+  border: 1px solid ${({ theme }) => theme.disabledColor};
+  background: ${({ theme }) => theme.rootBg};
   transition: all 120ms ease-out 0s;
   &:focus {
     box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.15) , 0px 4px 8px 0px rgba(0,0,0,0.15);
-    border-color: ${theme.primary};
+    border-color: ${({ theme }) => theme.primary};
   }
   &[disabled] {
-    background: ${theme.subtle};
-    color: ${theme.neutral.grey3};
+    background: ${({ theme }) => theme.subtle};
+    color: ${({ theme }) => theme.textColor};
     box-shadow: none;
   }
   &.pinned {
@@ -53,14 +52,14 @@ const TextFieldIcon = styled.div`
   width: 2.4rem;
   height: 2.4rem;
   transform: translateY(-50%);
-  color: ${theme.neutral.grey3};
+  color: ${({ theme }) => theme.textColor};
 `;
 
 const TextFieldReset = styled.button`
   cursor: pointer;
   border: 0;
   background: transparent;
-  color: ${theme.primary};
+  color: ${({ theme }) => theme.primary};
   position: absolute;
   top: 50%;
   right: 1.2rem;

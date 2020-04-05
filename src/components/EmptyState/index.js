@@ -8,7 +8,7 @@ const EmptyStateContainer = styled.div`
   text-align: center;
   padding: 4.8rem 1.6rem;
   background: rgba(0,0,0,0.05);
-  color: ${theme.neutral.grey4};
+  color: ${({ theme }) => theme.textColor};
   border-radius: 0.4rem;
 `;
 

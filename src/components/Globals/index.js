@@ -1,41 +1,28 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import theme from '../../theme';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   @import url('https://rsms.me/inter/inter.css');
-
-  :root {
-    --root-color: var(--neutral-8);
-    --root-bg: var(--neutral-0);
-    --text-color: var(--neutral-3);
-    --disabled-color: var(--neutral-2);
-    --subtle-color: rgba(0,0,0,0.05);
-  }
-
+  
   html {
     box-sizing: border-box;
     font-size: 62.5%;
   }
-
+  
   *, *:before, *:after {
     box-sizing: inherit;
   }
 
-  html, body {
-    width: 100%;
-    height: 100%;
-  }
-
   body {
+    background: ${({ theme }) => theme.rootBg};
+    color: ${({ theme }) => theme.rootText};
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 1.8rem;
-    color: ${theme.neutral.grey8};
-    background: ${theme.neutral.grey0};
+    margin: 0;
+    padding: 0;
     transition: all 120ms ease-out 0s;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeSpeed;
-    margin: 0;
-    padding: 0;
   }
 
   h1,h2,h3 {
@@ -52,12 +39,12 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.6;
     margin-top: 0.8rem;
     margin-bottom: 1.6rem;
-    color: ${theme.neutral.grey3};
+    color: ${({ theme }) => theme.textColor};
   }
 
   ul, ol {
-    color: ${theme.neutral.grey3};
-    background: ${theme.subtle};
+    color: ${({ theme }) => theme.textColor};
+    background: ${({ theme }) => theme.subtle};
     padding: 1.6rem 1.6rem 1.6rem 4.8rem;
     border-radius: 0.4rem;
     li {
@@ -67,7 +54,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: inherit;
+    color: ${({ theme }) => theme.primary};
     transition: all 120ms ease-out 0s;
     &:hover {
       background: rgba(0,0,0,0.1);
@@ -76,10 +63,29 @@ const GlobalStyle = createGlobalStyle`
   }
 
   input, button, select, textarea {
-    font-family: inherit;
+    background: inherit;
     color: inherit;
+    font-family: inherit;
+    margin: 0;
     &:focus, &:active {
       outline: 0;
+    }
+  }
+
+  button {
+    border: 1px solid currentColor;
+    background: ${({ theme }) => theme.rootBg};
+    color: ${({ theme }) => theme.rootText};
+    border-radius: 0.4rem;
+    padding: 0.8rem 1.6rem;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.6rem;
+    transition: all 120ms ease-out 0s;
+    &:hover {
+      background: ${({ theme }) => theme.hoverBg};
+      color: inherit;
     }
   }
 `;
