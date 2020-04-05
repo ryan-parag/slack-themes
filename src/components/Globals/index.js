@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import theme from '../../theme';
+
 
 export const GlobalStyle = createGlobalStyle`
   @import url('https://rsms.me/inter/inter.css');
@@ -11,6 +11,11 @@ export const GlobalStyle = createGlobalStyle`
   
   *, *:before, *:after {
     box-sizing: inherit;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
   }
 
   body {
@@ -57,8 +62,8 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.primary};
     transition: all 120ms ease-out 0s;
     &:hover {
-      background: rgba(0,0,0,0.1);
-      box-shadow: 0px 0px 0px 3px rgba(0,0,0,.1);
+      background: ${({ theme }) => theme.disabledColor};
+      box-shadow: 0px 0px 0px 3px ${({ theme }) => theme.disabledColor};
     }
   }
 

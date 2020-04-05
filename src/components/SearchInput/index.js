@@ -23,7 +23,8 @@ const TextFieldInput = styled.input`
   border-radius: 0.4rem;
   box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.15) , 0px 4px 8px 0px rgba(0,0,0,0.15);
   border: 1px solid ${({ theme }) => theme.disabledColor};
-  background: ${({ theme }) => theme.rootBg};
+  background: ${({ theme }) => theme.transparent};
+  backdrop-filter: blur(12px) saturate(150%);
   transition: all 120ms ease-out 0s;
   &:focus {
     box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.15) , 0px 4px 8px 0px rgba(0,0,0,0.15);
@@ -53,6 +54,7 @@ const TextFieldIcon = styled.div`
   height: 2.4rem;
   transform: translateY(-50%);
   color: ${({ theme }) => theme.textColor};
+  z-index: 2000;
 `;
 
 const TextFieldReset = styled.button`
@@ -71,6 +73,7 @@ const TextFieldReset = styled.button`
   align-items: center;
   justify-content: center;
   padding: 0;
+  z-index: 2000;
   &:hover, &:focus {
     background: rgba(0,0,0,0.05);
   }
