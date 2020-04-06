@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background: ${({ theme }) => theme.rootBg};
-    color: ${({ theme }) => theme.rootText};
+    color: ${({ theme }) => theme.rootColor};
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 1.8rem;
     margin: 0;
@@ -59,12 +59,18 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
+    border-radius: 0.2rem;
     color: ${({ theme }) => theme.primary};
     transition: all 120ms ease-out 0s;
     &:hover {
-      background: ${({ theme }) => theme.disabledColor};
-      box-shadow: 0px 0px 0px 3px ${({ theme }) => theme.disabledColor};
+      background: ${({ theme }) => theme.primaryTint};
+      color: ${({ theme }) => theme.primaryShade};
+      box-shadow: 0px 0px 0px 3px ${({ theme }) => theme.primaryTint};
     }
+  }
+
+  hr {
+    border-color: ${({theme}) => theme.subtle};
   }
 
   input, button, select, textarea {
@@ -74,23 +80,6 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     &:focus, &:active {
       outline: 0;
-    }
-  }
-
-  button {
-    border: 1px solid currentColor;
-    background: ${({ theme }) => theme.rootBg};
-    color: ${({ theme }) => theme.rootText};
-    border-radius: 0.4rem;
-    padding: 0.8rem 1.6rem;
-    cursor: pointer;
-    text-align: center;
-    display: inline-block;
-    font-size: 1.6rem;
-    transition: all 120ms ease-out 0s;
-    &:hover {
-      background: ${({ theme }) => theme.hoverBg};
-      color: inherit;
     }
   }
 `;

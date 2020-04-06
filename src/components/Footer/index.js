@@ -3,10 +3,13 @@ import styled from 'styled-components';
 import Button from '../Button';
 
 const FooterContainer = styled.footer`
-  text-align: center;
+  display: flex;
   font-size: 1.4rem;
-  width: 100%;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1440px;
   padding: 1.6rem 1.6rem 3.2rem;
+  width: 100%;
 `;
 
 const FooterLink = styled.a`
@@ -18,6 +21,11 @@ const FooterLink = styled.a`
   color: ${({theme}) => theme.rootColor};
   border: 1px solid;
   border-radius: 0.4rem;
+  &:hover {
+    background: ${({theme}) => theme.hoverBg};
+    color: ${({theme}) => theme.hoverText};
+    box-shadow: none;
+  }
 `;
 
 const Footer = () => {

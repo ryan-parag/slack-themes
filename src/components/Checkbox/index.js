@@ -10,16 +10,18 @@ const CheckboxLabel = styled.label`
   padding: 1.2rem;
   border-radius: 0.8rem;
   background: ${({ theme }) => theme.subtle};
+  border: 1px solid transparent;
   transition: all 120ms ease-out 0s;
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   &:hover {
+    border-color: ${({ theme }) => theme.primaryShade};
     box-shadow: inset 0px 0px 4px rgba(0,0,0,.2);
   }
   &.active {
-    background: ${({ theme }) => theme.rootColor};
-    color: ${({ theme }) => theme.rootBg};
+    background: ${({ theme }) => theme.transparent};
+    color: ${({ theme }) => theme.primary};
   }
 `;
 

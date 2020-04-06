@@ -13,25 +13,18 @@ export default {
     grey0:  "#FFFFFF",
     white80: "rgba(255,255,255,0.8)",
   },
-  primary: "#99C221",
+  primary: {
+    color10: "#546A12",
+    color9: "#627C15",
+    color8: "#708E19",
+    color7: "#7E9F1C",
+    color6: "#8CB11E",
+    color5: "#99C221",
+    color4: "#A2C735",
+    color3: "#ABCD49",
+    color2: "#B4D25D",
+    color1: "#BED871",
+    color0: "#C7DD85"
+  },
   subtle:  "rgba(0,0,0, 0.05)",
-}
-export const lightTheme = {
-  disabledColor: "#A1A3A7",
-  hoverBg:       "#E3E3E4",
-  primary:       "#99C221",
-  rootText:      "#101114",
-  rootBg:        "#FFFFFF",
-  subtle:        "rgba(0,0,0, 0.05)",
-  textColor:     "#727579"
-}
-
-export const darkTheme = {
-  disabledColor: "#727579",
-  hoverBg:       "#101114",
-  primary:       "#99C221",
-  rootText:      "#FFFFFF",
-  rootBg:        "#191B1E",
-  subtle:        "#101114",
-  textColor:     "#A1A3A7"
 }

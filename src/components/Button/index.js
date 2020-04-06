@@ -17,8 +17,8 @@ const Button = styled.button`
     -moz-appearance: none;
     transition: all 120ms ease-out 0s;
     &:hover {
-        background: ${theme.neutral.grey3};
-		color: ${theme.neutral.grey0};
+        background: ${({ theme }) => theme.hoverBg};
+		color: ${({ theme }) => theme.hoverText};
 		box-shadow: 0px 8px 10px 1px rgba(0,0,0, .14), 0px 3px 14px 2px rgba(0,0,0, .12);
     }
 

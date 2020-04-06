@@ -26,7 +26,7 @@ const WidgetContainer = styled.button`
     transform: scale(1.03);
   }
   &:focus {
-    box-shadow: 0px 0px 0px 4px ${theme.primary};
+    box-shadow: 0px 0px 0px 4px ${theme.primary.color5};
   }
   &:active {
     transform: scale(1);
