@@ -60,11 +60,11 @@ export const GlobalStyle = createGlobalStyle`
 
   a {
     border-radius: 0.2rem;
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.primaryShade};
     transition: all 120ms ease-out 0s;
     &:hover {
       background: ${({ theme }) => theme.primaryTint};
-      color: ${({ theme }) => theme.primaryShade};
+      color: ${({ theme }) => theme.rootColor};
       box-shadow: 0px 0px 0px 3px ${({ theme }) => theme.primaryTint};
     }
   }

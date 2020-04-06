@@ -25,7 +25,7 @@ class App extends Component {
 			isNeutralNav: false,
 			themeLabel: false,
 			show: false,
-			theme: localTheme,
+			theme: localTheme ? localTheme : 'light',
 		}
 	}
 
@@ -49,11 +49,10 @@ class App extends Component {
 	}
 
 	toggleTheme() {
-		if(this.state.theme === 'light') {
-			window.localStorage.setItem('theme', 'dark');
-		} else {
-			window.localStorage.setItem('theme', 'light');
-		}
+		this.state.theme === 'light' ?
+			window.localStorage.setItem('theme', 'dark')
+			:
+			window.localStorage.setItem('theme', 'light')
 		this.setState({
 			theme: this.state.theme === 'light' ? 'dark' : 'light'
 		})

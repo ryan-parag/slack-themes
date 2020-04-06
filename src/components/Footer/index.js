@@ -10,6 +10,11 @@ const FooterContainer = styled.footer`
   max-width: 1440px;
   padding: 1.6rem 1.6rem 3.2rem;
   width: 100%;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2.4rem 4.8rem;
+  }
 `;
 
 const FooterLink = styled.a`

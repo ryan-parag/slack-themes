@@ -21,7 +21,8 @@ const CheckboxLabel = styled.label`
   }
   &.active {
     background: ${({ theme }) => theme.transparent};
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.primaryShade};
+    border-color: currentColor;
   }
 `;
 

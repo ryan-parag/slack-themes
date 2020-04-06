@@ -25,6 +25,7 @@ const TextFieldInput = styled.input`
   border: 1px solid ${({ theme }) => theme.disabledColor};
   background: ${({ theme }) => theme.transparent};
   backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
   transition: all 120ms ease-out 0s;
   &:focus {
     box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.15) , 0px 4px 8px 0px rgba(0,0,0,0.15);
