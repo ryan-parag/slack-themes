@@ -2,6 +2,7 @@ import React, { Component,Suspense } from "react";
 import {hot} from "react-hot-loader/root";
 import {Helmet} from "react-helmet";
 import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './theme/theme';
 
 // Import Components
 import GlobalStyle from "./components/Globals";
@@ -10,10 +11,12 @@ import Intro from "./components/Intro";
 import ThemeList from "./components/ThemeList";
 import Footer from "./components/Footer";
 import Drawer from "./components/Drawer";
-import { lightTheme, darkTheme } from './theme/theme';
+
+const localTheme = localStorage.getItem('theme');
 
 // Main page
 class App extends Component {
+
 
 	constructor(props) {
 		super(props)
@@ -22,9 +25,10 @@ class App extends Component {
 			isNeutralNav: false,
 			themeLabel: false,
 			show: false,
-			theme: 'dark',
+			theme: localTheme ? localTheme : 'light',
 		}
 	}
+
 
 	filterUpdate(value) {
 		this.setState({
@@ -45,16 +49,20 @@ class App extends Component {
 	}
 
 	toggleTheme() {
+		this.state.theme === 'light' ?
+			window.localStorage.setItem('theme', 'dark')
+			:
+			window.localStorage.setItem('theme', 'light')
 		this.setState({
 			theme: this.state.theme === 'light' ? 'dark' : 'light'
 		})
 	}
-	
+
 	showDrawer() {
-    this.setState({
+		this.setState({
 			show: !this.state.show
 		});
-  };
+	};
 
 	render() {
 		// Register service worker

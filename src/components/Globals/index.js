@@ -1,19 +1,14 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
-  :root {
-    --root-color: var(--neutral-8);
-    --root-bg: var(--neutral-0);
-    --text-color: var(--neutral-3);
-    --disabled-color: var(--neutral-2);
-    --subtle-color: rgba(0,0,0,0.05);
-  }
 
+export const GlobalStyle = createGlobalStyle`
+  @import url('https://rsms.me/inter/inter.css');
+  
   html {
     box-sizing: border-box;
     font-size: 62.5%;
   }
-
+  
   *, *:before, *:after {
     box-sizing: inherit;
   }
@@ -24,15 +19,15 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    background: ${({ theme }) => theme.rootBg};
+    color: ${({ theme }) => theme.rootColor};
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 1.8rem;
-    color: ${({ theme }) => theme.rootColor};
-    background: ${({ theme }) => theme.rootBg};
+    margin: 0;
+    padding: 0;
     transition: all 120ms ease-out 0s;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeSpeed;
-    margin: 0;
-    padding: 0;
   }
 
   h1,h2,h3 {
@@ -64,17 +59,25 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: inherit;
+    border-radius: 0.2rem;
+    color: ${({ theme }) => theme.primaryShade};
     transition: all 120ms ease-out 0s;
     &:hover {
-      background: ${({ theme }) => theme.disabledColor};
-      box-shadow: 0px 0px 0px 3px ${({ theme }) => theme.disabledColor};
+      background: ${({ theme }) => theme.primaryTint};
+      color: ${({ theme }) => theme.rootColor};
+      box-shadow: 0px 0px 0px 3px ${({ theme }) => theme.primaryTint};
     }
   }
 
+  hr {
+    border-color: ${({theme}) => theme.subtle};
+  }
+
   input, button, select, textarea {
-    font-family: inherit;
+    background: inherit;
     color: inherit;
+    font-family: inherit;
+    margin: 0;
     &:focus, &:active {
       outline: 0;
     }
