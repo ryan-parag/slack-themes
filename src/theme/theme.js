@@ -23,9 +23,9 @@ export const darkTheme = {
   primary:       `${defaultTheme.primary.color6}`,
   primaryTint:   `${defaultTheme.primary.color10}`,
   primaryShade:  `${defaultTheme.primary.color2}`,
-  rootBg:        `${defaultTheme.neutral.grey7}`,
+  rootBg:        `${defaultTheme.neutral.grey8}`,
   rootColor:     `${defaultTheme.neutral.grey0}`,
-  subtle:        `${defaultTheme.neutral.grey8}`,
+  subtle:        `${defaultTheme.neutral.grey7}`,
   textColor:     `${defaultTheme.neutral.grey3}`,
   transparent:   'rgba(0,0,0,0.6)'
 }

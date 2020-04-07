@@ -20,7 +20,7 @@ const CheckboxLabel = styled.label`
     box-shadow: inset 0px 0px 4px rgba(0,0,0,.2);
   }
   &.active {
-    background: ${({ theme }) => theme.transparent};
+    background: ${({ theme }) => theme.rootBg};
     color: ${({ theme }) => theme.primaryShade};
     border-color: currentColor;
   }
