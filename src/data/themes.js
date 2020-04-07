@@ -1777,5 +1777,61 @@ export default [
       mentionBadge: '#98755d',
       topNavText: '#bd987f'
     }
+  }, {
+    name: 'Gulf Racing',
+    colors:
+    {
+      columnBg: '#AACFE5',
+      topNavBg: '#132154',
+      activeItem: '#DA5221',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#97C8E5',
+      textColor: '#1A1819',
+      activePresence: '#DA5221',
+      mentionBadge: '#1f3075',
+      topNavText: '#FFFFFF'
+    }
+  }, {
+    name: 'Gulf Racing Dark',
+    colors:
+    {
+      columnBg: '#132154',
+      topNavBg: '#101C45',
+      activeItem: '#DA5221',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#0D1536',
+      textColor: '#FFFFFF',
+      activePresence: '#DA5221',
+      mentionBadge: '#AACFE5',
+      topNavText: '#FFFFFF'
+    }
+  }, {
+    name: 'Martini Racing',
+    colors:
+    {
+      columnBg: '#FFFFFF',
+      topNavBg: '#F6F2ED',
+      activeItem: '#022147',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#6CC1F0',
+      textColor: '#000000',
+      activePresence: '#CD1024',
+      mentionBadge: '#CD1024',
+      topNavText: '#022147'
+    }
+  }, {
+    name: 'Martini Racing Dark',
+    colors:
+    {
+      columnBg: '#000000',
+      topNavBg: '#022147',
+      activeItem: '#022147',
+      activeItemText: '#6CC1F0',
+      hoverItem: '#022147',
+      textColor: '#F6F2ED',
+      activePresence: '#CD1024',
+      mentionBadge: '#CD1024',
+      topNavText: '#F6F2ED'
+    }
   }
 ]
