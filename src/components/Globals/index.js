@@ -2,8 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 
 
 export const GlobalStyle = createGlobalStyle`
-  @import url('https://rsms.me/inter/inter.css');
-  
   html {
     box-sizing: border-box;
     font-size: 62.5%;
