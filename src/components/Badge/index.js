@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Badge = styled.div`
   display: inline-block;
   padding: 0.6rem 1rem;
-  background: linear-gradient(to top, ${({ theme }) => theme.subtle}, ${({ theme }) => theme.rootBg}, ${({ theme }) => theme.rootBg});
+  background: ${({ theme }) => theme.rootBg};
   line-height: 1;
   border-radius: 0.4rem;
   color: ${({ theme }) => theme.rootColor};
