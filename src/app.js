@@ -11,6 +11,7 @@ import Intro from "./components/Intro";
 import ThemeList from "./components/ThemeList";
 import Footer from "./components/Footer";
 import Drawer from "./components/Drawer";
+import ReactGa from 'react-ga';
 
 const localTheme = localStorage.getItem('theme');
 
