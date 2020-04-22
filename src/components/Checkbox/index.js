@@ -16,13 +16,13 @@ const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
   &:hover {
-    border-color: ${({ theme }) => theme.primaryShade};
+    border-color: ${({ theme }) => theme.primary};
     box-shadow: inset 0px 0px 4px rgba(0,0,0,.2);
   }
   &.active {
-    background: ${({ theme }) => theme.rootBg};
-    color: ${({ theme }) => theme.primaryShade};
-    border-color: currentColor;
+    background: ${({ theme }) => theme.primary};
+    color: ${theme.neutral.grey0};
+    border-color: ${({ theme }) => theme.primary};
   }
 `;
 

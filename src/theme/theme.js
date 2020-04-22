@@ -3,7 +3,7 @@ import defaultTheme from './index';
 export const lightTheme = {
   disabledColor: `${defaultTheme.neutral.grey2}`,
   hoverBg:       `${defaultTheme.neutral.grey0}`,
-  hoverText:     `${defaultTheme.primary.color7}`,
+  hoverText:     `${defaultTheme.primary.color5}`,
   overlay:       'rgba(0,0,0,0.35)',
   primary:       `${defaultTheme.primary.color5}`,
   primaryTint:   `${defaultTheme.primary.color2}`,
@@ -20,7 +20,7 @@ export const darkTheme = {
   hoverBg:       `${defaultTheme.neutral.grey8}`,
   hoverText:     `${defaultTheme.primary.color2}`,
   overlay:       'rgba(0,0,0,0.65)',
-  primary:       `${defaultTheme.primary.color6}`,
+  primary:       `${defaultTheme.primary.color5}`,
   primaryTint:   `${defaultTheme.primary.color10}`,
   primaryShade:  `${defaultTheme.primary.color2}`,
   rootBg:        `${defaultTheme.neutral.grey8}`,

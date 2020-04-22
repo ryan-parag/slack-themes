@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Checkbox from '../Checkbox';
 import Button from '../Button'
+import theme from '../../theme'
 
 const DrawerContainer = styled.div`
   position: fixed;
@@ -41,8 +42,9 @@ const ThemeButton = styled(Button)`
   justify-content: center;
   padding: 0;
   &.active {
-    color: ${({ theme }) => theme.rootBg};
-    background: ${({ theme }) => theme.rootColor};
+    color: ${theme.neutral.grey0};
+    background: ${({ theme }) => theme.primary};
+    border-color: ${({ theme }) => theme.primary};
   }
 `;
 

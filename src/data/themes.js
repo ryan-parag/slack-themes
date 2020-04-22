@@ -1833,5 +1833,47 @@ export default [
       mentionBadge: '#CD1024',
       topNavText: '#F6F2ED'
     }
+  }, {
+    name: 'Aubergine',
+    colors:
+    {
+      columnBg: '#19171D',
+      topNavBg: '#121016',
+      activeItem: '#2C649E',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#26242B',
+      textColor: '#A3A3A6',
+      activePresence: '#56A97A',
+      mentionBadge: '#BD3755',
+      topNavText: '#ABABAD'
+    }
+  }, {
+    name: 'Ochin',
+    colors:
+    {
+      columnBg: '#1E2228',
+      topNavBg: '#0D161D',
+      activeItem: '#5B7AA2',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#323842',
+      textColor: '#C7C8CA',
+      activePresence: '#A7E475',
+      mentionBadge: '#84AD91',
+      topNavText: '#CED0D2'
+    }
+  }, {
+    name: 'Work Hard',
+    colors:
+    {
+      columnBg: '#1A2A2C',
+      topNavBg: '#1E3337',
+      activeItem: '#E1A478',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#BD8377',
+      textColor: '#C6CCCD',
+      activePresence: '#E1A478',
+      mentionBadge: '#E05E4A',
+      topNavText: '#D1D4D5'
+    }
   }
 ]

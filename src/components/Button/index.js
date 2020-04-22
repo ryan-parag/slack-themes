@@ -17,15 +17,15 @@ const Button = styled.button`
     -moz-appearance: none;
     transition: all 120ms ease-out 0s;
     &:hover {
-        background: ${({ theme }) => theme.hoverBg};
-		color: ${({ theme }) => theme.hoverText};
+        background: ${({ theme }) => theme.primaryShade};
+		color: ${theme.neutral.grey0};
 		box-shadow: 0px 8px 10px 1px rgba(0,0,0, .14), 0px 3px 14px 2px rgba(0,0,0, .12);
     }
 
     &:active {
         transform: scale(.97);
 		box-shadow: 0;
-		background: ${theme.neutral.grey8};
+		background: ${theme.neutral.grey5};
     }
 `;
 
