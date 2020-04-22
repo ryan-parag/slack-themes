@@ -14,17 +14,17 @@ export default {
     white80: "rgba(255,255,255,0.8)",
   },
   primary: {
-    color10: "#546A12",
-    color9: "#627C15",
-    color8: "#708E19",
-    color7: "#7E9F1C",
-    color6: "#8CB11E",
-    color5: "#99C221",
-    color4: "#A2C735",
-    color3: "#ABCD49",
-    color2: "#B4D25D",
-    color1: "#BED871",
-    color0: "#C7DD85"
+    color10: "#1b0a1d",
+    color9: "#220d25",
+    color8: "#29102c",
+    color7: "#301233",
+    color6: "#3d1742",
+    color5: "#441A49",
+    color4: "#57315b",
+    color3: "#69486d",
+    color2: "#a28da4",
+    color1: "#c7bac8",
+    color0: "#ece8ed"
   },
   subtle:  "rgba(0,0,0, 0.05)",
 }
