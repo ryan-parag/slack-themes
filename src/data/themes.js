@@ -1834,7 +1834,7 @@ export default [
       topNavText: '#F6F2ED'
     }
   }, {
-    name: 'Aubergine',
+    name: 'Aubergine Dark',
     colors:
     {
       columnBg: '#19171D',
@@ -1848,7 +1848,21 @@ export default [
       topNavText: '#ABABAD'
     }
   }, {
-    name: 'Ochin',
+    name: 'Aubergine Light',
+    colors:
+    {
+      columnBg: '#3E103F',
+      topNavBg: '#340F35',
+      activeItem: '#1965A1',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#340F35',
+      textColor: '#CFC3CF',
+      activePresence: '#33AB77',
+      mentionBadge: '#BD3755',
+      topNavText: '#D7CFD7'
+    }
+  }, {
+    name: 'Ochin Dark',
     colors:
     {
       columnBg: '#1E2228',
@@ -1862,7 +1876,21 @@ export default [
       topNavText: '#CED0D2'
     }
   }, {
-    name: 'Monument',
+    name: 'Ochin Light',
+    colors:
+    {
+      columnBg: '#303E4C',
+      topNavBg: '#2C3848',
+      activeItem: '#6899C6',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#4A5663',
+      textColor: '#C9CDD1',
+      activePresence: '#96E66B',
+      mentionBadge: '#84AD91',
+      topNavText: '#D5D7DB'
+    }
+  }, {
+    name: 'Monument Dark',
     colors:
     {
       columnBg: '#1A2A2C',
@@ -1876,7 +1904,21 @@ export default [
       topNavText: '#D1D4D5'
     }
   }, {
-    name: 'Work Hard',
+    name: 'Monument Light',
+    colors:
+    {
+      columnBg: '#187E82',
+      topNavBg: '#11656F',
+      activeItem: '#F59F6B',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#D17C73',
+      textColor: '#C4DFE0',
+      activePresence: '#F59F6B',
+      mentionBadge: '#E05E4A',
+      topNavText: '#CDE0E2'
+    }
+  }, {
+    name: 'Work Hard Dark',
     colors:
     {
       columnBg: '#222629',
@@ -1890,7 +1932,21 @@ export default [
       topNavText: '#D0D0D1'
     }
   }, {
-    name: 'Aubergine Classic',
+    name: 'Work Hard Light',
+    colors:
+    {
+      columnBg: '#4D5250',
+      topNavBg: '#444A47',
+      activeItem: '#D29A4E',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#434745',
+      textColor: '#D3D4D3',
+      activePresence: '#9ACE53',
+      mentionBadge: '#D9676A',
+      topNavText: '#DADBDA'
+    }
+  }, {
+    name: 'Aubergine Classic Dark',
     colors:
     {
       columnBg: '#19171D',
@@ -1904,7 +1960,21 @@ export default [
       topNavText: '#ABABAD'
     }
   }, {
-    name: 'Eggplant',
+    name: 'Aubergine Classic Light',
+    colors:
+    {
+      columnBg: '#4D394B',
+      topNavBg: '#3E313C',
+      activeItem: '#4F9689',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#3E313C',
+      textColor: '#D3CED2',
+      activePresence: '#3D978D',
+      mentionBadge: '#E84F5F',
+      topNavText: '#D8D6D8'
+    }
+  }, {
+    name: 'Eggplant Dark',
     colors:
     {
       columnBg: '#1A1D21',
@@ -1916,6 +1986,20 @@ export default [
       activePresence: '#37B57F',
       mentionBadge: '#BB3A56',
       topNavText: '#D8CCD5'
+    }
+  }, {
+    name: 'Eggplant Light',
+    colors:
+    {
+      columnBg: '#FBFAF7',
+      topNavBg: '#49174A',
+      activeItem: '#49174A',
+      activeItemText: '#FBFAF7',
+      hoverItem: '#DCEEE4',
+      textColor: '#754F75',
+      activePresence: '#33AB77',
+      mentionBadge: '#BB3A56',
+      topNavText: '#DBD0DB'
     }
   }, {
     name: 'Dagobah',
@@ -1932,7 +2016,21 @@ export default [
       topNavText: '#D3D3D5'
     }
   }, {
-    name: 'Mondrian',
+    name: 'Hoth',
+    colors:
+    {
+      columnBg: '#F8F8FA',
+      topNavBg: '#F8F8FA',
+      activeItem: '#359FDD',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#FFFFFF',
+      textColor: '#686D72',
+      activePresence: '#64CF5D',
+      mentionBadge: '#DA5A62',
+      topNavText: '#5F6469'
+    }
+  }, {
+    name: 'Mondrian Dark',
     colors:
     {
       columnBg: '#1A1D21',
@@ -1946,7 +2044,21 @@ export default [
       topNavText: '#D2DDF9'
     }
   }, {
-    name: 'Ultraviolet',
+    name: 'Mondrian Light',
+    colors:
+    {
+      columnBg: '#FFFFFF',
+      topNavBg: '#255CE3',
+      activeItem: '#000000',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#FEC730',
+      textColor: '#404040',
+      activePresence: '#000000',
+      mentionBadge: '#FA141B',
+      topNavText: '#D2DDF9'
+    }
+  }, {
+    name: 'Ultraviolet Dark',
     colors:
     {
       columnBg: '#14101A',
@@ -1960,7 +2072,21 @@ export default [
       topNavText: '#E1D1FA'
     }
   }, {
-    name: 'Mood Indigo',
+    name: 'Ultraviolet Light',
+    colors:
+    {
+      columnBg: '#F5F5F5',
+      topNavBg: '#6729E7',
+      activeItem: '#6729E7',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#E8E8E8',
+      textColor: '#515151',
+      activePresence: '#6729E7',
+      mentionBadge: '#CB2955',
+      topNavText: '#E1D1FA'
+    }
+  }, {
+    name: 'Mood Indigo Dark',
     colors:
     {
       columnBg: '#1A1D21',
@@ -1974,7 +2100,21 @@ export default [
       topNavText: '#D2D4D9'
     }
   }, {
-    name: 'CMYK',
+    name: 'Mood Indigo Light',
+    colors:
+    {
+      columnBg: '#F8F8FA',
+      topNavBg: '#021D5C',
+      activeItem: '#021D5C',
+      activeItemText: '#F8F8FA',
+      hoverItem: '#E0E7FE',
+      textColor: '#3F5383',
+      activePresence: '#275AFB',
+      mentionBadge: '#275AFB',
+      topNavText: '#CCD1DE'
+    }
+  }, {
+    name: 'CMYK Dark',
     colors:
     {
       columnBg: '#20252C',
@@ -1986,6 +2126,20 @@ export default [
       activePresence: '#FBE35B',
       mentionBadge: '#CB2955',
       topNavText: '#351521'
+    }
+  }, {
+    name: 'CMYK Light',
+    colors:
+    {
+      columnBg: '#F2F4F7',
+      topNavBg: '#E42AA2',
+      activeItem: '#3FC3FC',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#FEE433',
+      textColor: '#4C4F64',
+      activePresence: '#3FC3FC',
+      mentionBadge: '#E42AA2',
+      topNavText: '#F9D3EC'
     }
   }, {
     name: 'Nocturne',
@@ -2002,7 +2156,7 @@ export default [
       topNavText: '#CCCCCC'
     }
   }, {
-    name: 'Haberdashery',
+    name: 'Haberdashery Dark',
     colors:
     {
       columnBg: '#021F26',
@@ -2014,6 +2168,20 @@ export default [
       activePresence: '#5BD256',
       mentionBadge: '#A11217',
       topNavText: '#BCC2B7'
+    }
+  }, {
+    name: 'Haberdashery Light',
+    colors:
+    {
+      columnBg: '#0A3641',
+      topNavBg: '#022B35',
+      activeItem: '#7C5F14',
+      activeItemText: '#FDF6E4',
+      hoverItem: '#022B35',
+      textColor: '#C0C6BB',
+      activePresence: '#5BD256',
+      mentionBadge: '#DA3435',
+      topNavText: '#CACEC1'
     }
   }, {
     name: 'Expensive',
@@ -2044,7 +2212,7 @@ export default [
       topNavText: '#49BB69'
     }
   }, {
-    name: 'Sweet Treat',
+    name: 'Sweet Treat Dark',
     colors:
     {
       columnBg: '#1A1D21',
@@ -2058,7 +2226,21 @@ export default [
       topNavText: '#D0A1A2'
     }
   }, {
-    name: 'Banana',
+    name: 'Sweet Treat Light',
+    colors:
+    {
+      columnBg: '#FFEEED',
+      topNavBg: '#FEC2C1',
+      activeItem: '#FEC2C1',
+      activeItemText: '#4D1A4C',
+      hoverItem: '#FFFFFF',
+      textColor: '#764C73',
+      activePresence: '#FDA861',
+      mentionBadge: '#3FBC8E',
+      topNavText: '#6D3961'
+    }
+  }, {
+    name: 'Banana Dark',
     colors:
     {
       columnBg: '#1A1D21',
@@ -2072,7 +2254,21 @@ export default [
       topNavText: '#D0A528'
     }
   }, {
-    name: 'Choco Mint',
+    name: 'Banana Light',
+    colors:
+    {
+      columnBg: '#FEEA8A',
+      topNavBg: '#FEC730',
+      activeItem: '#FEC730',
+      activeItemText: '#581235',
+      hoverItem: '#FFF7D6',
+      textColor: '#82474A',
+      activePresence: '#4E6FBF',
+      mentionBadge: '#DB434B',
+      topNavText: '#79352D'
+    }
+  }, {
+    name: 'Choco Mint Dark',
     colors:
     {
       columnBg: '#212121',
@@ -2086,7 +2282,21 @@ export default [
       topNavText: '#D7D6D6'
     }
   }, {
-    name: 'Discotheque',
+    name: 'Choco Mint Light',
+    colors:
+    {
+      columnBg: '#544539',
+      topNavBg: '#42362C',
+      activeItem: '#60AF9D',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#4A3C31',
+      textColor: '#D4D1CD',
+      activePresence: '#FFFFFF',
+      mentionBadge: '#60AF9D',
+      topNavText: '#D9D7D5'
+    }
+  }, {
+    name: 'Discotheque Dark',
     colors:
     {
       columnBg: '#1A1D21',
@@ -2098,6 +2308,20 @@ export default [
       activePresence: '#D47740',
       mentionBadge: '#691C1D',
       topNavText: '#D9AD67'
+    }
+  }, {
+    name: 'Discotheque Light',
+    colors:
+    {
+      columnBg: '#691C1D',
+      topNavBg: '#451413',
+      activeItem: '#D7452C',
+      activeItemText: '#FDF6E4',
+      hoverItem: '#451413',
+      textColor: '#D9A564',
+      activePresence: '#D47740',
+      mentionBadge: '#D7452C',
+      topNavText: '#D8C9BB'
     }
   }
 ]
