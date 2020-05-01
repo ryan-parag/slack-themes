@@ -12,6 +12,7 @@ import ThemeList from "./components/ThemeList";
 import Footer from "./components/Footer";
 import Drawer from "./components/Drawer";
 import ReactGa from 'react-ga';
+import ogImage from './images/social-media.png'
 
 const localTheme = localStorage.getItem('theme');
 
@@ -101,6 +102,7 @@ class App extends Component {
 					<Helmet>
 							<meta charSet="utf-8" />
 							<title>Slack Themes</title>
+							<meta property="og:image" content={ogImage}/>
 					</Helmet>
 					<Suspense fallback={<div>Loading...</div>}>
 						<Intro
