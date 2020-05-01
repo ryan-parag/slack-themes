@@ -24,7 +24,7 @@ class App extends Component {
 		this.state = {
 			filterText: '',
 			isNeutralNav: false,
-			themeLabel: false,
+			themeLabel: true,
 			show: false,
 			theme: localTheme ? localTheme : 'light',
 		}

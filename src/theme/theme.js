@@ -16,10 +16,10 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-  disabledColor: `${defaultTheme.neutral.grey3}`,
+  disabledColor: `${defaultTheme.neutral.grey5}`,
   hoverBg:       `${defaultTheme.neutral.grey8}`,
   hoverText:     `${defaultTheme.primary.color2}`,
-  overlay:       'rgba(0,0,0,0.65)',
+  overlay:       'rgba(0,0,0,0.75)',
   primary:       `${defaultTheme.primary.color5}`,
   primaryTint:   `${defaultTheme.primary.color10}`,
   primaryShade:  `${defaultTheme.primary.color2}`,

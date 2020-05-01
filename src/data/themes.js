@@ -966,7 +966,7 @@ export default [
       topNavText: '#1868fb'
     }
   }, {
-  name: 'Zeit Light',
+  name: 'Zeit/Vercel Light',
   colors:
     {
       columnBg: '#ffffff',
@@ -980,7 +980,7 @@ export default [
       topNavText: '#0070f4'
     }
   }, {
-  name: 'Zeit Dark',
+  name: 'Zeit/Vercel Dark',
   colors:
     {
       columnBg: '#000000',
@@ -2322,6 +2322,160 @@ export default [
       activePresence: '#D47740',
       mentionBadge: '#D7452C',
       topNavText: '#D8C9BB'
+    }
+  }, {
+    name: 'Lotus F1',
+    colors:
+    {
+      columnBg: '#000000',
+      topNavBg: '#B28C14',
+      activeItem: '#B28C14',
+      activeItemText: '#000000',
+      hoverItem: '#141414',
+      textColor: '#B28C14',
+      activePresence: '#B28C14',
+      mentionBadge: '#B28C14',
+      topNavText: '#FFFFFF'
+    }
+  }, {
+    name: 'Mazda 787b',
+    colors:
+    {
+      columnBg: '#FFFFFF',
+      topNavBg: '#FFFFFF',
+      activeItem: '#F05423',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#54BA54',
+      textColor: '#000000',
+      activePresence: '#54BA54',
+      mentionBadge: '#F05423',
+      topNavText: '#000000'
+    }
+  }, {
+    name: 'Twitter Lights Out',
+    colors:
+    {
+      columnBg: '#000000',
+      topNavBg: '#1da1f2',
+      activeItem: '#1da1f2',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#081018',
+      textColor: '#d9d9d9',
+      activePresence: '#1da1f2',
+      mentionBadge: '#1da1f2',
+      topNavText: '#d9d9d9'
+    }
+  }, {
+    name: 'Twitter Dim',
+    colors:
+    {
+      columnBg: '#17202A',
+      topNavBg: '#1da1f2',
+      activeItem: '#1da1f2',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#1D2D3E',
+      textColor: '#FFFFFF',
+      activePresence: '#1da1f2',
+      mentionBadge: '#1da1f2',
+      topNavText: '#FFFFFF'
+    }
+  }, {
+    name: 'Twitter',
+    colors:
+    {
+      columnBg: '#FFFFFF',
+      topNavBg: '#1da1f2',
+      activeItem: '#1da1f2',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#EDF5FD',
+      textColor: '#000000',
+      activePresence: '#1da1f2',
+      mentionBadge: '#1da1f2',
+      topNavText: '#000000'
+    }
+  }, {
+    name: 'Gatsby Light',
+    colors:
+    {
+      columnBg: '#362066',
+      topNavBg: '#452475',
+      activeItem: '#f1defa',
+      activeItemText: '#000000',
+      hoverItem: '#542c85',
+      textColor: '#FFFFFF',
+      activePresence: '#8a4baf',
+      mentionBadge: '#8a4baf',
+      topNavText: '#FFFFFF'
+    }
+  }, {
+    name: 'Gatsby Dark',
+    colors:
+    {
+      columnBg: '#191526',
+      topNavBg: '#362066',
+      activeItem: '#312261',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#1E1933',
+      textColor: '#A2A1A7',
+      activePresence: '#A97EC7',
+      mentionBadge: '#A97EC7',
+      topNavText: '#FFFFFF'
+    }
+  }, {
+    name: 'Webflow Light',
+    colors:
+    {
+      columnBg: '#FFFFFF',
+      topNavBg: '#4353ff',
+      activeItem: '#4353ff',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#ECEEFE',
+      textColor: '#000000',
+      activePresence: '#6ED59A',
+      mentionBadge: '#EC6D84',
+      topNavText: '#FFFFFF'
+    }
+  }, {
+    name: 'Webflow Dark',
+    colors:
+    {
+      columnBg: '#272726',
+      topNavBg: '#4353ff',
+      activeItem: '#4353ff',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#2E2E2E',
+      textColor: '#FFFFFF',
+      activePresence: '#6ED59A',
+      mentionBadge: '#EC6D84',
+      topNavText: '#FFFFFF'
+    }
+  }, {
+    name: 'Robinhood Dark',
+    colors:
+    {
+      columnBg: '#000000',
+      topNavBg: '#21ce99',
+      activeItem: '#21ce99',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#252A2D',
+      textColor: '#FFFFFF',
+      activePresence: '#21ce99',
+      mentionBadge: '#ed32b9',
+      topNavText: '#FFFFFF'
+    }
+  }, {
+    name: 'Robinhood Light',
+    colors:
+    {
+      columnBg: '#FFFFFF',
+      topNavBg: '#21ce99',
+      activeItem: '#21ce99',
+      activeItemText: '#FFFFFF',
+      hoverItem: '#b1bfc4',
+      textColor: '#000000',
+      activePresence: '#21ce99',
+      mentionBadge: '#ed32b9',
+      topNavText: '#FFFFFF'
     }
   }
 ]
