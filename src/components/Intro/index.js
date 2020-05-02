@@ -32,7 +32,7 @@ const Intro = (props) => {
       </div>
       <H2>Pick a theme for Slack</H2>
       <H5>Having trouble keeping track of all of your Slack workspaces?</H5>
-      <p>Choose and copy one of the themes below to personalize a Slack workspace.</p>
+      <p>Choose and copy one of the themes in the list to personalize a Slack workspace.</p>
       <p>How to:</p>
       <ol>
         <li>Copy a theme</li>
