@@ -80,6 +80,28 @@ export const GlobalStyle = createGlobalStyle`
       outline: 0;
     }
   }
+
+  @keyframes fadeIn {
+    from {
+      right: -800px;
+      opacity: 0;
+    }
+    to {
+      right: 0;
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      right: 0;
+      opacity: 1;
+    }
+    to {
+      right: -800px;
+      opacity: 0;
+    }
+  }
 `;
 
 export default GlobalStyle

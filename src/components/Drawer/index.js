@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import Checkbox from '../Checkbox';
 import Button from '../Button'
@@ -15,6 +15,17 @@ const DrawerContainer = styled.div`
   max-width: 500px;
   box-shadow: -1px 0px 0px ${({ theme }) => theme.disabledColor}, -5px 0px 8px rgba(0,0,0,.1), -10px 0px 20px -2px rgba(0,0,0,.08);
   z-index:9000;
+  ${props => {
+    if (props.active === "in") {
+      return `
+        animation: fadeIn 300ms ease-out forwards;
+      `;
+    } else if(props.active === "out") {
+      return `
+        animation: fadeOut 300ms ease-out forwards;
+      `;
+    }
+  }}
 `;
 
 const DrawerOverlay = styled.div`
@@ -56,6 +67,8 @@ const ThemeExample = styled.div`
 
  const Drawer = (props) => {
 
+  const [fade, setFade] = useState('in');
+
   const lightToggle = () => {
     props.theme === 'dark' ? props.toggleTheme() : null
   }
@@ -64,10 +77,27 @@ const ThemeExample = styled.div`
     props.theme === 'light' ? props.toggleTheme() : null
   }
 
+  const handleFade = () => {
+    if(fade === 'out') {
+      setFade('in')
+      console.log(fade)
+    } else {
+      setFade('out')
+      console.log(fade)
+    }
+  }
+
+  const closeDrawer = () => {
+    setFade('out')
+    setTimeout(() => {
+      props.showDrawer()
+    }, 200)
+  }
+
   return(
     <>
-      <DrawerContainer>
-        <CloseButton onClick={() => props.showDrawer()}>Close</CloseButton>
+      <DrawerContainer active={fade}>
+        <CloseButton onClick={() => closeDrawer()}>Close</CloseButton>
         <h2>Settings</h2>
         <div style={{
           marginBottom: '1.6rem'
@@ -121,7 +151,7 @@ const ThemeExample = styled.div`
           </p>
         </ThemeExample>
       </DrawerContainer>
-    <DrawerOverlay onClick={() => props.showDrawer()}/>
+    <DrawerOverlay onClick={() => closeDrawer()}/>
     </>
   )
 }
