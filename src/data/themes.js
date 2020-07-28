@@ -2454,8 +2454,8 @@ export default [
     colors:
     {
       columnBg: '#000000',
-      topNavBg: '#21ce99',
-      activeItem: '#21ce99',
+      topNavBg: '#00c805',
+      activeItem: '#00c805',
       activeItemText: '#FFFFFF',
       hoverItem: '#252A2D',
       textColor: '#FFFFFF',
@@ -2468,8 +2468,8 @@ export default [
     colors:
     {
       columnBg: '#FFFFFF',
-      topNavBg: '#21ce99',
-      activeItem: '#21ce99',
+      topNavBg: '#00c805',
+      activeItem: '#00c805',
       activeItemText: '#FFFFFF',
       hoverItem: '#b1bfc4',
       textColor: '#000000',
