@@ -1,5 +1,6 @@
 import React, { Component, useRef } from 'react';
 import styled from 'styled-components';
+import theme from '../../theme';
 
 const TextFieldContainer = styled.div`
   margin-bottom: 2.4rem;
@@ -81,84 +82,87 @@ const TextFieldReset = styled.button`
 `;
 
 class SearchInput extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			inputText: '',
+		};
+	}
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputText: '',
-    };
-  }
+	filterUpdate() {
+		const val = this.myValue.value;
+		this.props.filterUpdate(val);
+		this.setState({
+			inputText: val,
+		});
+	}
 
-  filterUpdate() {
-    const val = this.myValue.value
-    this.props.filterUpdate(val)
-    this.setState({
-      inputText: val
-    })
-  }
+	filterClear() {
+		this.props.filterUpdate('');
+		this.myValue.value = '';
+	}
 
-  filterClear() {
-    this.props.filterUpdate('')
-    this.myValue.value = ''
-  }
+	inputState() {
+		const searchField = this.searchField;
+		const searchInput = this.myValue;
 
-  inputState() {
-    const searchField = this.searchField
-    const searchInput = this.myValue
+		const pinSearch = () => {
+			searchField.classList.add('pinned');
+			searchInput.classList.add('pinned');
+		};
 
-    const pinSearch = () => {
-      searchField.classList.add('pinned')
-      searchInput.classList.add('pinned')
-    }
-  
-    const unpinSearch = () => {
-      if(searchField.classList.contains('pinned')) {
-        searchField.classList.remove('pinned')
-        searchInput.classList.remove('pinned')
-      }
-    }
+		const unpinSearch = () => {
+			if (searchField.classList.contains('pinned')) {
+				searchField.classList.remove('pinned');
+				searchInput.classList.remove('pinned');
+			}
+		};
 
-    let pinState = window.scrollY > window.innerHeight*.8;
-    pinState ? pinSearch(): unpinSearch();
-  }
+		let pinState = window.scrollY > window.innerHeight * 0.8;
+		pinState ? pinSearch() : unpinSearch();
+	}
 
-  render() {
+	render() {
+		window.addEventListener('scroll', this.inputState.bind(this));
 
-    window.addEventListener('scroll', this.inputState.bind(this))
-
-    return (
-      <TextFieldContainer ref={ (container) => {this.searchField = container} }>
-        <TextFieldIcon>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        </TextFieldIcon>
-        {
-          this.props.filterText.length > 1 ?
-            <TextFieldReset
-              ref={ (value) => {this.myValue = value} }
-              onClick={this.filterClear.bind(this)}
-              value=""
-            >
-              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="15" y1="9" x2="9" y2="15"></line>
-                <line x1="9" y1="9" x2="15" y2="15"></line>
-              </svg>
-            </TextFieldReset>
-            :
-            null
-        }
-        <TextFieldInputWithIcon
-          placeholder="Search for a theme..."
-          type="text"
-          ref={ (value) => {this.myValue = value} }
-          onChange={this.filterUpdate.bind(this)}
-        />
-      </TextFieldContainer>
-    )
-  }
+		return (
+			<TextFieldContainer
+				ref={container => {
+					this.searchField = container;
+				}}
+			>
+				<TextFieldIcon>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+						<circle cx="11" cy="11" r="8"></circle>
+						<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+					</svg>
+				</TextFieldIcon>
+				{this.props.filterText.length > 1 ? (
+					<TextFieldReset
+						ref={value => {
+							this.myValue = value;
+						}}
+						onClick={this.filterClear.bind(this)}
+						value=""
+					>
+						<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+							<circle cx="12" cy="12" r="10"></circle>
+							<line x1="15" y1="9" x2="9" y2="15"></line>
+							<line x1="9" y1="9" x2="15" y2="15"></line>
+						</svg>
+					</TextFieldReset>
+				) : null}
+				<TextFieldInputWithIcon
+					placeholder="Search for a theme..."
+					type="text"
+					ref={value => {
+						this.myValue = value;
+					}}
+					onChange={this.filterUpdate.bind(this)}
+				/>
+			</TextFieldContainer>
+		);
+	}
 }
 
 export default SearchInput;

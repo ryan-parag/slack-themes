@@ -36,6 +36,10 @@ build/Release
 node_modules/
 jspm_packages/
 
+# IDE specific directories
+.nova
+.vscode
+
 # TypeScript v1 declaration files
 typings/
 
