@@ -138,7 +138,6 @@ export default function Home() {
               activeQuery={query}
               updateQuery={updateQuery}
             />
-            <span>{query === '' ? 'All Themes' : query}</span>
             {
               filteredThemes.length > 0 && !loading ? (
                 <ThemeList
