@@ -1,45 +1,22 @@
-import React, { Component } from 'react';
-import SlackWidget from '../SlackWidget';
-import ThemeGrid from '../ThemeGrid';
-import SearchInput from '../SearchInput';
-import { ContainerItemLarge } from '../ContainerItem';
-import EmptyState from '../EmptyState';
+import React from 'react';
+import ThemeItem from '../ThemeItem';
 
-class ThemeList extends Component {
-  render() {
-    const { themes, filterText } = this.props;
-    const filteredThemes = themes.filter(theme => {
-      return theme.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
-    })
-    const themesList = filteredThemes
-      .map(theme => {
-        return (
-          <SlackWidget 
-            theme={theme}
-            key={theme.name}
-            isNeutralNav={this.props.isNeutralNav}
-            themeLabel={this.props.themeLabel}
-          />
-        )
-      })
-
-    return (
-      <ContainerItemLarge>
-        <SearchInput
-          filterText={this.props.filterText}
-          filterUpdate={this.props.filterUpdate.bind(this)}
-        />
-        { filteredThemes.length === 0 ?
-          <EmptyState filterText={filterText} />
-          :
-          <ThemeGrid>
-            {themesList}
-          </ThemeGrid>
-        }
-      </ContainerItemLarge>
-    )
-
-  }
-}
+const ThemeList = ({data, neutralNav, themeLabel}) => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4">
+      {
+        data.map(theme => (
+          <div key={Math.random()}>
+            <ThemeItem
+              theme={theme}
+              neutralNav={neutralNav}
+              themeLabel={themeLabel}
+            />
+          </div>
+        ))
+      }
+    </div>
+  )
+};
 
 export default ThemeList;
