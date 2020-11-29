@@ -16,6 +16,7 @@ const Header = () => {
       <meta property="og:type" content="website"></meta>
       <meta property="og:title" content={pageTitle}></meta>
       <meta property="og:description" content={description}></meta>
+      <meta property="og:image" content="/og.png"></meta>
       <title>{pageTitle}</title>
       <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"></link>
       <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"></link>
