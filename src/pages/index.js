@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import Header from '../components/Header'
 import Intro from '../components/Intro'
 import Categories from '../components/Categories'
 import Footer from '../components/Footer'
@@ -113,6 +114,7 @@ export default function Home() {
 
   return (
     <>
+      <Header/>
       {
         drawerState ? (
           <Drawer
@@ -128,12 +130,12 @@ export default function Home() {
       }
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row mx-4 md:mx-auto lg:mx-auto xl:mx-auto 2xl:mx-auto py-8 md:py-9">
-          <div className="w-full lg:w-1/3 px-4 h-3/6 md:sticky top-8 md:top-9">
+          <div className="w-full lg:w-1/3 lg:px-4 h-3/6 lg:sticky top-8 lg:top-9">
             <Intro
               toggleDrawerState={toggleDrawerState}
             />
           </div>
-          <div className="w-full lg:w-2/3 px-8">
+          <div className="w-full lg:w-2/3 lg:px-8">
             <Categories
               activeQuery={query}
               updateQuery={updateQuery}
