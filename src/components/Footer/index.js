@@ -1,46 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import Button from '../Button';
-
-const FooterContainer = styled.footer`
-  display: flex;
-  font-size: 1.4rem;
-  justify-content: space-between;
-  margin: 0 auto;
-  max-width: 1440px;
-  padding: 1.6rem 1.6rem 3.2rem;
-  width: 100%;
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    padding: 0 2.4rem 4.8rem;
-  }
-`;
-
-const FooterLink = styled.a`
-  display: inline-flex;
-  padding: 0.8rem 1.6rem;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: ${({theme}) => theme.rootColor};
-  border: 1px solid;
-  border-radius: 0.4rem;
-  &:hover {
-    background: ${({theme}) => theme.hoverBg};
-    color: ${({theme}) => theme.hoverText};
-    box-shadow: none;
-  }
-`;
+import React from 'react'
 
 const Footer = () => {
   return (
-    <FooterContainer>
-      <p>
-        Designed and Developed by <a href="https://grapalab.com" target="_blank">Ryan Parag</a> and <a href="https://matt-broughton.com" target="_blank">Matthew Broughton</a>
-      </p>
-      <FooterLink href="https://github.com/ryan-parag/slack-themes" target="_blank">Contribute on GitHub</FooterLink>
-    </FooterContainer>
+    <div className="flex flex-col lg:flex-row mx-4 items-center text-center md:mx-auto lg:mx-auto xl:mx-auto 2xl:mx-auto py-4 justify-between">
+      <small>
+        Designed and Developed by <a className="link" href="https://ryanparag.com" target="_blank">Ryan Parag</a> and <a className="link" href="https://matt-broughton.com/" target="_blank">Matthew Broughton</a>
+      </small>
+      <a href="https://github.com/ryan-parag/slack-themes" target="_blank" className="button mt-4 lg:mt-0">Contribute on GitHub</a>
+    </div>
   )
 }
 

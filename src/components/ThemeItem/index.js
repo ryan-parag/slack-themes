@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components';
-import Button from '../Button';
-import theme from '../../theme';
 
 const WidgetContainer = styled.button`
   user-select: none;
@@ -9,7 +7,7 @@ const WidgetContainer = styled.button`
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,.2), 0px 8px 10px 1px rgba(0,0,0, .14), 0px 3px 14px 2px rgba(0,0,0, .12);
   border-radius: 8px;
   position: relative;
-  margin-bottom: 1.6rem;
+  margin-bottom: 16px;
   display: block;
   padding: 0;
   border-radius: 8px;
@@ -26,7 +24,7 @@ const WidgetContainer = styled.button`
     transform: scale(1.03);
   }
   &:focus {
-    box-shadow: 0px 0px 0px 4px ${theme.primary.color5};
+    box-shadow: 0px 0px 0px 4px rgba(0,0,0, 0.2);
   }
   &:active {
     transform: scale(1);
@@ -35,7 +33,7 @@ const WidgetContainer = styled.button`
 `;
 
 const WidgetHeader = styled.div`
-  padding: 0.8rem;
+  padding: 8px;
   transition: all 200ms ease-out 0s;
   &:hover {
     background: ${props => props.color || "transparent"};
@@ -44,7 +42,7 @@ const WidgetHeader = styled.div`
 
 const WidgetTopBar = styled.div`
   text-align: center;
-  padding: 0.8rem;
+  padding: 8px;
   font-size: 14px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -56,7 +54,7 @@ const WidgetTopBar = styled.div`
 `;
 
 const WidgetTitle = styled.div`
-  font-size: 1.8rem;
+  font-size: 18px;
 `;
 
 const WidgetBody = styled.div`
@@ -71,18 +69,18 @@ const WidgetList = styled.ul`
 `;
 
 const WidgetListItem = styled.li`
-  padding: 1.6rem 4rem 1.6rem 2.4rem;
+  padding: 16px 40px 16px 24px;
   width: 100%;
   position: relative;
   margin-bottom: 0;
   transition: all 200ms ease-out 0s;
   &:before {
-    width: 0.8rem;
-    height: 0.8rem;
+    width: 8px;
+    height: 8px;
     content: '';
     position: absolute;
     top: 50%;
-    left: 0.8rem;
+    left: 8px;
     transform: translateY(-50%);
     background: ${props => props.activeColor || "transparent"}
   }
@@ -108,7 +106,7 @@ const WidgetListItemActive= styled(WidgetListItem)`
 `;
 
 const WidgetText = styled.span`
-  height: 0.8rem;
+  height: 8px;
   background: currentColor;
   display: block;
   opacity: .8;
@@ -116,18 +114,13 @@ const WidgetText = styled.span`
 `;
 
 const WidgetMention = styled.span`
-  height: 1.2rem;
-  width: 2.4rem;
+  height: 12px;
+  width: 24px;
   position: absolute;
   top: 50%;
-  right: 0.8rem;
+  right: 8px;
   transform: translateY(-50%);
   border-radius: 999px;
-`;
-
-const ButtonBlock = styled(Button)`
-  width: 100%;
-  display: block;
 `;
 
 const CopyInput = styled.textarea`
@@ -135,9 +128,8 @@ const CopyInput = styled.textarea`
   left: -9999px;
 `;
 
-const SlackWidget = (props) => {
+const ThemeItem = (props) => {
 
-  const [copySuccess, setCopySuccess] = useState('');
   const textAreaRef = useRef(null);
 
   const [buttonText, setButtonText] = useState('Click to Copy');
@@ -153,20 +145,20 @@ const SlackWidget = (props) => {
   };
 
   const theme = props.theme
-  const themeName = theme.name
-  const columnBg = theme.colors.columnBg
-  const topNavBg = props.isNeutralNav ? theme.colors.columnBg : theme.colors.topNavBg
-  const topNavText = props.isNeutralNav ? theme.colors.textColor : theme.colors.topNavText
-  const activeItem = theme.colors.activeItem
-  const activeItemText = theme.colors.activeItemText
-  const hoverItem = theme.colors.hoverItem
-  const textColor = theme.colors.textColor
-  const activePresence = theme.colors.activePresence
-  const mentionBadge = theme.colors.mentionBadge
+  const themeName = theme.theme_name
+  const columnBg = theme.column_bg
+  const topNavBg = props.neutralNav ? theme.column_bg : theme.top_nav_bg
+  const topNavText = props.neutralNav ? theme.text_color : theme.top_nav_text
+  const activeItem = theme.active_item
+  const activeItemText = theme.active_item_text
+  const hoverItem = theme.hover_item
+  const textColor = theme.text_color
+  const activePresence = theme.active_presence
+  const mentionBadge = theme.mention_badge
   const copyString = `${props.themeLabel ? themeName + ' -- ' : ''}${columnBg},#121016,${activeItem},${activeItemText},${hoverItem},${textColor},${activePresence},${mentionBadge},${topNavBg},${topNavText}`
 
   return (
-    <div key={themeName}>
+    <div>
       <WidgetContainer
         style={{
           background: columnBg,
@@ -219,4 +211,4 @@ const SlackWidget = (props) => {
   )
 }
 
-export default SlackWidget;
+export default ThemeItem;
