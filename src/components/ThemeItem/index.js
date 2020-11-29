@@ -69,26 +69,42 @@ const WidgetList = styled.ul`
 `;
 
 const WidgetListItem = styled.li`
-  padding: 16px 40px 16px 24px;
+  padding: 16px 40px 16px 36px;
   width: 100%;
   position: relative;
   margin-bottom: 0;
   transition: all 200ms ease-out 0s;
   &:before {
-    width: 8px;
-    height: 8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
     content: '';
     position: absolute;
     top: 50%;
     left: 8px;
     transform: translateY(-50%);
-    background: ${props => props.activeColor || "transparent"}
+    background: url(/slackbot.svg) no-repeat;
+    background-size: cover;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 28px;
+    transform: translateY(-50%);
+    width: 7px;
+    height: 7px;
+    color: ${props => props.activeColor || "inherit"};
+    background: ${props => props.activeColor ? 'currentColor' : props.bg};
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    box-shadow: 0px 0px 0px 2px ${props => props.bg || "transparent"};
   }
   &:hover {
-    background: ${props => props.color || "transparent"};
+    background: ${props => props.hover || "transparent"};
   }
   &:last-of-type:hover {
-    background: ${props => props.color || "transparent"};
+    background: ${props => props.hover || "transparent"};
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
   }
@@ -96,8 +112,10 @@ const WidgetListItem = styled.li`
 
 const WidgetListItemActive= styled(WidgetListItem)`
   transition: all 200ms ease-out 0s;
-  &:before {
+  &:after {
+    color: inherit;
     background: currentColor;
+    box-shadow: 0px 0px 0px 2px ${props => props.activeBg || "transparent"};
   }
   &:hover {
     border-bottom-left-radius: 0;
@@ -180,13 +198,13 @@ const ThemeItem = (props) => {
         </WidgetHeader>
         <WidgetBody>
           <WidgetList>
-            <WidgetListItemActive style={{
+            <WidgetListItemActive activeBg={activeItem} style={{
               color: activeItemText,
               background: activeItem
             }}>
               <WidgetText />
             </WidgetListItemActive>
-            <WidgetListItem activeColor={activePresence} color={hoverItem} style={{
+            <WidgetListItem activeColor={activePresence} bg={columnBg} hover={hoverItem} style={{
               color: textColor
             }}>
               <WidgetText />
@@ -194,7 +212,7 @@ const ThemeItem = (props) => {
                 background: mentionBadge
               }} />
             </WidgetListItem>
-            <WidgetListItem activeColor={activePresence} color={hoverItem} style={{
+            <WidgetListItem bg={columnBg} hover={hoverItem} style={{
               color: textColor
             }}>
               <WidgetText />
