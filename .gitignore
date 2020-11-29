@@ -1,3 +1,8 @@
+# Keys
+config.js
+.env
+next.config.js
+
 # Logs
 logs
 *.log
