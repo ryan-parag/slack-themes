@@ -16,7 +16,7 @@ export default function SubmitTheme() {
           </Link>
           <h1 className="mt-16 mb-4">Submit a Theme</h1>
           <p>
-            Don't see a theme in the list? Have an idea to add to the site? Use the links to contact us or a submit a Slack theme you would like to submit!
+            Don't see a theme in the list? Have an idea to add to the site? Use the links to contribute or submit a Slack theme you would like to submit!
           </p>
           <p className="mt-4">
             Designed and Developed by <a className="link" href="https://ryanparag.com" target="_blank">Ryan Parag</a> and <a className="link" href="https://matt-broughton.com/" target="_blank">Matthew Broughton</a>
