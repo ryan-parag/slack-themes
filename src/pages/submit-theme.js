@@ -63,7 +63,7 @@ export default function SubmitTheme() {
               <p>We're always looking for designers/developers to help out with wireframes / mockups / prototypes / code - send us a message through email or provide some design updates through the GitHub repo.</p>
             </div>
           </a>
-          <div className="flex sm:p-4 rounded-md border border-gray-200 bg-gray-100">
+          <div className="flex p-4 rounded-md border border-gray-200 bg-gray-100">
             <div>
               <div className="rounded-full inline-block p-4 bg-gray-200 text-gray-500">
                 <FileText/>
