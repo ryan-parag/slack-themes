@@ -1,12 +1,15 @@
 import React from 'react';
 import Logo from '../Logo'
 import { Sliders} from 'react-feather';
+import Link from 'next/link'
 
 const Intro = ({toggleDrawerState}) => {
   return (
     <>
       <div className="flex justify-between items-center">
-        <Logo/>
+        <Link href="/">
+          <a><Logo/></a>
+        </Link>
         <button
           className="button button--sm"
           onClick={toggleDrawerState}
@@ -25,7 +28,7 @@ const Intro = ({toggleDrawerState}) => {
       </ul>
       <p className="mt-4 mb-4">
         <small>
-          Don't see a theme you're looking for? <a className="text-indigo-500 hover:underline" target="_blank" href="https://forms.gle/ko6NiYzx6zEHiGb46">Submit a theme</a>.
+          Don't see a theme you're looking for? <Link href="/submit-theme">Submit a theme</Link>.
         </small>
       </p>
     </>

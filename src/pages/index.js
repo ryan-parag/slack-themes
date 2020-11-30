@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import Header from '../components/Header'
+import Layout from '../components/Layout'
 import Intro from '../components/Intro'
 import Categories from '../components/Categories'
 import Footer from '../components/Footer'
@@ -113,8 +113,7 @@ export default function Home() {
   }
 
   return (
-    <>
-      <Header/>
+    <Layout>
       {
         drawerState ? (
           <Drawer
@@ -175,6 +174,6 @@ export default function Home() {
         </div>
         <Footer/>
       </div>
-    </>
+    </Layout>
   );
 }
