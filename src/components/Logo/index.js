@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Logo = () => {
+const Logo = ({admin}) => {
   return (
     <div className="inline-flex items-center">
       <div className="w-12 h-12 rounded-md overflow-hidden shadow-lg transform -rotate-6">
@@ -20,8 +20,8 @@ const Logo = () => {
         </svg>
       </div>
       <div className="ml-4">
-        <div className="font-extrabold text-xl">Slack Themes</div>
-        <div className="text-sm text-gray-500">Version 2</div>
+        <div className="font-extrabold text-xl">{admin ? 'Theme Admin' : 'Slack Themes'}</div>
+        <div className="text-sm text-gray-500">{admin ? 'Slack Themes v2' : 'Version 2'}</div>
       </div>
     </div>
   )
