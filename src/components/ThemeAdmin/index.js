@@ -37,25 +37,25 @@ const ThemeAdmin = ({data}) => {
                 key={theme.theme_name}
                 className="rounded-md p-4 border border-gray-200 shadow flex flex-col"
               >
-                <div className="flex flex-row w-full mb-2 justify-between">
-                  <div className="flex flex-col">
+                <div className="flex flex-col w-full mb-2 justify-between">
+                  <div className="flex flex-row items-center justify-between">
                     <span title="theme_name" className="font-bold">{theme.theme_name}</span>
-                    <div className="inline-flex mt-4">
-                      <span role="button" title="active_item" className={swatchClass} style={{ background: theme.text_color}}></span>
-                      <span role="button" title="active_item_hover" className={swatchClass} style={{ background: theme.active_item_hover}}></span>
-                      <span role="button" title="active_presence" className={swatchClass} style={{ background: theme.active_presence}}></span>
-                      <span role="button" title="column_bg" className={swatchClass} style={{ background: theme.column_bg}}></span>
-                      <span role="button" title="hover_item" className={swatchClass} style={{ background: theme.hover_item}}></span>
-                      <span role="button" title="mention_badge" className={swatchClass} style={{ background: theme.mention_badge}}></span>
-                      <span role="button" title="text_color" className={swatchClass} style={{ background: theme.text_color}}></span>
-                      <span role="button" title="top_nav_bg" className={swatchClass} style={{ background: theme.top_nav_bg}}></span>
-                      <span role="button" title="top_nav_text" className={swatchClass} style={{ background: theme.top_nav_text}}></span>
-                    </div>
+                    <button className="transition transform text-xs bg-gray-100 text-gray-500 rounded-md hover:text-red-500 hover:bg-red-50 inline-flex items-center px-2 h-8 hover:rotate-3 hover:scale-110">
+                      <Trash size="16"/>
+                      <span className="ml-1">Delete</span>
+                    </button>
                   </div>
-                  <button className="transition transform text-xs bg-gray-100 text-gray-500 rounded-md hover:text-red-500 hover:bg-red-50 inline-flex items-center px-2 h-8 hover:rotate-3 hover:scale-110">
-                    <Trash size="16"/>
-                    <span className="ml-1">Delete</span>
-                  </button>
+                  <div className="inline-flex mt-4">
+                    <span role="button" title="active_item" className={swatchClass} style={{ background: theme.text_color}}></span>
+                    <span role="button" title="active_item_hover" className={swatchClass} style={{ background: theme.active_item_hover}}></span>
+                    <span role="button" title="active_presence" className={swatchClass} style={{ background: theme.active_presence}}></span>
+                    <span role="button" title="column_bg" className={swatchClass} style={{ background: theme.column_bg}}></span>
+                    <span role="button" title="hover_item" className={swatchClass} style={{ background: theme.hover_item}}></span>
+                    <span role="button" title="mention_badge" className={swatchClass} style={{ background: theme.mention_badge}}></span>
+                    <span role="button" title="text_color" className={swatchClass} style={{ background: theme.text_color}}></span>
+                    <span role="button" title="top_nav_bg" className={swatchClass} style={{ background: theme.top_nav_bg}}></span>
+                    <span role="button" title="top_nav_text" className={swatchClass} style={{ background: theme.top_nav_text}}></span>
+                  </div>
                 </div>
                 <Collapse label="Edit Categories">
                   <div className="grid grid-cols-2 sm:grid-cols-2 gap-2 mt-2">
