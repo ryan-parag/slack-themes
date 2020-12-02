@@ -6,20 +6,21 @@ import Logo from '../components/Logo'
 import Modal from '../components/Modal'
 import ThemeAdmin from '../components/ThemeAdmin'
 import { Plus } from 'react-feather'
+import ThemeItem from '../components/ThemeItem'
 
 const AddThemeModal = ({showModal, setShowModal, confirmModal}) => {
 
   const initialTheme = {
     theme_name: '',
-    active_item: '#FFFFFF',
+    active_item: '#000000',
     active_item_text: '#FFFFFF',
-    active_presence: '#FFFFFF',
-    column_bg: '#FFFFFF',
-    hover_item: '#FFFFFF',
-    mention_badge: '#FFFFFF',
-    text_color: '#FFFFFF',
-    top_nav_bg: '#FFFFFF',
-    top_nav_text: '#FFFFFF',
+    active_presence: '#4caf50',
+    column_bg: '#F5F5F5',
+    hover_item: '#F5F5F5',
+    mention_badge: '#4caf50',
+    text_color: '#000000',
+    top_nav_bg: '#F5F5F5',
+    top_nav_text: '#000000',
     categories: {
       dark: true,
       light: false,
@@ -114,118 +115,132 @@ const AddThemeModal = ({showModal, setShowModal, confirmModal}) => {
       setShowModal={closeModal}
       confirmModal={addThemeToDB}
       confirmText={'Add Theme'}
+      lg
     >
       <h3 className="mb-4">Add New Theme?</h3>
-      <p>Fill values and add theme to database:</p>
-      <form className="mt-2">
-        <label className="text-sm font-semibold">Theme Name</label>
-        <input
-          className={`border ${error ? 'border-red-500' : 'border-gray-500'} rounded-md mt-2 py-2 px-4 mb-2 block w-full`}
-          placeholder="Enter theme name..."
-          value={selectedTheme.theme_name}
-          name="theme_name"
-          onChange={handleInput}
-        />
-        { error ? <span className="text-sm block mb-2 text-red-500">A theme requires a name</span> : null}
-        <label className="text-sm font-semibold">Colors</label>
-        <div className="grid grid-cols-2 gap-y-1 gap-x-2 mb-2 mt-2">
-          <label className={colorPickerClass}>
-            <span className="text-xs">Active Item</span>
-            <input type="color" name="active_item" value={selectedTheme.active_item} onChange={handleInput}/>
-          </label>
-          <label className={colorPickerClass}>
-            <span className="text-xs">Active Item Text</span>
-            <input type="color" name="active_item_text" value={selectedTheme.active_item_text} onChange={handleInput}/>
-          </label>
-          <label className={colorPickerClass}>
-            <span className="text-xs">Active Presence</span>
-            <input type="color" name="active_presence" value={selectedTheme.active_presence} onChange={handleInput}/>
-          </label>
-          <label className={colorPickerClass}>
-            <span className="text-xs">Column BG</span>
-            <input type="color" name="column_bg" value={selectedTheme.column_bg} onChange={handleInput}/>
-          </label>
-          <label className={colorPickerClass}>
-            <span className="text-xs">Hover Item</span>
-            <input type="color" name="hover_item" value={selectedTheme.hover_item} onChange={handleInput}/>
-          </label>
-          <label className={colorPickerClass}>
-            <span className="text-xs">Mention Badge</span>
-            <input type="color" name="mention_badge" value={selectedTheme.mention_badge} onChange={handleInput}/>
-          </label>
-          <label className={colorPickerClass}>
-            <span className="text-xs">Text Color</span>
-            <input type="color" name="text_color" value={selectedTheme.text_color} onChange={handleInput}/>
-          </label>
-          <label className={colorPickerClass}>
-            <span className="text-xs">Top Nav BG</span>
-            <input type="color" name="top_nav_bg" value={selectedTheme.top_nav_bg} onChange={handleInput}/>
-          </label>
-          <label className={colorPickerClass}>
-            <span className="text-xs">Top Nav Text</span>
-            <input type="color" name="top_nav_text" value={selectedTheme.top_nav_text} onChange={handleInput}/>
-          </label>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <p>Fill values and add theme to database:</p>
+          <form className="mt-2">
+            <label className="text-sm font-semibold">Theme Name</label>
+            <input
+              className={`border ${error ? 'border-red-500' : 'border-gray-500'} rounded-md mt-2 py-2 px-4 mb-2 block w-full`}
+              placeholder="Enter theme name..."
+              value={selectedTheme.theme_name}
+              name="theme_name"
+              onChange={handleInput}
+            />
+            { error ? <span className="text-sm block mb-2 text-red-500">A theme requires a name</span> : null}
+            <label className="text-sm font-semibold">Colors</label>
+            <div className="grid grid-cols-2 gap-y-1 gap-x-2 mb-2 mt-2">
+              <label className={colorPickerClass}>
+                <span className="text-xs">Active Item</span>
+                <input type="color" name="active_item" value={selectedTheme.active_item} onChange={handleInput}/>
+              </label>
+              <label className={colorPickerClass}>
+                <span className="text-xs">Active Item Text</span>
+                <input type="color" name="active_item_text" value={selectedTheme.active_item_text} onChange={handleInput}/>
+              </label>
+              <label className={colorPickerClass}>
+                <span className="text-xs">Active Presence</span>
+                <input type="color" name="active_presence" value={selectedTheme.active_presence} onChange={handleInput}/>
+              </label>
+              <label className={colorPickerClass}>
+                <span className="text-xs">Column BG</span>
+                <input type="color" name="column_bg" value={selectedTheme.column_bg} onChange={handleInput}/>
+              </label>
+              <label className={colorPickerClass}>
+                <span className="text-xs">Hover Item</span>
+                <input type="color" name="hover_item" value={selectedTheme.hover_item} onChange={handleInput}/>
+              </label>
+              <label className={colorPickerClass}>
+                <span className="text-xs">Mention Badge</span>
+                <input type="color" name="mention_badge" value={selectedTheme.mention_badge} onChange={handleInput}/>
+              </label>
+              <label className={colorPickerClass}>
+                <span className="text-xs">Text Color</span>
+                <input type="color" name="text_color" value={selectedTheme.text_color} onChange={handleInput}/>
+              </label>
+              <label className={colorPickerClass}>
+                <span className="text-xs">Top Nav BG</span>
+                <input type="color" name="top_nav_bg" value={selectedTheme.top_nav_bg} onChange={handleInput}/>
+              </label>
+              <label className={colorPickerClass}>
+                <span className="text-xs">Top Nav Text</span>
+                <input type="color" name="top_nav_text" value={selectedTheme.top_nav_text} onChange={handleInput}/>
+              </label>
+            </div>
+            <label className="text-sm font-semibold">Categories</label>
+            <div className="flex flex-wrap">
+              <label className={checkboxClass}>
+                <input type="checkbox" name="dark" checked={selectedTheme.categories.dark ? 'checked' : false} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Dark</span>
+              </label>
+              <label className={checkboxClass}>
+                <input type="checkbox" name="light" checked={selectedTheme.categories.light} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Light</span>
+              </label>
+              <label className={checkboxClass}>
+                <input type="checkbox" name="red" checked={selectedTheme.categories.red} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Red</span>
+              </label>
+              <label className={checkboxClass}>
+                <input type="checkbox" name="blue" checked={selectedTheme.categories.blue} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Blue</span>
+              </label>
+              <label className={checkboxClass}>
+                <input type="checkbox" name="green" checked={selectedTheme.categories.green} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Green</span>
+              </label>
+              <label className={checkboxClass}>
+                <input type="checkbox" name="purple" checked={selectedTheme.categories.purple} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Purple</span>
+              </label>
+              <label className={checkboxClass}>
+                <input type="checkbox" name="pink" checked={selectedTheme.categories.pink} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Pink</span>
+              </label>
+              <label className={checkboxClass}>
+                <input type="checkbox" name="yellow" checked={selectedTheme.categories.yellow} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Yellow</span>
+              </label>
+              <label className={checkboxClass}>
+                <input type="checkbox" name="orange" checked={selectedTheme.categories.orange} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Orange</span>
+              </label>
+              <label className={checkboxClass}>
+                <input type="checkbox" name="brand" checked={selectedTheme.categories.brand} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Brand</span>
+              </label>
+              <label className={checkboxClass}>
+                <input type="checkbox" name="racing" checked={selectedTheme.categories.racing} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Racing</span>
+              </label>
+              <label className={checkboxClass}>
+                <input type="checkbox" name="syntax" checked={selectedTheme.categories.syntax} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Syntax</span>
+              </label>
+              <label className={checkboxClass}>
+                <input type="checkbox" name="minimal" checked={selectedTheme.categories.minimal} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Minimal</span>
+              </label>
+              <label className={checkboxClass}>
+                <input type="checkbox" name="material" checked={selectedTheme.categories.material} onChange={handleCheck}/>
+                <span className="text-xs ml-2">Material</span>
+              </label>
+            </div>
+          </form>
         </div>
-        <label className="text-sm font-semibold">Categories</label>
-        <div className="flex flex-wrap">
-          <label className={checkboxClass}>
-            <input type="checkbox" name="dark" checked={selectedTheme.categories.dark ? 'checked' : false} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Dark</span>
-          </label>
-          <label className={checkboxClass}>
-            <input type="checkbox" name="light" checked={selectedTheme.categories.light} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Light</span>
-          </label>
-          <label className={checkboxClass}>
-            <input type="checkbox" name="red" checked={selectedTheme.categories.red} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Red</span>
-          </label>
-          <label className={checkboxClass}>
-            <input type="checkbox" name="blue" checked={selectedTheme.categories.blue} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Blue</span>
-          </label>
-          <label className={checkboxClass}>
-            <input type="checkbox" name="green" checked={selectedTheme.categories.green} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Green</span>
-          </label>
-          <label className={checkboxClass}>
-            <input type="checkbox" name="purple" checked={selectedTheme.categories.purple} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Purple</span>
-          </label>
-          <label className={checkboxClass}>
-            <input type="checkbox" name="pink" checked={selectedTheme.categories.pink} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Pink</span>
-          </label>
-          <label className={checkboxClass}>
-            <input type="checkbox" name="yellow" checked={selectedTheme.categories.yellow} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Yellow</span>
-          </label>
-          <label className={checkboxClass}>
-            <input type="checkbox" name="orange" checked={selectedTheme.categories.orange} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Orange</span>
-          </label>
-          <label className={checkboxClass}>
-            <input type="checkbox" name="brand" checked={selectedTheme.categories.brand} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Brand</span>
-          </label>
-          <label className={checkboxClass}>
-            <input type="checkbox" name="racing" checked={selectedTheme.categories.racing} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Racing</span>
-          </label>
-          <label className={checkboxClass}>
-            <input type="checkbox" name="syntax" checked={selectedTheme.categories.syntax} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Syntax</span>
-          </label>
-          <label className={checkboxClass}>
-            <input type="checkbox" name="minimal" checked={selectedTheme.categories.minimal} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Minimal</span>
-          </label>
-          <label className={checkboxClass}>
-            <input type="checkbox" name="material" checked={selectedTheme.categories.material} onChange={handleCheck}/>
-            <span className="text-xs ml-2">Material</span>
-          </label>
+        <div className="hidden md:flex items-center justify-center rounded-md bg-gray-200">
+          <div className="w-3/4 lg:w-1/2">
+            <ThemeItem
+              themeLabel={true}
+              neutralNav={false}
+              theme={selectedTheme}
+            />
+          </div>
         </div>
-      </form>
+      </div>
     </Modal>
   )
 }

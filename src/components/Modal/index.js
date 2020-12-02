@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 
-const Modal = ({children, showModal, setShowModal, confirmText, confirmModal, danger}) => {
+const Modal = ({children, showModal, setShowModal, confirmText, confirmModal, danger, lg}) => {
   return (
     <>
       {
@@ -16,7 +16,7 @@ const Modal = ({children, showModal, setShowModal, confirmText, confirmModal, da
               role="button"
             ></motion.div>
             <div
-              className="fixed w-full md:w-1/2 lg:w-1/3 p-2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-50"
+              className={`fixed w-full ${lg ? 'md:w-3/4 lg:w-3/4' : 'md:w-1/2 lg:w-1/3'} p-2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-50`}
             >
               <motion.div
                 className="p-4 rounded-md shadow-2xl block bg-white w-full transform"
