@@ -103,76 +103,90 @@ const ThemeAdmin = ({data}) => {
                   </div>
                 </div>
                 <Collapse label="Edit Categories">
-                  <div className="grid grid-cols-2 rounded-md sm:grid-cols-2 gap-y-1 gap-x-2 mt-2 p-2 bg-gray-100">
+                  <div className="grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 rounded-md gap-y-1 gap-x-2 mt-2 p-2 bg-gray-100">
                     <Checkbox
                       label="Dark"
                       handleClick={test}
                       toggleState={theme.categories.dark}
+                      sm
                     />
                     <Checkbox
                       label="Light"
                       handleClick={test}
                       toggleState={theme.categories.light}
+                      sm
                     />
                     <Checkbox
                       label="Red"
                       handleClick={test}
                       toggleState={theme.categories.red}
+                      sm
                     />
                     <Checkbox
                       label="Blue"
                       handleClick={test}
                       toggleState={theme.categories.blue}
+                      sm
                     />
                     <Checkbox
                       label="Green"
                       handleClick={test}
                       toggleState={theme.categories.green}
+                      sm
                     />
                     <Checkbox
                       label="Purple"
                       handleClick={test}
                       toggleState={theme.categories.purple}
+                      sm
                     />
                     <Checkbox
                       label="Yellow"
                       handleClick={test}
                       toggleState={theme.categories.yellow}
+                      sm
                     />
                     <Checkbox
                       label="Pink"
                       handleClick={test}
                       toggleState={theme.categories.pink}
+                      sm
                     />
                     <Checkbox
                       label="Orange"
                       handleClick={test}
                       toggleState={theme.categories.orange}
+                      sm
                     />
                     <Checkbox
                       label="Brand"
                       handleClick={test}
                       toggleState={theme.categories.brand}
+                      sm
                     />
                     <Checkbox
                       label="Racing"
                       handleClick={test}
                       toggleState={theme.categories.racing}
+                      sm
                     />
                     <Checkbox
                       label="Syntax"
                       handleClick={test}
                       toggleState={theme.categories.syntax}
+                      sm
                     />
                     <Checkbox
                       label="Minimal"
                       handleClick={test}
                       toggleState={theme.categories.minimal}
+                      sm
                     />
                     <Checkbox
                       label="Material"
                       handleClick={test}
                       toggleState={theme.categories.material}
+                      sm
                     />
                   </div>
                 </Collapse>

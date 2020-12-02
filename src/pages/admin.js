@@ -39,6 +39,7 @@ const AddThemeModal = ({showModal, setShowModal, confirmModal}) => {
   }
 
   const [selectedTheme, setSelectedTheme] = useState(initialTheme)
+  const [error, setError] = useState(false)
 
   const colorPickerClass = 'flex items-center justify-between px-2 py-1 rounded-md bg-gray-100 hover:bg-gray-200 cursor-pointer'
   const checkboxClass = 'flex items-center justify-between px-2 py-1 rounded-md bg-gray-100 hover:bg-gray-200 cursor-pointer mr-2 mt-2'
@@ -59,44 +60,48 @@ const AddThemeModal = ({showModal, setShowModal, confirmModal}) => {
     }))
   }
 
-  const addThemeToDB = () => {
-    const themeRef = firebase.database().ref("testThemes");
-    themeRef.push({
-      theme_name: selectedTheme.theme_name,
-      active_item: selectedTheme.active_item,
-      active_item_text: selectedTheme.active_item_text,
-      active_presence: selectedTheme.active_presence,
-      column_bg: selectedTheme.column_bg,
-      hover_item: selectedTheme.hover_item,
-      mention_badge: selectedTheme.mention_badge,
-      text_color: selectedTheme.text_color,
-      top_nav_bg: selectedTheme.top_nav_bg,
-      top_nav_text: selectedTheme.top_nav_text,
-      categories: {
-        dark: selectedTheme.categories.dark,
-        light: selectedTheme.categories.light,
-        red: selectedTheme.categories.red,
-        blue: selectedTheme.categories.blue,
-        green: selectedTheme.categories.green,
-        purple: selectedTheme.categories.purple,
-        pink: selectedTheme.categories.pink,
-        yellow: selectedTheme.categories.yellow,
-        orange: selectedTheme.categories.orange,
-        brand: selectedTheme.categories.brand,
-        racing: selectedTheme.categories.racing,
-        syntax: selectedTheme.categories.syntax,
-        minimal: selectedTheme.categories.minimal,
-        material: selectedTheme.categories.material
-      }
-    })
-    setShowModal(false)
-    alert(selectedTheme.theme_name + ' added to database!')
-    setSelectedTheme(initialTheme)
-  }
-
   const closeModal = () => {
     setShowModal(false)
     setSelectedTheme(initialTheme)
+    setError(false)
+  }
+
+  const addThemeToDB = () => {
+    if(selectedTheme.theme_name.length > 0){
+      const themeRef = firebase.database().ref("testThemes");
+      themeRef.push({
+        theme_name: selectedTheme.theme_name,
+        active_item: selectedTheme.active_item,
+        active_item_text: selectedTheme.active_item_text,
+        active_presence: selectedTheme.active_presence,
+        column_bg: selectedTheme.column_bg,
+        hover_item: selectedTheme.hover_item,
+        mention_badge: selectedTheme.mention_badge,
+        text_color: selectedTheme.text_color,
+        top_nav_bg: selectedTheme.top_nav_bg,
+        top_nav_text: selectedTheme.top_nav_text,
+        categories: {
+          dark: selectedTheme.categories.dark,
+          light: selectedTheme.categories.light,
+          red: selectedTheme.categories.red,
+          blue: selectedTheme.categories.blue,
+          green: selectedTheme.categories.green,
+          purple: selectedTheme.categories.purple,
+          pink: selectedTheme.categories.pink,
+          yellow: selectedTheme.categories.yellow,
+          orange: selectedTheme.categories.orange,
+          brand: selectedTheme.categories.brand,
+          racing: selectedTheme.categories.racing,
+          syntax: selectedTheme.categories.syntax,
+          minimal: selectedTheme.categories.minimal,
+          material: selectedTheme.categories.material
+        }
+      })
+      alert(selectedTheme.theme_name + ' added to database!')
+      closeModal()
+    } else {
+      setError(true)
+    }
   }
 
   useEffect(() => {
@@ -115,12 +120,13 @@ const AddThemeModal = ({showModal, setShowModal, confirmModal}) => {
       <form className="mt-2">
         <label className="text-sm font-semibold">Theme Name</label>
         <input
-          className="border border-gray-500 rounded-md mt-2 py-2 px-4 mb-2 block w-full"
+          className={`border ${error ? 'border-red-500' : 'border-gray-500'} rounded-md mt-2 py-2 px-4 mb-2 block w-full`}
           placeholder="Enter theme name..."
           value={selectedTheme.theme_name}
           name="theme_name"
           onChange={handleInput}
         />
+        { error ? <span className="text-sm block mb-2 text-red-500">A theme requires a name</span> : null}
         <label className="text-sm font-semibold">Colors</label>
         <div className="grid grid-cols-2 gap-y-1 gap-x-2 mb-2 mt-2">
           <label className={colorPickerClass}>
