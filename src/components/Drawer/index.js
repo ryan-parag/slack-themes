@@ -6,12 +6,12 @@ const Drawer = ({toggleDrawerState, toggleThemeLabel, themeLabel, toggleNeutralN
   return (
     <>
       <motion.div
-        className="bg-opacity-50 bg-black fixed top-0 bottom-0 left-0 right-0 z-40"
+        className="bg-black fixed top-0 bottom-0 left-0 right-0 z-40"
         onClick={toggleDrawerState}
         role="button"
-        intial={{ opacity: 0}}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.1 }}
+        initial={{ opacity: 0}}
+        animate={{ opacity: 0.5 }}
+        transition={{ duration: 0.2 }}
       />
       <motion.div
         className="bg-white px-4 py-8 fixed top-0 left-0 bottom-0 w-full md:w-1/3 z-50 shadow-2xl"
@@ -28,16 +28,18 @@ const Drawer = ({toggleDrawerState, toggleThemeLabel, themeLabel, toggleNeutralN
             Close
           </button>
         </div>
-        <Checkbox
-          label="Change top navigation to neutral color"
-          handleClick={toggleNeutralNav}
-          toggleState={neutralNav}
-        />
-        <Checkbox
-          label="Add theme name when copying"
-          handleClick={toggleThemeLabel}
-          toggleState={themeLabel}
-        />
+        <div className="p-4 grid grid-cols-1 gap-2 mb-4 bg-gray-100 rounded-md">
+          <Checkbox
+            label="Change top navigation to neutral color"
+            handleClick={toggleNeutralNav}
+            toggleState={neutralNav}
+          />
+          <Checkbox
+            label="Add theme name when copying"
+            handleClick={toggleThemeLabel}
+            toggleState={themeLabel}
+          />
+        </div>
         <div className="px-4 py-6 font-mono leading-loose bg-gray-100 border border-gray-300 rounded-md text-sm break-all">
           <span>Example Theme:</span>
           <br/>
