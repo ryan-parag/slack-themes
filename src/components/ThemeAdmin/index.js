@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import Collapse from '../Collapse'
 import { Square, CheckSquare, Trash, Search } from 'react-feather';
+import Modal from '../Modal'
 
 const ListItemCheck = ({handleClick, toggleState, label}) => {
-
   return (
     <button 
-      className={`transition flex p-2 justify-between items-center rounded-md ${toggleState ? 'text-gray-900 bg-green-100 hover:bg-green-200' : 'text-gray-500 hover:bg-gray-100'}`}
+      className={`transition flex p-2 justify-between items-center rounded-md focus:outline-none ${toggleState ? 'text-gray-900 bg-white' : 'text-gray-400 hover:text-gray-700 hover:bg-gray-200'}`}
       onClick={handleClick}
     >
       <span className={`text-sm ${toggleState ? 'font-semibold' : null}`}>{label}</span>
@@ -19,12 +19,69 @@ const ListItemCheck = ({handleClick, toggleState, label}) => {
   )
 }
 
+const DeleteModal = ({showModal, setShowModal, confirmModal, theme}) => {
+  return (
+    <Modal
+      showModal={showModal}
+      setShowModal={setShowModal}
+      confirmModal={confirmModal}
+      confirmText={'Delete'}
+      theme={theme}
+      danger
+    >
+      <h3 className="mb-4">Delete <i>{theme.theme_name}</i>?</h3>
+      <p>Are you sure about removing the theme, <i>{theme.theme_name}</i>, from the database?</p>
+    </Modal>
+  )
+}
+
 const ThemeAdmin = ({data}) => {
 
   const swatchClass = 'transition transform border border-gray-300 w-6 h-6 rounded-full inline-block mr-2 hover:scale-110 hover:shadow-lg'
 
   const test = () => {
     console.log('sup')
+  }
+
+  const initialTheme = {
+    theme_name: '',
+    active_item: '',
+    active_item_text: '',
+    active_presence: '',
+    column_bg: '',
+    hover_item: '',
+    mention_badge: '',
+    text_color: '',
+    top_nav_bg: '',
+    top_nav_text: '',
+    categories: {
+      dark: false,
+      light: false,
+      red: false,
+      blue: false,
+      green: false,
+      purple: false,
+      pink: false,
+      yellow: false,
+      orange: false,
+      brand: false,
+      racing: false,
+      syntax: false,
+      minimal: false,
+      material: false,
+    }
+  }
+
+  const [selectedTheme, setSelectedTheme] = useState(initialTheme)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+
+  const deleteModalToggle = (item) => {
+    setSelectedTheme(item)
+    setShowDeleteModal(prev => !prev)
+  }
+
+  const testConfirm = () => {
+    alert('sup')
   }
 
   return (
@@ -40,7 +97,10 @@ const ThemeAdmin = ({data}) => {
                 <div className="flex flex-col w-full mb-2 justify-between">
                   <div className="flex flex-row items-center justify-between">
                     <span title="theme_name" className="font-bold">{theme.theme_name}</span>
-                    <button className="transition transform text-xs bg-gray-100 text-gray-500 rounded-md hover:text-red-500 hover:bg-red-50 inline-flex items-center px-2 h-8 hover:rotate-3 hover:scale-110">
+                    <button
+                      className="transition transform text-xs bg-gray-100 text-gray-500 rounded-md hover:text-red-500 hover:bg-red-50 inline-flex items-center px-2 h-8 hover:rotate-3 hover:scale-110 focus:outline-none"
+                      onClick={() => deleteModalToggle(theme)}
+                    >
                       <Trash size="16"/>
                       <span className="ml-1">Delete</span>
                     </button>
@@ -58,7 +118,7 @@ const ThemeAdmin = ({data}) => {
                   </div>
                 </div>
                 <Collapse label="Edit Categories">
-                  <div className="grid grid-cols-2 sm:grid-cols-2 gap-2 mt-2">
+                  <div className="grid grid-cols-2 rounded-md sm:grid-cols-2 gap-y-1 gap-x-2 mt-2 p-2 bg-gray-100">
                     <ListItemCheck
                       label="Dark"
                       handleClick={test}
@@ -145,6 +205,12 @@ const ThemeAdmin = ({data}) => {
           )
         }
       </div>
+      <DeleteModal
+        showModal={showDeleteModal}
+        setShowModal={setShowDeleteModal}
+        confirmModal={testConfirm}
+        theme={selectedTheme}
+      />
     </>
   )
 }

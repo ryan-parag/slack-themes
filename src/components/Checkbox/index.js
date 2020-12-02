@@ -5,19 +5,15 @@ const Checkbox = ({handleClick, toggleState, label}) => {
 
   return (
     <button
-      className={`flex w-full items-center p-4 mb-4 rounded-md border border-gray-500 bg-transparent hover:bg-indigo-100 ${toggleState ? 'bg-indigo-500 text-white hover:bg-indigo-600' : null}`}
+      className={`flex w-full transition items-center justify-between focus:outline-none p-4 rounded-md border ${toggleState ? 'bg-white text-gray-900' : 'text-gray-600 hover:text-gray-600 hover:bg-gray-200'}`}
       onClick={handleClick}
     >
-      {
-        toggleState ? (
-          <CheckSquare/>
-        )
-        :
-        (
-          <Square/>
-        )
-      }
-      <div className="pl-4 text-sm">{label}</div>
+      <div className={`text-sm ${toggleState ? 'font-semibold' : null}`}>{label}</div>
+      <div className={toggleState ? 'text-green-500' : 'text-gray-400'}>
+        {
+          toggleState ? <CheckSquare/> : <Square/>
+        }
+      </div>
     </button>
   )
 }
