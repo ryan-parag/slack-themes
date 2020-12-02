@@ -24,14 +24,14 @@ export default function Home() {
   const getData = (count) => {
     setLoading(true)
     const themeRef = firebase.database().ref("themes");
-    themeRef.orderByKey()
+    themeRef.orderByChild("theme_name")
       /*.limitToFirst(count)*/
       .once("value", (snapshot) => {
-        const themes = snapshot.val()
         const fetchedThemes = []
-        for(let id in themes) {
-          fetchedThemes.push(themes[id])
-        }
+        snapshot.forEach(function (childSnapshot) {
+          console.log(childSnapshot.val())
+          fetchedThemes.push(childSnapshot.val())
+        })
         setLoadedThemes(fetchedThemes)
         setFilteredThemes(fetchedThemes)
     })

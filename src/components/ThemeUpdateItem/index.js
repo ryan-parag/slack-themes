@@ -64,12 +64,14 @@ const ThemeUpdateItem = ({theme, onDelete, onCheck}) => {
         <div className="grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 rounded-md gap-y-1 gap-x-2 mt-2 p-2 bg-gray-100">
           {
             categories.map(item => (
-              <Checkbox
-                label={item.name}
-                handleClick={onCheck(item.value)}
-                toggleState={item.value}
-                sm
-              />
+              <div key={item.name}>
+                <Checkbox
+                  label={item.name}
+                  handleClick={onCheck(item.value)}
+                  toggleState={item.value}
+                  sm
+                />
+              </div>
             ))
           }
         </div>

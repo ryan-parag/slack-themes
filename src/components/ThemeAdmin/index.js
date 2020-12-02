@@ -116,13 +116,14 @@ const ThemeAdmin = ({data}) => {
               <ThemeUpdateItem
                 theme={theme}
                 onDelete={() => deleteModalToggle(theme)}
-                onCheck={test}
+                onCheck={() => test}
+                key={theme.theme_name}
               />
             ))
           )
           :
           (
-            <div className="rounded-md text-center bg-gray-100 p-8 mt-4 col-span-2">
+            <div className="rounded-md text-center bg-gray-100 p-8 mt-4 col-span-3">
               <div className="inline-block p-3 mb-4 bg-gray-200 text-gray-800 rounded-full">
                 <Search/>
               </div>
