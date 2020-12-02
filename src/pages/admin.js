@@ -90,6 +90,7 @@ const AddThemeModal = ({showModal, setShowModal, confirmModal}) => {
       }
     })
     setShowModal(false)
+    alert(selectedTheme.theme_name + ' added to database!')
     setSelectedTheme(initialTheme)
   }
 
