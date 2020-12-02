@@ -1,23 +1,8 @@
 import React, { useState } from 'react'
 import Collapse from '../Collapse'
-import { Square, CheckSquare, Trash, Search } from 'react-feather';
+import { Trash, Search } from 'react-feather';
 import Modal from '../Modal'
-
-const ListItemCheck = ({handleClick, toggleState, label}) => {
-  return (
-    <button 
-      className={`transition flex p-2 justify-between items-center rounded-md focus:outline-none ${toggleState ? 'text-gray-900 bg-white' : 'text-gray-400 hover:text-gray-700 hover:bg-gray-200'}`}
-      onClick={handleClick}
-    >
-      <span className={`text-sm ${toggleState ? 'font-semibold' : null}`}>{label}</span>
-      <div className={toggleState ? 'text-green-500' : 'text-gray-400'}>
-        {
-          toggleState ? <CheckSquare/> : <Square/>
-        }
-      </div>
-    </button>
-  )
-}
+import Checkbox from '../Checkbox'
 
 const DeleteModal = ({showModal, setShowModal, confirmModal, theme}) => {
   return (
@@ -119,72 +104,72 @@ const ThemeAdmin = ({data}) => {
                 </div>
                 <Collapse label="Edit Categories">
                   <div className="grid grid-cols-2 rounded-md sm:grid-cols-2 gap-y-1 gap-x-2 mt-2 p-2 bg-gray-100">
-                    <ListItemCheck
+                    <Checkbox
                       label="Dark"
                       handleClick={test}
                       toggleState={theme.categories.dark}
                     />
-                    <ListItemCheck
+                    <Checkbox
                       label="Light"
                       handleClick={test}
                       toggleState={theme.categories.light}
                     />
-                    <ListItemCheck
+                    <Checkbox
                       label="Red"
                       handleClick={test}
                       toggleState={theme.categories.red}
                     />
-                    <ListItemCheck
+                    <Checkbox
                       label="Blue"
                       handleClick={test}
                       toggleState={theme.categories.blue}
                     />
-                    <ListItemCheck
+                    <Checkbox
                       label="Green"
                       handleClick={test}
                       toggleState={theme.categories.green}
                     />
-                    <ListItemCheck
+                    <Checkbox
                       label="Purple"
                       handleClick={test}
                       toggleState={theme.categories.purple}
                     />
-                    <ListItemCheck
+                    <Checkbox
                       label="Yellow"
                       handleClick={test}
                       toggleState={theme.categories.yellow}
                     />
-                    <ListItemCheck
+                    <Checkbox
                       label="Pink"
                       handleClick={test}
                       toggleState={theme.categories.pink}
                     />
-                    <ListItemCheck
+                    <Checkbox
                       label="Orange"
                       handleClick={test}
                       toggleState={theme.categories.orange}
                     />
-                    <ListItemCheck
+                    <Checkbox
                       label="Brand"
                       handleClick={test}
                       toggleState={theme.categories.brand}
                     />
-                    <ListItemCheck
+                    <Checkbox
                       label="Racing"
                       handleClick={test}
                       toggleState={theme.categories.racing}
                     />
-                    <ListItemCheck
+                    <Checkbox
                       label="Syntax"
                       handleClick={test}
                       toggleState={theme.categories.syntax}
                     />
-                    <ListItemCheck
+                    <Checkbox
                       label="Minimal"
                       handleClick={test}
                       toggleState={theme.categories.minimal}
                     />
-                    <ListItemCheck
+                    <Checkbox
                       label="Material"
                       handleClick={test}
                       toggleState={theme.categories.material}

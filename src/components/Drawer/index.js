@@ -28,7 +28,7 @@ const Drawer = ({toggleDrawerState, toggleThemeLabel, themeLabel, toggleNeutralN
             Close
           </button>
         </div>
-        <div className="p-4 grid grid-cols-1 gap-2 mb-4 bg-gray-100 rounded-md">
+        <div className="p-2 grid grid-cols-1 gap-2 mb-4 bg-gray-100 rounded-md">
           <Checkbox
             label="Change top navigation to neutral color"
             handleClick={toggleNeutralNav}
