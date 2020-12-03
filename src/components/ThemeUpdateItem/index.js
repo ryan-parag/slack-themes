@@ -39,7 +39,15 @@ const ThemeUpdateItem = ({theme, onDelete, onCheck}) => {
     >
       <div className="flex flex-col w-full mb-2 justify-between">
         <div className="flex flex-row items-center justify-between">
-          <span title="theme_name" className="font-bold">{theme.theme_name}</span>
+          <div className="inline-flex items-center">
+            <span title="theme_name" className="font-bold">{theme.theme_name}</span>
+            <span className="text-xs font-semibold ml-2 inline-flex items-center text-gray-500">
+              <svg height="16" width="16" className="mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+              </svg>
+              {theme.likes} {theme.likes === 1 ? 'Like' : 'Likes'}
+            </span>
+          </div>
           <button
             className="transition transform text-xs bg-gray-100 text-gray-500 rounded-md hover:text-red-500 hover:bg-red-50 inline-flex items-center px-2 h-8 hover:rotate-3 hover:scale-110 focus:outline-none"
             onClick={onDelete}

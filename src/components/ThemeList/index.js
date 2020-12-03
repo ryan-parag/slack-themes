@@ -11,6 +11,7 @@ const ThemeList = ({data, neutralNav, themeLabel}) => {
               theme={theme}
               neutralNav={neutralNav}
               themeLabel={themeLabel}
+              withLikes
             />
           </div>
         ))

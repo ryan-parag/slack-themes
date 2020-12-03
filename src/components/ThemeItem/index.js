@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components';
+import firebase from 'firebase'
 
 const WidgetContainer = styled.button`
   user-select: none;
@@ -7,7 +8,7 @@ const WidgetContainer = styled.button`
   box-shadow: 0px 5px 5px -3px rgba(0,0,0,.2), 0px 8px 10px 1px rgba(0,0,0, .14), 0px 3px 14px 2px rgba(0,0,0, .12);
   border-radius: 8px;
   position: relative;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   display: block;
   padding: 0;
   border-radius: 8px;
@@ -175,6 +176,12 @@ const ThemeItem = (props) => {
   const mentionBadge = theme.mention_badge
   const copyString = `${props.themeLabel ? themeName + ' -- ' : ''}${columnBg},#121016,${activeItem},${activeItemText},${hoverItem},${textColor},${activePresence},${mentionBadge},${topNavBg},${topNavText}`
 
+  const updateLike = () => {
+    firebase.firestore().collection('themes').doc(theme.theme_name).update({
+      likes: theme.likes++
+    })
+  }
+
   return (
     <div>
       <WidgetContainer
@@ -225,6 +232,23 @@ const ThemeItem = (props) => {
         value={copyString}
         readOnly
       />
+      <div className="flex mb-2">
+        {
+          props.withLikes ? (
+            <button
+              className={`transition text-sm p-1 rounded-md bg-gray-50 inline-flex items-center ${theme.likes > 0 ? 'text-gray-900' : 'text-gray-400'} hover:text-gray-600 hover:bg-pink-100 focus:outline-none`}
+              onClick={updateLike}
+            >
+              <svg height="20" width="20" className={`${theme.likes > 0 ? 'text-pink-500' : 'inherit'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+              </svg>
+              <span className="ml-1">{theme.likes}</span>
+            </button>
+          )
+          :
+          null
+        }
+      </div>
     </div>
   )
 }

@@ -23,17 +23,14 @@ export default function Home() {
 
   const getData = (count) => {
     setLoading(true)
-    const themeRef = firebase.database().ref("themes");
-    themeRef.orderByChild("theme_name")
-      /*.limitToFirst(count)*/
-      .once("value", (snapshot) => {
-        const fetchedThemes = []
-        snapshot.forEach(function (childSnapshot) {
-          console.log(childSnapshot.val())
-          fetchedThemes.push(childSnapshot.val())
-        })
-        setLoadedThemes(fetchedThemes)
-        setFilteredThemes(fetchedThemes)
+    firebase.firestore().collection('themes').orderBy('likes', 'desc').get().then((snapshot) => {
+      const fetchedThemes = []
+      snapshot.docs.forEach(doc => {
+        fetchedThemes.push(doc.data())
+      })
+      console.log(fetchedThemes)
+      setLoadedThemes(fetchedThemes)
+      setFilteredThemes(fetchedThemes)
     })
     setTimeout(() => {
       setLoading(false)

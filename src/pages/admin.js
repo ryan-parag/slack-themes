@@ -69,8 +69,8 @@ const AddThemeModal = ({showModal, setShowModal, confirmModal}) => {
 
   const addThemeToDB = () => {
     if(selectedTheme.theme_name.length > 0){
-      const themeRef = firebase.database().ref("testThemes");
-      themeRef.push({
+      const themeRef = firebase.firestore().collection('themeTest')
+      themeRef.doc(selectedTheme.theme_name).set({
         theme_name: selectedTheme.theme_name,
         active_item: selectedTheme.active_item,
         active_item_text: selectedTheme.active_item_text,
@@ -268,16 +268,13 @@ export default function Admin() {
   }
 
   const getData = (count) => {
-    const themeRef = firebase.database().ref("themes");
-    themeRef.orderByChild("theme_name")
-      .once("value", (snapshot) => {
-        const fetchedThemes = []
-        snapshot.forEach(function (childSnapshot) {
-          console.log(childSnapshot.val())
-          fetchedThemes.push(childSnapshot.val())
-        });
-        setLoadedThemes(fetchedThemes)
-        setFilteredThemes(fetchedThemes)
+    firebase.firestore().collection('themes').orderBy('theme_name', 'asc').get().then((snapshot) => {
+      const fetchedThemes = []
+      snapshot.docs.forEach(doc => {
+        fetchedThemes.push(doc.data())
+      })
+      setLoadedThemes(fetchedThemes)
+      setFilteredThemes(fetchedThemes)
     })
   }
 

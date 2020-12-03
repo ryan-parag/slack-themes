@@ -23,6 +23,12 @@ const DeleteModal = ({showModal, setShowModal, confirmModal, theme}) => {
     }
   }
 
+  const closeModal = () => {
+    setInputName('')
+    setError(false)
+    setShowModal(false)
+  }
+
 
   const handleKeyPress = (e) => {
     if (e.charCode === 13) {
@@ -33,21 +39,21 @@ const DeleteModal = ({showModal, setShowModal, confirmModal, theme}) => {
   return (
     <Modal
       showModal={showModal}
-      setShowModal={setShowModal}
+      setShowModal={closeModal}
       confirmModal={validateConfirm}
       confirmText={'Delete'}
       theme={theme}
       danger
     >
       <h3 className="mb-4">Delete <i>{theme.theme_name}</i>?</h3>
-      <p>Are you sure about removing the theme, <i>{theme.theme_name}</i>, from the database?</p>
+      <p className="mb-4">Type the theme name, <strong className="text-red-500">{theme.theme_name}</strong>, to confirm removal from the database:</p>
       <input
         type="text"
         value={inputName}
         onChange={handleInput}
         onKeyPress={handleKeyPress}
         placeholder="Enter theme name..."
-        className={`border ${error ? 'border-red-500' : 'border-gray-500'} rounded-md mt-2 py-2 px-4 mb-2 block w-full`}
+        className={`border ${error ? 'border-red-500' : 'border-gray-500'} rounded-md mt-4 py-2 px-4 mb-4 block w-full`}
       />
       {
         error ? (
