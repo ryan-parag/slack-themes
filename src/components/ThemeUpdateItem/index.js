@@ -6,9 +6,8 @@ import firebase from 'firebase'
 
 const ColorPicker = ({name,color}) => {
   return (
-    <label role="button" title={name} className="transition transform border border-gray-300 w-6 h-6 rounded-full inline-block mr-2 hover:scale-110 hover:shadow-lg" style={{ background: color}}>
-      <input type="color" value={color} className="w-0 h-0 opacity-0"/>
-    </label>
+    <span title={name} className="transition transform border border-gray-300 w-6 h-6 rounded-full inline-block mr-2" style={{ background: color}}>
+    </span>
   )
 }
 

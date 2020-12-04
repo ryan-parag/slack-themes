@@ -105,17 +105,9 @@ const ThemeAdmin = ({data, onDelete}) => {
     setShowDeleteModal(prev => !prev)
   }
 
-  const testConfirm = () => {
-    alert('sup')
-  }
-
   const test = (asdf) => {
     console.log(asdf)
   }
-
-  useEffect(() => {
-
-  }, [data])
 
   return (
     <>

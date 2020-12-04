@@ -184,11 +184,10 @@ const ThemeItem = (props) => {
     firebase.firestore().collection('themes').doc(themeItem.theme_name).update({
       likes: parseInt(likes++)
     })
-    console.log('Liked' + ' ' + parseInt(likes++) + ' - ' + themeItem.theme_name)
   }
 
   useEffect(() => {
-    console.log('theme item updated')
+    
   }, [themeItem])
 
   return (
@@ -245,7 +244,7 @@ const ThemeItem = (props) => {
         {
           props.withLikes ? (
             <button
-              className={`transition text-sm p-1 rounded-md bg-gray-50 inline-flex items-center ${themeItem.likes > 0 ? 'text-gray-900' : 'text-gray-400'} hover:text-gray-600 hover:bg-pink-100 focus:outline-none`}
+              className={`transition text-sm p-1 rounded-md bg-gray-50 inline-flex items-center ${themeItem.likes > 0 ? 'text-gray-900' : 'text-gray-400'} hover:text-gray-600 hover:bg-pink-100 focus:outline-none transform hover:scale-110 hover:rotate-6`}
               onClick={() => updateLike(themeItem.likes)}
             >
               <svg height="20" width="20" className={`${themeItem.likes > 0 ? 'text-pink-500' : 'inherit'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

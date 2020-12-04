@@ -96,10 +96,12 @@ const AddThemeModal = ({showModal, setShowModal, confirmModal}) => {
           syntax: selectedTheme.categories.syntax,
           minimal: selectedTheme.categories.minimal,
           material: selectedTheme.categories.material
-        }
+        },
+        likes: 0
       })
       alert(selectedTheme.theme_name + ' added to database!')
       closeModal()
+      confirmModal()
     } else {
       setError(true)
     }
@@ -265,17 +267,14 @@ export default function Admin() {
       ...values,
       [name]: value
     })
-  }
-
-  const getData = (count) => {
-    firebase.firestore().collection('themes').orderBy('theme_name', 'asc').get().then((snapshot) => {
-      const fetchedThemes = []
-      snapshot.docs.forEach(doc => {
-        fetchedThemes.push(doc.data())
+    if(value.length > 0) {
+      const filtered = loadedThemes.filter(theme => {
+        return theme.theme_name.toLowerCase().includes(values.filterQuery.toLowerCase())
       })
-      setLoadedThemes(fetchedThemes)
-      setFilteredThemes(fetchedThemes)
-    })
+      setFilteredThemes(filtered)
+    } else {
+      setFilteredThemes(loadedThemes)
+    }
   }
 
   const getPass = (e) => {
@@ -288,7 +287,6 @@ export default function Admin() {
         if(values.pass === pass) {
           setLoggedIn(true)
           setError(false)
-          getData(10)
         } else {
           setLoggedIn(false)
           setError(true)
@@ -308,6 +306,11 @@ export default function Admin() {
     firebase.firestore().collection('themes').doc(themeName).delete().then(() => {
       console.log(`${themeName} deleted`)
     })
+    setFilteredThemes(loadedThemes)
+  }
+
+  const addTheme = () => {
+    setFilteredThemes(loadedThemes)
   }
 
   const handleKeypress = e => {
@@ -321,22 +324,14 @@ export default function Admin() {
   }
 
   useEffect(() => {
-    firebase.firestore().collection('themes').orderBy('likes', 'asc').onSnapshot(snapshot => {
+    firebase.firestore().collection('themes').orderBy('theme_name', 'asc').onSnapshot(snapshot => {
       const fetchedThemes = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data()
       }))
       setLoadedThemes(fetchedThemes)
     })
-    if(values.filterQuery.length > 0) {
-      const filtered = loadedThemes.filter(theme => {
-        return theme.theme_name.toLowerCase().includes(values.filterQuery.toLowerCase())
-      })
-      setFilteredThemes(filtered)
-    } else {
-      setFilteredThemes(loadedThemes)
-    }
-  }, [values.filterQuery])
+  }, [loadedThemes])
 
   return(
     <Layout>
@@ -434,7 +429,7 @@ export default function Admin() {
       <AddThemeModal
         showModal={showAddModal}
         setShowModal={setShowAddModal}
-        confirmModal={() => console.log('sup')}
+        confirmModal={addTheme}
       />
     </Layout>
   )
