@@ -22,7 +22,6 @@ const Categories = ({activeQuery, updateQuery}) => {
 
   return (
     <>
-      <div className="mb-4 text-sm text-gray-500">Filter by category:</div>
       <div className="flex flex-wrap">
         {
           items.map(item => (

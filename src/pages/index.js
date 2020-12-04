@@ -14,6 +14,8 @@ export default function Home() {
   const [filteredThemes, setFilteredThemes] = useState([])
   const [loading, setLoading] = useState(true)
   const [query, setQuery] = useState('')
+  const [sort, setSort] = useState('theme_name')
+  const [order, setOrder] = useState('asc')
 
   const [themeLabel, setThemeLabel] = useState(true)
   const [neutralNav, setNeutralNav] = useState(true)
@@ -25,7 +27,7 @@ export default function Home() {
 
   useEffect(() => {
     setLoading(true)
-    firebase.firestore().collection('themes').orderBy('likes', 'desc').onSnapshot(snapshot => {
+    firebase.firestore().collection('themes').orderBy(sort, order).onSnapshot(snapshot => {
       const fetchedThemes = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data()
@@ -80,7 +82,7 @@ export default function Home() {
     setTimeout(() => {
       setLoading(false)
     }, 500)
-  }, [query])
+  }, [query, sort, order])
 
   const toggleThemeLabel = () => {
     setThemeLabel(!themeLabel)
@@ -117,10 +119,49 @@ export default function Home() {
             />
           </div>
           <div className="w-full lg:w-2/3 lg:px-8">
+            <div className="flex mb-4 justify-between">
+              <div className="text-sm text-gray-500">Filter by category:</div>
+            </div>
             <Categories
               activeQuery={query}
               updateQuery={updateQuery}
             />
+            <div className="flex justify-between">
+              <div className="inline-flex items-center">
+                <span className="text-sm text-gray-500">Sort by:</span>
+                <button
+                  className={`transition focus:outline-none ${sort === 'theme_name' ? 'font-semibold' : 'text-gray-400 hover:text-gray-600'} ml-4 mr-4`}
+                  onClick={() => setSort('theme_name')}
+                >
+                    Name
+                </button>
+                <button
+                  className={`transition focus:outline-none ${sort === 'likes' ? 'font-semibold' : 'text-gray-400 hover:text-gray-600'}`}
+                  onClick={() => setSort('likes')}
+                >
+                  Likes
+                </button>
+              </div>
+              <button
+                className="transition text-gray-400 focus:outline-none hover:text-gray-700"
+                onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
+              >
+                {
+                  order === 'asc' ? 
+                    (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
+                      </svg>
+                    )
+                    :
+                    (
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+                      </svg>
+                    )
+                }
+              </button>
+            </div>
             {
               filteredThemes.length > 0 && !loading ? (
                 <ThemeList
