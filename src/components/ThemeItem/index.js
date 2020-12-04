@@ -152,6 +152,7 @@ const ThemeItem = (props) => {
   const textAreaRef = useRef(null);
 
   const [buttonText, setButtonText] = useState('Click to Copy');
+  const [themeItem, setThemeItem] = useState(props.theme)
 
   function copyToClipboard(e) {
     textAreaRef.current.select();
@@ -163,24 +164,32 @@ const ThemeItem = (props) => {
     }, 1000)
   };
 
-  const theme = props.theme
-  const themeName = theme.theme_name
-  const columnBg = theme.column_bg
-  const topNavBg = props.neutralNav ? theme.column_bg : theme.top_nav_bg
-  const topNavText = props.neutralNav ? theme.text_color : theme.top_nav_text
-  const activeItem = theme.active_item
-  const activeItemText = theme.active_item_text
-  const hoverItem = theme.hover_item
-  const textColor = theme.text_color
-  const activePresence = theme.active_presence
-  const mentionBadge = theme.mention_badge
+  const themeName = themeItem.theme_name
+  const columnBg = themeItem.column_bg
+  const topNavBg = props.neutralNav ? themeItem.column_bg : themeItem.top_nav_bg
+  const topNavText = props.neutralNav ? themeItem.text_color : themeItem.top_nav_text
+  const activeItem = themeItem.active_item
+  const activeItemText = themeItem.active_item_text
+  const hoverItem = themeItem.hover_item
+  const textColor = themeItem.text_color
+  const activePresence = themeItem.active_presence
+  const mentionBadge = themeItem.mention_badge
   const copyString = `${props.themeLabel ? themeName + ' -- ' : ''}${columnBg},#121016,${activeItem},${activeItemText},${hoverItem},${textColor},${activePresence},${mentionBadge},${topNavBg},${topNavText}`
 
-  const updateLike = () => {
-    firebase.firestore().collection('themes').doc(theme.theme_name).update({
-      likes: theme.likes++
+  const updateLike = (likes) => {
+    setThemeItem({
+      ...themeItem,
+      likes: parseInt(likes++)
     })
+    firebase.firestore().collection('themes').doc(themeItem.theme_name).update({
+      likes: parseInt(likes++)
+    })
+    console.log('Liked' + ' ' + parseInt(likes++) + ' - ' + themeItem.theme_name)
   }
+
+  useEffect(() => {
+    console.log('theme item updated')
+  }, [themeItem])
 
   return (
     <div>
@@ -236,13 +245,13 @@ const ThemeItem = (props) => {
         {
           props.withLikes ? (
             <button
-              className={`transition text-sm p-1 rounded-md bg-gray-50 inline-flex items-center ${theme.likes > 0 ? 'text-gray-900' : 'text-gray-400'} hover:text-gray-600 hover:bg-pink-100 focus:outline-none`}
-              onClick={updateLike}
+              className={`transition text-sm p-1 rounded-md bg-gray-50 inline-flex items-center ${themeItem.likes > 0 ? 'text-gray-900' : 'text-gray-400'} hover:text-gray-600 hover:bg-pink-100 focus:outline-none`}
+              onClick={() => updateLike(themeItem.likes)}
             >
-              <svg height="20" width="20" className={`${theme.likes > 0 ? 'text-pink-500' : 'inherit'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <svg height="20" width="20" className={`${themeItem.likes > 0 ? 'text-pink-500' : 'inherit'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
               </svg>
-              <span className="ml-1">{theme.likes}</span>
+              <span className="ml-1">{themeItem.likes}</span>
             </button>
           )
           :

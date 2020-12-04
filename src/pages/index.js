@@ -10,8 +10,6 @@ import { motion } from 'framer-motion'
 import { Loader, Search } from 'react-feather'
 
 export default function Home() {
-
-  const [themeCount, setThemeCount] = useState(36)
   const [loadedThemes, setLoadedThemes] = useState([])
   const [filteredThemes, setFilteredThemes] = useState([])
   const [loading, setLoading] = useState(true)
@@ -21,44 +19,20 @@ export default function Home() {
   const [neutralNav, setNeutralNav] = useState(true)
   const [drawerState, setDrawerState] = useState(false)
 
-  const getData = (count) => {
-    setLoading(true)
-    firebase.firestore().collection('themes').orderBy('likes', 'desc').get().then((snapshot) => {
-      const fetchedThemes = []
-      snapshot.docs.forEach(doc => {
-        fetchedThemes.push(doc.data())
-      })
-      console.log(fetchedThemes)
-      setLoadedThemes(fetchedThemes)
-      setFilteredThemes(fetchedThemes)
-    })
-    setTimeout(() => {
-      setLoading(false)
-    }, 500)
+  const updateQuery = (string) => {
+    setQuery(string)
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      getData(themeCount)
-    }, 200)
-  }, [themeCount || query])
-
-  const toggleThemeLabel = () => {
-    setThemeLabel(!themeLabel)
-  }
-
-  const toggleNeutralNav = () => {
-    setNeutralNav(!neutralNav)
-  }
-
-  const toggleDrawerState = () => {
-    setDrawerState(!drawerState)
-  }
-
-  const updateQuery = (string) => {
-    setQuery(string)
     setLoading(true)
-    switch (string) {
+    firebase.firestore().collection('themes').orderBy('likes', 'desc').onSnapshot(snapshot => {
+      const fetchedThemes = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      setLoadedThemes(fetchedThemes)
+    })
+    switch (query) {
       case 'dark':
         setFilteredThemes(loadedThemes.filter(item => item.categories.dark))
         break;
@@ -107,6 +81,18 @@ export default function Home() {
     setTimeout(() => {
       setLoading(false)
     }, 500)
+  }, [query])
+
+  const toggleThemeLabel = () => {
+    setThemeLabel(!themeLabel)
+  }
+
+  const toggleNeutralNav = () => {
+    setNeutralNav(!neutralNav)
+  }
+
+  const toggleDrawerState = () => {
+    setDrawerState(!drawerState)
   }
 
   return (

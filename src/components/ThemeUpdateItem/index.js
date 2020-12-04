@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Checkbox from '../Checkbox'
 import Collapse from '../Collapse'
 import { Trash } from 'react-feather'
+import firebase from 'firebase'
 
 const ColorPicker = ({name,color}) => {
   return (
@@ -17,7 +18,7 @@ const ThemeUpdateItem = ({theme, onDelete, onCheck}) => {
     { name: 'Dark', value: theme.categories.dark },
     { name: 'Light', value: theme.categories.light },
     { name: 'Red', value: theme.categories.red },
-    { name: 'Blue', value: theme.categories.blue },
+    { name: 'Blue', value: theme.categories.blue, },
     { name: 'Green', value: theme.categories.green },
     { name: 'Purple', value: theme.categories.purple },
     { name: 'Pink', value: theme.categories.pink },
@@ -31,6 +32,62 @@ const ThemeUpdateItem = ({theme, onDelete, onCheck}) => {
   ]
 
   const [categories, setCategories] = useState(initialCategories)
+
+  const updateCategory = (catIndex) => {
+    switch (categories[catIndex].name) {
+      case 'Dark':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.dark": !categories[catIndex].value })
+        break;
+      case 'Light':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.light": !categories[catIndex].value })
+        break;
+      case 'Red':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.red": !categories[catIndex].value })
+        break;
+      case 'Blue':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.blue": !categories[catIndex].value })
+        break;
+      case 'Green':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.green": !categories[catIndex].value })
+        break;
+      case 'Purple':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.purple": !categories[catIndex].value })
+        break;
+      case 'Pink':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.pink": !categories[catIndex].value })
+        break;
+      case 'Yellow':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.yellow": !categories[catIndex].value })
+        break;
+      case 'Orange':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.orange": !categories[catIndex].value })
+        break;
+      case 'Brand':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.brand": !categories[catIndex].value })
+        break;
+      case 'Racing':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.racing": !categories[catIndex].value })
+        break;
+      case 'Syntax':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.syntax": !categories[catIndex].value })
+        break;
+      case 'Minimal':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.minimal": !categories[catIndex].value })
+        break;
+      case 'Material':
+        firebase.firestore().collection('themes').doc(theme.theme_name).update({ "categories.material": !categories[catIndex].value })
+        break;
+      default:
+        console.log('category does not exist')
+    }
+    let newArr = [...categories]
+    newArr[catIndex].value = !categories[catIndex].value
+    setCategories(newArr)
+  }
+
+  useEffect(() => {
+
+  }, [categories])
 
   return (
     <div
@@ -71,11 +128,11 @@ const ThemeUpdateItem = ({theme, onDelete, onCheck}) => {
       <Collapse label="Edit Categories">
         <div className="grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 rounded-md gap-y-1 gap-x-2 mt-2 p-2 bg-gray-100">
           {
-            categories.map(item => (
+            categories.map((item, index) => (
               <div key={item.name}>
                 <Checkbox
                   label={item.name}
-                  handleClick={onCheck(item.value)}
+                  handleClick={() => updateCategory(index)}
                   toggleState={item.value}
                   sm
                 />

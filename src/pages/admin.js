@@ -69,7 +69,7 @@ const AddThemeModal = ({showModal, setShowModal, confirmModal}) => {
 
   const addThemeToDB = () => {
     if(selectedTheme.theme_name.length > 0){
-      const themeRef = firebase.firestore().collection('themeTest')
+      const themeRef = firebase.firestore().collection('themes')
       themeRef.doc(selectedTheme.theme_name).set({
         theme_name: selectedTheme.theme_name,
         active_item: selectedTheme.active_item,
@@ -304,6 +304,12 @@ export default function Admin() {
     })
   }
 
+  const deleteTheme = (themeName) => {
+    firebase.firestore().collection('themes').doc(themeName).delete().then(() => {
+      console.log(`${themeName} deleted`)
+    })
+  }
+
   const handleKeypress = e => {
     if (e.keyCode === 13) {
       getPass(e)
@@ -315,6 +321,13 @@ export default function Admin() {
   }
 
   useEffect(() => {
+    firebase.firestore().collection('themes').orderBy('likes', 'asc').onSnapshot(snapshot => {
+      const fetchedThemes = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      setLoadedThemes(fetchedThemes)
+    })
     if(values.filterQuery.length > 0) {
       const filtered = loadedThemes.filter(theme => {
         return theme.theme_name.toLowerCase().includes(values.filterQuery.toLowerCase())
@@ -378,6 +391,7 @@ export default function Admin() {
                 </div>
                 <ThemeAdmin
                   data={filteredThemes}
+                  onDelete={deleteTheme}
                 />
               </>
             )

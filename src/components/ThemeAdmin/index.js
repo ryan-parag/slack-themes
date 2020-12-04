@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Search } from 'react-feather';
 import Modal from '../Modal'
 import ThemeUpdateItem from '../ThemeUpdateItem'
@@ -17,7 +17,7 @@ const DeleteModal = ({showModal, setShowModal, confirmModal, theme}) => {
       setInputName('')
       setError(false)
       setShowModal(false)
-      confirmModal()
+      confirmModal(theme.theme_name)
     } else {
       setError(true)
     }
@@ -66,7 +66,7 @@ const DeleteModal = ({showModal, setShowModal, confirmModal, theme}) => {
   )
 }
 
-const ThemeAdmin = ({data}) => {
+const ThemeAdmin = ({data, onDelete}) => {
 
   const initialTheme = {
     theme_name: '',
@@ -113,6 +113,10 @@ const ThemeAdmin = ({data}) => {
     console.log(asdf)
   }
 
+  useEffect(() => {
+
+  }, [data])
+
   return (
     <>
       <div className="w-full grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4">
@@ -122,7 +126,7 @@ const ThemeAdmin = ({data}) => {
               <ThemeUpdateItem
                 theme={theme}
                 onDelete={() => deleteModalToggle(theme)}
-                onCheck={() => test}
+                onCheck={test}
                 key={theme.theme_name}
               />
             ))
@@ -141,7 +145,7 @@ const ThemeAdmin = ({data}) => {
       <DeleteModal
         showModal={showDeleteModal}
         setShowModal={setShowDeleteModal}
-        confirmModal={testConfirm}
+        confirmModal={onDelete}
         theme={selectedTheme}
       />
     </>
