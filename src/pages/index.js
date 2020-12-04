@@ -30,54 +30,53 @@ export default function Home() {
         id: doc.id,
         ...doc.data()
       }))
-      setLoadedThemes(fetchedThemes)
+      switch (query) {
+        case 'dark':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.dark))
+          break;
+        case 'light':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.light))
+          break;
+        case 'red':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.red))
+          break;
+        case 'blue':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.blue))
+          break;
+        case 'green':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.green))
+          break;
+        case 'purple':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.purple))
+          break;
+        case 'yellow':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.yellow))
+          break;
+        case 'pink':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.pink))
+          break;
+        case 'orange':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.orange))
+          break;
+        case 'brand':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.brand))
+          break;
+        case 'racing':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.racing))
+          break;
+        case 'syntax':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.syntax))
+          break;
+        case 'minimal':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.minimal))
+          break;
+        case 'material':
+          setFilteredThemes(fetchedThemes.filter(item => item.categories.material))
+          break;
+        default:
+          setFilteredThemes(fetchedThemes)
+      }
     })
-    switch (query) {
-      case 'dark':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.dark))
-        break;
-      case 'light':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.light))
-        break;
-      case 'red':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.red))
-        break;
-      case 'blue':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.blue))
-        break;
-      case 'green':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.green))
-        break;
-      case 'purple':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.purple))
-        break;
-      case 'yellow':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.yellow))
-        break;
-      case 'pink':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.pink))
-        break;
-      case 'orange':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.orange))
-        break;
-      case 'brand':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.brand))
-        break;
-      case 'racing':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.racing))
-        break;
-      case 'syntax':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.syntax))
-        break;
-      case 'minimal':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.minimal))
-        break;
-      case 'material':
-        setFilteredThemes(loadedThemes.filter(item => item.categories.material))
-        break;
-      default:
-        setFilteredThemes(loadedThemes)
-    }
     setTimeout(() => {
       setLoading(false)
     }, 500)
