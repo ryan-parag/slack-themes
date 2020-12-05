@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../Logo'
-import { Sliders} from 'react-feather';
 import Link from 'next/link'
+import Navigation from '../Navigation'
 
 const Intro = () => {
   return (
@@ -11,7 +11,8 @@ const Intro = () => {
           <a><Logo/></a>
         </Link>
       </div>
-      <h1 className="mt-16">Pick a theme for Slack</h1>
+      <Navigation active={'Themes'}/>
+      <h1 className="mt-8">Pick a theme for Slack</h1>
       <p className="font-bold mt-4">Having trouble keeping track of all of your Slack workspaces?</p>
       <p className="mt-4">Choose and copy one of the themes in the list to personalize a Slack workspace.</p>
       <p className="mt-4">How to:</p>
