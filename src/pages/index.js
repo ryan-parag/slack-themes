@@ -7,15 +7,16 @@ import ThemeList from '../components/ThemeList'
 import firebase from '../data/firebase'
 import Drawer from '../components/Drawer'
 import { motion } from 'framer-motion'
-import { Loader, Search } from 'react-feather'
+import { Loader, Search , Sliders} from 'react-feather'
 
 export default function Home() {
-  const [loadedThemes, setLoadedThemes] = useState([])
   const [filteredThemes, setFilteredThemes] = useState([])
   const [loading, setLoading] = useState(true)
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState('theme_name')
   const [order, setOrder] = useState('asc')
+  const [queryAmount, setQueryAmount] = useState(27)
+  const [dataSize, setDataSize] = useState(null)
 
   const [themeLabel, setThemeLabel] = useState(true)
   const [neutralNav, setNeutralNav] = useState(true)
@@ -23,66 +24,50 @@ export default function Home() {
 
   const updateQuery = (string) => {
     setQuery(string)
+    setQueryAmount(27)
+  }
+
+  const updateQueryAmount = () => {
+    setQueryAmount(prev => prev + 27)
   }
 
   useEffect(() => {
     setLoading(true)
-    firebase.firestore().collection('themes').orderBy(sort, order).onSnapshot(snapshot => {
-      const fetchedThemes = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data()
-      }))
-      switch (query) {
-        case 'dark':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.dark))
-          break;
-        case 'light':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.light))
-          break;
-        case 'red':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.red))
-          break;
-        case 'blue':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.blue))
-          break;
-        case 'green':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.green))
-          break;
-        case 'purple':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.purple))
-          break;
-        case 'yellow':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.yellow))
-          break;
-        case 'pink':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.pink))
-          break;
-        case 'orange':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.orange))
-          break;
-        case 'brand':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.brand))
-          break;
-        case 'racing':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.racing))
-          break;
-        case 'syntax':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.syntax))
-          break;
-        case 'minimal':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.minimal))
-          break;
-        case 'material':
-          setFilteredThemes(fetchedThemes.filter(item => item.categories.material))
-          break;
-        default:
+      if(query !== '') {
+        firebase.firestore().collection('themes').limit(queryAmount).where('groups', 'array-contains', query).orderBy(sort, order).onSnapshot(snapshot => {
+          const fetchedThemes = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data()
+          }))
           setFilteredThemes(fetchedThemes)
+        })
+        firebase.firestore().collection('themes').where('groups', 'array-contains', query).onSnapshot(snapshot => {
+          const fetchedThemes = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data()
+          }))
+          setDataSize(fetchedThemes.length)
+        })
+      } else {
+        firebase.firestore().collection('themes').limit(queryAmount).orderBy(sort, order).onSnapshot(snapshot => {
+          const fetchedThemes = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data()
+          }))
+          setFilteredThemes(fetchedThemes)
+        })
+        firebase.firestore().collection('themes').onSnapshot(snapshot => {
+          const fetchedThemes = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data()
+          }))
+          setDataSize(fetchedThemes.length)
+        })
       }
-    })
     setTimeout(() => {
       setLoading(false)
     }, 500)
-  }, [query, sort, order])
+  }, [query, sort, order, queryAmount])
 
   const toggleThemeLabel = () => {
     setThemeLabel(!themeLabel)
@@ -127,40 +112,48 @@ export default function Home() {
               updateQuery={updateQuery}
             />
             <div className="flex justify-between">
-              <div className="inline-flex items-center">
-                <span className="text-sm text-gray-500">Sort by:</span>
+              <div className="inline-flex items-start">
+                <span className="text-sm inline-block pt-0.5 text-gray-500">Sort by:</span>
                 <button
-                  className={`transition focus:outline-none ${sort === 'theme_name' ? 'font-semibold' : 'text-gray-400 hover:text-gray-600'} ml-4 mr-4`}
+                  className={`transition pb-0.5 border-b-2 focus:outline-none ${sort === 'theme_name' ? 'font-semibold border-current' : 'text-gray-400 hover:text-gray-600 border-transparent'} ml-4 mr-4`}
                   onClick={() => setSort('theme_name')}
                 >
                     Name
                 </button>
                 <button
-                  className={`transition focus:outline-none ${sort === 'likes' ? 'font-semibold' : 'text-gray-400 hover:text-gray-600'}`}
+                  className={`transition pb-0.5 border-b-2 focus:outline-none ${sort === 'likes' ? 'font-semibold border-current' : 'text-gray-400 hover:text-gray-600 border-transparent'}`}
                   onClick={() => setSort('likes')}
                 >
                   Likes
                 </button>
               </div>
-              <button
-                className="transition text-gray-400 focus:outline-none hover:text-gray-700"
-                onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
-              >
-                {
-                  order === 'asc' ? 
-                    (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
-                      </svg>
-                    )
-                    :
-                    (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
-                      </svg>
-                    )
-                }
-              </button>
+              <div className="inline-flex items-center">
+                <button
+                  className="transition mr-4 text-gray-400 focus:outline-none hover:text-gray-700"
+                  onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
+                >
+                  {
+                    order === 'asc' ? 
+                      (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+                        </svg>
+                      )
+                      :
+                      (
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
+                        </svg>
+                      )
+                  }
+                </button>
+                <button
+                  className="transition text-gray-400 focus:outline-none hover:text-gray-700"
+                  onClick={toggleDrawerState}
+                >
+                  <Sliders size={'24'}/>
+                </button>
+              </div>
             </div>
             {
               filteredThemes.length > 0 && !loading ? (
@@ -168,6 +161,8 @@ export default function Home() {
                   data={filteredThemes}
                   neutralNav={neutralNav}
                   themeLabel={themeLabel}
+                  updateQueryAmount={updateQueryAmount}
+                  dataSize={dataSize}
                 />
               )
               :

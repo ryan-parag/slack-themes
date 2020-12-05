@@ -3,19 +3,13 @@ import Logo from '../Logo'
 import { Sliders} from 'react-feather';
 import Link from 'next/link'
 
-const Intro = ({toggleDrawerState}) => {
+const Intro = () => {
   return (
     <>
       <div className="flex justify-between items-center">
         <Link href="/">
           <a><Logo/></a>
         </Link>
-        <button
-          className="button button--sm"
-          onClick={toggleDrawerState}
-        >
-          <Sliders/>
-        </button>
       </div>
       <h1 className="mt-16">Pick a theme for Slack</h1>
       <p className="font-bold mt-4">Having trouble keeping track of all of your Slack workspaces?</p>

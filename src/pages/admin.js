@@ -108,7 +108,7 @@ const AddThemeModal = ({showModal, setShowModal, confirmModal}) => {
   }
 
   useEffect(() => {
-    
+    console.log('theme updated')
   },[selectedTheme])
 
   return (

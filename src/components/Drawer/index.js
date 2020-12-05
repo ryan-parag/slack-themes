@@ -14,8 +14,8 @@ const Drawer = ({toggleDrawerState, toggleThemeLabel, themeLabel, toggleNeutralN
         transition={{ duration: 0.2 }}
       />
       <motion.div
-        className="bg-white px-4 py-8 fixed top-0 left-0 bottom-0 w-full md:w-1/3 z-50 shadow-2xl"
-        initial={{ translateX: -600}}
+        className="bg-white px-4 py-8 fixed top-0 right-0 bottom-0 w-full md:w-1/3 z-50 shadow-2xl"
+        initial={{ translateX: 600}}
         animate={{ translateX: 0 }}
         transition={{ duration: .5 }}
       >

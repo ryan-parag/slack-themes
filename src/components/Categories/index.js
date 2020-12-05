@@ -26,7 +26,7 @@ const Categories = ({activeQuery, updateQuery}) => {
         {
           items.map(item => (
             <button
-              className={`transition py-2 px-4 mb-4 text-sm font-semibold rounded-full border mr-2 focus:outline-none ${activeQuery === item.value ? 'border-indigo-600 bg-indigo-500 text-white hover:bg-indigo-600' : 'border-gray-400 hover:bg-gray-200'}`}
+              className={`transition py-2 px-4 mb-4 text-sm font-semibold rounded-full border mr-2 focus:outline-none ${activeQuery === item.value ? 'border-gray-900 bg-gray-800 text-white hover:bg-gray-700' : 'border-gray-400 hover:bg-gray-200'}`}
               key={item.name}
               onClick={() => updateQuery(item.value)}
             >
