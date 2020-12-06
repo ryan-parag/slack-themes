@@ -6,6 +6,7 @@ import firebase from '../data/firebase'
 import Navigation from '../components/Navigation'
 import ThemeSubmitForm from '../components/ThemeSubmitForm'
 import TimeAgo from 'timeago-react'
+import Footer from '../components/Footer'
 
 export default function SubmitTheme() {
 
@@ -94,6 +95,7 @@ export default function SubmitTheme() {
           }
         </div>
       </div>
+      <Footer/>
     </Layout>
   )
 }

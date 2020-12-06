@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components';
 import firebase from 'firebase'
+import { motion } from 'framer-motion'
 
 const WidgetContainer = styled.button`
   user-select: none;
@@ -154,6 +155,12 @@ const ThemeItem = (props) => {
   const [buttonText, setButtonText] = useState('Click to Copy');
   const [themeLikes, setThemeLikes] = useState(props.theme.likes)
   const [themeItem, setThemeItem] = useState(props.theme)
+  const [animate, setAnimate] = useState(false)
+
+  const variants = {
+    open: { scale: 1 },
+    closed: { scale: 1.1 },
+  }
 
   function copyToClipboard(e) {
     textAreaRef.current.select();
@@ -176,21 +183,18 @@ const ThemeItem = (props) => {
   const activePresence = props.theme.active_presence
   const mentionBadge = props.theme.mention_badge
   const copyString = `${props.themeLabel ? themeName + ' -- ' : ''}${columnBg},#121016,${activeItem},${activeItemText},${hoverItem},${textColor},${activePresence},${mentionBadge},${topNavBg},${topNavText}`
+  const likes = props.theme.likes
 
-  const updateLike = (likes) => {
-    setThemeLikes(parseInt(likes++))
-    setThemeItem({
-      ...themeItem,
-      likes: parseInt(likes++)
-    })
+  const updateLike = () => {
+    setAnimate(true)
+    const updated = likes + 1
     firebase.firestore().collection('themes').doc(themeItem.theme_name).update({
-      likes: parseInt(likes++)
+      likes: updated
     })
+    setTimeout(() => {
+      setAnimate(false)
+    }, 1000)
   }
-
-  useEffect(() => {
-    
-  }, [themeLikes])
 
   return (
     <div>
@@ -252,13 +256,13 @@ const ThemeItem = (props) => {
         {
           props.withLikes ? (
             <button
-              className={`transition text-sm p-1 rounded-md inline-flex items-center ${themeItem.likes > 0 ? 'text-gray-900' : 'text-gray-400'} hover:text-gray-600 hover:bg-pink-100 focus:outline-none transform hover:scale-110 hover:rotate-6`}
-              onClick={() => updateLike(themeItem.likes)}
+              className={`transition text-sm p-1 rounded-md inline-flex items-center ${likes > 0 ? 'text-gray-900' : 'text-gray-400'} hover:text-gray-600 hover:bg-pink-100 focus:outline-none transform hover:scale-110 hover:rotate-6 active:scale-95`}
+              onClick={updateLike}
             >
-              <svg height="20" width="20" className={`${themeItem.likes > 0 ? 'text-pink-500' : 'inherit'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <svg height="20" width="20" className={`${likes > 0 ? 'text-pink-500' : 'inherit'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
               </svg>
-              <span className="ml-1">{themeItem.likes}</span>
+              <span className="ml-1">{likes}</span>
             </button>
           )
           :
