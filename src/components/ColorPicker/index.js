@@ -17,9 +17,9 @@ const ColorPicker = (props) => {
   }
 
   return (
-    <>
+    <div className="relative w-full">
       <button
-        className="button flex items-center justify-start px-2"
+        className="button flex items-center justify-start px-2 w-full"
         onClick={() => handleDisplay()}
       >
         <span style={{ background: pickerColor}}className="w-6 h-6 rounded-full inline-block mr-2 border border-gray-200 shadow-inner"/>
@@ -32,7 +32,7 @@ const ColorPicker = (props) => {
         displayPicker ?
           (
             <>
-              <div className="absolute z-50 transform translate-x-4 -translate-y-4">
+              <div className="absolute z-50 transform translate-x-4 -translate-y-3">
                 <ChromePicker
                   color={pickerColor}
                   onChange={
@@ -42,13 +42,13 @@ const ColorPicker = (props) => {
                   }
                 />
               </div>
-              <button className="absolute bg-transparent z-40 top-0 bottom-0 left-0 right-0 w-full h-full" onClick={() => handleDisplay()}/>
+              <button className="fixed bg-gray-900 bg-opacity-20 z-40 top-0 bottom-0 left-0 right-0 w-full h-full" onClick={() => handleDisplay()}/>
             </>
           )
           :
           null
         }
-    </>
+    </div>
   )
 }
 

@@ -72,7 +72,8 @@
     "react-transition-group": "^4.3.0",
     "styled-components": "^5.0.0-beta.11",
     "styled-normalize": "^8.0.6",
-    "tailwindcss": "^2.0.1"
+    "tailwindcss": "^2.0.1",
+    "timeago-react": "^3.0.1"
   },
   "xo": {
     "nodeVersion": ">=10",

@@ -18,11 +18,14 @@ const ThemeSubmitForm = () => {
     top_nav_bg: '#000000',
     top_nav_text: '#DEE5EE',
     categories: ['community'],
-    likes: 0
+    likes: 0,
+    submittedBy: '',
+    created: new Date()
   }
 
   const [theme, setTheme] = useState(initialTheme)
   const [error, setError] = useState(false)
+  const [contactError, setContactError] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
   const handleInput = (e) => {
@@ -43,12 +46,14 @@ const ThemeSubmitForm = () => {
   const handleSubmit = event => {
     event.preventDefault()
     const themeRef = firebase.firestore().collection('submitted')
-    if(theme.theme_name.length > 0) {
+    if(theme.theme_name.length === 0) {
+      setError(true)
+    } else if(theme.submittedBy.length === 0) {
+      setContactError(true)
+    } else {
       themeRef.doc(theme.theme_name).set(theme)
       setError(false)
       setSubmitted(true)
-    } else {
-      setError(true)
     }
   }
 
@@ -82,7 +87,18 @@ const ThemeSubmitForm = () => {
                       onChange={handleInput}
                     />
                     { error ? <span className="text-sm block mb-2 text-red-500">A theme requires a name</span> : null}
-                    <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-3">
+                    <label className="text-sm font-semibold">Name or Email</label>
+                    <input
+                      className={`border ${contactError ? 'border-red-500' : 'border-gray-500'} rounded-md py-4 px-4 mt-2 mb-2 block w-full`}
+                      placeholder="Let us know who you are..."
+                      value={theme.submittedBy}
+                      name="submittedBy"
+                      onChange={handleInput}
+                    />
+                    <span className={`text-sm block mb-2 ${contactError ? 'text-red-500' : 'text-gray-500'}`}>
+                      We won't contact you - we just want to give you credit
+                    </span>
+                    <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-3 relative">
                       <ColorPicker color={theme.active_item} changeColor={handlePicker} themeTarget={"active_item"}/>
                       <ColorPicker color={theme.active_item_text} changeColor={handlePicker} themeTarget={"active_item_text"}/>
                       <ColorPicker color={theme.active_presence} changeColor={handlePicker} themeTarget={"active_presence"}/>
@@ -102,14 +118,14 @@ const ThemeSubmitForm = () => {
                   </div>
                 </div>
               </div>
+              <div className="flex justify-center mt-8">
+                <button
+                  className="button button--primary button--lg mx-2"
+                  onClick={handleSubmit}
+                >
+                  Submit Theme
+                </button>
             </div>
-            <div className="flex justify-center mt-8">
-              <button
-                className="button button--primary button--lg mx-2"
-                onClick={handleSubmit}
-              >
-                Submit Theme
-              </button>
             </div>
           </>
         )
