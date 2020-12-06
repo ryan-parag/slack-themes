@@ -51,12 +51,27 @@ export default function SubmitTheme() {
           <h5 className="mb-4">Recently Submitted Themes</h5>
           {
             loadedThemes.map(theme => (
-              <div className="mb-4">
-                <div className="flex flex-col transition p-4 mb-2 rounded-md border border-gray-200 shadow">
+              <div className="mb-6 flex w-full">
+                <div>
+                  {
+                    theme.submittedBy !== 'Unknown' ? (
+                      <div
+                        className={`rounded-full inline-flex w-10 h-10 items-center justify-center bg-white shadow bg-cover text-gray-600 border border-gray-200 font-bold`}
+                      >
+                        {theme.submittedBy.charAt(0)}
+                      </div>
+                    )
+                    :
+                    (
+                      <img className="rounded-full w-10 h-10" src="/slackbot.svg"/>
+                    )
+                  }
+                </div>
+                <div className="flex flex-col w-full pl-4 mb-2">
                   <p className="text-gray-600 text-sm mb-2">
                     <strong>{theme.submittedBy}</strong> submitted <strong>{theme.theme_name}</strong>!
                   </p>
-                  <div className="flex">
+                  <div className="flex mb-2">
                     <span className={swatchClass} style={{ background: theme.active_item}}></span>
                     <span className={swatchClass} style={{ background: theme.active_item_text}}></span>
                     <span className={swatchClass} style={{ background: theme.active_presence}}></span>
@@ -67,13 +82,13 @@ export default function SubmitTheme() {
                     <span className={swatchClass} style={{ background: theme.top_nav_bg}}></span>
                     <span className={swatchClass} style={{ background: theme.top_nav_text}}></span>
                   </div>
+                  <small className="text-gray-500 text-xs">
+                    <TimeAgo
+                      datetime={convertTime(theme.created.seconds)}
+                      locale='en_US'
+                    />
+                  </small>
                 </div>
-                <small className="text-gray-500 text-xs">
-                  <TimeAgo
-                    datetime={convertTime(theme.created.seconds)}
-                    locale='en_US'
-                  />
-                </small>
               </div>
             ))
           }
