@@ -18,7 +18,7 @@ export default function About() {
           <Navigation active={'About'}/>
           <h1 className="mb-4 mt-8">About</h1>
           <p>
-            Beautiful, curated themes to help personalize your different Slack workspaces.
+            Beautiful, curated themes to help personalize all of your different Slack workspaces. Thanks for visiting 👍!
           </p>
           <p className="mt-4 mb-8">
             Designed and Developed by <a className="link" href="https://ryanparag.com" target="_blank">Ryan Parag</a> and <a className="link" href="https://matt-broughton.com/" target="_blank">Matthew Broughton</a>

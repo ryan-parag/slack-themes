@@ -152,6 +152,7 @@ const ThemeItem = (props) => {
   const textAreaRef = useRef(null);
 
   const [buttonText, setButtonText] = useState('Click to Copy');
+  const [themeLikes, setThemeLikes] = useState(props.theme.likes)
   const [themeItem, setThemeItem] = useState(props.theme)
 
   function copyToClipboard(e) {
@@ -164,19 +165,20 @@ const ThemeItem = (props) => {
     }, 1000)
   };
 
-  const themeName = themeItem.theme_name
-  const columnBg = themeItem.column_bg
-  const topNavBg = props.neutralNav ? themeItem.column_bg : themeItem.top_nav_bg
-  const topNavText = props.neutralNav ? themeItem.text_color : themeItem.top_nav_text
-  const activeItem = themeItem.active_item
-  const activeItemText = themeItem.active_item_text
-  const hoverItem = themeItem.hover_item
-  const textColor = themeItem.text_color
-  const activePresence = themeItem.active_presence
-  const mentionBadge = themeItem.mention_badge
+  const themeName = props.theme.theme_name
+  const columnBg = props.theme.column_bg
+  const topNavBg = props.neutralNav ? props.theme.column_bg : props.theme.top_nav_bg
+  const topNavText = props.neutralNav ? props.theme.text_color : props.theme.top_nav_text
+  const activeItem = props.theme.active_item
+  const activeItemText = props.theme.active_item_text
+  const hoverItem = props.theme.hover_item
+  const textColor = props.theme.text_color
+  const activePresence = props.theme.active_presence
+  const mentionBadge = props.theme.mention_badge
   const copyString = `${props.themeLabel ? themeName + ' -- ' : ''}${columnBg},#121016,${activeItem},${activeItemText},${hoverItem},${textColor},${activePresence},${mentionBadge},${topNavBg},${topNavText}`
 
   const updateLike = (likes) => {
+    setThemeLikes(parseInt(likes++))
     setThemeItem({
       ...themeItem,
       likes: parseInt(likes++)
@@ -188,7 +190,7 @@ const ThemeItem = (props) => {
 
   useEffect(() => {
     
-  }, [themeItem])
+  }, [themeLikes])
 
   return (
     <div>
@@ -208,7 +210,13 @@ const ThemeItem = (props) => {
         </WidgetTopBar>
         <WidgetHeader color={hoverItem}>
           <WidgetTitle>
-            {themeName}
+            {
+              themeName === '' ? (
+                <span className="opacity-50">Example Theme</span>
+              )
+              :
+              themeName
+            }
           </WidgetTitle>
         </WidgetHeader>
         <WidgetBody>

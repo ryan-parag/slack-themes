@@ -36,11 +36,11 @@
   }
 
   .button {
-    @apply flex items-center justify-center px-4 py-2 space-x-2 text-sm font-medium transition bg-white border rounded shadow-sm hover:border-gray-300 focus:outline-none;
+    @apply flex items-center justify-center px-4 py-2 space-x-2 text-sm font-medium transition bg-white border rounded shadow-sm hover:border-gray-400 focus:outline-none;
   }
 
   .button--primary {
-    @apply text-white bg-indigo-500 border-none hover:bg-indigo-600;
+    @apply text-white bg-gray-900 border-none hover:bg-gray-800;
   }
 
   .button--danger {
