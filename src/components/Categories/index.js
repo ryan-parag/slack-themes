@@ -17,7 +17,8 @@ const Categories = ({activeQuery, updateQuery}) => {
     { name: 'Racing', value: 'racing'},
     { name: 'Syntax', value: 'syntax'},
     { name: 'Minimal', value: 'minimal'},
-    { name: 'Material', value: 'material'}
+    { name: 'Material', value: 'material'},
+    { name: 'Community', value: 'community'}
   ]
 
   return (

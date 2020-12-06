@@ -66,7 +66,7 @@ export default function Home() {
       }
     setTimeout(() => {
       setLoading(false)
-    }, 500)
+    }, 1000)
   }, [query, sort, order, queryAmount])
 
   const toggleThemeLabel = () => {
@@ -111,7 +111,7 @@ export default function Home() {
               activeQuery={query}
               updateQuery={updateQuery}
             />
-            <div className="flex justify-between">
+            <div className="flex justify-between mt-4 md:md-0">
               <div className="inline-flex items-start">
                 <span className="text-sm inline-block pt-0.5 text-gray-500">Sort by:</span>
                 <button
@@ -128,24 +128,21 @@ export default function Home() {
                 </button>
               </div>
               <div className="inline-flex items-center">
-                <button
-                  className="transition mr-4 text-gray-400 focus:outline-none hover:text-gray-700"
-                  onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
+              <button
+                  className={`transition pb-0.5 border-b-2 focus:outline-none ${order === 'desc' ? 'border-current' : 'text-gray-400 hover:text-gray-600 border-transparent'} mr-4`}
+                  onClick={() => setOrder('desc')}
                 >
-                  {
-                    order === 'asc' ? 
-                      (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
-                          <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
-                        </svg>
-                      )
-                      :
-                      (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
-                          <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
-                        </svg>
-                      )
-                  }
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
+                  </svg>
+                </button>
+                <button
+                className={`transition pb-0.5 border-b-2 focus:outline-none ${order === 'asc' ? 'border-current' : 'text-gray-400 hover:text-gray-600 border-transparent'} mr-4`}
+                  onClick={() => setOrder('asc')}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+                  </svg>
                 </button>
                 <button
                   className="transition text-gray-400 focus:outline-none hover:text-gray-700"
@@ -156,13 +153,14 @@ export default function Home() {
               </div>
             </div>
             {
-              filteredThemes.length > 0 && !loading ? (
+              filteredThemes.length ? (
                 <ThemeList
                   data={filteredThemes}
                   neutralNav={neutralNav}
                   themeLabel={themeLabel}
                   updateQueryAmount={updateQueryAmount}
                   dataSize={dataSize}
+                  loading={loading}
                 />
               )
               :
