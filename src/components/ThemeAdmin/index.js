@@ -3,111 +3,7 @@ import { Search } from 'react-feather';
 import Modal from '../Modal'
 import ThemeUpdateItem from '../ThemeUpdateItem'
 
-const DeleteModal = ({showModal, setShowModal, confirmModal, theme}) => {
-
-  const [inputName ,setInputName] = useState('')
-  const [error ,setError] = useState(false)
-
-  const handleInput = (e) => {
-    setInputName(e.target.value)
-  } 
-
-  const validateConfirm = () => {
-    if(inputName === theme.theme_name) {
-      setInputName('')
-      setError(false)
-      setShowModal(false)
-      confirmModal(theme.theme_name)
-    } else {
-      setError(true)
-    }
-  }
-
-  const closeModal = () => {
-    setInputName('')
-    setError(false)
-    setShowModal(false)
-  }
-
-
-  const handleKeyPress = (e) => {
-    if (e.charCode === 13) {
-      validateConfirm()
-    }
-  }
-
-  return (
-    <Modal
-      showModal={showModal}
-      setShowModal={closeModal}
-      confirmModal={validateConfirm}
-      confirmText={'Delete'}
-      theme={theme}
-      danger
-    >
-      <h3 className="mb-4">Delete <i>{theme.theme_name}</i>?</h3>
-      <p className="mb-4">Type the theme name, <strong className="text-red-500">{theme.theme_name}</strong>, to confirm removal from the database:</p>
-      <input
-        type="text"
-        value={inputName}
-        onChange={handleInput}
-        onKeyPress={handleKeyPress}
-        placeholder="Enter theme name..."
-        className={`border ${error ? 'border-red-500' : 'border-gray-500'} rounded-md mt-4 py-2 px-4 mb-4 block w-full`}
-      />
-      {
-        error ? (
-          <span className="text-sm block mb-2 text-red-500">Hmm... that theme name doesn't match</span>
-        )
-        :
-        null
-      }
-    </Modal>
-  )
-}
-
-const ThemeAdmin = ({data, onDelete}) => {
-
-  const initialTheme = {
-    theme_name: '',
-    active_item: '',
-    active_item_text: '',
-    active_presence: '',
-    column_bg: '',
-    hover_item: '',
-    mention_badge: '',
-    text_color: '',
-    top_nav_bg: '',
-    top_nav_text: '',
-    categories: {
-      dark: false,
-      light: false,
-      red: false,
-      blue: false,
-      green: false,
-      purple: false,
-      pink: false,
-      yellow: false,
-      orange: false,
-      brand: false,
-      racing: false,
-      syntax: false,
-      minimal: false,
-      material: false,
-    }
-  }
-
-  const [selectedTheme, setSelectedTheme] = useState(initialTheme)
-  const [showDeleteModal, setShowDeleteModal] = useState(false)
-
-  const deleteModalToggle = (item) => {
-    setSelectedTheme(item)
-    setShowDeleteModal(prev => !prev)
-  }
-
-  const test = (asdf) => {
-    console.log(asdf)
-  }
+const ThemeAdmin = ({data}) => {
 
   return (
     <>
@@ -118,7 +14,6 @@ const ThemeAdmin = ({data, onDelete}) => {
               <ThemeUpdateItem
                 theme={theme}
                 onDelete={() => deleteModalToggle(theme)}
-                onCheck={test}
                 key={theme.theme_name}
               />
             ))
@@ -134,12 +29,6 @@ const ThemeAdmin = ({data, onDelete}) => {
           )
         }
       </div>
-      <DeleteModal
-        showModal={showDeleteModal}
-        setShowModal={setShowDeleteModal}
-        confirmModal={onDelete}
-        theme={selectedTheme}
-      />
     </>
   )
 }

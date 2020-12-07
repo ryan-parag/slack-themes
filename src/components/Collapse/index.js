@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { ChevronDown, ChevronUp } from 'react-feather'
 
 const Collapse = ({label, children}) => {
 
@@ -11,12 +12,21 @@ const Collapse = ({label, children}) => {
   return (
     <div>
       <button
-        className="link text-sm focus:outline-none py-2"
+        className="link text-sm focus:outline-none hover:no-underline py-2 inline-flex items-center"
         onClick={handleClick}
       >
-        {label}{open ? <span className="pl-1 font-normal text-xs">(Close)</span> : null}
+        <span className="pr-1">{open ? 'Hide' : 'Show'}{' '}{label}</span>
+        {
+          open ? (
+            <ChevronUp size={'16'}/>
+          )
+          :
+          (
+            <ChevronDown size={'16'}/>
+          )
+        }
       </button>
-      <div className={open ? 'block' : 'hidden'}>
+      <div className={`${open ? 'block' : 'hidden'} w-full`}>
         {children}
       </div>
     </div>

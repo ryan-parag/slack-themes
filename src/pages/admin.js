@@ -3,249 +3,10 @@ import firebase from '../data/firebase'
 import Layout from '../components/Layout'
 import Link from 'next/link'
 import Logo from '../components/Logo'
-import Modal from '../components/Modal'
 import ThemeAdmin from '../components/ThemeAdmin'
 import { Plus } from 'react-feather'
+import ThemeSubmission from '../components/ThemeSubmission'
 import ThemeItem from '../components/ThemeItem'
-
-const AddThemeModal = ({showModal, setShowModal, confirmModal}) => {
-
-  const initialTheme = {
-    theme_name: '',
-    active_item: '#000000',
-    active_item_text: '#FFFFFF',
-    active_presence: '#4caf50',
-    column_bg: '#F5F5F5',
-    hover_item: '#F5F5F5',
-    mention_badge: '#4caf50',
-    text_color: '#000000',
-    top_nav_bg: '#F5F5F5',
-    top_nav_text: '#000000',
-    categories: {
-      dark: true,
-      light: false,
-      red: false,
-      blue: false,
-      green: false,
-      purple: false,
-      pink: false,
-      yellow: false,
-      orange: false,
-      brand: false,
-      racing: false,
-      syntax: false,
-      minimal: false,
-      material: false,
-    }
-  }
-
-  const [selectedTheme, setSelectedTheme] = useState(initialTheme)
-  const [error, setError] = useState(false)
-
-  const colorPickerClass = 'flex items-center justify-between px-2 py-1 rounded-md bg-gray-100 hover:bg-gray-200 cursor-pointer'
-  const checkboxClass = 'flex items-center justify-between px-2 py-1 rounded-md bg-gray-100 hover:bg-gray-200 cursor-pointer mr-2 mt-2'
-
-  const handleInput = (e) => {
-    const { name, value } = e.target
-    setSelectedTheme({
-      ...selectedTheme,
-      [name]: value
-    })
-  }
-
-  const handleCheck = (e) => {
-    const { name } = e.target
-    setSelectedTheme(prev => ({
-      ...prev,
-      categories: { ...prev.categories, [name]: event.target.checked }
-    }))
-  }
-
-  const closeModal = () => {
-    setShowModal(false)
-    setSelectedTheme(initialTheme)
-    setError(false)
-  }
-
-  const addThemeToDB = () => {
-    if(selectedTheme.theme_name.length > 0){
-      const themeRef = firebase.firestore().collection('themes')
-      themeRef.doc(selectedTheme.theme_name).set({
-        theme_name: selectedTheme.theme_name,
-        active_item: selectedTheme.active_item,
-        active_item_text: selectedTheme.active_item_text,
-        active_presence: selectedTheme.active_presence,
-        column_bg: selectedTheme.column_bg,
-        hover_item: selectedTheme.hover_item,
-        mention_badge: selectedTheme.mention_badge,
-        text_color: selectedTheme.text_color,
-        top_nav_bg: selectedTheme.top_nav_bg,
-        top_nav_text: selectedTheme.top_nav_text,
-        categories: {
-          dark: selectedTheme.categories.dark,
-          light: selectedTheme.categories.light,
-          red: selectedTheme.categories.red,
-          blue: selectedTheme.categories.blue,
-          green: selectedTheme.categories.green,
-          purple: selectedTheme.categories.purple,
-          pink: selectedTheme.categories.pink,
-          yellow: selectedTheme.categories.yellow,
-          orange: selectedTheme.categories.orange,
-          brand: selectedTheme.categories.brand,
-          racing: selectedTheme.categories.racing,
-          syntax: selectedTheme.categories.syntax,
-          minimal: selectedTheme.categories.minimal,
-          material: selectedTheme.categories.material
-        },
-        likes: 0
-      })
-      alert(selectedTheme.theme_name + ' added to database!')
-      closeModal()
-      confirmModal()
-    } else {
-      setError(true)
-    }
-  }
-
-  useEffect(() => {
-    console.log('theme updated')
-  },[selectedTheme])
-
-  return (
-    <Modal
-      showModal={showModal}
-      setShowModal={closeModal}
-      confirmModal={addThemeToDB}
-      confirmText={'Add Theme'}
-      lg
-    >
-      <h3 className="mb-4">Add New Theme?</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <p>Fill values and add theme to database:</p>
-          <form className="mt-2">
-            <label className="text-sm font-semibold">Theme Name</label>
-            <input
-              className={`border ${error ? 'border-red-500' : 'border-gray-500'} rounded-md mt-2 py-2 px-4 mb-2 block w-full`}
-              placeholder="Enter theme name..."
-              value={selectedTheme.theme_name}
-              name="theme_name"
-              onChange={handleInput}
-            />
-            { error ? <span className="text-sm block mb-2 text-red-500">A theme requires a name</span> : null}
-            <label className="text-sm font-semibold">Colors</label>
-            <div className="grid grid-cols-2 gap-y-1 gap-x-2 mb-2 mt-2">
-              <label className={colorPickerClass}>
-                <span className="text-xs">Active Item</span>
-                <input type="color" name="active_item" value={selectedTheme.active_item} onChange={handleInput}/>
-              </label>
-              <label className={colorPickerClass}>
-                <span className="text-xs">Active Item Text</span>
-                <input type="color" name="active_item_text" value={selectedTheme.active_item_text} onChange={handleInput}/>
-              </label>
-              <label className={colorPickerClass}>
-                <span className="text-xs">Active Presence</span>
-                <input type="color" name="active_presence" value={selectedTheme.active_presence} onChange={handleInput}/>
-              </label>
-              <label className={colorPickerClass}>
-                <span className="text-xs">Column BG</span>
-                <input type="color" name="column_bg" value={selectedTheme.column_bg} onChange={handleInput}/>
-              </label>
-              <label className={colorPickerClass}>
-                <span className="text-xs">Hover Item</span>
-                <input type="color" name="hover_item" value={selectedTheme.hover_item} onChange={handleInput}/>
-              </label>
-              <label className={colorPickerClass}>
-                <span className="text-xs">Mention Badge</span>
-                <input type="color" name="mention_badge" value={selectedTheme.mention_badge} onChange={handleInput}/>
-              </label>
-              <label className={colorPickerClass}>
-                <span className="text-xs">Text Color</span>
-                <input type="color" name="text_color" value={selectedTheme.text_color} onChange={handleInput}/>
-              </label>
-              <label className={colorPickerClass}>
-                <span className="text-xs">Top Nav BG</span>
-                <input type="color" name="top_nav_bg" value={selectedTheme.top_nav_bg} onChange={handleInput}/>
-              </label>
-              <label className={colorPickerClass}>
-                <span className="text-xs">Top Nav Text</span>
-                <input type="color" name="top_nav_text" value={selectedTheme.top_nav_text} onChange={handleInput}/>
-              </label>
-            </div>
-            <label className="text-sm font-semibold">Categories</label>
-            <div className="flex flex-wrap">
-              <label className={checkboxClass}>
-                <input type="checkbox" name="dark" checked={selectedTheme.categories.dark ? 'checked' : false} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Dark</span>
-              </label>
-              <label className={checkboxClass}>
-                <input type="checkbox" name="light" checked={selectedTheme.categories.light} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Light</span>
-              </label>
-              <label className={checkboxClass}>
-                <input type="checkbox" name="red" checked={selectedTheme.categories.red} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Red</span>
-              </label>
-              <label className={checkboxClass}>
-                <input type="checkbox" name="blue" checked={selectedTheme.categories.blue} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Blue</span>
-              </label>
-              <label className={checkboxClass}>
-                <input type="checkbox" name="green" checked={selectedTheme.categories.green} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Green</span>
-              </label>
-              <label className={checkboxClass}>
-                <input type="checkbox" name="purple" checked={selectedTheme.categories.purple} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Purple</span>
-              </label>
-              <label className={checkboxClass}>
-                <input type="checkbox" name="pink" checked={selectedTheme.categories.pink} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Pink</span>
-              </label>
-              <label className={checkboxClass}>
-                <input type="checkbox" name="yellow" checked={selectedTheme.categories.yellow} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Yellow</span>
-              </label>
-              <label className={checkboxClass}>
-                <input type="checkbox" name="orange" checked={selectedTheme.categories.orange} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Orange</span>
-              </label>
-              <label className={checkboxClass}>
-                <input type="checkbox" name="brand" checked={selectedTheme.categories.brand} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Brand</span>
-              </label>
-              <label className={checkboxClass}>
-                <input type="checkbox" name="racing" checked={selectedTheme.categories.racing} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Racing</span>
-              </label>
-              <label className={checkboxClass}>
-                <input type="checkbox" name="syntax" checked={selectedTheme.categories.syntax} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Syntax</span>
-              </label>
-              <label className={checkboxClass}>
-                <input type="checkbox" name="minimal" checked={selectedTheme.categories.minimal} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Minimal</span>
-              </label>
-              <label className={checkboxClass}>
-                <input type="checkbox" name="material" checked={selectedTheme.categories.material} onChange={handleCheck}/>
-                <span className="text-xs ml-2">Material</span>
-              </label>
-            </div>
-          </form>
-        </div>
-        <div className="hidden md:flex items-center justify-center rounded-md bg-gray-200">
-          <div className="w-3/4 lg:w-1/2">
-            <ThemeItem
-              themeLabel={true}
-              neutralNav={false}
-              theme={selectedTheme}
-            />
-          </div>
-        </div>
-      </div>
-    </Modal>
-  )
-}
 
 export default function Admin() {
 
@@ -259,7 +20,8 @@ export default function Admin() {
   const [error, setError] = useState(false)
   const [loadedThemes, setLoadedThemes] = useState([])
   const [filteredThemes, setFilteredThemes] = useState([])
-  const [showAddModal, setShowAddModal] = useState(false)
+  const [submittedThemes, setSubmittedThemes] = useState([])
+  const [activeTab, setActiveTab] = useState('themes')
 
   const handleInput = (e) => {
     const { name, value } = e.target
@@ -302,17 +64,6 @@ export default function Admin() {
     })
   }
 
-  const deleteTheme = (themeName) => {
-    firebase.firestore().collection('themes').doc(themeName).delete().then(() => {
-      console.log(`${themeName} deleted`)
-    })
-    setFilteredThemes(loadedThemes)
-  }
-
-  const addTheme = () => {
-    setFilteredThemes(loadedThemes)
-  }
-
   const handleKeypress = e => {
     if (e.keyCode === 13) {
       getPass(e)
@@ -331,7 +82,15 @@ export default function Admin() {
       }))
       setLoadedThemes(fetchedThemes)
     })
-  }, [loadedThemes])
+
+    firebase.firestore().collection('submitted').orderBy('created', 'desc').onSnapshot(snapshot => {
+      const fetchedThemes = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      setSubmittedThemes(fetchedThemes)
+    })
+  }, [loadedThemes, submittedThemes])
 
   return(
     <Layout>
@@ -364,30 +123,72 @@ export default function Admin() {
           {
             loggedIn ? (
               <>
-                <div className="w-full md:w-1/2 mx-auto text-center mb-8 border-b pb-8">
+                <div className="w-full md:w-1/2 mx-auto text-center mb-8 pb-8">
                   <h1>Themes</h1>
                   <p className="text-xl mt-4">Edit/Add themes in the database</p>
                   <span className="text-sm text-gray-500">{filteredThemes.length} theme{filteredThemes.length !== 1 ? 's' : null}</span>
+                  <div className="flex border-b mt-4">
+                    <button
+                      className={`transition w-full focus:outline-none text-center p-3 ${activeTab === 'themes' ? 'font-bold border-b-2 border-current' : 'border-b text-gray-600 hover:border-current'}`}
+                      onClick={() => setActiveTab('themes')}
+                    >
+                      Themes
+                    </button>
+                    <button
+                      className={`transition w-full focus:outline-none text-center p-3 ${activeTab === 'submitted' ? 'font-bold border-b-2 border-current' : 'border-b text-gray-600 hover:border-current'}`}
+                      onClick={() => setActiveTab('submitted')}
+                    >
+                      Submitted
+                      {
+                        submittedThemes.length > 0 ? (
+                          <span className="ml-2 bg-yellow-200 text-xs text-yellow-700 rounded-full inline-flex h-6 w-6 items-center justify-center">
+                            {submittedThemes.length}
+                          </span>
+                        ) : null
+                      }
+                    </button>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center mb-4">
-                  <input
-                    name="filterQuery"
-                    value={values.filterQuery}
-                    className="border border-gray-500 rounded-md py-2 px-4 mr-2 w-80 md:w-96"
-                    onChange={handleInput}
-                    placeholder="Filter themes..."
-                  />
-                  <button
-                    className="button button--primary"
-                    onClick={addModalToggle}
-                  >
-                    <Plus/>
-                  </button>
-                </div>
-                <ThemeAdmin
-                  data={filteredThemes}
-                  onDelete={deleteTheme}
-                />
+                {
+                  activeTab === 'themes' ? (
+                    <>
+                      <div className="flex justify-between items-center mb-4">
+                        <input
+                          name="filterQuery"
+                          value={values.filterQuery}
+                          className="border border-gray-500 rounded-md py-2 px-4 mr-2 w-80 md:w-96"
+                          onChange={handleInput}
+                          placeholder="Filter themes..."
+                        />
+                        <button
+                          className="button button--primary"
+                          onClick={addModalToggle}
+                        >
+                          <Plus/>
+                        </button>
+                      </div>
+                      <ThemeAdmin
+                        data={filteredThemes}
+                      />
+                    </>
+                  ) : null
+                }
+                {
+                  activeTab === 'submitted' ? (
+                    <div className="mx-auto w-full max-w-xl">
+                      {
+                        submittedThemes.map(item => (
+                          <div className="bg-gray-100 p-4 flex justify-between">
+                            <ThemeSubmission theme={item}/>
+                            <div className="max-w-xs w-full mx-auto mt-8 text-center">
+                              <ThemeItem theme={item}/>
+                            </div>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  ) : null
+                }
               </>
             )
             :
@@ -426,11 +227,6 @@ export default function Admin() {
           }
         </div>
       </div>
-      <AddThemeModal
-        showModal={showAddModal}
-        setShowModal={setShowAddModal}
-        confirmModal={addTheme}
-      />
     </Layout>
   )
 }

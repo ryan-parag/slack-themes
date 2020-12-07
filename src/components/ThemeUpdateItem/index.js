@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Checkbox from '../Checkbox'
 import Collapse from '../Collapse'
-import { Trash } from 'react-feather'
+import { Trash, Edit2 } from 'react-feather'
 import firebase from 'firebase'
 
 const ColorPicker = ({name,color}) => {
@@ -11,28 +11,13 @@ const ColorPicker = ({name,color}) => {
   )
 }
 
-const ThemeUpdateItem = ({theme, onDelete, onCheck}) => {
+const ThemeUpdateItem = ({theme}) => {
 
   const allCategories = ['dark', 'light', 'red', 'blue', 'green', 'purple', 'yellow', 'pink', 'orange', 'brand', 'racing', 'syntax', 'minimal', 'material', 'community']
 
   const [updateTheme, setUpdateTheme] = useState(theme)
 
-  const toggleItem = (item) => {
-    let currentState = updateTheme.groups.includes(item)
-    if(currentState) {
-      const updatedAdded = updateTheme.groups.filter(function(value, index, arr){ 
-        return value !== item;
-      })
-      firebase.firestore().collection('themes').doc(theme.theme_name).update({
-        groups: updatedAdded
-      })
-    } else {
-      const updatedRemoved = updateTheme.groups.concat(item)
-      firebase.firestore().collection('themes').doc(theme.theme_name).update({
-        groups: updatedRemoved
-      })
-    }
-  }
+  const categories = updateTheme.groups
 
   useEffect(() => {
 
@@ -54,13 +39,22 @@ const ThemeUpdateItem = ({theme, onDelete, onCheck}) => {
               {theme.likes} {theme.likes === 1 ? 'Like' : 'Likes'}
             </span>
           </div>
-          <button
-            className="transition transform text-xs bg-gray-100 text-gray-500 rounded-md hover:text-red-500 hover:bg-red-50 inline-flex items-center px-2 h-8 hover:rotate-3 hover:scale-110 focus:outline-none"
-            onClick={onDelete}
-          >
-            <Trash size="16"/>
-            <span className="ml-1">Delete</span>
-          </button>
+          <div>
+            <button
+              className="transition transform mr-2 text-xs bg-gray-100 text-gray-500 rounded-md hover:text-blue-500 hover:bg-blue-50 inline-flex items-center px-2 h-8 hover:rotate-3 hover:scale-110 focus:outline-none"
+              onClick={() => console.log(updateTheme.theme_name)}
+            >
+              <Edit2 size="16"/>
+              <span className="ml-1">Edit</span>
+            </button>
+              <button
+              className="transition transform text-xs bg-gray-100 text-gray-500 rounded-md hover:text-red-500 hover:bg-red-50 inline-flex items-center px-2 h-8 hover:rotate-3 hover:scale-110 focus:outline-none"
+              onClick={() => console.log(updateTheme.theme_name)}
+            >
+              <Trash size="16"/>
+              <span className="ml-1">Delete</span>
+            </button>
+          </div>
         </div>
         <div className="inline-flex mt-4">
           <ColorPicker name={'active_item'} color={theme.active_item}/>
@@ -74,17 +68,11 @@ const ThemeUpdateItem = ({theme, onDelete, onCheck}) => {
           <ColorPicker name={'top_nav_text'} color={theme.top_nav_text}/>
         </div>
       </div>
-      <Collapse label="Edit Categories">
-        <div className="grid grid-cols-2 xl:grid-cols-3 rounded-md gap-y-1 gap-x-2 mt-2 p-2 bg-gray-100">
+      <Collapse label="Categories">
+        <div className="flex w-full rounded-md text-xs mt-2">
           {
-            allCategories.map(category => (
-              <Checkbox
-                label={category}
-                handleClick={() => toggleItem(category)}
-                toggleState={updateTheme.groups.includes(category)}
-                sm
-                key={category}
-              />
+            categories.map(item => (
+              <div className="py-1 px-2 mr-1 rounded-md bg-gray-200 border border-gray-300 text-gray-700" key={item}>{item}</div>
             ))
           }
         </div>
