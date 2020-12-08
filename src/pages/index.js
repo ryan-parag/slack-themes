@@ -25,6 +25,7 @@ export default function Home() {
   const updateQuery = (string) => {
     setQuery(string)
     setQueryAmount(27)
+    console.log(process.env.TEST_VAR)
   }
 
   const updateQueryAmount = () => {
