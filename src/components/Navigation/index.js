@@ -1,16 +1,16 @@
 import React from 'react'
 import Link from 'next/link'
 
-const Navigation = ({active}) => {
+const Navigation = ({active, signOut}) => {
 
   const navItems = [
-    { name: 'Themes', href: '/'},
+    { name: 'Explore', href: '/'},
     { name: 'About', href: '/about'},
     { name: 'Submit a Theme', href: '/submit-theme'},
   ]
 
   return(
-    <div className="flex mt-8">
+    <div className="flex items-center">
       {
         navItems.map((item, i) => (
           <Link
@@ -24,6 +24,18 @@ const Navigation = ({active}) => {
             </a>
           </Link>
         ))
+      }
+      {
+        signOut ? (
+          <button
+            className="transition pb-0.5 ml-4 border-b-2 border-transparent focus:outline-none text-red-500 hover:text-red-700"
+            onClick={() => signOut()}
+          >
+            Sign Out
+          </button>
+        )
+        :
+        null
       }
     </div>
   )

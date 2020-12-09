@@ -2,6 +2,34 @@ import React, { useState, useEffect } from 'react'
 import { Search } from 'react-feather';
 import Modal from '../Modal'
 import ThemeUpdateItem from '../ThemeUpdateItem'
+import Link from 'next/link'
+import Logo from '../Logo'
+import Navigation from '../Navigation'
+
+export const ThemeHeader = ({loggedIn}) => {
+  return (
+    <div className="flex flex-wrap md:flex-row flex-col mx-4 md:mx-auto lg:mx-auto xl:mx-auto 2xl:mx-auto py-8 md:py-9 items-center justify-between">
+      <div className="inline-block mb-4 md:mb-0">
+        <Logo admin/>
+      </div>
+      {
+        loggedIn ? (
+          <Navigation signOut={loggedIn}/>
+        )
+        :
+        (
+          <div className="inline-flex">
+            <Link href="/">
+              <a className="button mx-2">
+                &larr; Back
+              </a>
+            </Link>
+          </div>
+        )
+      }
+    </div>
+  )
+}
 
 const ThemeAdmin = ({data}) => {
 

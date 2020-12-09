@@ -36,19 +36,23 @@
   }
 
   .button {
-    @apply flex items-center justify-center px-4 py-2 space-x-2 text-sm font-medium transition bg-white border rounded shadow-sm hover:border-gray-400 focus:outline-none;
+    @apply flex items-center justify-center px-4 py-2 space-x-2 text-sm font-medium transition bg-white border rounded shadow-sm hover:border-gray-400 focus:outline-none focus:bg-gray-100;
   }
 
   .button--primary {
-    @apply text-white bg-gray-900 border-none hover:bg-gray-800;
+    @apply text-white bg-gray-900 border-none hover:bg-gray-800 focus:bg-gray-800;
   }
 
   .button--danger {
-    @apply text-white bg-red-500 border-none hover:bg-red-600;
+    @apply text-white bg-red-500 border-none hover:bg-red-600 focus:bg-red-600;
+  }
+
+  .button--success {
+    @apply text-white bg-green-500 border-none hover:bg-green-600 focus:bg-green-600;
   }
 
   .button--ghost {
-    @apply text-indigo-500 bg-indigo-100 border-none hover:bg-indigo-200 hover:text-indigo-700;
+    @apply text-indigo-500 bg-indigo-100 border-none hover:bg-indigo-200 hover:text-indigo-700 focus:bg-indigo-200;
   }
 
   .button--outline {
