@@ -26,11 +26,13 @@ export default function SubmitTheme() {
     <Layout>
       <div className="flex flex-col mx-4 md:mx-auto py-8 md:py-9">
         <div className="w-full md:w-2/3 xl:w-1/2 mx-auto lg:px-8">
-          <Link href="/">
-            <a>
-              <Logo/>
-            </a>
-          </Link>
+          <div className="flex justify-between items-center mb-8">
+            <Link href="/">
+              <a>
+                <Logo/>
+              </a>
+            </Link>
+          </div>
           <Navigation active={'Submit a Theme'}/>
           <h1 className="mb-4 mt-8">Submit a Theme</h1>
           <p className="mb-8">

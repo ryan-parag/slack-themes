@@ -10,11 +10,13 @@ export default function About() {
     <Layout>
       <div className="flex flex-col lg:flex-row mx-4 md:mx-auto lg:mx-auto xl:mx-auto 2xl:mx-auto py-8 md:py-9">
         <div className="w-full md:w-2/3 xl:w-1/2 mx-auto lg:px-8">
-          <Link href="/">
-            <a>
-              <Logo/>
-            </a>
-          </Link>
+          <div className="flex justify-between items-center mb-8">
+            <Link href="/">
+              <a>
+                <Logo/>
+              </a>
+            </Link>
+          </div>
           <Navigation active={'About'}/>
           <h1 className="mb-4 mt-8">About</h1>
           <p>

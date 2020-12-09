@@ -2,6 +2,7 @@
 config.js
 .env
 .env.local
+secrets.json
 
 # Logs
 logs

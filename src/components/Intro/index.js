@@ -6,12 +6,12 @@ import Navigation from '../Navigation'
 const Intro = () => {
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-8">
         <Link href="/">
           <a><Logo/></a>
         </Link>
       </div>
-      <Navigation active={'Themes'}/>
+      <Navigation active={'Explore'}/>
       <h1 className="mt-8">Pick a theme for Slack</h1>
       <p className="font-bold mt-4">Having trouble keeping track of all of your Slack workspaces?</p>
       <p className="mt-4">Choose and copy one of the themes in the list to personalize a Slack workspace.</p>
