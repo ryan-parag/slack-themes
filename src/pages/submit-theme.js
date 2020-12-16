@@ -46,7 +46,9 @@ export default function SubmitTheme() {
           <h5 className="mb-4">Recently Submitted Themes</h5>
           {
             loadedThemes.map(theme => (
-              <ThemeSubmission theme={theme}/>
+              <div className="mb-6">
+                <ThemeSubmission theme={theme}/>
+              </div>
             ))
           }
         </div>

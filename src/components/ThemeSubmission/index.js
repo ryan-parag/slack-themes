@@ -12,7 +12,7 @@ const ThemeSubmission = ({theme}) => {
   }
 
   return (
-    <div className="mb-6 flex w-full">
+    <div className="flex w-full">
       <div>
         {
           theme.submittedBy !== 'Unknown' ? (

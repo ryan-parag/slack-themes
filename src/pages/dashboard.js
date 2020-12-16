@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import nookies from "nookies"
 import {verifyIdToken} from "../data/admin"
 import {firebaseClient} from "../data/firebase"
@@ -8,17 +8,35 @@ import { ThemeHeader } from '../components/ThemeAdmin'
 import { motion } from 'framer-motion'
 import { Loader } from 'react-feather'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+import ThemeAdminSubmitted from '../components/ThemeAdminSubmitted'
 
 function Dashboard({session}) {
   firebaseClient()
   const [activeTab, setActiveTab] = useState('themes')
   const router = useRouter()
-  console.log(session)
+
+  const changeTab = (tab) => {
+    setActiveTab(tab)
+    router.push(`/dashboard?${tab}`, undefined, { shallow: true })
+  }
+  
+  const [submissionCount, setSubmissionCount] = useState(0)
 
   const signOut = async () => {
     await firebase.auth().signOut()
     router.push('/login')
-   }
+  }
+
+  useEffect(() => {
+    firebase.firestore().collection('submitted').onSnapshot(snapshot => {
+      const fetchedThemes = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      setSubmissionCount(fetchedThemes.length)
+    })
+  },[submissionCount])
 
   if(session) {
     return (
@@ -29,18 +47,33 @@ function Dashboard({session}) {
             <h1>Themes</h1>
             <p className="text-xl mt-4">Edit/Add themes in the database</p>
             <div className="flex border-b mt-8">
-              <button
-                className={`transition w-full focus:outline-none text-center hover:bg-gray-100 p-3 ${activeTab === 'themes' ? 'font-bold border-b-2 border-current' : 'border-b border-transparent text-gray-600 hover:border-current'}`}
-                onClick={() => setActiveTab('themes')}
-              >
-                Themes
-              </button>
-              <button
-                className={`transition w-full focus:outline-none text-center hover:bg-gray-100 p-3 ${activeTab === 'submitted' ? 'font-bold border-b-2 border-current' : 'border-b border-transparent text-gray-600 hover:border-current focus:border-current'}`}
-                onClick={() => setActiveTab('submitted')}
-              >
-                Submitted
-              </button>
+              <Link href="/dashboard?themes">
+                <a
+                  className={`transition w-full focus:outline-none text-center hover:bg-gray-100 p-3 ${activeTab === 'themes' ? 'font-bold border-b-2 border-current' : 'border-b border-transparent text-gray-600 hover:border-current'}`}
+                  onClick={() => changeTab('themes')}
+                >
+                  Themes
+                </a>
+              </Link>
+              <Link href="/dashboard?submitted">
+                <a
+                  className={`transition w-full focus:outline-none text-center hover:bg-gray-100 p-3 ${activeTab === 'submitted' ? 'font-bold border-b-2 border-current' : 'border-b border-transparent text-gray-600 hover:border-current focus:border-current'}`}
+                  onClick={() => changeTab('submitted')}
+                >
+                  <div className="flex items-center justify-center">
+                    Submitted{' '}
+                    {
+                      submissionCount >= 1 ? (
+                        <span className="text-xs rounded-full ml-2 font-bold bg-yellow-200 text-yellow-900 inline-flex items-center justify-center w-6 h-6">
+                          {submissionCount}
+                        </span>
+                      )
+                      :
+                      null
+                    }
+                  </div>
+                </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -56,9 +89,7 @@ function Dashboard({session}) {
           }
           {
             activeTab === 'submitted' ? (
-              <div className="bg-yellow-100 text-yellow-900 p-8 rounded-md block text-center w-full">
-                SUBMITTED TODO
-              </div>
+              <ThemeAdminSubmitted/>
             )
             :
             null
