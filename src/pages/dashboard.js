@@ -7,15 +7,17 @@ import Layout from '../components/Layout'
 import { ThemeHeader } from '../components/ThemeAdmin'
 import { motion } from 'framer-motion'
 import { Loader } from 'react-feather'
+import { useRouter } from 'next/router'
 
 function Dashboard({session}) {
   firebaseClient()
   const [activeTab, setActiveTab] = useState('themes')
+  const router = useRouter()
   console.log(session)
 
   const signOut = async () => {
     await firebase.auth().signOut()
-    window.location.href = '/login'
+    router.push('/login')
    }
 
   if(session) {
@@ -85,7 +87,6 @@ export async function getServerSideProps(context) {
     const cookies = nookies.get(context)
     const token = await verifyIdToken(cookies.token)
     const {uid, email} = token
-    console.log('sup')
     return {
       props: { session: `Your email is ${email} and your UID is ${uid}`}
     }

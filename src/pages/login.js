@@ -6,6 +6,7 @@ import Layout from '../components/Layout'
 import Link from 'next/link'
 import Logo from '../components/Logo'
 import { ThemeHeader } from '../components/ThemeAdmin'
+import { useRouter } from 'next/router'
 
 export default function Login() {
   firebaseClient()
@@ -13,6 +14,7 @@ export default function Login() {
   const [pass, setPass] = useState("")
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
+  const router = useRouter()
 
   const googleProvider = new firebase.auth.GoogleAuthProvider()
 
@@ -21,7 +23,7 @@ export default function Login() {
     .auth()
     .signInWithEmailAndPassword(email,pass)
     .then(function() {
-      window.location.href = '/dashboard'
+      router.push('/dashboard')
       console.log('signed in with email + pass')
     })
     .catch(function (error) {
@@ -36,7 +38,7 @@ export default function Login() {
     .auth()
     .signInWithPopup(googleProvider)
     .then(function() {
-      window.location.href = '/dashboard'
+      router.push('/dashboard')
       console.log('signed in with Google')
     })
     .catch(function (error) {
@@ -51,7 +53,7 @@ export default function Login() {
     .auth()
     .signInWithPopup(googleProvider)
     .then(function() {
-      window.location.href = '/dashboard'
+      router.push('/dashboard')
     })
     .catch(function (error) {
       const message = error.message
