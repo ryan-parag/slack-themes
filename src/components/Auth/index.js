@@ -15,11 +15,13 @@ export const AuthProvider = ({children}) => {
       if(!user) {
         setUser(null)
         nookies.set(undefined, "token", '', {})
+        console.log('not Authorized')
         return
       }
       const token = await user.getIdToken()
       setUser(user)
       nookies.set(undefined, "token", token, {})
+      console.log('authorized')
     })
   }, [])
 
