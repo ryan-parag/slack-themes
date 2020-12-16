@@ -90,7 +90,7 @@ export async function getServerSideProps(context) {
       props: { session: `Your email is ${email} and your UID is ${uid}`}
     }
   } catch (err) {
-    context.res.writeHead(302, {location: "/"})
+    context.res.writeHead(302, {location: "/login"})
     context.res.end()
     return {props: []}
   }

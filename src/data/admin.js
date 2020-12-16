@@ -1,3 +1,5 @@
+import firebase from "firebase/app";
+import "firebase/auth"
 const admin = require("firebase-admin")
 const serviceAccount = require("../data/service")
 
