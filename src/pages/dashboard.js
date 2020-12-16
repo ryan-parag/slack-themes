@@ -11,6 +11,7 @@ import { Loader } from 'react-feather'
 function Dashboard({session}) {
   firebaseClient()
   const [activeTab, setActiveTab] = useState('themes')
+  console.log(session)
 
   const signOut = async () => {
     await firebase.auth().signOut()
@@ -84,11 +85,12 @@ export async function getServerSideProps(context) {
     const cookies = nookies.get(context)
     const token = await verifyIdToken(cookies.token)
     const {uid, email} = token
+    console.log('sup')
     return {
       props: { session: `Your email is ${email} and your UID is ${uid}`}
     }
   } catch (err) {
-    context.res.writeHead(302, {location: "/login"})
+    context.res.writeHead(302, {location: "/"})
     context.res.end()
     return {props: []}
   }
