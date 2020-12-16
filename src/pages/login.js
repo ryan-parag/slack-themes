@@ -22,6 +22,7 @@ export default function Login() {
     .signInWithEmailAndPassword(email,pass)
     .then(function() {
       window.location.href = '/dashboard'
+      console.log('signed in with email + pass')
     })
     .catch(function (error) {
       const message = error.message
@@ -36,6 +37,7 @@ export default function Login() {
     .signInWithPopup(googleProvider)
     .then(function() {
       window.location.href = '/dashboard'
+      console.log('signed in with Google')
     })
     .catch(function (error) {
       const message = error.message
