@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import firebase from '../../data/firebase'
 import ThemeItem from '../ThemeItem'
 import TimeAgo from 'timeago-react'
-import Modal from '../Modal'
 import { CheckCircle } from 'react-feather'
 
 const SubmittedItem = ({theme}) => {
@@ -74,41 +73,6 @@ const SubmittedItem = ({theme}) => {
 }
 
 const ThemeAdminSubmitted = () => {
-
-  const [showModal, setShowModal] = useState(false)
-  const [selectedItem, setSelectedItem] = useState('')
-
-  const deleteItem = (name) => {
-    console.log(name)
-    /*firebase.firestore().collection('submitted').doc(name).delete().then(function() {
-      console.log("Document successfully deleted!");
-    }).catch(function(error) {
-        console.error("Error removing document: ", error);
-    });*/
-  }
-
-  const handleSubmit = event => {
-    event.preventDefault()
-    const themeRef = firebase.firestore().collection('submitted')
-    themeRef.doc(selectedItem).delete()
-  }
-
-  const openDelete = (name) => {
-    setSelectedItem(name)
-    console.log(selectedItem)
-    //setShowModal(!showModal)
-  }
-
-  const convertTime = secs => {
-    var t = new Date(1970, 0, 1);
-    t.setSeconds(secs);
-    return t;
-  }
-
-  const sup = (name) => {
-    setSelectedItem(name)
-    console.log(selectedItem)
-  }
 
   const [loadedThemes, setLoadedThemes] = useState([])
 

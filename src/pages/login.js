@@ -24,7 +24,6 @@ export default function Login() {
     .signInWithEmailAndPassword(email,pass)
     .then(function() {
       router.push('/dashboard')
-      console.log('signed in with email + pass')
     })
     .catch(function (error) {
       const message = error.message
