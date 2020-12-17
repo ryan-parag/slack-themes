@@ -92,14 +92,23 @@ const ThemeAdminList = () => {
 
   return (
     <>
-      <div className="flex justify-center">
-        <input
-          name="filterQuery"
-          value={filterQuery}
-          className="border border-gray-500 rounded-md py-2 px-4 w-full max-w-sm mb-4 text-center text-lg"
-          onChange={handleInput}
-          placeholder="Filter themes..."
-        />
+      <div className="flex justify-between">
+        <div className="flex w-full items-center mb-4 flex-col md:flex-row">
+          <input
+            name="filterQuery"
+            value={filterQuery}
+            className="border border-gray-500 rounded-md py-2 px-4 w-full max-w-sm text-lg mr-2 mb-2 md:mt-0"
+            onChange={handleInput}
+            placeholder="Filter themes..."
+          />
+          {
+            filteredThemes.length > 0 ? (
+              <span className="text-sm text-gray-500">{filteredThemes.length} result{filteredThemes.length === 1 ? null : 's'}</span>
+            )
+            :
+            null
+          }
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {
