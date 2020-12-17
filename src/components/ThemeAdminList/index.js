@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import firebase from '../../data/firebase'
-import { CheckCircle } from 'react-feather'
+import { Search } from 'react-feather'
 
 const ListItem = ({theme}) => {
 
@@ -49,7 +49,13 @@ const ListItem = ({theme}) => {
 
 const ThemeAdminList = () => {
 
+  const [filterQuery, setFilterQuery] = useState('')
   const [loadedThemes, setLoadedThemes] = useState([])
+  const [filteredThemes, setFilteredThemes] = useState([])
+
+  const handleInput = (e) => {
+    setFilterQuery(e.target.value)
+  }
 
   useEffect(() => {
     firebase.firestore().collection('themes').orderBy('theme_name', 'asc').onSnapshot(snapshot => {
@@ -59,14 +65,32 @@ const ThemeAdminList = () => {
       }))
       setLoadedThemes(fetchedThemes)
     })
-  },[loadedThemes])
+
+    if(filterQuery.length > 0) {
+      const filtered = loadedThemes.filter(theme => {
+        return theme.theme_name.toLowerCase().includes(filterQuery.toLowerCase())
+      })
+      setFilteredThemes(filtered)
+    } else {
+      setFilteredThemes(loadedThemes)
+    }
+  },[loadedThemes, filterQuery])
 
   return (
     <>
+      <div className="flex justify-center">
+        <input
+          name="filterQuery"
+          value={filterQuery}
+          className="border border-gray-500 rounded-md py-2 px-4 w-full max-w-sm mb-4 text-center text-lg"
+          onChange={handleInput}
+          placeholder="Filter themes..."
+        />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {
-          loadedThemes.length > 0 ? (
-            loadedThemes.map(theme => (
+          filteredThemes.length > 0 ? (
+            filteredThemes.map(theme => (
               <ListItem
                 theme={theme}
                 key={theme.theme_name}
@@ -77,9 +101,9 @@ const ThemeAdminList = () => {
           (
             <div className="rounded-md text-center bg-gray-100 p-8 mt-4 col-span-3">
               <div className="inline-block p-3 mb-4 bg-gray-200 text-gray-800 rounded-full">
-                <CheckCircle/>
+                <Search/>
               </div>
-              <h4>No Themes in Database</h4>
+              <h4>{filteredThemes.length === 0 ? 'Nothing Found' : 'No Themes in Database'}</h4>
             </div>
           )
         }
