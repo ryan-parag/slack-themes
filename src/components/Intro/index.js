@@ -3,7 +3,7 @@ import Logo from '../Logo'
 import Link from 'next/link'
 import Navigation from '../Navigation'
 
-const Intro = ({session}) => {
+const Intro = () => {
   return (
     <>
       <div className="flex justify-between items-center mb-8">
@@ -11,7 +11,7 @@ const Intro = ({session}) => {
           <a><Logo/></a>
         </Link>
       </div>
-      <Navigation active={'Explore'} session={session}/>
+      <Navigation active={'Explore'}/>
       <h1 className="mt-8">Pick a theme for Slack</h1>
       <p className="font-bold mt-4">Having trouble keeping track of all of your Slack workspaces?</p>
       <p className="mt-4">Choose and copy one of the themes in the list to personalize a Slack workspace.</p>

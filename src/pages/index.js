@@ -11,7 +11,7 @@ import Drawer from '../components/Drawer'
 import { motion } from 'framer-motion'
 import { Loader, Search , Sliders} from 'react-feather'
 
-export default function Home({session}) {
+export default function Home() {
   const [filteredThemes, setFilteredThemes] = useState([])
   const [loading, setLoading] = useState(true)
   const [query, setQuery] = useState('')
@@ -103,7 +103,6 @@ export default function Home({session}) {
           <div className="w-full lg:w-1/3 lg:px-4 h-3/6 lg:sticky top-8 lg:top-9">
             <Intro
               toggleDrawerState={toggleDrawerState}
-              session={session}
             />
           </div>
           <div className="w-full lg:w-2/3 lg:px-8">
@@ -195,17 +194,4 @@ export default function Home({session}) {
       </div>
     </Layout>
   );
-}
-
-export async function getServerSideProps(context) {
-  try {
-    const cookies = nookies.get(context)
-    const token = await verifyIdToken(cookies.token)
-    const {uid, email} = token
-    return {
-      props: { session: `Your email is ${email} and your UID is ${uid}`}
-    }
-  } catch (err) {
-    return {props: []}
-  }
 }

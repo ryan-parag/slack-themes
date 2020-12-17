@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const Navigation = ({active, signOut, session}) => {
+const Navigation = ({active, signOut}) => {
 
   const navItems = [
     { name: 'Explore', href: '/'},
@@ -26,7 +26,7 @@ const Navigation = ({active, signOut, session}) => {
         ))
       }
       {
-        session ? (
+        signOut ? (
           <button
             className="transition pb-0.5 ml-4 border-b-2 border-transparent focus:outline-none text-red-500 hover:text-red-700"
             onClick={() => signOut()}
