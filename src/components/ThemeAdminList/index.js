@@ -18,30 +18,44 @@ const ListItem = ({theme}) => {
   }, [themeItem])
 
   return (
-    <div className="p-4 rounded-md shadow border border-gray-200 flex justify-between">
-      <div>
-        <p className="mb-2">
-          <strong>{themeItem.theme_name}</strong>
-        </p>
-        <div className="flex mb-2">
-          <span className={swatchClass} style={{ background: themeItem.active_item}}></span>
-          <span className={swatchClass} style={{ background: themeItem.active_item_text}}></span>
-          <span className={swatchClass} style={{ background: themeItem.active_presence}}></span>
-          <span className={swatchClass} style={{ background: themeItem.column_bg}}></span>
-          <span className={swatchClass} style={{ background: themeItem.hover_item}}></span>
-          <span className={swatchClass} style={{ background: themeItem.mention_badge}}></span>
-          <span className={swatchClass} style={{ background: themeItem.text_color}}></span>
-          <span className={swatchClass} style={{ background: themeItem.top_nav_bg}}></span>
-          <span className={swatchClass} style={{ background: themeItem.top_nav_text}}></span>
+    <div className="p-4 rounded-md shadow border border-gray-200 ">
+      <div className="flex justify-between">
+        <div>
+          <p className="mb-2">
+            <strong>{themeItem.theme_name}</strong>
+          </p>
+          <div className="flex mb-2">
+            <span className={swatchClass} style={{ background: themeItem.active_item}}></span>
+            <span className={swatchClass} style={{ background: themeItem.active_item_text}}></span>
+            <span className={swatchClass} style={{ background: themeItem.active_presence}}></span>
+            <span className={swatchClass} style={{ background: themeItem.column_bg}}></span>
+            <span className={swatchClass} style={{ background: themeItem.hover_item}}></span>
+            <span className={swatchClass} style={{ background: themeItem.mention_badge}}></span>
+            <span className={swatchClass} style={{ background: themeItem.text_color}}></span>
+            <span className={swatchClass} style={{ background: themeItem.top_nav_bg}}></span>
+            <span className={swatchClass} style={{ background: themeItem.top_nav_text}}></span>
+          </div>
+        </div>
+        <div>
+          <button
+            className="button button--danger button--sm opacity-40 hover:opacity-100"
+            onClick={deleteItem}
+          >
+            Delete
+          </button>
         </div>
       </div>
-      <div>
-        <button
-          className="button button--danger button--sm opacity-40 hover:opacity-100"
-          onClick={deleteItem}
-        >
-          Delete
-        </button>
+      <div className="mt-2 flex justify-between">
+        <div className="text-sm">
+          <div className="text-gray-500 text-xs">Categories:</div>
+          { themeItem.groups.join(", ") }
+        </div>
+        <div className="inline-flex items-center text-sm">
+          <svg height="20" width="20" className="text-gray-300 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+          </svg>
+          {themeItem.likes}
+        </div>
       </div>
     </div>
   )

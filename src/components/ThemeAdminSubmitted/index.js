@@ -39,9 +39,9 @@ const SubmittedItem = ({theme}) => {
 
   const handleChecked = e => {
     const category = categories[e.target.dataset.id].toLowerCase();
-    let newCheckedValues = themeItem.categories.filter(item => item !== category);
+    let newCheckedValues = themeItem.groups.filter(item => item !== category);
     if (e.target.checked) newCheckedValues.push(category);
-    setThemeItem(prevState => ({...prevState, categories: newCheckedValues}));
+    setThemeItem(prevState => ({...prevState, groups: newCheckedValues}));
     console.log(themeItem)
   };
 
@@ -77,6 +77,10 @@ const SubmittedItem = ({theme}) => {
               </strong>
             </div>
           </div>
+          <div className="mb-4">
+            <div className="text-xs text-gray-500">Categories:</div>
+            <div><strong className="text-sm">{themeItem.groups.join(', ')}</strong></div>
+          </div>
         </div>
       </div>
       <details>
@@ -88,8 +92,8 @@ const SubmittedItem = ({theme}) => {
                 key={id}
                 className="text-sm cursor-pointer transition inline-flex items-center p-2 border rounded-md hover:bg-gray-100"
               >
-                <input type="checkbox" data-id={id} onClick={handleChecked} checked={themeItem.categories.includes(item.toLowerCase())}/>
-                <span className={`pl-2 ${themeItem.categories.includes(item.toLowerCase()) ? 'font-semibold' : 'font-normal text-gray-500'}`}>{item}</span>
+                <input type="checkbox" data-id={id} onClick={handleChecked} checked={themeItem.groups.includes(item.toLowerCase())}/>
+                <span className={`pl-2 ${themeItem.groups.includes(item.toLowerCase()) ? 'font-semibold' : 'font-normal text-gray-500'}`}>{item}</span>
               </label>
             ))
           }
