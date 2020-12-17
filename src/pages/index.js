@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react"
-import nookies from "nookies"
-import {verifyIdToken} from "../data/admin"
 import Layout from '../components/Layout'
 import Intro from '../components/Intro'
 import Categories from '../components/Categories'
