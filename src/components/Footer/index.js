@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 const Footer = () => {
   return (
@@ -6,7 +7,14 @@ const Footer = () => {
       <small>
         Designed and Developed by <a className="link" href="https://ryanparag.com" target="_blank">Ryan Parag</a> and <a className="link" href="https://matt-broughton.com/" target="_blank">Matthew Broughton</a>
       </small>
-      <a href="https://github.com/ryan-parag/slack-themes" target="_blank" className="button mt-4 lg:mt-0">Contribute on GitHub</a>
+      <div className="inline-flex">
+        <Link href="/login">
+          <a className="button mt-4 lg:mt-0 mr-2">
+            Admin
+          </a>
+        </Link>
+        <a href="https://github.com/ryan-parag/slack-themes" target="_blank" className="button mt-4 lg:mt-0">Contribute on GitHub</a>
+      </div>
     </div>
   )
 }

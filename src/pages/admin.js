@@ -7,8 +7,11 @@ import ThemeAdmin from '../components/ThemeAdmin'
 import { Plus } from 'react-feather'
 import ThemeSubmission from '../components/ThemeSubmission'
 import ThemeItem from '../components/ThemeItem'
+import { useRouter } from 'next/router'
 
 export default function Admin() {
+
+  const router = useRouter()
 
   const initialVals = {
     pass: '',
@@ -75,6 +78,9 @@ export default function Admin() {
   }
 
   useEffect(() => {
+
+    router.push(`/login`, undefined, { shallow: true })
+    
     firebase.firestore().collection('themes').orderBy('theme_name', 'asc').onSnapshot(snapshot => {
       const fetchedThemes = snapshot.docs.map((doc) => ({
         id: doc.id,

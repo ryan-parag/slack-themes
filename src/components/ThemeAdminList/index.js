@@ -67,7 +67,10 @@ const ThemeAdminList = () => {
         {
           loadedThemes.length > 0 ? (
             loadedThemes.map(theme => (
-              <ListItem theme={theme}/>
+              <ListItem
+                theme={theme}
+                key={theme.theme_name}
+              />
             ))
           )
           :

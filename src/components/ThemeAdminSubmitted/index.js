@@ -37,20 +37,17 @@ const SubmittedItem = ({theme}) => {
     }
   }
 
-  const updateCategory = category => {
-    if(!themeItem.categories.includes(category.toLowerCase())) {
-      let newCategories = []
-      themeItem.categories.forEach(item => newCategories.push(item))
-      newCategories.push(category.toLowerCase())
-      setThemeItem(prevState => ({...prevState, categories: newCategories}));
-    } else {
-      let newCategories = themeItem.categories
-      setThemeItem(prevState => ({...prevState, categories: removeCategory(newCategories, category.toLowerCase())}));
-    }
-  }
+  const handleChecked = e => {
+    const category = categories[e.target.dataset.id].toLowerCase();
+    let newCheckedValues = themeItem.categories.filter(item => item !== category);
+    if (e.target.checked) newCheckedValues.push(category);
+    setThemeItem(prevState => ({...prevState, categories: newCheckedValues}));
+    console.log(themeItem)
+  };
 
   useEffect(() => {
-
+    const themeRef = firebase.firestore().collection('submitted')
+    themeRef.doc(themeItem.theme_name).update(themeItem)
   }, [themeItem])
 
   return (
@@ -86,14 +83,14 @@ const SubmittedItem = ({theme}) => {
         <summary className="focus:outline-none text-sm cursor-pointer link">Edit Categories</summary>
         <div className="mt-2 grid grid-cols-3 gap-2">
           {
-            categories.map(item => (
-              <Checkbox
-                handleClick={() => updateCategory(item)}
-                toggleState={themeItem.categories.includes(item.toLowerCase())}
-                sm
-                label={item}
-                key={item}
-              />
+            categories.map((item,id) => (
+              <label
+                key={id}
+                className="text-sm cursor-pointer transition inline-flex items-center p-2 border rounded-md hover:bg-gray-100"
+              >
+                <input type="checkbox" data-id={id} onClick={handleChecked} checked={themeItem.categories.includes(item.toLowerCase())}/>
+                <span className={`pl-2 ${themeItem.categories.includes(item.toLowerCase()) ? 'font-semibold' : 'font-normal text-gray-500'}`}>{item}</span>
+              </label>
             ))
           }
         </div>

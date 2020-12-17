@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { firebaseClient } from '../data/firebase'
 import firebase from "firebase/app"
 import "firebase/auth"
@@ -70,9 +70,9 @@ export default function Login() {
   return(
     <Layout>
       <ThemeHeader/>
-      <div className="flex flex-col lg:flex-row mx-4 md:mx-auto lg:mx-auto xl:mx-auto 2xl:mx-auto py-8 md:py-9 justify-center">
+      <div className="flex flex-col lg:flex-row mx-4 md:mx-auto lg:mx-auto xl:mx-auto 2xl:mx-auto py-0 md:py-9 justify-center">
         <div className="w-full lg:w-1/2 2xl:w-1/3 lg:px-4 top-8 mb-16">
-          <div className="p-8 rounded-md border border-gray-200 shadow md:mt-16">
+          <div className="p-8 rounded-md border border-gray-200 shadow lg:mt-16">
             <h1 className="mb-4">Admin Login</h1>
             <p className="text-sm">This section is for admins. Login to edit/add themes that are in the database.</p>
             {
@@ -109,7 +109,7 @@ export default function Login() {
               />
             </div>
             <button
-              className="button button--primary p-4 block w-full cursor-pointer"
+              className="button button--lg button--primary p-4 block w-full cursor-pointer"
               onClick={logInEmail}
               onKeyPress={logInEmailKeyPress}
             >

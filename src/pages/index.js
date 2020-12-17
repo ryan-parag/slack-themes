@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react"
+import nookies from "nookies"
+import {verifyIdToken} from "../data/admin"
 import Layout from '../components/Layout'
 import Intro from '../components/Intro'
 import Categories from '../components/Categories'
@@ -9,7 +11,7 @@ import Drawer from '../components/Drawer'
 import { motion } from 'framer-motion'
 import { Loader, Search , Sliders} from 'react-feather'
 
-export default function Home() {
+export default function Home({session}) {
   const [filteredThemes, setFilteredThemes] = useState([])
   const [loading, setLoading] = useState(true)
   const [query, setQuery] = useState('')
@@ -101,6 +103,7 @@ export default function Home() {
           <div className="w-full lg:w-1/3 lg:px-4 h-3/6 lg:sticky top-8 lg:top-9">
             <Intro
               toggleDrawerState={toggleDrawerState}
+              session={session}
             />
           </div>
           <div className="w-full lg:w-2/3 lg:px-8">
@@ -192,4 +195,17 @@ export default function Home() {
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  try {
+    const cookies = nookies.get(context)
+    const token = await verifyIdToken(cookies.token)
+    const {uid, email} = token
+    return {
+      props: { session: `Your email is ${email} and your UID is ${uid}`}
+    }
+  } catch (err) {
+    return {props: []}
+  }
 }
