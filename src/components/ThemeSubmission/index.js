@@ -15,7 +15,7 @@ const ThemeSubmission = ({theme}) => {
     <div className="flex w-full">
       <div>
         {
-          theme.submittedBy !== 'Unknown' ? (
+          theme.submittedBy && theme.submittedBy !== 'Unknown'? (
             <div
               className={`rounded-full inline-flex w-10 h-10 items-center justify-center bg-white shadow bg-cover text-gray-600 border border-gray-200 font-bold`}
             >
@@ -30,7 +30,7 @@ const ThemeSubmission = ({theme}) => {
       </div>
       <div className="flex flex-col w-full pl-4 mb-2">
         <p className="text-gray-600 text-sm mb-2">
-          <strong>{theme.submittedBy}</strong> submitted <strong>{theme.theme_name}</strong>!
+          <strong>{theme.submittedBy !== 'Unknown' && theme.submittedBy ? theme.submittedBy : 'Unknown'}</strong> submitted <strong>{theme.theme_name}</strong>!
         </p>
         <div className="flex mb-2">
           <span className={swatchClass} style={{ background: theme.active_item}}></span>
@@ -44,10 +44,16 @@ const ThemeSubmission = ({theme}) => {
           <span className={swatchClass} style={{ background: theme.top_nav_text}}></span>
         </div>
         <small className="text-gray-500 text-xs">
-          <TimeAgo
-            datetime={convertTime(theme.created.seconds)}
-            locale='en_US'
-          />
+          {
+            theme.created ? (
+              <TimeAgo
+                datetime={convertTime(theme.created.seconds)}
+                locale='en_US'
+              />
+            )
+            :
+            null
+          }
         </small>
       </div>
     </div>

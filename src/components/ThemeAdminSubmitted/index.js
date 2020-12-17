@@ -3,8 +3,13 @@ import firebase from '../../data/firebase'
 import ThemeItem from '../ThemeItem'
 import TimeAgo from 'timeago-react'
 import { CheckCircle } from 'react-feather'
+import Checkbox from '../Checkbox'
 
 const SubmittedItem = ({theme}) => {
+
+  const [themeItem, setThemeItem] = useState(theme)
+
+  const categories = ['Dark', 'Light', 'Red', 'Blue', 'Green', 'Purple', 'Yellow', 'Pink', 'Orange', 'Brand', 'Racing', 'Syntax', 'Minimal', 'Material', 'Community']
 
   const convertTime = secs => {
     var t = new Date(1970, 0, 1);
@@ -15,38 +20,61 @@ const SubmittedItem = ({theme}) => {
   const deleteItem = (event) => {
     event.preventDefault()
     const themeRef = firebase.firestore().collection('submitted')
-    themeRef.doc(theme.theme_name).delete()
+    themeRef.doc(themeItem.theme_name).delete()
   }
 
   const addItem = (event) => {
     event.preventDefault()
     const themeRef = firebase.firestore().collection('themes')
-    themeRef.doc(theme.theme_name).set(theme)
+    themeRef.doc(themeItem.theme_name).set(themeItem)
     deleteItem(event)
   }
+
+  const removeCategory = (array, item) => {
+    let index = array.indexOf(item)
+    if(index > -1) {
+      array.splice(index, 1)
+    }
+  }
+
+  const updateCategory = category => {
+    if(!themeItem.categories.includes(category.toLowerCase())) {
+      let newCategories = []
+      themeItem.categories.forEach(item => newCategories.push(item))
+      newCategories.push(category.toLowerCase())
+      setThemeItem(prevState => ({...prevState, categories: newCategories}));
+    } else {
+      let newCategories = themeItem.categories
+      setThemeItem(prevState => ({...prevState, categories: removeCategory(newCategories, category.toLowerCase())}));
+    }
+  }
+
+  useEffect(() => {
+
+  }, [themeItem])
 
   return (
     <div
       className="p-4 shadow border rounded-md"
-      key={theme.theme_name}
+      key={themeItem.theme_name}
     >
       <div
         className="flex flex-col sm:flex-row"
       >
         <div className="w-full max-w-full sm:max-w-xs">
-          <ThemeItem theme={theme}/>
+          <ThemeItem theme={themeItem}/>
         </div>
         <div className="pl-0 sm:pl-4">
           <div className="mb-4">
             <div className="text-xs text-gray-500">Submitted By:</div>
-            <div><strong>{theme.submittedBy}</strong></div>
+            <div><strong>{themeItem.submittedBy}</strong></div>
           </div>
           <div className="mb-4">
             <div className="text-xs text-gray-500">Date/Time Submitted:</div>
             <div>
               <strong>
                 <TimeAgo
-                  datetime={convertTime(theme.created.seconds)}
+                  datetime={convertTime(themeItem.created.seconds)}
                   locale='en_US'
                 />
               </strong>
@@ -54,6 +82,22 @@ const SubmittedItem = ({theme}) => {
           </div>
         </div>
       </div>
+      <details>
+        <summary className="focus:outline-none text-sm cursor-pointer link">Edit Categories</summary>
+        <div className="mt-2 grid grid-cols-3 gap-2">
+          {
+            categories.map(item => (
+              <Checkbox
+                handleClick={() => updateCategory(item)}
+                toggleState={themeItem.categories.includes(item.toLowerCase())}
+                sm
+                label={item}
+                key={item}
+              />
+            ))
+          }
+        </div>
+      </details>
       <div className="mt-4 flex flex-row">
         <button
           className="button button--danger mr-2 w-full"

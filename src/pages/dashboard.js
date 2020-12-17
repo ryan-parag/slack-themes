@@ -10,6 +10,7 @@ import { Loader } from 'react-feather'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import ThemeAdminSubmitted from '../components/ThemeAdminSubmitted'
+import ThemeAdminList from '../components/ThemeAdminList'
 
 function Dashboard({session}) {
   firebaseClient()
@@ -22,6 +23,7 @@ function Dashboard({session}) {
   }
   
   const [submissionCount, setSubmissionCount] = useState(0)
+  const [themeCount, setThemeCount] = useState(0)
 
   const signOut = async () => {
     await firebase.auth().signOut()
@@ -36,7 +38,14 @@ function Dashboard({session}) {
       }))
       setSubmissionCount(fetchedThemes.length)
     })
-  },[submissionCount])
+    firebase.firestore().collection('themes').onSnapshot(snapshot => {
+      const fetchedThemes = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      setThemeCount(fetchedThemes.length)
+    })
+  },[submissionCount, themeCount])
 
   if(session) {
     return (
@@ -49,22 +58,27 @@ function Dashboard({session}) {
             <div className="flex border-b mt-8">
               <Link href="/dashboard?themes">
                 <a
-                  className={`transition w-full focus:outline-none text-center hover:bg-gray-100 p-3 ${activeTab === 'themes' ? 'font-bold border-b-2 border-current' : 'border-b border-transparent text-gray-600 hover:border-current'}`}
+                  className={`transition w-full focus:outline-none text-center hover:bg-gray-100 p-3 ${activeTab === 'themes' ? 'font-bold border-b-2 border-current' : 'border-b border-transparent text-gray-400 hover:border-current'}`}
                   onClick={() => changeTab('themes')}
                 >
-                  Themes
+                  <div className="flex items-center justify-center">
+                    Themes{' '}
+                    <span className="text-xs rounded-full ml-2 font-bold bg-gray-100 text-gray-500 inline-flex items-center justify-center px-2 h-6">
+                      {themeCount}
+                    </span>
+                  </div>
                 </a>
               </Link>
               <Link href="/dashboard?submitted">
                 <a
-                  className={`transition w-full focus:outline-none text-center hover:bg-gray-100 p-3 ${activeTab === 'submitted' ? 'font-bold border-b-2 border-current' : 'border-b border-transparent text-gray-600 hover:border-current focus:border-current'}`}
+                  className={`transition w-full focus:outline-none text-center hover:bg-gray-100 p-3 ${activeTab === 'submitted' ? 'font-bold border-b-2 border-current' : 'border-b border-transparent text-gray-400 hover:border-current focus:border-current'}`}
                   onClick={() => changeTab('submitted')}
                 >
                   <div className="flex items-center justify-center">
                     Submitted{' '}
                     {
                       submissionCount >= 1 ? (
-                        <span className="text-xs rounded-full ml-2 font-bold bg-yellow-200 text-yellow-900 inline-flex items-center justify-center w-6 h-6">
+                        <span className="text-xs rounded-full ml-2 font-bold bg-yellow-200 text-yellow-900 inline-flex items-center justify-center px-2 h-6">
                           {submissionCount}
                         </span>
                       )
@@ -80,9 +94,7 @@ function Dashboard({session}) {
         <div className="py-8 px-4 md:px-0">
           {
             activeTab === 'themes' ? (
-              <div className="bg-pink-100 text-pink-900 p-8 rounded-md block text-center w-full">
-                THEMES TODO
-              </div>
+              <ThemeAdminList/>
             )
             :
             null
