@@ -42,7 +42,7 @@ const ColorPicker = (props) => {
                   }
                 />
               </div>
-              <button className="fixed bg-gray-900 bg-opacity-20 z-40 top-0 bottom-0 left-0 right-0 w-full h-full" onClick={() => handleDisplay()}/>
+              <button className="fixed bg-transparent z-40 top-0 bottom-0 left-0 right-0 w-full h-full" onClick={() => handleDisplay()}/>
             </>
           )
           :

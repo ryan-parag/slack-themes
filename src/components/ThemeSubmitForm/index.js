@@ -43,6 +43,8 @@ const ThemeSubmitForm = () => {
     })
   }
 
+  const copyString = `${theme.column_bg},#121016,${theme.active_item},${theme.active_item_text},${theme.hover_item},${theme.text_color},${theme.active_presence},${theme.mention_badge},${theme.top_nav_bg},${theme.top_nav_text}`
+
   const handleSubmit = event => {
     event.preventDefault()
     const themeRef = firebase.firestore().collection('submitted')

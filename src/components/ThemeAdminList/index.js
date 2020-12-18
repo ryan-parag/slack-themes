@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import firebase from '../../data/firebase'
-import { Search } from 'react-feather'
+import { Search, Plus, Minus } from 'react-feather'
 
 const ListItem = ({theme}) => {
 
@@ -13,8 +13,21 @@ const ListItem = ({theme}) => {
     themeRef.doc(themeItem.theme_name).delete()
   }
 
-  useEffect(() => {
+  const addLike = () => {
+    let updatedLikes = themeItem.likes + 1
+    setThemeItem(prevState => ({...prevState, likes: updatedLikes}));
+    console.log(themeItem)
+  }
 
+  const removeLike = () => {
+    let updatedLikes = themeItem.likes - 1
+    setThemeItem(prevState => ({...prevState, likes: updatedLikes}));
+    console.log(themeItem)
+  }
+
+  useEffect(() => {
+    const themeRef = firebase.firestore().collection('themes')
+    themeRef.doc(themeItem.theme_name).update(themeItem)
   }, [themeItem])
 
   return (
@@ -38,7 +51,7 @@ const ListItem = ({theme}) => {
         </div>
         <div>
           <button
-            className="button button--danger button--sm opacity-40 hover:opacity-100"
+            className="button transition text-sm px-2 py-1 border-transparent bg-red-50 text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500"
             onClick={deleteItem}
           >
             Delete
@@ -50,11 +63,28 @@ const ListItem = ({theme}) => {
           <div className="text-gray-500 text-xs">Categories:</div>
           { themeItem.groups.join(", ") }
         </div>
-        <div className="inline-flex items-center text-sm">
-          <svg height="20" width="20" className="text-gray-300 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-          </svg>
-          {themeItem.likes}
+        <div>
+          <div className="text-gray-500 text-xs">Likes:</div>
+          <div className="inline-flex items-center text-sm">
+            <svg height="20" width="20" className="text-gray-300 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+            </svg>
+            {themeItem.likes}
+            <div className="inline-flex items-center ml-2">
+              <button 
+                className="transition focus:outline-none p-1 rounded-full text-gray-400 hover:text-gray-900 hover:bg-gray-200"
+                onClick={removeLike}
+              >
+                <Minus size={16}/>
+              </button>
+              <button
+                className="transition p-1 focus:outline-none rounded-full text-gray-400 hover:text-gray-900 hover:bg-gray-200"
+                onClick={addLike}
+              >
+                <Plus size={16}/>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
