@@ -101,7 +101,7 @@ const SubmittedItem = ({theme}) => {
       </details>
       <div className="mt-4 flex flex-row">
         <button
-          className="button button--danger mr-2 w-full"
+          className="button transition border-transparent bg-red-50 text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500 mr-2 w-full"
           onClick={deleteItem}
         >
           Delete

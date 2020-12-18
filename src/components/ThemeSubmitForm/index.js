@@ -79,7 +79,7 @@ const ThemeSubmitForm = () => {
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8">
                 <div className="lg:col-span-2">
-                  <form onSubmit={handleSubmit}>
+                  <div>
                     <label className="text-sm font-semibold">Theme Name</label>
                     <input
                       className={`border ${error ? 'border-red-500' : 'border-gray-500'} rounded-md py-4 px-4 mt-2 mb-2 block w-full`}
@@ -111,7 +111,7 @@ const ThemeSubmitForm = () => {
                       <ColorPicker color={theme.top_nav_bg} changeColor={handlePicker} themeTarget={"top_nav_bg"}/>
                       <ColorPicker color={theme.top_nav_text} changeColor={handlePicker} themeTarget={"top_nav_text"}/>
                     </div>
-                  </form>
+                  </div>
                 </div>
                 <div>
                   <div className="max-w-xs w-full mx-auto mt-8 text-center">
