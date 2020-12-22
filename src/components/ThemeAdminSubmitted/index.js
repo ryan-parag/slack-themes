@@ -85,12 +85,12 @@ const SubmittedItem = ({theme}) => {
       </div>
       <details>
         <summary className="focus:outline-none text-sm cursor-pointer link">Edit Categories</summary>
-        <div className="mt-2 grid grid-cols-3 gap-2">
+        <div className="mt-2 grid grid-cols-2 sm:grid-cols-3 gap-2">
           {
             categories.map((item,id) => (
               <label
                 key={id}
-                className="text-sm cursor-pointer transition inline-flex items-center p-2 border rounded-md hover:bg-gray-100"
+                className={`text-sm cursor-pointer transition inline-flex items-center p-2 border rounded-md hover:bg-gray-100 ${themeItem.groups.includes(item.toLowerCase()) ? 'bg-green-50' : 'bg-transparent'}`}
               >
                 <input type="checkbox" data-id={id} onClick={handleChecked} checked={themeItem.groups.includes(item.toLowerCase())}/>
                 <span className={`pl-2 ${themeItem.groups.includes(item.toLowerCase()) ? 'font-semibold' : 'font-normal text-gray-500'}`}>{item}</span>

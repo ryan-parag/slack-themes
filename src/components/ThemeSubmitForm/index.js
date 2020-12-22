@@ -17,10 +17,10 @@ const ThemeSubmitForm = () => {
     text_color: '#DEE5EE',
     top_nav_bg: '#000000',
     top_nav_text: '#DEE5EE',
-    categories: ['community'],
+    groups: ['community'],
     likes: 0,
     submittedBy: '',
-    created: new Date()
+    created: Date.now()
   }
 
   const [theme, setTheme] = useState(initialTheme)

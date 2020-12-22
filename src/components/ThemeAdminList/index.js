@@ -66,14 +66,25 @@ const ListItem = ({theme}) => {
         <div>
           <div className="text-gray-500 text-xs">Likes:</div>
           <div className="inline-flex items-center text-sm">
-            <svg height="20" width="20" className="text-gray-300 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-            </svg>
-            {themeItem.likes}
+            {
+              themeItem.likes === 0 ? (
+                <span className="text-gray-400">None</span>
+              )
+              :
+              (
+                <>
+                  <svg height="20" width="20" className="text-gray-300 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                  </svg>
+                  {themeItem.likes}
+                </>
+              )
+            }
             <div className="inline-flex items-center ml-2">
               <button 
-                className="transition focus:outline-none p-1 rounded-full text-gray-400 hover:text-gray-900 hover:bg-gray-200"
+                className={`transition focus:outline-none p-1 rounded-full ${themeItem.likes > 0 ? 'text-gray-500 hover:text-gray-900 hover:bg-gray-200' : 'text-gray-300 cursor-not-allowed'}`}
                 onClick={removeLike}
+                disabled={themeItem.likes > 0 ? false : true}
               >
                 <Minus size={16}/>
               </button>
