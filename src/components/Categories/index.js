@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { ArrowRight } from 'react-feather'
 
 const Categories = ({activeQuery, updateQuery}) => {
+
+  const [open, setOpen] = useState(false)
 
   const items = [
     { name: 'All Themes', value: ''},
@@ -25,7 +28,7 @@ const Categories = ({activeQuery, updateQuery}) => {
     <>
       <div className="flex flex-wrap">
         {
-          items.map(item => (
+          items.slice(0, `${open ? items.length : 10}`).map((item) => (
             <button
               className={`transition py-2 px-4 mb-4 text-sm font-semibold rounded-full border mr-2 focus:outline-none ${activeQuery === item.value ? 'border-gray-900 bg-gray-800 text-white hover:bg-gray-700' : 'border-gray-400 hover:bg-gray-200'}`}
               key={item.name}
@@ -35,6 +38,20 @@ const Categories = ({activeQuery, updateQuery}) => {
             </button>
           ))
         }
+        <button
+          className="transition py-2 inline-flex items-center px-4 mb-4 text-xs font-normal rounded-full border mr-2 focus:outline-none border-transparent hover:bg-gray-200"
+          onClick={() => setOpen(!open)}
+        >
+          { open ? 'Show Less' : 'Show More' }
+          {
+            open ?
+            null
+            :
+            (
+              <ArrowRight className="ml-1" size={16}/>
+            )
+          }
+        </button>
       </div>
     </>
   )
