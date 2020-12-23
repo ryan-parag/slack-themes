@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ArrowRight } from 'react-feather'
+import { MoreHorizontal } from 'react-feather'
 
 const Categories = ({activeQuery, updateQuery}) => {
 
@@ -24,11 +24,13 @@ const Categories = ({activeQuery, updateQuery}) => {
     { name: 'Community', value: 'community'}
   ]
 
+  const defaultLength = 8
+
   return (
     <>
       <div className="flex flex-wrap">
         {
-          items.slice(0, `${open ? items.length : 10}`).map((item) => (
+          items.slice(0, `${open ? items.length : defaultLength}`).map((item) => (
             <button
               className={`transition py-2 px-4 mb-4 text-sm font-semibold rounded-full border mr-2 focus:outline-none ${activeQuery === item.value ? 'border-gray-900 bg-gray-800 text-white hover:bg-gray-700' : 'border-gray-400 hover:bg-gray-200'}`}
               key={item.name}
@@ -39,16 +41,16 @@ const Categories = ({activeQuery, updateQuery}) => {
           ))
         }
         <button
-          className="transition py-2 inline-flex items-center px-4 mb-4 text-xs font-normal rounded-full border mr-2 focus:outline-none border-transparent hover:bg-gray-200"
+          className="transition py-1 px-1 h-auto text-gray-500 hover:text-gray-900 inline-flex items-center mb-4 text-xs font-normal focus:outline-none"
           onClick={() => setOpen(!open)}
         >
-          { open ? 'Show Less' : 'Show More' }
+          { open ? 'Show Less' : `More (${items.length - defaultLength})` }
           {
             open ?
             null
             :
             (
-              <ArrowRight className="ml-1" size={16}/>
+              <MoreHorizontal className="ml-1" size={16}/>
             )
           }
         </button>
