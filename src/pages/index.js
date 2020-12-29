@@ -13,9 +13,12 @@ import { useRouter } from 'next/router'
 export default function Home(props) {
   const [filteredThemes, setFilteredThemes] = useState([])
   const [loading, setLoading] = useState(true)
-  const [query, setQuery] = useState(props.filter ? props.filter : '')
-  const [sort, setSort] = useState(props.sort ? props.sort : 'theme_name')
-  const [order, setOrder] = useState(props.order ? props.order : 'asc')
+  //const [query, setQuery] = useState(props.filter ? props.filter : '')
+  //const [sort, setSort] = useState(props.sort ? props.sort : 'theme_name')
+  //const [order, setOrder] = useState(props.order ? props.order : 'asc')
+  const [query, setQuery] = useState('')
+  const [sort, setSort] = useState('theme_name')
+  const [order, setOrder] = useState('asc')
   const [queryAmount, setQueryAmount] = useState(27)
   const [dataSize, setDataSize] = useState(null)
 
@@ -56,7 +59,7 @@ export default function Home(props) {
 
   useEffect(() => {
 
-    router.push(`/?order=${order}&sort=${sort}${query !== '' ? `&filter=${query}` : ''}`, undefined, { shallow: true })
+    //router.push(`/?order=${order}&sort=${sort}${query !== '' ? `&filter=${query}` : ''}`, undefined, { shallow: true })
 
     setLoading(true)
       if(query !== '') {
