@@ -55,6 +55,15 @@ const Categories = ({activeQuery, updateQuery}) => {
           }
         </button>
       </div>
+      {
+        open ? (
+          <span className="text-sm text-green-500 italic">
+            Coming soon: Superheroes, trending, and more!
+          </span>
+        )
+        :
+        null
+      }
     </>
   )
 }

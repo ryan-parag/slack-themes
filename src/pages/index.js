@@ -8,13 +8,14 @@ import firebase from '../data/firebase'
 import Drawer from '../components/Drawer'
 import { motion } from 'framer-motion'
 import { Loader, Search , Sliders} from 'react-feather'
+import { useRouter } from 'next/router'
 
-export default function Home() {
+export default function Home(props) {
   const [filteredThemes, setFilteredThemes] = useState([])
   const [loading, setLoading] = useState(true)
-  const [query, setQuery] = useState('')
-  const [sort, setSort] = useState('theme_name')
-  const [order, setOrder] = useState('asc')
+  const [query, setQuery] = useState(props.filter ? props.filter : '')
+  const [sort, setSort] = useState(props.sort ? props.sort : 'theme_name')
+  const [order, setOrder] = useState(props.order ? props.order : 'asc')
   const [queryAmount, setQueryAmount] = useState(27)
   const [dataSize, setDataSize] = useState(null)
 
@@ -31,7 +32,32 @@ export default function Home() {
     setQueryAmount(prev => prev + 27)
   }
 
+  const router = useRouter()
+
+  const changeSort = (sort) => {
+    setSort(sort)
+  }
+
+  const changeOrder = (order) => {
+    setOrder(order)
+  }
+
+  const toggleThemeLabel = () => {
+    setThemeLabel(!themeLabel)
+  }
+
+  const toggleNeutralNav = () => {
+    setNeutralNav(!neutralNav)
+  }
+
+  const toggleDrawerState = () => {
+    setDrawerState(!drawerState)
+  }
+
   useEffect(() => {
+
+    router.push(`/?order=${order}&sort=${sort}${query !== '' ? `&filter=${query}` : ''}`, undefined, { shallow: true })
+
     setLoading(true)
       if(query !== '') {
         firebase.firestore().collection('themes').limit(queryAmount).where('groups', 'array-contains', query).orderBy(sort, order).onSnapshot(snapshot => {
@@ -69,18 +95,6 @@ export default function Home() {
     }, 1000)
   }, [query, sort, order, queryAmount])
 
-  const toggleThemeLabel = () => {
-    setThemeLabel(!themeLabel)
-  }
-
-  const toggleNeutralNav = () => {
-    setNeutralNav(!neutralNav)
-  }
-
-  const toggleDrawerState = () => {
-    setDrawerState(!drawerState)
-  }
-
   return (
     <Layout>
       {
@@ -116,13 +130,13 @@ export default function Home() {
                 <span className="text-sm inline-block pt-0.5 text-gray-500">Sort by:</span>
                 <button
                   className={`transition pb-0.5 border-b-2 focus:outline-none ${sort === 'theme_name' ? 'font-semibold border-current' : 'text-gray-400 hover:text-gray-600 border-transparent'} ml-4 mr-4`}
-                  onClick={() => setSort('theme_name')}
+                  onClick={() => changeSort('theme_name')}
                 >
                     Name
                 </button>
                 <button
                   className={`transition pb-0.5 border-b-2 focus:outline-none ${sort === 'likes' ? 'font-semibold border-current' : 'text-gray-400 hover:text-gray-600 border-transparent'}`}
-                  onClick={() => setSort('likes')}
+                  onClick={() => changeSort('likes')}
                 >
                   Likes
                 </button>
@@ -130,7 +144,7 @@ export default function Home() {
               <div className="inline-flex items-center">
               <button
                   className={`transition pb-0.5 border-b-2 focus:outline-none ${order === 'desc' ? 'border-current' : 'text-gray-400 hover:text-gray-600 border-transparent'} mr-4`}
-                  onClick={() => setOrder('desc')}
+                  onClick={() => changeOrder('desc')}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
@@ -138,7 +152,7 @@ export default function Home() {
                 </button>
                 <button
                 className={`transition pb-0.5 border-b-2 focus:outline-none ${order === 'asc' ? 'border-current' : 'text-gray-400 hover:text-gray-600 border-transparent'} mr-4`}
-                  onClick={() => setOrder('asc')}
+                  onClick={() => changeOrder('asc')}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
@@ -192,4 +206,16 @@ export default function Home() {
       </div>
     </Layout>
   );
+}
+
+Home.getInitialProps = async ({ query }) => {
+
+  const { sort, order, filter } = query
+
+  return {
+    sort: sort,
+    order: order,
+    filter: filter
+  }
+
 }
