@@ -8,17 +8,18 @@ import firebase from '../data/firebase'
 import Drawer from '../components/Drawer'
 import { motion } from 'framer-motion'
 import { Loader, Search , Sliders} from 'react-feather'
-//import { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
-export default function Home() {
+export default function Home(props) {
+
   const [filteredThemes, setFilteredThemes] = useState([])
   const [loading, setLoading] = useState(true)
-  //const [query, setQuery] = useState(props.filter ? props.filter : '')
-  //const [sort, setSort] = useState(props.sort ? props.sort : 'theme_name')
-  //const [order, setOrder] = useState(props.order ? props.order : 'asc')
-  const [query, setQuery] = useState('')
-  const [sort, setSort] = useState('theme_name')
-  const [order, setOrder] = useState('asc')
+  const [query, setQuery] = useState(props.filter ? props.filter : '')
+  const [sort, setSort] = useState(props.sort ? props.sort : 'theme_name')
+  const [order, setOrder] = useState(props.order ? props.order : 'asc')
+  //const [query, setQuery] = useState('')
+  //const [sort, setSort] = useState('theme_name')
+  //const [order, setOrder] = useState('asc')
   const [queryAmount, setQueryAmount] = useState(27)
   const [dataSize, setDataSize] = useState(null)
 
@@ -35,7 +36,7 @@ export default function Home() {
     setQueryAmount(prev => prev + 27)
   }
 
-  //const router = useRouter()
+  const router = useRouter()
 
   const changeSort = (sort) => {
     setSort(sort)
@@ -59,7 +60,7 @@ export default function Home() {
 
   useEffect(() => {
 
-    //router.push(`/?order=${order}&sort=${sort}${query !== '' ? `&filter=${query}` : ''}`, undefined, { shallow: true })
+    router.push(`/?order=${order}&sort=${sort}${query !== '' ? `&filter=${query}` : ''}`, undefined, { shallow: true })
 
     setLoading(true)
       if(query !== '') {
@@ -210,3 +211,14 @@ export default function Home() {
     </Layout>
   );
 }
+
+Home.getInitialProps = async ({query}) => {
+
+  const { sort, filter, order } = query
+
+  return {
+    sort,
+    filter,
+    order
+  };
+};
