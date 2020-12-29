@@ -8,9 +8,9 @@ import firebase from '../data/firebase'
 import Drawer from '../components/Drawer'
 import { motion } from 'framer-motion'
 import { Loader, Search , Sliders} from 'react-feather'
-import { useRouter } from 'next/router'
+//import { useRouter } from 'next/router'
 
-export default function Home(props) {
+export default function Home() {
   const [filteredThemes, setFilteredThemes] = useState([])
   const [loading, setLoading] = useState(true)
   //const [query, setQuery] = useState(props.filter ? props.filter : '')
@@ -35,7 +35,7 @@ export default function Home(props) {
     setQueryAmount(prev => prev + 27)
   }
 
-  const router = useRouter()
+  //const router = useRouter()
 
   const changeSort = (sort) => {
     setSort(sort)
@@ -209,16 +209,4 @@ export default function Home(props) {
       </div>
     </Layout>
   );
-}
-
-Home.getInitialProps = async ({ query }) => {
-
-  const { sort, order, filter } = query
-
-  return {
-    sort: sort,
-    order: order,
-    filter: filter
-  }
-
 }
