@@ -41,9 +41,9 @@ export default function About() {
               <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">We're always looking for designers/developers to help out with wireframes / mockups / prototypes / code - send us a message through email or provide some design updates through the GitHub repo.</p>
             </div>
           </a>
-          <div className="flex p-4 rounded-md border border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-gray-900">
+          <div className="flex p-4 rounded-md border border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-white dark:bg-opacity-10">
             <div>
-              <div className="rounded-full inline-block p-3 bg-gray-200 text-gray-500 dark:bg-gray-700 dark:text-white">
+              <div className="rounded-full inline-block p-3 bg-gray-200 text-gray-500 dark:bg-white dark:text-black">
                 <FileText/>
               </div>
             </div>
