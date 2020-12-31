@@ -73,7 +73,7 @@ const ThemeSubmitForm = () => {
       {
         !submitted ? (
           <>
-            <div className="rounded-md p-4 bg-gray-100 dark:bg-white dark:bg-opacity-10 mb-4">
+            <div className="rounded-md p-6 bg-gray-100 dark:bg-transparent border border-gray-200 dark:border-white dark:border-opacity-20 mb-4">
               <div className="flex justify-between items-center mb-4">
                 <h4>Create a New Theme</h4>
               </div>

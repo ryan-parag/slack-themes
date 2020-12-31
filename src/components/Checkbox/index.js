@@ -5,7 +5,7 @@ const Checkbox = ({handleClick, toggleState, label, sm}) => {
 
   return (
     <button
-      className={`flex w-full transition items-center justify-between focus:outline-none ${sm ? 'p-2' : 'p-4'} rounded-md border ${toggleState ? 'bg-white text-gray-900 dark:bg-black dark:text-white dark:border-white dark:border-opacity-20' : 'text-gray-600 hover:text-gray-600 hover:bg-white dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-white dark:hover:bg-opacity-10 dark:border-white dark:border-opacity-0'}`}
+      className={`flex w-full transition items-center justify-between focus:outline-none ${sm ? 'p-2' : 'p-4'} rounded-md border ${toggleState ? 'bg-white text-gray-900 dark:bg-black dark:text-white dark:border-white dark:border-opacity-20' : 'text-gray-600 hover:text-gray-600 hover:bg-gray-100 dark:bg-white dark:bg-opacity-10 dark:text-white dark:text-opacity-30 dark:hover:text-opacity-70 dark:hover:text-white dark:hover:bg-white dark:hover:bg-opacity-10 dark:border-white dark:border-opacity-0'}`}
       onClick={handleClick}
     >
       <div className={`${toggleState ? 'font-semibold' : 'font-normal'} ${sm ? 'text-xs' : 'text-sm'}`}>{label}</div>

@@ -19,12 +19,12 @@ const ColorPicker = (props) => {
   return (
     <div className="relative w-full">
       <button
-        className="button flex items-center justify-start px-2 w-full"
+        className="button flex items-center justify-start px-2 w-full button--secondary"
         onClick={() => handleDisplay()}
       >
         <span style={{ background: pickerColor}}className="w-6 h-6 rounded-full inline-block mr-2 border border-gray-200 shadow-inner"/>
         <div className="text-left">
-          <div className="font-normal text-xs text-gray-500 mb-0.5">{props.themeTarget}</div>
+          <div className="font-normal text-xs text-gray-500 dark:text-white dark:text-opacity-50 mb-0.5">{props.themeTarget}</div>
           <div className="font-bold">{pickerColor}</div>
         </div>
       </button>

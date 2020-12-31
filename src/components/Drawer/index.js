@@ -28,7 +28,7 @@ const Drawer = ({toggleDrawerState, toggleThemeLabel, themeLabel, toggleNeutralN
             Close
           </button>
         </div>
-        <div className="p-2 grid grid-cols-1 gap-2 mb-4 bg-gray-100 dark:bg-white dark:bg-opacity-10 rounded-md">
+        <div className="grid grid-cols-1 gap-2 mb-4">
           <Checkbox
             label="Change top navigation to neutral color"
             handleClick={toggleNeutralNav}
@@ -40,7 +40,7 @@ const Drawer = ({toggleDrawerState, toggleThemeLabel, themeLabel, toggleNeutralN
             toggleState={themeLabel}
           />
         </div>
-        <div className="px-4 py-6 font-mono leading-loose bg-black dark:bg-white dark:bg-opacity-10 border border-gray-300 dark:border-gray-800 rounded-md text-sm text-gray-300 break-all">
+        <div className="px-4 py-6 font-mono leading-loose bg-black dark:bg-white dark:bg-opacity-10 border border-gray-300 dark:border-white dark:border-opacity-10 rounded-md text-sm text-gray-300 break-all">
           <span>Example Theme:</span>
           <br/>
           {`${themeLabel ? 'Eggplant Dark -- ' : ''}#1A1D21,#121016,#3A2D3B,#FBFAF7,#27242C,#C3C3C2,#37B57F,#BB3A56,${neutralNav ? '#1A1D21,#C3C3C2' : '#49174A,#D8CCD5'}`}
