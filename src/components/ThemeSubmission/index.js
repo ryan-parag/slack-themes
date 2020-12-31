@@ -3,7 +3,7 @@ import TimeAgo from 'timeago-react'
 
 const ThemeSubmission = ({theme}) => {
 
-  const swatchClass = 'transition transform border border-gray-300 w-4 h-4 rounded-full inline-block mr-2'
+  const swatchClass = 'transition transform border border-gray-300 dark:border-gray-600 w-4 h-4 rounded-full inline-block mr-2'
 
   const convertTime = secs => {
     var t = new Date(1970, 0, 1);
@@ -29,7 +29,7 @@ const ThemeSubmission = ({theme}) => {
         }
       </div>
       <div className="flex flex-col w-full pl-4 mb-2">
-        <p className="text-gray-600 text-sm mb-2">
+        <p className="text-gray-600 text-sm mb-2 dark:text-white">
           <strong>{theme.submittedBy !== 'Unknown' && theme.submittedBy ? theme.submittedBy : 'Unknown'}</strong> submitted <strong>{theme.theme_name}</strong>!
         </p>
         <div className="flex mb-2">
@@ -43,7 +43,7 @@ const ThemeSubmission = ({theme}) => {
           <span className={swatchClass} style={{ background: theme.top_nav_bg}}></span>
           <span className={swatchClass} style={{ background: theme.top_nav_text}}></span>
         </div>
-        <small className="text-gray-500 text-xs">
+        <small className="text-gray-500 dark:text-gray-400 text-xs">
           {
             theme.created ? (
               <TimeAgo

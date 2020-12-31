@@ -1,6 +1,11 @@
 @layer components {
+
+  body {
+    @apply bg-white text-gray-900 dark:bg-black dark:text-white
+  }
+
   .link, p a {
-    @apply font-semibold hover:text-indigo-600 hover:underline;
+    @apply font-semibold hover:text-indigo-600 dark:hover:text-indigo-300 hover:underline;
   }
 
   p {
@@ -36,11 +41,11 @@
   }
 
   .button {
-    @apply flex items-center justify-center px-4 py-2 space-x-2 text-sm font-medium transition bg-white border rounded shadow-sm hover:border-gray-400 focus:outline-none focus:bg-gray-100;
+    @apply flex items-center justify-center px-4 py-2 space-x-2 text-sm font-medium transition bg-white dark:bg-black border dark:border-gray-500 rounded shadow-sm hover:border-gray-400 dark:hover:bg-gray-800 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900;
   }
 
   .button--primary {
-    @apply text-white bg-gray-900 border-none hover:bg-gray-800 focus:bg-gray-800;
+    @apply text-white bg-gray-900 border-none hover:bg-gray-800 focus:bg-gray-800 dark:text-black dark:bg-white dark:hover:bg-gray-200 dark:focus:bg-gray-200;
   }
 
   .button--danger {

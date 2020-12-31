@@ -5,7 +5,7 @@ import { Search, Plus, Minus } from 'react-feather'
 const ListItem = ({theme}) => {
 
   const [themeItem, setThemeItem] = useState(theme)
-  const swatchClass = 'transition transform border border-gray-300 w-4 h-4 rounded-full inline-block mr-2'
+  const swatchClass = 'transition transform border border-gray-300 border-gray-600 w-4 h-4 rounded-full inline-block mr-2'
 
   const deleteItem = (event) => {
     event.preventDefault()
@@ -31,7 +31,7 @@ const ListItem = ({theme}) => {
   }, [themeItem])
 
   return (
-    <div className="p-4 rounded-md shadow border border-gray-200 ">
+    <div className="p-4 rounded-md shadow border border-gray-200 dark:border-gray-700 ">
       <div className="flex justify-between">
         <div>
           <p className="mb-2">
@@ -51,7 +51,7 @@ const ListItem = ({theme}) => {
         </div>
         <div>
           <button
-            className="button transition text-sm px-2 py-1 border-transparent bg-red-50 text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500"
+            className="button transition text-sm px-2 py-1 border-transparent bg-red-50 text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500 dark:bg-red-500 dark:bg-opacity-10 dark:text-red-400"
             onClick={deleteItem}
           >
             Delete
@@ -68,7 +68,7 @@ const ListItem = ({theme}) => {
           <div className="inline-flex items-center text-sm">
             {
               themeItem.likes === 0 ? (
-                <span className="text-gray-400">None</span>
+                <span className="text-gray-400 dark:text-gray-600">None</span>
               )
               :
               (
@@ -82,14 +82,14 @@ const ListItem = ({theme}) => {
             }
             <div className="inline-flex items-center ml-2">
               <button 
-                className={`transition focus:outline-none p-1 rounded-full ${themeItem.likes > 0 ? 'text-gray-500 hover:text-gray-900 hover:bg-gray-200' : 'text-gray-300 cursor-not-allowed'}`}
+                className={`transition focus:outline-none p-1 rounded-full ${themeItem.likes > 0 ? 'text-gray-500 hover:text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200' : 'text-gray-300 cursor-not-allowed'}`}
                 onClick={removeLike}
                 disabled={themeItem.likes > 0 ? false : true}
               >
                 <Minus size={16}/>
               </button>
               <button
-                className="transition p-1 focus:outline-none rounded-full text-gray-400 hover:text-gray-900 hover:bg-gray-200"
+                className="transition p-1 focus:outline-none rounded-full text-gray-500 hover:text-gray-900 hover:bg-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                 onClick={addLike}
               >
                 <Plus size={16}/>
@@ -138,7 +138,7 @@ const ThemeAdminList = () => {
           <input
             name="filterQuery"
             value={filterQuery}
-            className="border border-gray-500 rounded-md py-2 px-4 w-full max-w-sm text-lg mr-2 mb-2 md:mt-0"
+            className="border border-gray-500 bg-white dark:bg-black rounded-md py-2 px-4 w-full max-w-sm text-lg mr-2 mb-2 md:mt-0"
             onChange={handleInput}
             placeholder="Filter themes..."
           />
@@ -163,8 +163,8 @@ const ThemeAdminList = () => {
           )
           :
           (
-            <div className="rounded-md text-center bg-gray-100 p-8 mt-4 col-span-3">
-              <div className="inline-block p-3 mb-4 bg-gray-200 text-gray-800 rounded-full">
+            <div className="rounded-md text-center bg-gray-100 dark:bg-gray-900 p-8 mt-4 col-span-3">
+              <div className="inline-block p-3 mb-4 bg-gray-200 dark:bg-gray-800 dark:text-gray-300 text-gray-800 rounded-full">
                 <Search/>
               </div>
               <h4>{filteredThemes.length === 0 ? 'Nothing Found' : 'No Themes in Database'}</h4>

@@ -6,7 +6,7 @@ const Drawer = ({toggleDrawerState, toggleThemeLabel, themeLabel, toggleNeutralN
   return (
     <>
       <motion.div
-        className="bg-black fixed top-0 bottom-0 left-0 right-0 z-40"
+        className="bg-black dark:bg-white fixed top-0 bottom-0 left-0 right-0 z-40"
         onClick={toggleDrawerState}
         role="button"
         initial={{ opacity: 0}}
@@ -14,7 +14,7 @@ const Drawer = ({toggleDrawerState, toggleThemeLabel, themeLabel, toggleNeutralN
         transition={{ duration: 0.2 }}
       />
       <motion.div
-        className="bg-white px-4 py-8 fixed top-0 right-0 bottom-0 w-full md:w-1/3 z-50 shadow-2xl"
+        className="bg-white dark:bg-black px-4 py-8 fixed top-0 right-0 bottom-0 w-full md:w-1/3 z-50 shadow-2xl"
         initial={{ translateX: 600}}
         animate={{ translateX: 0 }}
         transition={{ duration: .5 }}
@@ -28,7 +28,7 @@ const Drawer = ({toggleDrawerState, toggleThemeLabel, themeLabel, toggleNeutralN
             Close
           </button>
         </div>
-        <div className="p-2 grid grid-cols-1 gap-2 mb-4 bg-gray-100 rounded-md">
+        <div className="p-2 grid grid-cols-1 gap-2 mb-4 bg-gray-100 dark:bg-gray-900 rounded-md">
           <Checkbox
             label="Change top navigation to neutral color"
             handleClick={toggleNeutralNav}
@@ -40,7 +40,7 @@ const Drawer = ({toggleDrawerState, toggleThemeLabel, themeLabel, toggleNeutralN
             toggleState={themeLabel}
           />
         </div>
-        <div className="px-4 py-6 font-mono leading-loose bg-gray-100 border border-gray-300 rounded-md text-sm break-all">
+        <div className="px-4 py-6 font-mono leading-loose bg-gray-100 dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-md text-sm break-all">
           <span>Example Theme:</span>
           <br/>
           {`${themeLabel ? 'Eggplant Dark -- ' : ''}#1A1D21,#121016,#3A2D3B,#FBFAF7,#27242C,#C3C3C2,#37B57F,#BB3A56,${neutralNav ? '#1A1D21,#C3C3C2' : '#49174A,#D8CCD5'}`}

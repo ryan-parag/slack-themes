@@ -12,14 +12,20 @@ import { useRouter } from 'next/router'
 
 export default function Home() {
 
+  const router = useRouter()
+
+  const initialQuery = router.query.filter
+  const initialSort = router.query.sort
+  const initialOrder = router.query.order
+
   const [filteredThemes, setFilteredThemes] = useState([])
   const [loading, setLoading] = useState(true)
-  //const [query, setQuery] = useState(props.filter ? props.filter : '')
-  //const [sort, setSort] = useState(props.sort ? props.sort : 'theme_name')
-  //const [order, setOrder] = useState(props.order ? props.order : 'asc')
-  const [query, setQuery] = useState('')
-  const [sort, setSort] = useState('theme_name')
-  const [order, setOrder] = useState('asc')
+  const [query, setQuery] = useState(initialQuery ? initialQuery : '')
+  const [sort, setSort] = useState(initialSort ? initialSort : 'theme_name')
+  const [order, setOrder] = useState(initialOrder ? initialOrder : 'asc')
+  //const [query, setQuery] = useState('')
+  //const [sort, setSort] = useState('theme_name')
+  //const [order, setOrder] = useState('asc')
   const [queryAmount, setQueryAmount] = useState(27)
   const [dataSize, setDataSize] = useState(null)
 
@@ -35,8 +41,6 @@ export default function Home() {
   const updateQueryAmount = () => {
     setQueryAmount(prev => prev + 27)
   }
-
-  const router = useRouter()
 
   const changeSort = (sort) => {
     setSort(sort)
@@ -60,7 +64,7 @@ export default function Home() {
 
   useEffect(() => {
 
-    //router.push(`/?order=${order}&sort=${sort}${query !== '' ? `&filter=${query}` : ''}`, undefined, { shallow: true })
+    router.push(`/?order=${order}&sort=${sort}${query !== '' ? `&filter=${query}` : ''}`, undefined, { shallow: true })
 
     setLoading(true)
       if(query !== '') {
@@ -123,7 +127,7 @@ export default function Home() {
           </div>
           <div className="w-full lg:w-2/3 lg:px-8">
             <div className="flex mb-4 justify-between">
-              <div className="text-sm text-gray-500">Filter by category:</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">Filter by category:</div>
             </div>
             <Categories
               activeQuery={query}
@@ -131,15 +135,15 @@ export default function Home() {
             />
             <div className="flex justify-between mt-4 md:md-0">
               <div className="inline-flex items-start">
-                <span className="text-sm inline-block pt-0.5 text-gray-500">Sort by:</span>
+                <span className="text-sm inline-block pt-0.5 text-gray-500 dark:text-gray-400">Sort by:</span>
                 <button
-                  className={`transition pb-0.5 border-b-2 focus:outline-none ${sort === 'theme_name' ? 'font-semibold border-current' : 'text-gray-400 hover:text-gray-600 border-transparent'} ml-4 mr-4`}
+                  className={`transition pb-0.5 border-b-2 focus:outline-none ${sort === 'theme_name' ? 'font-semibold border-current' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 border-transparent'} ml-4 mr-4`}
                   onClick={() => changeSort('theme_name')}
                 >
                     Name
                 </button>
                 <button
-                  className={`transition pb-0.5 border-b-2 focus:outline-none ${sort === 'likes' ? 'font-semibold border-current' : 'text-gray-400 hover:text-gray-600 border-transparent'}`}
+                  className={`transition pb-0.5 border-b-2 focus:outline-none ${sort === 'likes' ? 'font-semibold border-current' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 border-transparent'}`}
                   onClick={() => changeSort('likes')}
                 >
                   Likes
@@ -147,7 +151,7 @@ export default function Home() {
               </div>
               <div className="inline-flex items-center">
               <button
-                  className={`transition pb-0.5 border-b-2 focus:outline-none ${order === 'desc' ? 'border-current' : 'text-gray-400 hover:text-gray-600 border-transparent'} mr-4`}
+                  className={`transition pb-0.5 border-b-2 focus:outline-none ${order === 'desc' ? 'border-current' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 border-transparent'} mr-4`}
                   onClick={() => changeOrder('desc')}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
@@ -155,7 +159,7 @@ export default function Home() {
                   </svg>
                 </button>
                 <button
-                className={`transition pb-0.5 border-b-2 focus:outline-none ${order === 'asc' ? 'border-current' : 'text-gray-400 hover:text-gray-600 border-transparent'} mr-4`}
+                className={`transition pb-0.5 border-b-2 focus:outline-none ${order === 'asc' ? 'border-current' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 border-transparent'} mr-4`}
                   onClick={() => changeOrder('asc')}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
@@ -163,7 +167,7 @@ export default function Home() {
                   </svg>
                 </button>
                 <button
-                  className="transition text-gray-400 focus:outline-none hover:text-gray-700"
+                  className="transition text-gray-400 dark:text-gray-500 focus:outline-none hover:text-gray-700 dark:hover:text-gray-300"
                   onClick={toggleDrawerState}
                 >
                   <Sliders size={'24'}/>
@@ -183,19 +187,19 @@ export default function Home() {
               )
               :
               (
-                <div className="rounded-md text-center bg-gray-100 p-8 mt-4">
+                <div className="rounded-md text-center bg-gray-100 dark:bg-gray-900 p-8 mt-4">
                   {
                     loading ? (
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ ease: "linear", duration: 1, loop: Infinity }}
-                        className="inline-block p-3 mb-4 bg-gray-200 text-gray-800 rounded-full"
+                        className="inline-block p-3 mb-4 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 rounded-full"
                       >
                         <Loader/>
                       </motion.div>
                     )
                     : (
-                      <div className="inline-block p-3 mb-4 bg-gray-200 text-gray-800 rounded-full">
+                      <div className="inline-block p-3 mb-4 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 rounded-full">
                         <Search/>
                       </div>
                     )

@@ -73,7 +73,7 @@ const ThemeSubmitForm = () => {
       {
         !submitted ? (
           <>
-            <div className="rounded-md p-4 bg-gray-100 mb-4">
+            <div className="rounded-md p-4 bg-gray-100 dark:bg-gray-900 mb-4">
               <div className="flex justify-between items-center mb-4">
                 <h4>Create a New Theme</h4>
               </div>
@@ -82,7 +82,7 @@ const ThemeSubmitForm = () => {
                   <div>
                     <label className="text-sm font-semibold">Theme Name</label>
                     <input
-                      className={`border ${error ? 'border-red-500' : 'border-gray-500'} rounded-md py-4 px-4 mt-2 mb-2 block w-full`}
+                      className={`border bg-white dark:bg-black ${error ? 'border-red-500' : 'border-gray-500'} rounded-md py-4 px-4 mt-2 mb-2 block w-full`}
                       placeholder="Enter theme name..."
                       value={theme.theme_name}
                       name="theme_name"
@@ -91,7 +91,7 @@ const ThemeSubmitForm = () => {
                     { error ? <span className="text-sm block mb-2 text-red-500">A theme requires a name</span> : null}
                     <label className="text-sm font-semibold">Name or Email</label>
                     <input
-                      className={`border ${contactError ? 'border-red-500' : 'border-gray-500'} rounded-md py-4 px-4 mt-2 mb-2 block w-full`}
+                      className={`border bg-white dark:bg-black ${contactError ? 'border-red-500' : 'border-gray-500'} rounded-md py-4 px-4 mt-2 mb-2 block w-full`}
                       placeholder="Let us know who you are..."
                       value={theme.submittedBy}
                       name="submittedBy"
@@ -135,7 +135,7 @@ const ThemeSubmitForm = () => {
         (
           <>
             <div
-              className="w-full bg-green-100 text-green-700 p-4 rounded-md max-w-screen-sm mx-auto text-center flex flex-col items-center"
+              className="w-full bg-green-100 dark:bg-green-500 dark:bg-opacity-20 text-green-700 dark:text-green-300 p-4 rounded-md max-w-screen-sm mx-auto text-center flex flex-col items-center"
             >
               <div className="rounded-full inline-block p-3 bg-green-500 text-white">
                 <Check/>

@@ -51,19 +51,19 @@ function Dashboard({session}) {
     return (
       <Layout>
         <ThemeHeader loggedIn={signOut} />
-        <div className="border-b border-gray-300 flex w-full justify-center">
+        <div className="border-b border-gray-300 dark:border-gray-600 flex w-full justify-center">
           <div className="w-full md:w-1/2 mx-auto text-center">
             <h1>Themes</h1>
             <p className="text-xl mt-4">Edit/Add themes in the database</p>
             <div className="flex border-b mt-8">
               <Link href="/dashboard?themes">
                 <a
-                  className={`transition w-full focus:outline-none text-center hover:bg-gray-100 p-3 ${activeTab === 'themes' ? 'font-bold border-b-2 border-current' : 'border-b border-transparent text-gray-400 hover:border-current'}`}
+                  className={`transition w-full focus:outline-none text-center hover:bg-gray-100 dark:hover:bg-gray-900 p-3 ${activeTab === 'themes' ? 'font-bold border-b-2 border-current' : 'border-b border-transparent text-gray-400 dark:text-gray-600 hover:border-current'}`}
                   onClick={() => changeTab('themes')}
                 >
                   <div className="flex items-center justify-center">
                     Themes{' '}
-                    <span className="text-xs rounded-full ml-2 font-bold bg-gray-100 text-gray-500 inline-flex items-center justify-center px-2 h-6">
+                    <span className="text-xs rounded-full ml-2 font-bold bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400 inline-flex items-center justify-center px-2 h-6">
                       {themeCount}
                     </span>
                   </div>
@@ -71,14 +71,14 @@ function Dashboard({session}) {
               </Link>
               <Link href="/dashboard?submitted">
                 <a
-                  className={`transition w-full focus:outline-none text-center hover:bg-gray-100 p-3 ${activeTab === 'submitted' ? 'font-bold border-b-2 border-current' : 'border-b border-transparent text-gray-400 hover:border-current focus:border-current'}`}
+                  className={`transition w-full focus:outline-none text-center hover:bg-gray-100 dark:hover:bg-gray-900 p-3 ${activeTab === 'submitted' ? 'font-bold border-b-2 border-current' : 'border-b border-transparent text-gray-400 dark:text-gray-600 hover:border-current focus:border-current'}`}
                   onClick={() => changeTab('submitted')}
                 >
                   <div className="flex items-center justify-center">
                     Submitted{' '}
                     {
                       submissionCount >= 1 ? (
-                        <span className="text-xs rounded-full ml-2 font-bold bg-yellow-200 text-yellow-900 inline-flex items-center justify-center px-2 h-6">
+                        <span className="text-xs rounded-full ml-2 font-bold bg-yellow-200 text-yellow-900 dark:bg-yellow-400 dark:text-black inline-flex items-center justify-center px-2 h-6">
                           {submissionCount}
                         </span>
                       )
@@ -111,11 +111,11 @@ function Dashboard({session}) {
     )
   } else {
     return (
-      <div className="rounded-md text-center bg-gray-100 p-8 mt-4">
+      <div className="rounded-md text-center bg-gray-100 dark:bg-gray-900 p-8 mt-4">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ ease: "linear", duration: 1, loop: Infinity }}
-          className="inline-block p-3 mb-4 bg-gray-200 text-gray-800 rounded-full"
+          className="inline-block p-3 mb-4 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-300 rounded-full"
         >
           <Loader/>
         </motion.div>

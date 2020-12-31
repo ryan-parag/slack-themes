@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 const WidgetContainer = styled.button`
   user-select: none;
   width: 100%;
-  box-shadow: 0px 5px 5px -3px rgba(0,0,0,.2), 0px 8px 10px 1px rgba(0,0,0, .14), 0px 3px 14px 2px rgba(0,0,0, .12);
+  box-shadow: 0px 0px 0px 1px rgba(255,255,255,.2) ,0px 5px 5px -3px rgba(0,0,0,.2), 0px 8px 10px 1px rgba(0,0,0, .14), 0px 3px 14px 2px rgba(0,0,0, .12);
   border-radius: 8px;
   position: relative;
   margin-bottom: 8px;
@@ -20,7 +20,7 @@ const WidgetContainer = styled.button`
   -moz-appearance: none;
   transition: all 200ms ease-out 0s;
   &:hover {
-    box-shadow: 0px 10px 12px 1px rgba(0,0,0, .12), 0px 5px 18px 2px rgba(0,0,0, .1),0px 12px 32px 2px rgba(0,0,0, .08);
+    box-shadow: 0px 4px 24px 1px rgba(255,255,255, .2), 0px 10px 12px 1px rgba(0,0,0, .12), 0px 5px 18px 2px rgba(0,0,0, .1),0px 12px 32px 2px rgba(0,0,0, .08);
   }
   &:hover, &:focus {
     transform: scale(1.03);
@@ -256,7 +256,7 @@ const ThemeItem = (props) => {
         {
           props.withLikes ? (
             <button
-              className={`transition text-sm p-1 rounded-md inline-flex items-center ${likes > 0 ? 'text-gray-900' : 'text-gray-400'} hover:text-gray-600 hover:bg-pink-100 focus:outline-none transform hover:scale-110 hover:rotate-6 active:scale-95`}
+              className={`transition text-sm p-1 rounded-md inline-flex items-center ${likes > 0 ? 'text-gray-900 dark:text-white' : 'text-gray-400'} hover:text-gray-600 dark:hover:text-white hover:bg-pink-100 dark:hover:bg-pink-500 dark:hover:bg-opacity-30 focus:outline-none transform hover:scale-110 hover:rotate-6 active:scale-95`}
               onClick={updateLike}
             >
               <svg height="20" width="20" className={`${likes > 0 ? 'text-pink-500' : 'inherit'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

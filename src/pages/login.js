@@ -72,12 +72,12 @@ export default function Login() {
       <ThemeHeader/>
       <div className="flex flex-col lg:flex-row mx-4 md:mx-auto lg:mx-auto xl:mx-auto 2xl:mx-auto py-0 md:py-9 justify-center">
         <div className="w-full lg:w-1/2 2xl:w-1/3 lg:px-4 top-8 mb-16">
-          <div className="p-8 rounded-md border border-gray-200 shadow lg:mt-16">
+          <div className="p-8 rounded-md border border-gray-200 dark:border-gray-700 shadow lg:mt-16">
             <h1 className="mb-4">Admin Login</h1>
             <p className="text-sm">This section is for admins. Login to edit/add themes that are in the database.</p>
             {
               error ? (
-                <div className="mb-4 mt-4 p-4 text-sm bg-red-100 text-red-700 w-full rounded-md">
+                <div className="mb-4 mt-4 p-4 text-sm bg-red-100 text-red-700 dark:bg-red-500 dark:bg-opacity-20 dark:text-red-300 w-full rounded-md">
                   {errorMessage}
                 </div>
               )
@@ -92,7 +92,7 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 placeholder="Enter your emaill..."
-                className="border border-gray-500 mt-2 rounded-md block p-4 w-full"
+                className="border border-gray-500 bg-white dark:bg-black mt-2 rounded-md block p-4 w-full"
                 onKeyPress={logInEmailKeyPress}
               />
             </div>
@@ -104,7 +104,7 @@ export default function Login() {
                 onChange={(e) => setPass(e.target.value)}
                 placeholder="Password..."
                 value={pass}
-                className="border border-gray-500 mt-2 rounded-md block p-4 w-full"
+                className="border border-gray-500 bg-white dark:bg-black mt-2 rounded-md block p-4 w-full"
                 onKeyPress={logInEmailKeyPress}
               />
             </div>

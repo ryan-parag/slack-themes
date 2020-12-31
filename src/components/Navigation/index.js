@@ -18,7 +18,7 @@ const Navigation = ({active, signOut}) => {
             key={i}
           >
             <a
-              className={`transition pb-0.5 border-b-2 focus:outline-none ${active === item.name ? 'font-semibold border-current' : 'text-gray-400 hover:text-gray-600 border-transparent'} ${i === 0 ? 'ml-0' : 'ml-4'}`}
+              className={`transition pb-0.5 border-b-2 focus:outline-none ${active === item.name ? 'font-semibold border-current' : 'text-gray-400 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-400 border-transparent'} ${i === 0 ? 'ml-0' : 'ml-4'}`}
             >
               {item.name}
             </a>

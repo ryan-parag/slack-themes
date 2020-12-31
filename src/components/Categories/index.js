@@ -32,7 +32,7 @@ const Categories = ({activeQuery, updateQuery}) => {
         {
           items.slice(0, `${open ? items.length : defaultLength}`).map((item) => (
             <button
-              className={`transition py-2 px-4 mb-4 text-sm font-semibold rounded-full border mr-2 focus:outline-none ${activeQuery === item.value ? 'border-gray-900 bg-gray-800 text-white hover:bg-gray-700' : 'border-gray-400 hover:bg-gray-200'}`}
+              className={`transition py-2 px-4 mb-4 text-sm font-semibold rounded-full border mr-2 focus:outline-none ${activeQuery === item.value ? 'border-gray-900 bg-gray-800 text-white hover:bg-gray-700 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-300' : 'border-gray-400 dark:border-transparent dark:bg-white dark:bg-opacity-10 hover:bg-gray-200 dark:hover:bg-gray-800'}`}
               key={item.name}
               onClick={() => updateQuery(item.value)}
             >
@@ -41,7 +41,7 @@ const Categories = ({activeQuery, updateQuery}) => {
           ))
         }
         <button
-          className="transition py-1 px-1 h-auto text-gray-500 hover:text-gray-900 inline-flex items-center mb-4 text-xs font-normal focus:outline-none"
+          className="transition py-1 px-1 h-auto text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 inline-flex items-center mb-4 text-xs font-normal focus:outline-none"
           onClick={() => setOpen(!open)}
         >
           { open ? 'Show Less' : `More (${items.length - defaultLength})` }
