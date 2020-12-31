@@ -28,7 +28,7 @@ export default function About() {
           <a
             href="https://github.com/ryan-parag/slack-themes"
             target="_blank"
-            className="flex transition p-4 mb-4 rounded-md border border-gray-200 dark:border-gray-800 shadow hover:shadow-lg dark:hover:border-gray-600"
+            className="flex transition p-4 mb-4 rounded-md border border-gray-200 dark:border-white dark:border-opacity-10 dark:hover:bg-white dark:hover:bg-opacity-10 shadow hover:shadow-lg dark:hover:border-opacity-20"
           >
             <div>
               <div className="rounded-full inline-block p-3 bg-blue-100 text-blue-500 dark:bg-blue-500 dark:text-white">
@@ -66,7 +66,7 @@ export default function About() {
               <img className="rounded-md block w-full" alt="step 3" src="how-to-3.png"/>
             </div>
           </div>
-          <div className="flex p-4 rounded-md border border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-white dark:bg-opacity-10">
+          <div className="flex p-4 rounded-md border border-gray-200 bg-gray-100 dark:border-white dark:border-opacity-10 dark:bg-white dark:bg-opacity-10">
             <div>
               <div className="rounded-full inline-block p-3 bg-gray-200 text-gray-500 dark:bg-white dark:text-black">
                 <FileText/>

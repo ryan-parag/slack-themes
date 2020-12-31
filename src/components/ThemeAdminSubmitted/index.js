@@ -52,7 +52,7 @@ const SubmittedItem = ({theme}) => {
 
   return (
     <div
-      className="p-4 shadow border dark:border-gray-700 rounded-md"
+      className="p-4 shadow border dark:border-white dark:border-opacity-20 rounded-md"
       key={themeItem.theme_name}
     >
       <div
@@ -90,7 +90,7 @@ const SubmittedItem = ({theme}) => {
             categories.map((item,id) => (
               <label
                 key={id}
-                className={`text-sm cursor-pointer transition inline-flex items-center p-2 border dark:border-gray-800 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 ${themeItem.groups.includes(item.toLowerCase()) ? 'bg-green-50 dark:bg-green-500 dark:bg-opacity-20' : 'bg-transparent'}`}
+                className={`text-sm cursor-pointer transition inline-flex items-center p-2 border dark:border-white dark:border-opacity-20 rounded-md hover:bg-gray-100 dark:hover:bg-white dark:hover:bg-opacity-10 ${themeItem.groups.includes(item.toLowerCase()) ? 'bg-green-50 dark:bg-green-500 dark:bg-opacity-20' : 'bg-transparent'}`}
               >
                 <input type="checkbox" data-id={id} onClick={handleChecked} checked={themeItem.groups.includes(item.toLowerCase())}/>
                 <span className={`pl-2 ${themeItem.groups.includes(item.toLowerCase()) ? 'font-semibold' : 'font-normal text-gray-500'}`}>{item}</span>
@@ -101,7 +101,7 @@ const SubmittedItem = ({theme}) => {
       </details>
       <div className="mt-4 flex flex-row">
         <button
-          className="button transition border-transparent  bg-red-50 text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500 dark:bg-red-500 dark:bg-opacity-10 dark:text-red-400 mr-2 w-full"
+          className="button transition border-transparent  bg-red-50 text-red-500 hover:text-white hover:bg-red-500 hover:border-red-500 dark:bg-red-500 dark:bg-opacity-20 dark:text-red-400 mr-2 w-full"
           onClick={deleteItem}
         >
           Delete

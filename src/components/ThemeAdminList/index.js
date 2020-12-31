@@ -31,7 +31,7 @@ const ListItem = ({theme}) => {
   }, [themeItem])
 
   return (
-    <div className="p-4 rounded-md shadow border border-gray-200 dark:border-gray-700 ">
+    <div className="p-4 rounded-md shadow border border-gray-200 dark:border-white dark:border-opacity-20 ">
       <div className="flex justify-between">
         <div>
           <p className="mb-2">

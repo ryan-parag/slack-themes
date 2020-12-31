@@ -48,6 +48,10 @@
     @apply text-white bg-gray-900 border-none hover:bg-gray-800 focus:bg-gray-800 dark:text-black dark:bg-white dark:hover:bg-gray-200 dark:focus:bg-gray-200;
   }
 
+  .button--secondary {
+    @apply dark:border-none dark:text-white dark:bg-white dark:hover:bg-white dark:bg-opacity-20 dark:hover:bg-opacity-30 dark:focus:bg-opacity-30;
+  }
+
   .button--danger {
     @apply text-white bg-red-500 border-none hover:bg-red-600 focus:bg-red-600;
   }

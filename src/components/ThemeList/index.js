@@ -24,7 +24,7 @@ const ThemeList = ({data, neutralNav, themeLabel, updateQueryAmount, dataSize, l
         data.length < dataSize ? (
           <div className="flex justify-center">
             <button
-              className="button"
+              className="button button--secondary"
               onClick={() => updateQueryAmount()}
             >
               {

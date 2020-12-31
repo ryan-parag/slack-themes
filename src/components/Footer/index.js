@@ -9,11 +9,11 @@ const Footer = () => {
       </small>
       <div className="inline-flex">
         <Link href="/login">
-          <a className="button mt-4 lg:mt-0 mr-2">
+          <a className="button button--secondary mt-4 lg:mt-0 mr-2">
             Admin
           </a>
         </Link>
-        <a href="https://github.com/ryan-parag/slack-themes" target="_blank" className="button mt-4 lg:mt-0">Contribute on GitHub</a>
+        <a href="https://github.com/ryan-parag/slack-themes" target="_blank" className="button button--secondary mt-4 lg:mt-0">Contribute on GitHub</a>
       </div>
     </div>
   )
