@@ -41,6 +41,31 @@ export default function About() {
               <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">We're always looking for designers/developers to help out with wireframes / mockups / prototypes / code - send us a message through email or provide some design updates through the GitHub repo.</p>
             </div>
           </a>
+          <h3 className="mb-4 mt-8">How do I use a theme?</h3>
+          <p className="mt-4 mb-8">Follow the step-by-step instructions on how to copy, paste, and implement a theme to your Slack workspace:</p>
+          <div className="border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-white dark:bg-opacity-10 p-4 rounded-md mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4 pb-4 border-b border-gray-300 dark:border-gray-600">
+              <div className="pr-4 w-full">
+                <h5 className="mb-4">1. Choose a Theme</h5>
+                <p className="text-sm leading-6 text-gray-600 dark:text-gray-400"><Link href="/"><a className="link">Explore</a></Link> from the list of Slack themes and click to copy the HEX code string</p>
+              </div>
+              <img className="rounded-md block w-full" alt="step 1" src="how-to-1.png"/>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4 pb-4 border-b border-gray-300 dark:border-gray-600">
+              <img className="rounded-md block w-full" alt="step 2" src="how-to-2.png"/>
+              <div className="pl-4 w-full">
+                <h5 className="mb-4">2. Paste in your Workspace</h5>
+                <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">Paste the copied HEX string into any text box in the Slack workspace in which you would like to change themes</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div className="pr-4 w-full">
+                <h5 className="mb-4">3. Change Theme</h5>
+                <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">Submit the message in the text box and click the <em>Switch sidebar theme</em> button that Slack generates underneath your posted message</p>
+              </div>
+              <img className="rounded-md block w-full" alt="step 3" src="how-to-3.png"/>
+            </div>
+          </div>
           <div className="flex p-4 rounded-md border border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-white dark:bg-opacity-10">
             <div>
               <div className="rounded-full inline-block p-3 bg-gray-200 text-gray-500 dark:bg-white dark:text-black">
