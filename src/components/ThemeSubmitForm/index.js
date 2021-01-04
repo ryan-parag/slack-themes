@@ -76,7 +76,6 @@ const ThemeSubmitForm = () => {
           <>
             <Box
               transparent
-              paddingAll={'6'}
               marginBottom={'4'}
             >
               <div className="flex justify-between items-center mb-4">
