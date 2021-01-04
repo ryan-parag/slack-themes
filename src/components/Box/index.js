@@ -8,7 +8,7 @@ const Box = (props) => {
 
   return(
     <div
-      className={`${props.flex ? 'flex' : 'block'} ${props.marginBottom ? 'mb-' + props.marginBottom : 'mb-0'} ${props.padding ? 'p-' + props.padding : 'p-4'} rounded-md ${props.transparent ? transparentClasses : defaultClasses}`}
+      className={`${props.flex ? 'flex' : 'block'} ${props.marginBottom ? 'mb-' + props.marginBottom : 'mb-0'} ${props.paddingAll ? 'p-' + props.paddingAll : 'p-4'} rounded-md ${props.transparent ? transparentClasses : defaultClasses}`}
     >
       {props.children}
     </div>
