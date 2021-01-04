@@ -17,7 +17,7 @@ const Intro = () => {
       <p className="font-bold mt-4">Having trouble keeping track of all of your Slack workspaces?</p>
       <p className="mt-4">Choose and copy one of the themes in the list to personalize a Slack workspace.</p>
       <p className="mt-4 mb-4">How to:</p>
-      <Box margin={'8'}>
+      <Box marginBottom={'8'}>
         <ul className="list-inside list-decimal mb-4">
           <li className="text-lg mb-3">Copy a theme</li>
           <li className="text-lg mb-3">Paste in a Slack Channel</li>
