@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ThemeItem from '../ThemeItem'
 import ColorPicker from '../ColorPicker'
+import Box from '../Box'
 import firebase from '../../data/firebase'
 import { Check } from 'react-feather'
 
@@ -73,7 +74,11 @@ const ThemeSubmitForm = () => {
       {
         !submitted ? (
           <>
-            <div className="rounded-md p-6 bg-gray-100 dark:bg-transparent border border-gray-200 dark:border-white dark:border-opacity-20 mb-4">
+            <Box
+              transparent
+              padding={'6'}
+              marginBottom={'4'}
+            >
               <div className="flex justify-between items-center mb-4">
                 <h4>Create a New Theme</h4>
               </div>
@@ -127,8 +132,8 @@ const ThemeSubmitForm = () => {
                 >
                   Submit Theme
                 </button>
-            </div>
-            </div>
+              </div>
+            </Box>
           </>
         )
         :
