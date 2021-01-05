@@ -6,9 +6,11 @@ const Box = (props) => {
   const defaultClasses = "border border-gray-200 bg-gray-100 dark:border-white dark:border-opacity-10 dark:bg-white dark:bg-opacity-10"
   const transparentClasses = "bg-gray-100 dark:bg-transparent border border-gray-200 dark:border-white dark:border-opacity-20"
 
+  const errorClasses = "bg-red-100 dark:bg-red-500 dark:bg-opacity-20 border border-red-500 border-opacity-20"
+
   return(
     <div
-      className={`${props.flex ? 'flex' : 'block'} ${props.marginBottom ? 'mb-' + props.marginBottom : 'mb-0'} ${props.paddingAll ? 'p-' + props.paddingAll : 'p-4'} rounded-md ${props.transparent ? transparentClasses : defaultClasses}`}
+      className={`${props.center ? 'text-center' : 'text-left'} ${props.flex ? 'flex' : 'block'} ${props.marginBottom ? 'mb-' + props.marginBottom : 'mb-0'} ${props.marginTop ? 'mt-' + props.marginTop : 'mt-0'} ${props.paddingAll ? 'p-' + props.paddingAll : 'p-4'} rounded-md ${props.transparent ? transparentClasses : props.state === 'error' ? errorClasses : defaultClasses}`}
     >
       {props.children}
     </div>
@@ -21,7 +23,7 @@ export const BoxOutbound = (props) => {
 
   return(
     <a
-      className={`${props.flex ? 'flex' : 'block'}  ${props.marginBottom ? 'mb-' + props.marginBottom : 'mb-0'} ${props.padding ? 'p-' + props.padding : 'p-4'} rounded-md ${defaultClasses}`}
+      className={`${props.center ? 'text-center' : 'text-left'} ${props.flex ? 'flex' : 'block'} ${props.marginBottom ? 'mb-' + props.marginBottom : 'mb-0'} ${props.marginTop ? 'mt-' + props.marginTop : 'mt-0'} ${props.padding ? 'p-' + props.padding : 'p-4'} rounded-md ${defaultClasses}`}
       href={props.href}
       target="_blank"
     >
@@ -37,7 +39,7 @@ export const BoxLink = (props) => {
   return(
     <Link href={props.href}>
       <a
-        className={`${props.flex ? 'flex' : 'block'}  ${props.marginBottom ? 'mb-' + props.marginBottom : 'mb-0'} ${props.padding ? 'p-' + props.padding : 'p-4'} rounded-md ${defaultClasses}`}
+        className={`${props.center ? 'text-center' : 'text-left'} ${props.flex ? 'flex' : 'block'} ${props.marginBottom ? 'mb-' + props.marginBottom : 'mb-0'} ${props.marginTop ? 'mt-' + props.marginTop : 'mt-0'} ${props.padding ? 'p-' + props.padding : 'p-4'} rounded-md ${defaultClasses}`}
       >
         {props.children}
       </a>

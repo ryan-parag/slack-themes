@@ -69,7 +69,7 @@
     "react-color": "^2.19.3",
     "react-dom": "^16.11.0",
     "react-feather": "^2.0.9",
-    "react-ga": "^2.7.0",
+    "react-ga": "^3.3.0",
     "react-helmet": "^5.2.1",
     "react-hot-loader": "^4.12.15",
     "react-transition-group": "^4.3.0",

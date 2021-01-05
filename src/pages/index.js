@@ -9,6 +9,7 @@ import Drawer from '../components/Drawer'
 import { motion } from 'framer-motion'
 import { Loader, Search , Sliders} from 'react-feather'
 import { useRouter } from 'next/router'
+import EmptyState from '../components/EmptyState'
 
 export default function Home() {
 
@@ -187,25 +188,9 @@ export default function Home() {
               )
               :
               (
-                <div className="rounded-md text-center bg-gray-100 dark:bg-gray-900 p-8 mt-4">
-                  {
-                    loading ? (
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ ease: "linear", duration: 1, loop: Infinity }}
-                        className="inline-block p-3 mb-4 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 rounded-full"
-                      >
-                        <Loader/>
-                      </motion.div>
-                    )
-                    : (
-                      <div className="inline-block p-3 mb-4 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 rounded-full">
-                        <Search/>
-                      </div>
-                    )
-                  }
-                  <h4>{loading ? 'Loading...' : 'No Results'}</h4>
-                </div>
+                <EmptyState
+                  loading={loading}
+                />
               )
             }
           </div>
