@@ -9,7 +9,7 @@ const SubmittedItem = ({theme}) => {
 
   const [themeItem, setThemeItem] = useState(theme)
 
-  const categories = ['Dark', 'Light', 'Red', 'Blue', 'Green', 'Purple', 'Yellow', 'Pink', 'Orange', 'Brand', 'Racing', 'Syntax', 'Minimal', 'Material', 'Community']
+  const categories = ['Dark', 'Light', 'Red', 'Blue', 'Green', 'Purple', 'Yellow', 'Pink', 'Orange', 'Brand', 'Racing', 'Syntax', 'Minimal', 'Material', 'Community', 'Superheroes']
 
   const convertTime = secs => {
     var t = new Date(1970, 0, 1);
