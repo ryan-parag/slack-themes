@@ -182,7 +182,7 @@ const ThemeItem = (props) => {
   const textColor = props.theme.text_color
   const activePresence = props.theme.active_presence
   const mentionBadge = props.theme.mention_badge
-  const copyString = `${props.themeLabel ? themeName + ' -- ' : ''}${columnBg},#121016,${activeItem},${activeItemText},${hoverItem},${textColor},${activePresence},${mentionBadge},${topNavBg},${topNavText}`
+  const copyString = `${columnBg},#121016,${activeItem},${activeItemText},${hoverItem},${textColor},${activePresence},${mentionBadge},${topNavBg},${topNavText}`
   const likes = props.theme.likes
 
   const updateLike = () => {
