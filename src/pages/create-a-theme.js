@@ -97,6 +97,20 @@ export default function Playground() {
         contrast: getComputedStyle(root).getPropertyValue("--contrast"),
         contrast_border: getComputedStyle(root).getPropertyValue("--contrast_border")
       }
+    } else {
+      return {
+        hover_item: null,
+        active_presence: null,
+        top_nav_text: null,
+        active_item: null,
+        column_bg: null,
+        mention_badge: null,
+        active_item_text: null,
+        text_color: null,
+        top_nav_bg: null,
+        contrast: null,
+        contrast_border: null,
+      }
     }
   }
 
