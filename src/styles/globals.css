@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer base {
+  html {
+    --hover_item: #1a1f28;
+    --active_presence: #00D1B2;
+    --top_nav_text: #FFFFFF;
+    --active_item: #2C323F;
+    --column_bg: #0e1016;
+    --mention_badge: #e384ad;
+    --active_item_text: #FFFFFF;
+    --text_color: #bec1c5;
+    --top_nav_bg: #535b6a;
+    --contrast: #000000;
+    --contrast_border: rgba(255,255,255,0.1);
+  }
+
+  .hover_item--text {
+    color: var(--hover_item);
+  }
+
+  .hover_item--bg {
+    background: var(--hover_item);
+  }
+
+  .top_nav_text--text {
+    color: var(--top_nav_text);
+  }
+
+  .top_nav_text--bg {
+    background: var(--top_nav_text);
+  }
+
+  .active_item--text {
+    color: var(--active_item);
+  }
+
+  .active_item--bg {
+    background: var(--active_item);
+  }
+
+  .active_item_text--text {
+    color: var(--active_item_text);
+  }
+
+  .active_item_text--bg {
+    background: var(--active_item_text);
+  }
+
+  .column_bg--text {
+    color: var(--column_bg);
+  }
+
+  .column_bg--bg {
+    background: var(--column_bg);
+  }
+
+  .mention_badge--text {
+    color: var(--mention_badge);
+  }
+
+  .mention_badge--bg {
+    background: var(--mention_badge);
+  }
+
+  .active_presence--text {
+    color: var(--active_presence);
+  }
+
+  .active_presence--bg {
+    background: var(--active_presence);
+  }
+
+  .text_color--text {
+    color: var(--text_color);
+  }
+
+  .text_color--bg {
+    background: var(--text_color);
+  }
+
+  .top_nav_bg--text {
+    color: var(--top_nav_bg);
+  }
+
+  .top_nav_bg--bg {
+    background: var(--top_nav_bg);
+  }
+
+  .contrast {
+    color: var(--contrast);
+  }
+
+  .contrast--bg {
+    background: var(--contrast_border);
+  }
+
+  .contrast--border {
+    border-color: var(--contrast_border);
+  }
+}

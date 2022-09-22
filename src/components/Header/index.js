@@ -1,32 +1,40 @@
-import React from 'react'
-import Head from 'next/head'
+import Logo from "@components/Logo"
+import { Menu, Info, ArrowLeft } from "react-feather"
+import Link from 'next/link'
 
-const Header = () => {
-
-  const pageTitle = 'Slack Themes'
-  const description = 'Choose and copy one of the themes below to personalize a Slack workspace.'
-
-  return (
-    <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta charSet="utf-8" />
-      <meta name="Description" content={description}></meta>
-      <meta name="viewport" content="width=device-width, user-scalable=no"></meta>
-      <meta property="og:url" content="https://slack-themes.now.sh/"></meta>
-      <meta property="og:type" content="website"></meta>
-      <meta property="og:title" content={pageTitle}></meta>
-      <meta property="og:description" content={description}></meta>
-      <meta property="og:image" content="/og.png"></meta>
-      <title>{pageTitle}</title>
-      <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"></link>
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"></link>
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"></link>
-      <link rel="manifest" href="/favicon/site.webmanifest"></link>
-      <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5"></link>
-      <meta name="msapplication-TileColor" content="#da532c"></meta>
-      <meta name="theme-color" content="#ffffff"></meta>
-    </Head>
+const Header = ({ setOpen, open }) => {
+  return(
+    <header className={`h-16 flex w-full lg:hidden flex justify-between items-center px-4 py-2 column_bg--bg text_color--text border-b border-white border-opacity-10 transition ${open && 'translate-x-64'}`}>
+      <div className="flex items-center">
+        <button onClick={() => setOpen(!open)}>
+          {
+            open ? (
+              <ArrowLeft size={24}/>
+            )
+            :
+            (
+              <Menu size={24}/>
+            )
+          }
+        </button>
+        {
+          !open && (
+            <Link href="/">
+              <a className="ml-4 inline-flex items-center">
+                <Logo/>
+                <span className="font-bold pl-2">Slack Themes</span>
+              </a>
+            </Link>
+          )
+        }
+      </div>
+      <Link href="/about">
+        <a>
+          <Info size={24}/>
+        </a>
+      </Link>
+    </header>
   )
 }
 
-export default Header;
+export default Header

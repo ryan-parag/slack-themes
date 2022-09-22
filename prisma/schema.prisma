@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+  referentialIntegrity = "prisma"
+}
+
+model Contact {
+  id String @id @default(cuid())
+  firstName String
+  lastName String
+  email String
+  avatar String
+}
+
+model Theme {
+  id String @id @default(cuid())
+  name String
+  hover_item String
+  active_presence String
+  top_nav_text String
+  active_item String
+  column_bg String
+  mention_badge String
+  active_item_text String
+  text_color String
+  top_nav_bg String
+  likes Int
+  added DateTime @default(now())
+  groups String
+}
+
+model Categories {
+  id String @id @default(cuid())
+  name String
+  count Int
+}
