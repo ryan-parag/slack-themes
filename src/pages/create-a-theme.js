@@ -76,25 +76,31 @@ const ColorPicker = ({ label, value, onChange, field }) => {
 
 export default function Playground() {
 
-  const root = document.documentElement
-
   const [toggle,setToggle] = useState(true)
 
-  const currentTheme = {
-    hover_item: getComputedStyle(root).getPropertyValue("--hover_item"),
-    active_presence: getComputedStyle(root).getPropertyValue("--active_presence"),
-    top_nav_text: getComputedStyle(root).getPropertyValue("--top_nav_text"),
-    active_item: getComputedStyle(root).getPropertyValue("--active_item"),
-    column_bg: getComputedStyle(root).getPropertyValue("--column_bg"),
-    mention_badge: getComputedStyle(root).getPropertyValue("--mention_badge"),
-    active_item_text: getComputedStyle(root).getPropertyValue("--active_item_text"),
-    text_color: getComputedStyle(root).getPropertyValue("--text_color"),
-    top_nav_bg: getComputedStyle(root).getPropertyValue("--top_nav_bg"),
-    contrast: getComputedStyle(root).getPropertyValue("--contrast"),
-    contrast_border: getComputedStyle(root).getPropertyValue("--contrast_border")
+  const currentTheme = () => {
+    let root
+
+    if(typeof window !== "undefined") {
+      root = document.documentElement
+    }
+
+    return {
+      hover_item: getComputedStyle(root).getPropertyValue("--hover_item"),
+      active_presence: getComputedStyle(root).getPropertyValue("--active_presence"),
+      top_nav_text: getComputedStyle(root).getPropertyValue("--top_nav_text"),
+      active_item: getComputedStyle(root).getPropertyValue("--active_item"),
+      column_bg: getComputedStyle(root).getPropertyValue("--column_bg"),
+      mention_badge: getComputedStyle(root).getPropertyValue("--mention_badge"),
+      active_item_text: getComputedStyle(root).getPropertyValue("--active_item_text"),
+      text_color: getComputedStyle(root).getPropertyValue("--text_color"),
+      top_nav_bg: getComputedStyle(root).getPropertyValue("--top_nav_bg"),
+      contrast: getComputedStyle(root).getPropertyValue("--contrast"),
+      contrast_border: getComputedStyle(root).getPropertyValue("--contrast_border")
+    }
   }
 
-  const [defaultTheme, setDefaultTheme] = useState(currentTheme)
+  const [defaultTheme, setDefaultTheme] = useState(currentTheme())
 
   const [createTheme, setCreateTheme] = useState({
     hover_item: defaultTheme.hover_item,
@@ -111,6 +117,13 @@ export default function Playground() {
   })
 
   const changeTheme = (theme) => {
+
+    let root
+
+    if(typeof window !== "undefined") {
+      root = document.documentElement
+    }
+
     root.style.setProperty('--hover_item', theme.hover_item);
     root.style.setProperty('--active_presence', theme.active_presence);
     root.style.setProperty('--top_nav_text', theme.top_nav_text);
@@ -164,7 +177,11 @@ export default function Playground() {
   }
 
   const copyTheme = () => {
-    const root = document.documentElement
+    let root
+
+    if(typeof window !== "undefined") {
+      root = document.documentElement
+    }
 
     const hover_item = getComputedStyle(root).getPropertyValue("--hover_item");
     const active_presence = getComputedStyle(root).getPropertyValue("--active_presence");

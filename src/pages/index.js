@@ -38,7 +38,11 @@ export default function Home({ initialThemes, categories }) {
   const [copyString, setCopyString] = useState('')
 
   const changeTheme = (theme) => {
-    const root = document.documentElement;
+    let root
+
+    if(typeof window !== "undefined") {
+      root = document.documentElement
+    }
 
     const ccc = new ColorContrastChecker();
 
