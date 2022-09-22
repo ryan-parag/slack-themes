@@ -83,20 +83,20 @@ export default function Playground() {
 
     if(typeof window !== "undefined") {
       root = document.documentElement
-    }
 
-    return {
-      hover_item: getComputedStyle(root).getPropertyValue("--hover_item"),
-      active_presence: getComputedStyle(root).getPropertyValue("--active_presence"),
-      top_nav_text: getComputedStyle(root).getPropertyValue("--top_nav_text"),
-      active_item: getComputedStyle(root).getPropertyValue("--active_item"),
-      column_bg: getComputedStyle(root).getPropertyValue("--column_bg"),
-      mention_badge: getComputedStyle(root).getPropertyValue("--mention_badge"),
-      active_item_text: getComputedStyle(root).getPropertyValue("--active_item_text"),
-      text_color: getComputedStyle(root).getPropertyValue("--text_color"),
-      top_nav_bg: getComputedStyle(root).getPropertyValue("--top_nav_bg"),
-      contrast: getComputedStyle(root).getPropertyValue("--contrast"),
-      contrast_border: getComputedStyle(root).getPropertyValue("--contrast_border")
+      return {
+        hover_item: getComputedStyle(root).getPropertyValue("--hover_item"),
+        active_presence: getComputedStyle(root).getPropertyValue("--active_presence"),
+        top_nav_text: getComputedStyle(root).getPropertyValue("--top_nav_text"),
+        active_item: getComputedStyle(root).getPropertyValue("--active_item"),
+        column_bg: getComputedStyle(root).getPropertyValue("--column_bg"),
+        mention_badge: getComputedStyle(root).getPropertyValue("--mention_badge"),
+        active_item_text: getComputedStyle(root).getPropertyValue("--active_item_text"),
+        text_color: getComputedStyle(root).getPropertyValue("--text_color"),
+        top_nav_bg: getComputedStyle(root).getPropertyValue("--top_nav_bg"),
+        contrast: getComputedStyle(root).getPropertyValue("--contrast"),
+        contrast_border: getComputedStyle(root).getPropertyValue("--contrast_border")
+      }
     }
   }
 
@@ -122,19 +122,19 @@ export default function Playground() {
 
     if(typeof window !== "undefined") {
       root = document.documentElement
-    }
 
-    root.style.setProperty('--hover_item', theme.hover_item);
-    root.style.setProperty('--active_presence', theme.active_presence);
-    root.style.setProperty('--top_nav_text', theme.top_nav_text);
-    root.style.setProperty('--active_item', theme.active_item);
-    root.style.setProperty('--column_bg', theme.column_bg);
-    root.style.setProperty('--mention_badge', theme.mention_badge);
-    root.style.setProperty('--active_item_text', theme.active_item_text);
-    root.style.setProperty('--text_color', theme.text_color);
-    root.style.setProperty('--top_nav_bg', theme.top_nav_bg);
-    root.style.setProperty('--contrast', theme.contrast);
-    root.style.setProperty('--contrast_border', theme.contrast_border);
+      root.style.setProperty('--hover_item', theme.hover_item);
+      root.style.setProperty('--active_presence', theme.active_presence);
+      root.style.setProperty('--top_nav_text', theme.top_nav_text);
+      root.style.setProperty('--active_item', theme.active_item);
+      root.style.setProperty('--column_bg', theme.column_bg);
+      root.style.setProperty('--mention_badge', theme.mention_badge);
+      root.style.setProperty('--active_item_text', theme.active_item_text);
+      root.style.setProperty('--text_color', theme.text_color);
+      root.style.setProperty('--top_nav_bg', theme.top_nav_bg);
+      root.style.setProperty('--contrast', theme.contrast);
+      root.style.setProperty('--contrast_border', theme.contrast_border);
+    }
   }
 
   const contrastColors = (badge, columnBg) => {
@@ -181,23 +181,23 @@ export default function Playground() {
 
     if(typeof window !== "undefined") {
       root = document.documentElement
+
+      const hover_item = getComputedStyle(root).getPropertyValue("--hover_item");
+      const active_presence = getComputedStyle(root).getPropertyValue("--active_presence");
+      const top_nav_text = getComputedStyle(root).getPropertyValue("--top_nav_text");
+      const active_item = getComputedStyle(root).getPropertyValue("--active_item");
+      const column_bg = getComputedStyle(root).getPropertyValue("--column_bg");
+      const mention_badge = getComputedStyle(root).getPropertyValue("--mention_badge");
+      const active_item_text = getComputedStyle(root).getPropertyValue("--active_item_text");
+      const text_color = getComputedStyle(root).getPropertyValue("--text_color");
+      const top_nav_bg = getComputedStyle(root).getPropertyValue("--top_nav_bg");
+
+      const str = `${column_bg},#121016,${active_item},${active_item_text},${hover_item},${text_color},${active_presence},${mention_badge},${top_nav_bg},${top_nav_text}`
+
+      copyTextToClipboard(str)
+
+      toast.success(`Copied to your clipboard`)
     }
-
-    const hover_item = getComputedStyle(root).getPropertyValue("--hover_item");
-    const active_presence = getComputedStyle(root).getPropertyValue("--active_presence");
-    const top_nav_text = getComputedStyle(root).getPropertyValue("--top_nav_text");
-    const active_item = getComputedStyle(root).getPropertyValue("--active_item");
-    const column_bg = getComputedStyle(root).getPropertyValue("--column_bg");
-    const mention_badge = getComputedStyle(root).getPropertyValue("--mention_badge");
-    const active_item_text = getComputedStyle(root).getPropertyValue("--active_item_text");
-    const text_color = getComputedStyle(root).getPropertyValue("--text_color");
-    const top_nav_bg = getComputedStyle(root).getPropertyValue("--top_nav_bg");
-
-    const str = `${column_bg},#121016,${active_item},${active_item_text},${hover_item},${text_color},${active_presence},${mention_badge},${top_nav_bg},${top_nav_text}`
-
-    copyTextToClipboard(str)
-
-    toast.success(`Copied to your clipboard`)
   }
 
   const refresh = () => {

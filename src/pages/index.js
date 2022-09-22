@@ -42,39 +42,39 @@ export default function Home({ initialThemes, categories }) {
 
     if(typeof window !== "undefined") {
       root = document.documentElement
+
+      const ccc = new ColorContrastChecker();
+
+      root.style.setProperty('--hover_item', theme.hover_item);
+      root.style.setProperty('--active_presence', theme.active_presence);
+      root.style.setProperty('--top_nav_text', theme.top_nav_text);
+      root.style.setProperty('--active_item', theme.active_item);
+      root.style.setProperty('--column_bg', theme.column_bg);
+      root.style.setProperty('--mention_badge', theme.mention_badge);
+      root.style.setProperty('--active_item_text', theme.active_item_text);
+      root.style.setProperty('--text_color', theme.text_color);
+      root.style.setProperty('--top_nav_bg', theme.top_nav_bg);
+
+      if (ccc.isLevelCustom("#FFFFFF", theme.mention_badge, 4)) {
+        root.style.setProperty('--contrast', "#FFFFFF");
+      } else {
+        root.style.setProperty('--contrast', "#000000");
+      }
+
+      if (ccc.isLevelCustom("#000000", theme.column_bg, 8)) {
+        root.style.setProperty('--contrast_border', "rgba(0,0,0,0.1)");
+      } else {
+        root.style.setProperty('--contrast_border', "rgba(255,255,255,0.1)");
+      }
+
+      const str = `${theme.column_bg},#121016,${theme.active_item},${theme.active_item_text},${theme.hover_item},${theme.text_color},${theme.active_presence},${theme.mention_badge},${minimalHeader ? theme.column_bg : theme.top_nav_bg},${minimalHeader ? theme.text_color : theme.top_nav_text}`
+
+      setCopyString(str)
+
+      copyTextToClipboard(str)
+
+      toast.success(`${theme.name} copied to your clipboard`)
     }
-
-    const ccc = new ColorContrastChecker();
-
-    root.style.setProperty('--hover_item', theme.hover_item);
-    root.style.setProperty('--active_presence', theme.active_presence);
-    root.style.setProperty('--top_nav_text', theme.top_nav_text);
-    root.style.setProperty('--active_item', theme.active_item);
-    root.style.setProperty('--column_bg', theme.column_bg);
-    root.style.setProperty('--mention_badge', theme.mention_badge);
-    root.style.setProperty('--active_item_text', theme.active_item_text);
-    root.style.setProperty('--text_color', theme.text_color);
-    root.style.setProperty('--top_nav_bg', theme.top_nav_bg);
-
-    if (ccc.isLevelCustom("#FFFFFF", theme.mention_badge, 4)) {
-      root.style.setProperty('--contrast', "#FFFFFF");
-    } else {
-      root.style.setProperty('--contrast', "#000000");
-    }
-
-    if (ccc.isLevelCustom("#000000", theme.column_bg, 8)) {
-      root.style.setProperty('--contrast_border', "rgba(0,0,0,0.1)");
-    } else {
-      root.style.setProperty('--contrast_border', "rgba(255,255,255,0.1)");
-    }
-
-    const str = `${theme.column_bg},#121016,${theme.active_item},${theme.active_item_text},${theme.hover_item},${theme.text_color},${theme.active_presence},${theme.mention_badge},${minimalHeader ? theme.column_bg : theme.top_nav_bg},${minimalHeader ? theme.text_color : theme.top_nav_text}`
-
-    setCopyString(str)
-
-    copyTextToClipboard(str)
-
-    toast.success(`${theme.name} copied to your clipboard`)
   }
 
   useEffect(() => {
