@@ -99,17 +99,17 @@ export default function Playground() {
       }
     } else {
       return {
-        hover_item: null,
-        active_presence: null,
-        top_nav_text: null,
-        active_item: null,
-        column_bg: null,
-        mention_badge: null,
-        active_item_text: null,
-        text_color: null,
-        top_nav_bg: null,
-        contrast: null,
-        contrast_border: null,
+        hover_item: '#ffffff',
+        active_presence: '#ffffff',
+        top_nav_text: '#ffffff',
+        active_item: '#ffffff',
+        column_bg: '#ffffff',
+        mention_badge: '#ffffff',
+        active_item_text: '#ffffff',
+        text_color: '#ffffff',
+        top_nav_bg: '#ffffff',
+        contrast: '#ffffff',
+        contrast_border: '#ffffff',
       }
     }
   }
