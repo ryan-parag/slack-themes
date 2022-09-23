@@ -1,106 +1,92 @@
-import React from "react"
-import Layout from '../components/Layout'
-import Link from 'next/link'
-import Logo from '../components/Logo'
-import { GitHub, FileText, HelpCircle } from 'react-feather'
-import Navigation from '../components/Navigation'
-import Box, { BoxOutbound } from '../components/Box'
+import React from 'react'
+import Layout from '@components/Layout';
+import Logo from '@components/Logo';
+import Link from 'next/link';
+import Image from 'next/image';
+import { GitHub } from 'react-feather';
+
+const ListLink = ({ img, title, description, link }) => {
+  return(
+    <div className="flex w-full border-b border-black border-opacity-10 dark:border-white dark:border-opacity-10">
+      {
+        img && (
+          <div className="py-6">
+            <div className="relative mt-1 h-10 w-10 bg-zinc-200 dark:bg-zinc-700 rounded-lg overflow-hidden shadow inline-flex items-center justify-center">
+              {img}
+            </div>
+          </div>
+        )
+      }
+      <div className="w-full flex-1 flex flex-col items-start pl-4 py-6">
+        <span className="text-left text-base block mb-1">
+          <a className="text-link text-link--icon" href={link} target="_blank">{title}</a>
+        </span>
+        <span className="mt-0 mb-0 text-sm leading-normal text-zinc-600 dark:text-zinc-400">{description}</span>
+      </div>
+    </div>
+  )
+}
 
 export default function About() {
-  return(
-    <Layout>
-      <div className="flex flex-col lg:flex-row mx-4 md:mx-auto lg:mx-auto xl:mx-auto 2xl:mx-auto py-8 md:py-9">
-        <div className="w-full md:w-2/3 xl:w-1/2 mx-auto lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-            <Link href="/">
-              <a>
-                <Logo/>
-              </a>
-            </Link>
+
+  const links = [
+    {
+      title: 'Contribute',
+      description: 'Are you a designer or developer? Do you have an idea to add to this site or want to chip in with design updates? Hop in on the fun if you\'d like to learn as well!',
+      img: <GitHub size={24}/>,
+      link: 'https://github.com/ryan-parag/slack-themes'
+    }, {
+      title: 'Ryan Parag',
+      description: 'I\'m a product designer living in Sunny 🌞 Tampa Bay. I strive to help build useful products with an interdisciplinary skillset, bred from my fascination of systems, art, and code.',
+      img: <Image src={'/profiles/ryan.png'} layout="fill"/>,
+      link: 'https://ryanparag.com'
+    }, {
+      title: 'Matt Broughton',
+      description: 'Hi there. I\'m Matt Broughton. I design and build user interfaces for the web and apps.',
+      img: <Image src={'/profiles/matt.png'} layout="fill"/>,
+      link: 'https://matt-broughton.com/'
+    }
+  ]
+
+  return (
+    <Layout title={'About'}>
+      <div className="w-full h-full overflow-y-scroll pb-32">
+        <div className="mx-auto max-w-screen-md prose p-4 xl:p-8">
+          <div className="relative inline-block transform transition hover:scale-110 hover:-rotate-12">
+            <Logo/>
           </div>
-          <Navigation active={'About'}/>
-          <h1 className="mb-4 mt-8">About</h1>
-          <p>
-            Beautiful, curated themes to help personalize all of your different Slack workspaces. Thanks for visiting 👍!
-          </p>
-          <p className="mt-4 mb-8">
-            Designed and Developed by <a className="link" href="https://ryanparag.com" target="_blank">Ryan Parag</a> and <a className="link" href="https://matt-broughton.com/" target="_blank">Matthew Broughton</a>
-          </p>
-          <BoxOutbound
-            flex
-            href="https://github.com/ryan-parag/slack-themes"
-          >
-            <div>
-              <div className="rounded-full inline-block p-3 bg-blue-100 text-blue-500 dark:bg-blue-500 dark:text-white">
-                <GitHub/>
-              </div>
-            </div>
-            <div className="pl-4">
-              <h5 className="mb-4">Want to contribute?</h5>
-              <p className="mb-4 text-sm leading-6 text-gray-600 dark:text-gray-400">Are you a designer or developer? Do you have an idea to add to this site or want to chip in with design updates? Hop in on the fun if you'd like to learn as well!</p>
-              <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">We're always looking for designers/developers to help out with wireframes / mockups / prototypes / code - send us a message through email or provide some design updates through the GitHub repo.</p>
-            </div>
-          </BoxOutbound>
-          <h3 className="mb-4 mt-8">How do I use a theme?</h3>
-          <p className="mt-4 mb-8">Follow the step-by-step instructions on how to copy, paste, and implement a theme to your Slack workspace:</p>
-          <Box marginBottom={'8'}>
-            <div className="flex items-center pb-4 mb-4 border-b border-black dark:border-white border-opacity-20 dark:border-opacity-20">
-              <div className="rounded-full inline-block p-3 bg-red-100 text-red-500 dark:bg-red-500 dark:text-white">
-                <HelpCircle/>
-              </div>
-              <div className="pl-4">
-                <h5 className="mb-0">Instructions</h5>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 pb-4 border-b border-black dark:border-white border-opacity-20 dark:border-opacity-20">
-              <div className="w-full">
-                <h5 className="mb-4">1. Choose a Theme</h5>
-                <p className="text-sm leading-6 text-gray-600 dark:text-gray-400"><Link href="/"><a className="link">Explore</a></Link> from the list of Slack themes and click to copy the HEX code string</p>
-              </div>
-              <img className="border border-black dark:border-white border-opacity-20 dark:border-opacity-20 rounded-md block w-full" alt="step 1" src="how-to-1.png"/>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 pb-4 border-b border-black dark:border-white border-opacity-20 dark:border-opacity-20">
-              <img className="border border-black dark:border-white border-opacity-20 dark:border-opacity-20 rounded-md block w-full" alt="step 2" src="how-to-2.png"/>
-              <div className="w-full">
-                <h5 className="mb-4">2. Paste in your Workspace</h5>
-                <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">Paste the copied HEX string into any text box in the Slack workspace in which you would like to change themes</p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="w-full">
-                <h5 className="mb-4">3. Change Theme</h5>
-                <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">Submit the message in the text box and click the <em>Switch sidebar theme</em> button that Slack generates underneath your posted message</p>
-              </div>
-              <img className="border border-black dark:border-white border-opacity-20 dark:border-opacity-20 rounded-md block w-full" alt="step 3" src="how-to-3.png"/>
-            </div>
-          </Box>
-          <Box flex>
-            <div>
-              <div className="rounded-full inline-block p-3 bg-gray-200 text-gray-500 dark:bg-white dark:text-black">
-                <FileText/>
-              </div>
-            </div>
-            <div className="pl-4 w-full">
-              <h5 className="mb-4">Colophon</h5>
-              <p className="mb-4 text-sm leading-6 text-gray-600 dark:text-gray-400">This site was made with:</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
-              <ul className="list-inside list-disc w-full text-sm text-gray-600 dark:text-gray-400">
-                <li>React</li>
-                <li>Next.js</li>
-                <li>Tailwind.css</li>
-                <li>Styled components</li>
-              </ul>
-              <ul className="list-inside list-disc w-full text-sm text-gray-600 dark:text-gray-400">
-                <li>PostCSS</li>
-                <li>Framer Motion</li>
-                <li>Firebase</li>
-                <li>Google Forms</li>
-              </ul>
-              </div>
-            </div>
-          </Box>
+          <h2>Beautiful, curated themes to help personalize all of your different Slack workspaces.</h2>
+          <p>Having trouble keeping track of all of your Slack workspaces? Choose and copy <Link href="/"><a>one of the themes in the list</a></Link> to personalize a Slack workspace.</p>
+          <p>Thanks for visiting 👍!</p>
+          <h3>How to use a Slack theme:</h3>
+          <ol>
+            <li>
+              <h4>Choose a Theme</h4>
+              <p>Explore from the <Link href="/"><a>list of Slack themes</a></Link> and click the theme item to copy the HEX code string to your clipboard.</p>
+            </li>
+            <li>
+              <h4>Paste in your Workspace</h4>
+              <p>Paste the copied HEX string into any text box in the Slack workspace in which you would like to change themes.</p>
+            </li>
+            <li>
+              <h4>Change Theme</h4>
+              <p>Submit the message in the text box and click the <span className="py-1 px-2 text-sm border border-black border-opacity-10 bg-black bg-opacity-5 dark:border-white dark:border-opacity-10 dark:bg-white dark:bg-opacity-5 rounded-md mx-1 shadow-sm">Switch sidebar theme</span> button that Slack generates underneath your posted message.</p>
+            </li>
+          </ol>
+          <h3>Links</h3>
+          {
+            links.map((item, i) => (
+              <ListLink
+                key={i}
+                title={item.title}
+                img={item.img}
+                description={item.description}
+                link={item.link}
+              />
+            ))
+          }
         </div>
       </div>
     </Layout>
-  )
+  );
 }

@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model Theme {
+  id String @id @default(cuid())
+  name String
+  hover_item String
+  active_presence String
+  top_nav_text String
+  active_item String
+  column_bg String
+  mention_badge String
+  active_item_text String
+  text_color String
+  top_nav_bg String
+  likes Int
+  added DateTime @default(now())
+  groups String
+}
+
+model Categories {
+  id String @id @default(cuid())
+  name String
+  count Int
+}

@@ -1,0 +1,84 @@
+.prose {
+  @apply text-zinc-900 dark:text-zinc-200
+}
+
+.prose blockquote {
+  @apply font-normal border-l-2 border-zinc-200 dark:border-zinc-800 dark:text-zinc-400;
+}
+
+.prose figure {
+  @apply md:-mx-6;
+}
+
+.prose img {
+  @apply w-full rounded-md;
+}
+
+.prose p a {
+  @apply transition font-normal no-underline break-words text-inherit bg-black bg-opacity-5 hover:bg-opacity-10 dark:bg-white dark:bg-opacity-10 dark:hover:bg-opacity-20 py-1 px-2 mx-1 leading-none rounded-md;
+}
+
+.prose a {
+  @apply text-inherit font-normal no-underline;
+}
+
+.prose a code {
+  @apply text-black dark:text-white;
+}
+
+.prose hr {
+  @apply border-zinc-200 dark:border-zinc-800;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply font-bold text-zinc-900 dark:text-white;
+  scroll-margin-top: 4rem;
+}
+
+.prose h5 {
+  @apply mt-12 -mb-3 text-xl;
+}
+
+.prose.comment {
+  @apply max-w-none;
+}
+
+.prose.comment pre {
+  @apply px-3 py-2 my-2;
+}
+
+.prose p {
+  @apply break-words;
+  word-break: break-word;
+}
+
+.prose.comment p,
+.prose.comment ul,
+.prose.comment ol {
+  @apply my-3 text-sm lg:text-base;
+}
+
+.prose.comment p:first-of-type {
+  margin-top: 0 !important;
+}
+
+.prose.comment p + p {
+  margin-top: 0;
+}
+
+.prose.comment pre {
+  @apply my-3;
+}
+
+.prose.comment a {
+  @apply break-all;
+}
+
+.prose p + p {
+  margin-top: 0;
+}

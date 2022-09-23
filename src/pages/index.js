@@ -1,202 +1,117 @@
-import React, { useEffect, useState } from "react"
-import Layout from '../components/Layout'
-import Intro from '../components/Intro'
-import Categories from '../components/Categories'
-import Footer from '../components/Footer'
-import ThemeList from '../components/ThemeList'
-import firebase from '../data/firebase'
-import Drawer from '../components/Drawer'
-import { motion } from 'framer-motion'
-import { Loader, Search , Sliders} from 'react-feather'
-import { useRouter } from 'next/router'
-import EmptyState from '../components/EmptyState'
+import React, { useState, useEffect } from 'react'
+import { PrismaClient } from "@prisma/client"
+import Layout from '@components/Layout';
+import ColorContrastChecker from 'color-contrast-checker';
+import toast from 'react-hot-toast';
+import ThemeList from '@components/ThemeList';
 
-export default function Home() {
+const prisma = new PrismaClient();
 
-  const router = useRouter()
+export async function getServerSideProps() {
+  let data = await prisma.theme.findMany();
+  let dataCat = await prisma.categories.findMany()
+  data = JSON.parse(JSON.stringify(data))
+  dataCat = JSON.parse(JSON.stringify(dataCat))
+  return {
+    props: {
+      initialThemes: data,
+      categories: dataCat
+    }
+  };
+}
 
-  const initialQuery = router.query.filter
-  const initialSort = router.query.sort
-  const initialOrder = router.query.order
-
-  const [filteredThemes, setFilteredThemes] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [query, setQuery] = useState(initialQuery ? initialQuery : '')
-  const [sort, setSort] = useState(initialSort ? initialSort : 'theme_name')
-  const [order, setOrder] = useState(initialOrder ? initialOrder : 'asc')
-  //const [query, setQuery] = useState('')
-  //const [sort, setSort] = useState('theme_name')
-  //const [order, setOrder] = useState('asc')
-  const [queryAmount, setQueryAmount] = useState(27)
-  const [dataSize, setDataSize] = useState(null)
-
-  const [themeLabel, setThemeLabel] = useState(true)
-  const [neutralNav, setNeutralNav] = useState(true)
-  const [drawerState, setDrawerState] = useState(false)
-
-  const updateQuery = (string) => {
-    setQuery(string)
-    setQueryAmount(27)
+async function copyTextToClipboard(text) {
+  if ('clipboard' in navigator) {
+    return await navigator.clipboard.writeText(text);
+  } else {
+    return document.execCommand('copy', true, text);
   }
+}
 
-  const updateQueryAmount = () => {
-    setQueryAmount(prev => prev + 27)
-  }
+export default function Home({ initialThemes, categories }) {
 
-  const changeSort = (sort) => {
-    setSort(sort)
-  }
+  const [themes, setThemes] = useState(initialThemes)
+  const [filters, setFilters] = useState(categories)
+  const [minimalHeader, setMinimalHeader] = useState(true)
+  const [selected, setSelected] = useState(null)
+  const [filteredThemes, setFilteredThemes] = useState(themes)
+  const [copyString, setCopyString] = useState('')
 
-  const changeOrder = (order) => {
-    setOrder(order)
-  }
+  const changeTheme = (theme) => {
+    let root
 
-  const toggleThemeLabel = () => {
-    setThemeLabel(!themeLabel)
-  }
+    if(typeof window !== "undefined") {
+      root = document.documentElement
 
-  const toggleNeutralNav = () => {
-    setNeutralNav(!neutralNav)
-  }
+      const ccc = new ColorContrastChecker();
 
-  const toggleDrawerState = () => {
-    setDrawerState(!drawerState)
+      root.style.setProperty('--hover_item', theme.hover_item);
+      root.style.setProperty('--active_presence', theme.active_presence);
+      root.style.setProperty('--top_nav_text', theme.top_nav_text);
+      root.style.setProperty('--active_item', theme.active_item);
+      root.style.setProperty('--column_bg', theme.column_bg);
+      root.style.setProperty('--mention_badge', theme.mention_badge);
+      root.style.setProperty('--active_item_text', theme.active_item_text);
+      root.style.setProperty('--text_color', theme.text_color);
+      root.style.setProperty('--top_nav_bg', theme.top_nav_bg);
+
+      if (ccc.isLevelCustom("#FFFFFF", theme.mention_badge, 4)) {
+        root.style.setProperty('--contrast', "#FFFFFF");
+      } else {
+        root.style.setProperty('--contrast', "#000000");
+      }
+
+      if (ccc.isLevelCustom("#000000", theme.column_bg, 8)) {
+        root.style.setProperty('--contrast_border', "rgba(0,0,0,0.1)");
+      } else {
+        root.style.setProperty('--contrast_border', "rgba(255,255,255,0.1)");
+      }
+
+      const str = `${theme.column_bg},#121016,${theme.active_item},${theme.active_item_text},${theme.hover_item},${theme.text_color},${theme.active_presence},${theme.mention_badge},${minimalHeader ? theme.column_bg : theme.top_nav_bg},${minimalHeader ? theme.text_color : theme.top_nav_text}`
+
+      setCopyString(str)
+
+      copyTextToClipboard(str)
+
+      toast.success(`${theme.name} copied to your clipboard`)
+    }
   }
 
   useEffect(() => {
 
-    router.push(`/?order=${order}&sort=${sort}${query !== '' ? `&filter=${query}` : ''}`, undefined, { shallow: true })
 
-    setLoading(true)
-      if(query !== '') {
-        firebase.firestore().collection('themes').limit(queryAmount).where('groups', 'array-contains', query).orderBy(sort, order).onSnapshot(snapshot => {
-          const fetchedThemes = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data()
-          }))
-          setFilteredThemes(fetchedThemes)
-        })
-        firebase.firestore().collection('themes').where('groups', 'array-contains', query).onSnapshot(snapshot => {
-          const fetchedThemes = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data()
-          }))
-          setDataSize(fetchedThemes.length)
-        })
-      } else {
-        firebase.firestore().collection('themes').limit(queryAmount).orderBy(sort, order).onSnapshot(snapshot => {
-          const fetchedThemes = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data()
-          }))
-          setFilteredThemes(fetchedThemes)
-        })
-        firebase.firestore().collection('themes').onSnapshot(snapshot => {
-          const fetchedThemes = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data()
-          }))
-          setDataSize(fetchedThemes.length)
-        })
-      }
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-  }, [query, sort, order, queryAmount])
+    if(selected !== null) {
+      const filtered = []
+
+      themes.map(theme => {
+        if(theme.groups.includes(selected.id)) {
+          filtered.push(theme)
+        }
+  
+        setFilteredThemes(filtered)
+      })
+    } else {
+      setFilteredThemes(themes)
+    }
+
+  },[selected])
 
   return (
-    <Layout>
-      {
-        drawerState ? (
-          <Drawer
-          toggleDrawerState={toggleDrawerState}
-          themeLabel={themeLabel}
-          neutralNav={neutralNav}
-          toggleNeutralNav={toggleNeutralNav}
-          toggleThemeLabel={toggleThemeLabel}
-          />
-        )
-        :
-        null
-      }
-      <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row mx-4 md:mx-auto lg:mx-auto xl:mx-auto 2xl:mx-auto py-8 md:py-9">
-          <div className="w-full lg:w-1/3 lg:px-4 h-3/6 lg:sticky top-8 lg:top-9">
-            <Intro
-              toggleDrawerState={toggleDrawerState}
-            />
-          </div>
-          <div className="w-full lg:w-2/3 lg:px-8">
-            <div className="flex mb-4 justify-between">
-              <div className="text-sm text-gray-500 dark:text-gray-400">Filter by category:</div>
-            </div>
-            <Categories
-              activeQuery={query}
-              updateQuery={updateQuery}
-            />
-            <div className="flex justify-between mt-4 md:md-0">
-              <div className="inline-flex items-start">
-                <span className="text-sm inline-block pt-0.5 text-gray-500 dark:text-gray-400">Sort by:</span>
-                <button
-                  className={`transition pb-0.5 border-b-2 focus:outline-none ${sort === 'theme_name' ? 'font-semibold border-current' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 border-transparent'} ml-4 mr-4`}
-                  onClick={() => changeSort('theme_name')}
-                >
-                    Name
-                </button>
-                <button
-                  className={`transition pb-0.5 border-b-2 focus:outline-none ${sort === 'likes' ? 'font-semibold border-current' : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 border-transparent'}`}
-                  onClick={() => changeSort('likes')}
-                >
-                  Likes
-                </button>
-              </div>
-              <div className="inline-flex items-center">
-              <button
-                  className={`transition pb-0.5 border-b-2 focus:outline-none ${order === 'desc' ? 'border-current' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 border-transparent'} mr-4`}
-                  onClick={() => changeOrder('desc')}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
-                  </svg>
-                </button>
-                <button
-                className={`transition pb-0.5 border-b-2 focus:outline-none ${order === 'asc' ? 'border-current' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 border-transparent'} mr-4`}
-                  onClick={() => changeOrder('asc')}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
-                  </svg>
-                </button>
-                <button
-                  className="transition text-gray-400 dark:text-gray-500 focus:outline-none hover:text-gray-700 dark:hover:text-gray-300"
-                  onClick={toggleDrawerState}
-                >
-                  <Sliders size={'24'}/>
-                </button>
-              </div>
-            </div>
-            {
-              filteredThemes.length ? (
-                <ThemeList
-                  data={filteredThemes}
-                  neutralNav={neutralNav}
-                  themeLabel={themeLabel}
-                  updateQueryAmount={updateQueryAmount}
-                  dataSize={dataSize}
-                  loading={loading}
-                />
-              )
-              :
-              (
-                <EmptyState
-                  loading={loading}
-                />
-              )
-            }
-          </div>
-        </div>
-        <Footer/>
-      </div>
+    <Layout
+      title={'Explore Themes'}
+      toggleLabel={'Minimal Header'}
+      toggleState={minimalHeader}
+      setToggle={setMinimalHeader}
+    >
+      <ThemeList
+        copyString={copyString}
+        minimalHeader={minimalHeader}
+        filteredThemes={filteredThemes}
+        selected={selected}
+        setSelected={setSelected}
+        filters={filters}
+        changeTheme={changeTheme}
+      />
     </Layout>
   );
 }

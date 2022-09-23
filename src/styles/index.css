@@ -1,86 +1,9 @@
+@tailwind components;
+
 @layer components {
 
   body {
-    @apply bg-white text-gray-900 dark:bg-black dark:text-white
+    @apply bg-white text-zinc-900 dark:bg-zinc-900 dark:text-zinc-200
   }
 
-  .link, p a {
-    @apply font-semibold hover:text-indigo-600 dark:hover:text-indigo-300 hover:underline;
-  }
-
-  p {
-    @apply text-lg;
-  }
-
-  small {
-    @apply text-sm;
-  }
-
-  h6 {
-    @apply text-base font-bold;
-  }
-  
-  h5 {
-    @apply text-lg font-bold;
-  }
-  
-  h4 {
-    @apply text-xl font-extrabold;
-  }
-  
-  h3 {
-    @apply text-2xl font-extrabold;
-  }
-  
-  h2 {
-    @apply text-3xl font-black;
-  }
-  
-  h1 {
-    @apply text-4xl font-black;
-  }
-
-  .button {
-    @apply flex items-center justify-center px-4 py-2 space-x-2 text-sm font-medium transition bg-white dark:bg-black border dark:border-gray-500 rounded shadow-sm hover:border-gray-400 dark:hover:bg-gray-800 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900;
-  }
-
-  .button--primary {
-    @apply text-white bg-gray-900 border-none hover:bg-gray-800 focus:bg-gray-800 dark:text-black dark:bg-white dark:hover:bg-gray-200 dark:focus:bg-gray-200;
-  }
-
-  .button--secondary {
-    @apply dark:border-none dark:text-white dark:bg-white dark:hover:bg-white dark:bg-opacity-20 dark:hover:bg-opacity-30 dark:focus:bg-opacity-30;
-  }
-
-  .button--danger {
-    @apply text-white bg-red-500 border-none hover:bg-red-600 focus:bg-red-600;
-  }
-
-  .button--success {
-    @apply text-white bg-green-500 border-none hover:bg-green-600 focus:bg-green-600;
-  }
-
-  .button--ghost {
-    @apply text-indigo-500 bg-indigo-100 border-none hover:bg-indigo-200 hover:text-indigo-700 focus:bg-indigo-200;
-  }
-
-  .button--outline {
-    @apply bg-opacity-0 hover:bg-opacity-10;
-  }
-
-  .button--lg {
-    @apply px-5 py-3 font-semibold rounded-md;
-  }
-
-  .button--sm {
-    @apply px-3 py-2 font-medium rounded text-sm;
-  }
-
-  .un-pinned {
-    @apply bg-white border rounded-md;
-  }
-
-  .pinned {
-    @apply top-0 fixed right-0 left-0 shadow-md border-0 border-b-2 z-20 rounded-none;
-  }
 }

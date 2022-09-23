@@ -1,33 +1,84 @@
 module.exports = {
-  purge: ["./src/**/*.js"],
-  darkMode: 'class', // or 'media' or 'class'
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
+    fontFamily: {
+      sans: ['Lato', 'sans-serif'],
+    },
     extend: {
-      screens: {
-        light: { raw: "(prefers-color-scheme: light)" },
-        dark: { raw: "(prefers-color-scheme: dark)" }
+      colors: {
+        "mono-white": {
+          60: 'rgba(255,255,255,0.6)'
+        },
+        "mono-black": {
+          60: 'rgba(0,0,0,0.6)'
+        },
+        gray: {
+          0: '#F1F6FB',
+          100: '#CAD1D8',
+          200: '#B3BAC3',
+          300: '#8D949D',
+          400: '#6F7680',
+          500: '#494F57',
+          600: '#31363C',
+          700: '#22262C',
+          800: '#171B21',
+          900: '#0E1116',
+        },
+        "primary": {
+          0: '#FFF7F6',
+          100: '#FBE5E4',
+          200: '#F2B1AD',
+          300: '#EC7F78',
+          400: '#EA5246',
+          500: '#FC231C',
+          600: '#B4281A',
+          700: '#801A10',
+          800: '#4C0D06',
+          900: '#190201',
+        },
+        "success": {
+          0: '#BEF2BA',
+          100: '#98E391',
+          200: '#79CF71',
+          300: '#64B65D',
+          400: '#529D4E',
+          500: '#438340',
+          600: '#346935',
+          700: '#265128',
+          800: '#16391A',
+          900: '#0E2511',
+        },
+        "warning": {
+          0: '#FADFBB',
+          100: '#F6C78A',
+          200: '#F3A965',
+          300: '#E28C4E',
+          400: '#CD723A',
+          500: '#B05B2D',
+          600: '#904622',
+          700: '#6D3215',
+          800: '#53220B',
+          900: '#381604',
+        },
+        "info": {
+          0: '#D0E7FD',
+          100: '#AED6FB',
+          200: '#88BFFA',
+          300: '#69A6F8',
+          400: '#4C8CF5',
+          500: '#3470E3',
+          600: '#255AC0',
+          700: '#1B4397',
+          800: '#132E67',
+          900: '#0A1D4A',
+        },
       }
-    }
-  },
-  variants: {
-    extend: {
-      scale: ['active'],
-    }
+    },
   },
   plugins: [
-    function({ addBase, config }) {
-      addBase({
-        body: {
-          color: config("theme.colors.black"),
-          backgroundColor: config("theme.colors.white")
-        },
-        "@screen dark": {
-          body: {
-            color: config("theme.colors.white"),
-            backgroundColor: config("theme.colors.black")
-          }
-        }
-      });
-    }
-  ]
+    require('@tailwindcss/typography')
+  ],
 }

@@ -1,30 +1,20 @@
-import React from 'react';
-
-const Logo = ({admin}) => {
-  return (
-    <div className="inline-flex items-center">
-      <div className="w-12 h-12 rounded-md overflow-hidden shadow-lg transform -rotate-6">
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 80" fill="none">
-          <g clipPath="url(#clip0)">
-            <rect x="0.407715" y="0.407715" width="79.5923" height="79.5923" fill="#050506"/>
-            <rect x="40.6287" y="-40.0923" width="28.2388" height="114.157" transform="rotate(45 40.6287 -40.0923)" fill="#CE3A5E"/>
-            <rect x="60.5965" y="-20.1245" width="28.2388" height="114.157" transform="rotate(45 60.5965 -20.1245)" fill="#63C4EE"/>
-            <rect x="80.5644" y="-0.156631" width="28.2388" height="114.157" transform="rotate(45 80.5644 -0.156631)" fill="#5CB381"/>
-            <rect x="100.532" y="19.8112" width="28.2388" height="114.157" transform="rotate(45 100.532 19.8112)" fill="#E4B34B"/>
-          </g>
-          <defs>
-            <clipPath id="clip0">
-              <rect width="100%" height="100%" fill="white"/>
-            </clipPath>
-          </defs>
-        </svg>
-      </div>
-      <div className="ml-4">
-        <div className="font-extrabold text-xl">{admin ? 'Theme Admin' : 'Slack Themes'}</div>
-        <div className="text-sm text-gray-500">{admin ? 'Slack Themes v2' : 'Version 2'}</div>
-      </div>
-    </div>
+const Logo = () => {
+  return(
+    <svg width="32" height="32" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="11.0986" y="2.38171" width="9.46453" height="9.46453" rx="2" transform="rotate(25.6257 11.0986 2.38171)" fill="#CE3A5E"/>
+      <rect x="11.3332" y="3.04878" width="8.46453" height="8.46453" rx="1.5" transform="rotate(25.6257 11.3332 3.04878)" stroke="white" strokeOpacity="0.08"/>
+      <rect x="11.3332" y="3.04878" width="8.46453" height="8.46453" rx="1.5" transform="rotate(25.6257 11.3332 3.04878)" stroke="white" strokeOpacity="0.08"/>
+      <rect x="6.32324" y="12.3365" width="9.46453" height="9.46453" rx="2" transform="rotate(25.6257 6.32324 12.3365)" fill="#5CB381"/>
+      <rect x="6.55782" y="13.0036" width="8.46453" height="8.46453" rx="1.5" transform="rotate(25.6257 6.55782 13.0036)" stroke="white" strokeOpacity="0.08"/>
+      <rect x="6.55782" y="13.0036" width="8.46453" height="8.46453" rx="1.5" transform="rotate(25.6257 6.55782 13.0036)" stroke="white" strokeOpacity="0.08"/>
+      <rect x="21.2363" y="7.24463" width="9.46453" height="9.46453" rx="2" transform="rotate(25.6257 21.2363 7.24463)" fill="#63C4EE"/>
+      <rect x="21.4709" y="7.91169" width="8.46453" height="8.46453" rx="1.5" transform="rotate(25.6257 21.4709 7.91169)" stroke="white" strokeOpacity="0.08"/>
+      <rect x="21.4709" y="7.91169" width="8.46453" height="8.46453" rx="1.5" transform="rotate(25.6257 21.4709 7.91169)" stroke="white" strokeOpacity="0.08"/>
+      <rect x="16.4609" y="17.1993" width="9.46453" height="9.46453" rx="2" transform="rotate(25.6257 16.4609 17.1993)" fill="#E4B34B"/>
+      <rect x="16.6955" y="17.8664" width="8.46453" height="8.46453" rx="1.5" transform="rotate(25.6257 16.6955 17.8664)" stroke="white" strokeOpacity="0.08"/>
+      <rect x="16.6955" y="17.8664" width="8.46453" height="8.46453" rx="1.5" transform="rotate(25.6257 16.6955 17.8664)" stroke="white" strokeOpacity="0.08"/>
+    </svg>
   )
-};
+}
 
-export default Logo;
+export default Logo
