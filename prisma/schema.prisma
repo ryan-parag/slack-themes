@@ -7,17 +7,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "mysql"
+  url = env("DATABASE_URL")
   referentialIntegrity = "prisma"
-}
-
-model Contact {
-  id String @id @default(cuid())
-  firstName String
-  lastName String
-  email String
-  avatar String
 }
 
 model Theme {
