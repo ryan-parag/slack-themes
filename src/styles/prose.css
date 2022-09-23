@@ -14,8 +14,12 @@
   @apply w-full rounded-md;
 }
 
+.prose p a {
+  @apply transition font-normal no-underline break-words text-inherit bg-black bg-opacity-5 hover:bg-opacity-10 dark:bg-white dark:bg-opacity-10 dark:hover:bg-opacity-20 py-1 px-2 mx-1 leading-none rounded-md;
+}
+
 .prose a {
-  @apply font-normal no-underline break-words text-inherit;
+  @apply text-inherit font-normal no-underline;
 }
 
 .prose a code {

@@ -75,7 +75,7 @@ const Sidebar = () => {
       icon: <Info size={16}/>
     }, {
       label: 'Contribute',
-      link: '/contribute',
+      link: 'https://github.com/ryan-parag/slack-themes',
       icon: <GitHub size={16}/>,
       badge: 3
     }

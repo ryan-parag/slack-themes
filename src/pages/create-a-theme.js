@@ -8,6 +8,7 @@ import Theme from '@components/Theme';
 import Toggle from '@components/Toggle';
 import { contrastColor } from 'contrast-color'
 import Color from 'color';
+import ColorPicker from '@components/ColorPicker'
 
 async function copyTextToClipboard(text) {
   if ('clipboard' in navigator) {
@@ -34,42 +35,6 @@ const ButtonBar = ({ refresh, copyTheme }) => {
         <Clipboard size={16}/>
       </button>
       <button className="shadow-md transition ml-2 py-2 px-4 rounded-lg border border-black border-opacity-10 dark:border-white dark:border-opacity-10 text-white dark:text-zinc-900 bg-zinc-900 dark:bg-white hover:bg-zinc-800 dark:hover:bg-zinc-200">Publish</button>
-    </div>
-  )
-}
-
-const ColorPicker = ({ label, value, onChange, field }) => {
-
-  const [open, setOpen] = useState(false)
-  const [pickerColor, setPickerColor] = useState(value)
-
-  const handleChange = (color) => {
-    onChange(field, color)
-    setPickerColor(color)
-  }
-
-  return(
-    <div>
-      <button
-        className="transition flex w-full items-center rounded-lg border border-black border-opacity-10 dark:border-white dark:border-opacity-10 hover:bg-zinc-100 dark:hover:bg-zinc-800 shadow overflow-hidden"
-        onClick={ () => setOpen(!open )}>
-          <div className="h-12 w-1/3 relative border-r border-black border-opacity-10 dark:border-white dark:border-opacity-10" style={{ backgroundColor: value }}>
-            <span className="text-sm absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2" style={{ color: contrastColor({ bgColor: value }) }}>{value.toUpperCase()}</span>
-          </div>
-          <div className="flex flex-1 w-full text-left flex-col items-start px-4">
-            <span className="text-base">{label}</span>
-          </div>
-      </button>
-      {
-        open ? (
-          <div className="absolute z-10">
-            <div className="fixed top-0 bottom-0 left-0 right-0" onClick={ () => setOpen(false) }/>
-            <ChromePicker color={pickerColor} onChange={(color) => handleChange(color.hex)} />
-          </div>
-        )
-        :
-        null
-      }
     </div>
   )
 }
@@ -265,6 +230,12 @@ export default function Playground() {
               theme={createTheme}
               favorite={false}
             />
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 pb-24 lg:px-6 xl:px-8">
+            <div className="relative w-full">
+              <textarea style={{ resize: 'none' }} wrap="hard" disabled rows="2" readonly className="p-4 text-sm lg:text-base rounded-lg shadow bg-white dark:bg-zinc-900 border border-black border-opacity-10 dark:border-white dark:border-opacity-10 pr-24 w-full text-zinc-900 dark:text-white text-opacity-60 dark:text-opacity-60" value={`${createTheme.column_bg},#121016,${createTheme.active_item},${createTheme.active_item_text},${createTheme.hover_item},${createTheme.text_color},${createTheme.active_presence},${createTheme.mention_badge},${createTheme.top_nav_bg},${createTheme.top_nav_text}`}/>
+              <button onClick={() => copyTheme()} className="shadow absolute top-4 right-4 border border-black border-opacity-10 dark:border-white dark:border-opacity-10 hover:bg-zinc-100 dark:hover:bg-zinc-800 px-2 py-1 text-base rounded-lg text-zinc-900 dark:text-white">Copy</button>
+            </div>
           </div>
         </div>
       </div>
