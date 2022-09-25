@@ -32,6 +32,19 @@ const Layout = ({ children, title, toggleLabel, toggleState, setToggle, actions 
         <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5"/>
         <meta name="msapplication-TileColor" content="#da532c"/>
         <meta name="theme-color" content="#ffffff"/>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_ID}`}></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${process.env.GA_ID}', {
+            page_path: window.location.pathname,
+          });
+        `,
+          }}
+        />
       </Head>
       <div>
         <Toaster
