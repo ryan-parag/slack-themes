@@ -37,7 +37,7 @@ const Layout = ({ children, title, toggleLabel, toggleState, setToggle, actions 
         <Toaster
           position="top-right"
         />
-        <div className="flex flex-col lg:flex-row h-screen overflow-y-hidden">
+        <div className="flex flex-col lg:flex-row h-screen overflow-y-hidden scrollbar-hide">
           <Header setOpen={setOpen} open={open} />
           <div className="w-64 hidden lg:block">
             <Sidebar/>
@@ -49,7 +49,7 @@ const Layout = ({ children, title, toggleLabel, toggleState, setToggle, actions 
               </div>
             )
           }
-          <div className={`w-full flex-1 overflow-y-hidden h-screen relative ${open && 'translate-x-64'} transition`}>
+          <div className={`w-full flex-1 overflow-y-hidden scrollbar-hide h-screen relative ${open && 'translate-x-64'} transition`}>
             <div className="px-4 xl:px-8 h-16 flex items-center justify-between border-b border-black border-opacity-10 dark:border-white dark:border-opacity-10">
               <h1 className="font-bold text-lg">{title}</h1>
               {
@@ -70,7 +70,7 @@ const Layout = ({ children, title, toggleLabel, toggleState, setToggle, actions 
                 )
               }
             </div>
-            <main className="overflow-y-scroll h-full">
+            <main className="overflow-y-scroll scrollbar-hide h-full">
               {children}
             </main>
           </div>

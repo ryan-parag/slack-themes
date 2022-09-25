@@ -9,6 +9,7 @@ import Toggle from '@components/Toggle';
 import { contrastColor } from 'contrast-color'
 import Color from 'color';
 import ColorPicker from '@components/ColorPicker'
+import Modal from '@components/Modal'
 
 async function copyTextToClipboard(text) {
   if ('clipboard' in navigator) {
@@ -19,7 +20,7 @@ async function copyTextToClipboard(text) {
 }
 
 
-const ButtonBar = ({ refresh, copyTheme }) => {
+const ButtonBar = ({ refresh, copyTheme, publish }) => {
   return(
     <div className="inline-flex items-center">
       <button
@@ -34,7 +35,12 @@ const ButtonBar = ({ refresh, copyTheme }) => {
       >
         <Clipboard size={16}/>
       </button>
-      <button className="shadow-md transition ml-2 py-2 px-4 rounded-lg border border-black border-opacity-10 dark:border-white dark:border-opacity-10 text-white dark:text-zinc-900 bg-zinc-900 dark:bg-white hover:bg-zinc-800 dark:hover:bg-zinc-200">Publish</button>
+      <button
+        className="hidden shadow-md transition ml-2 py-2 px-4 rounded-lg border border-black border-opacity-10 dark:border-white dark:border-opacity-10 text-white dark:text-zinc-900 bg-zinc-900 dark:bg-white hover:bg-zinc-800 dark:hover:bg-zinc-200"
+        onClick={() => publish(true)}
+      >
+        Publish
+      </button>
     </div>
   )
 }
@@ -42,6 +48,7 @@ const ButtonBar = ({ refresh, copyTheme }) => {
 export default function Playground() {
 
   const [toggle,setToggle] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
 
   const currentTheme = () => {
     let root
@@ -171,7 +178,7 @@ export default function Playground() {
       const text_color = getComputedStyle(root).getPropertyValue("--text_color");
       const top_nav_bg = getComputedStyle(root).getPropertyValue("--top_nav_bg");
 
-      const str = `${column_bg},#121016,${active_item},${active_item_text},${hover_item},${text_color},${active_presence},${mention_badge},${top_nav_bg},${top_nav_text}`
+      const str = `${column_bg},#121016,${active_item},${active_item_text},${hover_item},${text_color},${active_presence},${mention_badge},${toggle ? column_bg : top_nav_bg},${toggle ? text_color : top_nav_text}`
 
       copyTextToClipboard(str)
 
@@ -188,12 +195,13 @@ export default function Playground() {
   return (
     <Layout
       title={'Create a Theme'}
-      actions={<ButtonBar refresh={refresh} copyTheme={copyTheme}/>}
+      actions={<ButtonBar refresh={refresh} copyTheme={copyTheme} publish={setIsOpen}/>}
     >
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen}/>
       <div className="flex w-full h-full">
         <div className="w-full md:w-1/2 xl:w-1/3 h-full border-r border-black border-opacity-10 dark:border-white dark:border-opacity-10 overflow-y-hidden">
           <h2 className="col-span-2 text-sm border-b border-black border-opacity-10 dark:border-white dark:border-opacity-10 py-4 px-4 xl:px-8">Customize Theme Colors</h2>
-          <div className="grid grid-col-1 gap-4 py-4 px-4 xl:px-8 h-full overflow-y-scroll pb-96 relative">
+          <div className="grid grid-col-1 gap-4 py-4 px-4 xl:px-8 h-full overflow-y-scroll scrollbar-hide pb-96 relative">
             <div className="flex w-full items-center rounded-lg border border-black border-opacity-10 dark:border-white dark:border-opacity-10">
               <div className="w-1/3 relative h-12 bg-transparent border-r border-black border-opacity-10 dark:border-white dark:border-opacity-10">
                 <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
@@ -233,7 +241,7 @@ export default function Playground() {
           </div>
           <div className="absolute bottom-0 left-0 right-0 pb-24 lg:px-6 xl:px-8">
             <div className="relative w-full">
-              <textarea style={{ resize: 'none' }} wrap="hard" disabled rows="2" readonly className="p-4 text-sm lg:text-base rounded-lg shadow bg-white dark:bg-zinc-900 border border-black border-opacity-10 dark:border-white dark:border-opacity-10 pr-24 w-full text-zinc-900 dark:text-white text-opacity-60 dark:text-opacity-60" value={`${createTheme.column_bg},#121016,${createTheme.active_item},${createTheme.active_item_text},${createTheme.hover_item},${createTheme.text_color},${createTheme.active_presence},${createTheme.mention_badge},${createTheme.top_nav_bg},${createTheme.top_nav_text}`}/>
+              <textarea style={{ resize: 'none' }} wrap="hard" disabled rows="2" readOnly className="p-4 text-sm lg:text-base rounded-lg shadow bg-white dark:bg-zinc-900 border border-black border-opacity-10 dark:border-white dark:border-opacity-10 pr-24 w-full text-zinc-900 dark:text-white text-opacity-60 dark:text-opacity-60" value={`${createTheme.column_bg},#121016,${createTheme.active_item},${createTheme.active_item_text},${createTheme.hover_item},${createTheme.text_color},${createTheme.active_presence},${createTheme.mention_badge},${toggle ? createTheme.column_bg : createTheme.top_nav_bg},${toggle ? createTheme.text_color : createTheme.top_nav_text}`}/>
               <button onClick={() => copyTheme()} className="shadow absolute top-4 right-4 border border-black border-opacity-10 dark:border-white dark:border-opacity-10 hover:bg-zinc-100 dark:hover:bg-zinc-800 px-2 py-1 text-base rounded-lg text-zinc-900 dark:text-white">Copy</button>
             </div>
           </div>

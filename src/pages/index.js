@@ -4,11 +4,18 @@ import Layout from '@components/Layout';
 import ColorContrastChecker from 'color-contrast-checker';
 import toast from 'react-hot-toast';
 import ThemeList from '@components/ThemeList';
+import { ArrowDown, ArrowUp } from 'react-feather';
 
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
-  let data = await prisma.theme.findMany();
+  let data = await prisma.theme.findMany({
+    orderBy: [
+      {
+        name: 'asc',
+      },
+    ],
+  });
   let dataCat = await prisma.categories.findMany()
   data = JSON.parse(JSON.stringify(data))
   dataCat = JSON.parse(JSON.stringify(dataCat))
@@ -30,12 +37,37 @@ async function copyTextToClipboard(text) {
 
 export default function Home({ initialThemes, categories }) {
 
+  const sorts = [
+    {
+      name: 'Name',
+      icon: <ArrowDown size={16} className="ml-2"/>,
+      type: 'name',
+      order: 'desc'
+    }, {
+      name: 'Name',
+      icon: <ArrowUp size={16} className="ml-2"/>,
+      type: 'name',
+      order: 'asc'
+    }, {
+      name: 'Likes',
+      icon: <ArrowDown size={16} className="ml-2"/>,
+      type: 'likes',
+      order: 'desc'
+    }, {
+      name: 'Likes',
+      icon: <ArrowUp size={16} className="ml-2"/>,
+      type: 'likes',
+      order: 'asc'
+    }
+  ]
+
   const [themes, setThemes] = useState(initialThemes)
   const [filters, setFilters] = useState(categories)
   const [minimalHeader, setMinimalHeader] = useState(true)
   const [selected, setSelected] = useState(null)
   const [filteredThemes, setFilteredThemes] = useState(themes)
   const [copyString, setCopyString] = useState('')
+  const [sorting, setSorting] = useState(sorts[0])
 
   const changeTheme = (theme) => {
     let root
@@ -111,6 +143,9 @@ export default function Home({ initialThemes, categories }) {
         setSelected={setSelected}
         filters={filters}
         changeTheme={changeTheme}
+        sorts={sorts}
+        sorting={sorting}
+        setSorting={setSorting}
       />
     </Layout>
   );

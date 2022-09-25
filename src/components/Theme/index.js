@@ -1,6 +1,23 @@
 import React, { useState } from 'react'
 import { Heart } from 'react-feather'
 
+async function addLike(data) {
+  const parsedData = JSON.stringify(data)
+
+  const response = await fetch('/api/themes/add-like', {
+    method: 'POST',
+    body: parsedData
+  })
+
+  if(!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  return await response.json();
+
+  console.log(parsedData)
+}
+
 const SlackIcon = ({ presence, theme, bg }) => {
   return(
     <div className="h-5 w-5 mr-2 relative">
@@ -103,6 +120,7 @@ const Theme = ({theme, changeTheme, minimalHeader, favorite}) => {
 
   const [isHovering, setIsHovering] = useState(false);
   const [copied, setCopied] = useState(false)
+  const [likes, setLikes] = useState(theme.likes)
 
   const handleMouseEnter = () => {
     setIsHovering(true);
@@ -161,9 +179,18 @@ const Theme = ({theme, changeTheme, minimalHeader, favorite}) => {
       <div className="mt-3">
         {
           favorite && (
-            <button className="inline-flex items-center text-sm px-2 py-1 transition bg-zinc-100 dark:bg-zinc-800 rounded-md border dark:border-white dark:border-opacity-10 border-black border-opacity-10 hover:bg-pink-500 hover:bg-opacity-20 hover:scale-105 hover:rotate-6 dark:text-zinc-400 hover:dark:text-pink-500 hover:text-pink-700 hover:border-pink-500 hover:border-opacity-20">
+            <button
+              className="inline-flex items-center text-sm px-2 py-1 transition bg-zinc-100 dark:bg-zinc-800 rounded-md border dark:border-white dark:border-opacity-10 border-black border-opacity-10 hover:bg-pink-500 hover:bg-opacity-20 hover:scale-105 hover:rotate-6 dark:text-zinc-400 hover:dark:text-pink-500 hover:text-pink-700 hover:border-pink-500 hover:border-opacity-20"
+              onClick={async () => {
+                try {
+                  await addLike(theme.id);
+                } catch (err) {
+                  console.log(err);
+                }
+              }}
+            >
               <Heart size={16} className="mr-1"/>
-              {theme.likes}
+              {likes}
             </button>
           )
         }

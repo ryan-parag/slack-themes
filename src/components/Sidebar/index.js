@@ -94,7 +94,7 @@ const Sidebar = () => {
   ]
 
   return(
-    <div className="w-full h-full column_bg--bg border-r contrast--border overflow-y-scroll flex flex-col justify-between">
+    <div className="w-full h-full column_bg--bg border-r contrast--border overflow-y-scroll scrollbar-hide flex flex-col justify-between">
       <div className="w-full">
         <Link href="/">
           <a className="flex items-center px-3 py-4 hover:hover_item--bg transition border-b contrast--border ">
