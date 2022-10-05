@@ -50,7 +50,7 @@ export default function About() {
 
   return (
     <Layout title={'About'}>
-      <div className="w-full h-full overflow-y-scroll pb-32">
+      <div className="w-full h-full overflow-y-scroll overflow-x-hidden pb-32">
         <div className="mx-auto max-w-screen-md prose p-4 xl:p-8">
           <div className="relative inline-block transform transition hover:scale-110 hover:-rotate-12">
             <Logo/>
