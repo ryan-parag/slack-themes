@@ -104,7 +104,7 @@
   }
 
   .text-link {
-    @apply transition text-gray-600 dark:text-gray-400 hover:text-gray-900 hover:dark:text-gray-0;
+    @apply transition font-normal no-underline break-words text-inherit bg-black bg-opacity-5 hover:bg-opacity-10 dark:bg-white dark:bg-opacity-10 dark:hover:bg-opacity-20 py-1 px-2 leading-none rounded-md;
   }
 
   .text-link--icon {

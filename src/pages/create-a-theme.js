@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Layout from '@components/Layout';
 import { RefreshCcw, Clipboard } from 'react-feather';
-import { ChromePicker } from 'react-color';
 import { toast } from 'react-hot-toast';
 import ColorContrastChecker from 'color-contrast-checker';
 import Theme from '@components/Theme';
@@ -10,6 +9,7 @@ import { contrastColor } from 'contrast-color'
 import Color from 'color';
 import ColorPicker from '@components/ColorPicker'
 import Modal from '@components/Modal'
+import Tooltip from '@components/Tooltip'
 
 async function copyTextToClipboard(text) {
   if ('clipboard' in navigator) {
@@ -23,18 +23,23 @@ async function copyTextToClipboard(text) {
 const ButtonBar = ({ refresh, copyTheme, publish }) => {
   return(
     <div className="inline-flex items-center">
-      <button
-        className="shadow transition ml-2 h-11 w-11 rounded-lg border border-black border-opacity-10 dark:border-white dark:border-opacity-10 hover:bg-zinc-100 dark:hover:bg-zinc-800 mr-1 inline-flex items-center justify-center"
-        onClick={() => refresh()}
-      >
-        <RefreshCcw size={16}/>
-      </button>
-      <button
-        className="shadow transition ml-2 h-11 w-11 rounded-lg border border-black border-opacity-10 dark:border-white dark:border-opacity-10 hover:bg-zinc-100 dark:hover:bg-zinc-800 mr-1 inline-flex items-center justify-center"
-        onClick={() => copyTheme()}
-      >
-        <Clipboard size={16}/>
-      </button>
+      <Tooltip tooltipText="Reset theme">
+        <button
+          className="shadow transition ml-2 h-11 w-11 rounded-lg border border-black border-opacity-10 dark:border-white dark:border-opacity-10 hover:bg-zinc-100 dark:hover:bg-zinc-800 mr-1 inline-flex items-center justify-center"
+          onClick={() => refresh()}
+        >
+          <RefreshCcw size={16}/>
+        </button>
+      </Tooltip>
+      <Tooltip tooltipText="Copy theme">
+        <button
+          title={'Copy theme to clipboard'}
+          className="shadow transition ml-2 h-11 w-11 rounded-lg border border-black border-opacity-10 dark:border-white dark:border-opacity-10 hover:bg-zinc-100 dark:hover:bg-zinc-800 mr-1 inline-flex items-center justify-center"
+          onClick={() => copyTheme()}
+        >
+          <Clipboard size={16}/>
+        </button>
+      </Tooltip>
       <button
         className="hidden shadow-md transition ml-2 py-2 px-4 rounded-lg border border-black border-opacity-10 dark:border-white dark:border-opacity-10 text-white dark:text-zinc-900 bg-zinc-900 dark:bg-white hover:bg-zinc-800 dark:hover:bg-zinc-200"
         onClick={() => publish(true)}
@@ -239,7 +244,7 @@ export default function Playground() {
               favorite={false}
             />
           </div>
-          <div className="absolute bottom-0 left-0 right-0 pb-24 lg:px-6 xl:px-8">
+          <div className="absolute bottom-0 left-0 right-0 pb-24 lg:px-6 xl:px-8 overflow-x-hidden">
             <div className="relative w-full">
               <textarea style={{ resize: 'none' }} wrap="hard" disabled rows="2" readOnly className="p-4 text-sm lg:text-base rounded-lg shadow bg-white dark:bg-zinc-900 border border-black border-opacity-10 dark:border-white dark:border-opacity-10 pr-24 w-full text-zinc-900 dark:text-white text-opacity-60 dark:text-opacity-60" value={`${createTheme.column_bg},#121016,${createTheme.active_item},${createTheme.active_item_text},${createTheme.hover_item},${createTheme.text_color},${createTheme.active_presence},${createTheme.mention_badge},${toggle ? createTheme.column_bg : createTheme.top_nav_bg},${toggle ? createTheme.text_color : createTheme.top_nav_text}`}/>
               <button onClick={() => copyTheme()} className="shadow absolute top-4 right-4 border border-black border-opacity-10 dark:border-white dark:border-opacity-10 hover:bg-zinc-100 dark:hover:bg-zinc-800 px-2 py-1 text-base rounded-lg text-zinc-900 dark:text-white">Copy</button>

@@ -58,15 +58,23 @@ export default function About() {
           <h2>Beautiful, curated themes to help personalize all of your different Slack workspaces.</h2>
           <p>Having trouble keeping track of all of your Slack workspaces? Choose and copy <Link href="/"><a>one of the themes in the list</a></Link> to personalize a Slack workspace.</p>
           <p>Thanks for visiting 👍!</p>
-          <h3>How to use a Slack theme:</h3>
+          <h3 id="tutorial">How to use a Slack theme:</h3>
           <ol>
             <li>
               <h4>Choose a Theme</h4>
               <p>Explore from the <Link href="/"><a>list of Slack themes</a></Link> and click the theme item to copy the HEX code string to your clipboard.</p>
+              <figure>
+                <img src="/step1.gif" className="block w-full border border-black border-opacity-10 dark:border-white dark:border-opacity-10" alt="Copy theme from list"/>
+                <figcaption>Find a theme and click to copy</figcaption>
+              </figure>
             </li>
             <li>
               <h4>Paste in your Workspace</h4>
               <p>Paste the copied HEX string into any text box in the Slack workspace in which you would like to change themes.</p>
+              <figure>
+                <img src="/step2.gif" className="block w-full border border-black border-opacity-10 dark:border-white dark:border-opacity-10" alt="Paste in Slack and change theme"/>
+                <figcaption>Paste in Slack and change theme by clicking the generated button</figcaption>
+              </figure>
             </li>
             <li>
               <h4>Change Theme</h4>
