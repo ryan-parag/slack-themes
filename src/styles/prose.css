@@ -1,5 +1,5 @@
 .prose {
-  @apply text-zinc-900 dark:text-zinc-200
+  @apply text-zinc-900 dark:text-zinc-200 !max-w-3xl
 }
 
 .prose blockquote {

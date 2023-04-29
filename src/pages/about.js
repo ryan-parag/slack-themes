@@ -88,7 +88,7 @@ export default function About() {
   return (
     <Layout title={'About'}>
       <div className="w-full h-full overflow-y-hidden">
-        <div className="mx-auto max-w-screen-2xl grid grid-cols-3 w-full h-full overflow-y-hidden">
+        <div className="mx-auto max-w-screen-2xl grid grid-cols-4 w-full h-full overflow-y-hidden">
           <div className="h-full prose scrollbar-hide p-4 xl:p-8 bg-zinc-100 dark:bg-zinc-800 hidden lg:block">
             <span className="text-sm text-zinc-600 dark:text-zinc-400">Navigation</span>
             <ul className="!list-none !pl-0">
@@ -103,7 +103,7 @@ export default function About() {
               <NavigationItem label="Links" href="#links"/>
             </ul>
           </div>
-          <div className="h-full col-span-3 lg:col-span-2 prose overflow-y-scroll scrollbar-hide p-4 xl:p-8">
+          <div className="h-full col-span-4 lg:col-span-3 prose overflow-y-scroll scrollbar-hide p-4 xl:p-8">
             <div id="introduction" className="relative inline-block transform transition hover:scale-110 hover:-rotate-12">
               <Logo/>
             </div>
