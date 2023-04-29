@@ -36,10 +36,12 @@ const CopyButton = () => {
 
   return(
     <button
-      className="text-sm border contrast--border text-color shadow text-center px-2 py-3 rounded-md flex w-full items-center justify-center transition hover:hover_item--bg text_color--text"
+      className="button-class contrast--border hover:hover_item--bg text_color--text"
       onClick={() => copyTheme()}
     >
-      <Copy size={16} className="mr-2"/>
+      <div className="button-class__icon">
+        <Copy size={16} className="mr-2"/>
+      </div>
       Copy Sidebar Theme
     </button>
   )
@@ -105,8 +107,10 @@ const Sidebar = () => {
         <ul className="border-b contrast--border py-2">
           <li className="px-3">
             <Link href="/create-a-theme">
-              <a className="text-sm border contrast--border text-color shadow text-center px-2 py-2 rounded-md flex w-full items-center justify-center transition hover:hover_item--bg text_color--text">
-                <ThemeIcon/>
+              <a className="button-class contrast--border hover:hover_item--bg text_color--text">
+                <div className="button-class__icon">
+                  <ThemeIcon/>
+                </div>
                 Create a Theme
               </a>
             </Link>

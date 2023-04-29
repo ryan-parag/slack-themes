@@ -79,7 +79,7 @@ const ListItem = ({ label, active, theme, badge, presence }) => {
   if(active) {
     return(
       <div
-        className={`px-4 h-10 flex items-center text-left text-base transition w-full flex-start relative`}
+        className={`rounded-md my-px px-3 h-10 flex items-center text-left text-base transition w-full flex-start relative`}
         style={{
           backgroundColor: theme.active_item,
           color: theme.active_item_text
@@ -98,7 +98,7 @@ const ListItem = ({ label, active, theme, badge, presence }) => {
 
   return(
     <div
-      className={`px-4 h-10 flex items-center text-left text-base transition w-full flex-start relative`}
+      className={`rounded-md px-3 my-px h-10 flex items-center text-left text-base transition w-full flex-start relative`}
       style={{
         backgroundColor: isHovering ? theme.hover_item : 'transparent',
       }}
@@ -146,7 +146,7 @@ const Theme = ({theme, changeTheme, minimalHeader, favorite}) => {
         onClick={changeTheme ? () => handleClick(theme) : () => console.log(theme)}
       >
         <div
-          className="p-2 text-xs w-full text-center uppercase tracking-wider"
+          className="py-2 text-xs w-full text-center uppercase tracking-wider"
           style={{
             backgroundColor: minimalHeader ? 'transparent' : theme.top_nav_bg,
             color: minimalHeader ? 'inherit' : theme.top_nav_text
@@ -163,24 +163,30 @@ const Theme = ({theme, changeTheme, minimalHeader, favorite}) => {
           }
         </div>
         <div
-          className="px-4 py-2 text-left text-base transition w-full"
-          style={{
-            backgroundColor: isHovering ? theme.hover_item : 'transparent',
-          }}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          className="w-full mb-2 text-left px-3"
         >
-          {theme.name ? theme.name : 'Sidebar Theme'}
+          <span
+            className="inline-flex rounded-md transition px-3 py-1"
+            style={{
+              backgroundColor: isHovering ? theme.hover_item : 'transparent',
+            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            {theme.name ? theme.name : 'Sidebar Theme'}
+          </span>
         </div>
-        <ListItem theme={theme} active/>
-        <ListItem theme={theme} badge presence/>
-        <ListItem theme={theme}/>
+        <div className="px-3 pb-2 w-full flex flex-col">
+          <ListItem theme={theme} active/>
+          <ListItem theme={theme} badge presence/>
+          <ListItem theme={theme}/>
+        </div>
       </button>
       <div className="mt-3">
         {
           favorite && (
             <button
-              className="inline-flex items-center text-sm px-2 py-1 transition bg-zinc-100 dark:bg-zinc-800 rounded-md border dark:border-white dark:border-opacity-10 border-black border-opacity-10 hover:bg-pink-500 hover:bg-opacity-20 hover:scale-105 hover:rotate-6 dark:text-zinc-400 hover:dark:text-pink-500 hover:text-pink-700 hover:border-pink-500 hover:border-opacity-20"
+              className="inline-flex items-center text-sm px-2 py-1 transition bg-zinc-100 dark:bg-zinc-800 rounded-full hover:bg-pink-500 hover:bg-opacity-20 hover:scale-105 hover:rotate-6 dark:text-zinc-400 hover:dark:text-pink-500 hover:text-pink-700"
               onClick={async () => {
                 try {
                   await addLike(theme.id);
