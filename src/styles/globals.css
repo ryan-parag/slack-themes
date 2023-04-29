@@ -140,4 +140,16 @@
     display: none;
   }
 
+  .button-class {
+    @apply text-sm border shadow text-center px-2 py-2 rounded-md flex w-full items-center justify-center transition
+  }
+
+  .button-class__icon {
+    @apply transition
+  }
+
+  .button-class:hover .button-class__icon {
+    @apply -rotate-6 scale-110
+  }
+
 }

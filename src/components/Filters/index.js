@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import { ChevronDown, Check, Square } from 'react-feather';
+import { ChevronDown, Check, Circle } from 'react-feather';
 
 const Filters = ({ filters, selected, setSelected }) => {
 
@@ -19,7 +19,9 @@ const Filters = ({ filters, selected, setSelected }) => {
               )
             }
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-              <ChevronDown size={16}/>
+              <svg className={`transition`} width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.2929 16.2929L4.70711 9.70711C4.07714 9.07714 4.52331 8 5.41421 8H18.5858C19.4767 8 19.9229 9.07714 19.2929 9.7071L12.7071 16.2929C12.3166 16.6834 11.6834 16.6834 11.2929 16.2929Z" fill="currentColor"/>
+              </svg>
             </span>
           </Listbox.Button>
           <Transition
@@ -55,7 +57,7 @@ const Filters = ({ filters, selected, setSelected }) => {
                       {selected ? (
                         <Check size={16} className="text-green-500" />
                       ) : (
-                        <Square size={16} className="opacity-60" />
+                        <Circle size={16} className="opacity-60" />
                       )}
                       </span>
                     </>

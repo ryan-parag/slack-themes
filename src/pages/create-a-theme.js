@@ -10,6 +10,7 @@ import Color from 'color';
 import ColorPicker from '@components/ColorPicker'
 import Modal from '@components/Modal'
 import Tooltip from '@components/Tooltip'
+import { theme } from 'tailwind.config';
 
 async function copyTextToClipboard(text) {
   if ('clipboard' in navigator) {
@@ -44,7 +45,7 @@ const ButtonBar = ({ refresh, copyTheme, publish }) => {
         className="hidden shadow-md transition ml-2 py-2 px-4 rounded-lg border border-black border-opacity-10 dark:border-white dark:border-opacity-10 text-white dark:text-zinc-900 bg-zinc-900 dark:bg-white hover:bg-zinc-800 dark:hover:bg-zinc-200"
         onClick={() => publish(true)}
       >
-        Publish
+        Submit
       </button>
     </div>
   )
@@ -104,7 +105,8 @@ export default function Playground() {
     text_color: defaultTheme.text_color,
     top_nav_bg: defaultTheme.top_nav_bg,
     contrast: defaultTheme.contrast,
-    contrast_border: defaultTheme.contrast_border
+    contrast_border: defaultTheme.contrast_border,
+    name: 'Custom Theme'
   })
 
   const changeTheme = (theme) => {
@@ -244,9 +246,9 @@ export default function Playground() {
               favorite={false}
             />
           </div>
-          <div className="absolute bottom-0 left-0 right-0 pb-24 lg:px-6 xl:px-8 overflow-x-hidden">
+          <div className="bg-red-500 absolute bottom-0 left-0 right-0 overflow-x-hidden h-48">
             <div className="relative w-full">
-              <textarea style={{ resize: 'none' }} wrap="hard" disabled rows="2" readOnly className="p-4 text-sm lg:text-base rounded-lg shadow bg-white dark:bg-zinc-900 border border-black border-opacity-10 dark:border-white dark:border-opacity-10 pr-24 w-full text-zinc-900 dark:text-white text-opacity-60 dark:text-opacity-60" value={`${createTheme.column_bg},#121016,${createTheme.active_item},${createTheme.active_item_text},${createTheme.hover_item},${createTheme.text_color},${createTheme.active_presence},${createTheme.mention_badge},${toggle ? createTheme.column_bg : createTheme.top_nav_bg},${toggle ? createTheme.text_color : createTheme.top_nav_text}`}/>
+              <textarea style={{ resize: 'none' }} wrap="hard" disabled rows="2" readOnly className="p-4 text-sm lg:text-base shadow bg-white dark:bg-zinc-900 w-full text-zinc-900 dark:text-white text-opacity-60 dark:text-opacity-60 absolute top-0 bottom-0 right-0 left-0 h-40 rounded-none" value={`${createTheme.column_bg},#121016,${createTheme.active_item},${createTheme.active_item_text},${createTheme.hover_item},${createTheme.text_color},${createTheme.active_presence},${createTheme.mention_badge},${toggle ? createTheme.column_bg : createTheme.top_nav_bg},${toggle ? createTheme.text_color : createTheme.top_nav_text}`}/>
               <button onClick={() => copyTheme()} className="shadow absolute top-4 right-4 border border-black border-opacity-10 dark:border-white dark:border-opacity-10 hover:bg-zinc-100 dark:hover:bg-zinc-800 px-2 py-1 text-base rounded-lg text-zinc-900 dark:text-white">Copy</button>
             </div>
           </div>

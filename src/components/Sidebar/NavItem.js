@@ -4,7 +4,7 @@ import Image from 'next/image';
 const NavItem = ({ label, link, icon, active, badge, user }) => {
   if(link.includes('http')) {
     return(
-      <a href={link} target="_blank" className={`flex items-center px-3 py-2 text-sm transition ${active ? 'active_item--bg active_item_text--text ': 'text_color--text hover:hover_item--bg'}`}>
+      <a href={link} target="_blank" className={`flex items-center px-3 py-2 text-sm transition rounded-md ${active ? 'active_item--bg active_item_text--text ': 'text_color--text hover:hover_item--bg'}`}>
         <div className="h-5 w-5 relative">
           {
             user ? (
@@ -17,7 +17,7 @@ const NavItem = ({ label, link, icon, active, badge, user }) => {
             )
             :
             (
-              <svg width="20" height="20" viewBox="0 0 20 20">
+              <svg width="16" height="16" viewBox="0 0 20 20">
                 <path fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.5" d="m9 3.75-2.5 14.5m7.25-14.5-2.5 14.5m-7.5-10.5h13.5m-14.5 7h13.5"></path>
               </svg>
             )
@@ -38,7 +38,7 @@ const NavItem = ({ label, link, icon, active, badge, user }) => {
   }
   return(
     <Link href={link}>
-      <a className={`flex items-center px-3 py-2 text-sm transition ${active ? 'active_item--bg active_item_text--text ': 'text_color--text hover:hover_item--bg'}`}>
+      <a className={`flex items-center px-3 py-2 my-px text-sm transition rounded-md ${active ? 'active_item--bg active_item_text--text ': 'text_color--text hover:hover_item--bg'}`}>
         <div className="h-5 w-5 relative">
           {
             user ? (
@@ -48,7 +48,7 @@ const NavItem = ({ label, link, icon, active, badge, user }) => {
             )
             :
             (
-              <svg width="20" height="20" viewBox="0 0 20 20">
+              <svg width="16" height="16" viewBox="0 0 20 20">
                 <path fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.5" d="m9 3.75-2.5 14.5m7.25-14.5-2.5 14.5m-7.5-10.5h13.5m-14.5 7h13.5"></path>
               </svg>
             )

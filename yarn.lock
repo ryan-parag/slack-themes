@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@babel/runtime@^7.21.5":
+  version "7.21.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.21.5.tgz#8492dddda9644ae3bda3b45eabe87382caee7200"
+  integrity sha512-8jI69toZqqcsnqGGqwGS4Qb1VwLOEp4hz+CXPywcvjs60u3B4Pom/U/7rm4W8tMOYEB+E9wgD0mW1l3r8qlI9Q==
+  dependencies:
+    regenerator-runtime "^0.13.11"
+
 "@emotion/is-prop-valid@^0.8.2":
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"
@@ -601,6 +608,11 @@ framesync@^4.1.0:
   dependencies:
     hey-listen "^1.0.5"
 
+freezeframe@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/freezeframe/-/freezeframe-5.0.2.tgz#dca477f1836c3932053719a66244244d46b14348"
+  integrity sha512-Lp1ltC2vJGBqxdW5U4Hx+JMW+s9KfTPpxKhSTlpmQxYX5oK66y3GIZo56Jie4XtSOApSbfc8SBcsbZzeTNKfFg==
+
 fsevents@~2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.2.tgz#8a526f78b8fdf4623b709e0b975c52c24c02fd1a"
@@ -1186,6 +1198,11 @@ react-feather@^2.0.9:
   dependencies:
     prop-types "^15.7.2"
 
+react-freezeframe@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/react-freezeframe/-/react-freezeframe-5.0.2.tgz#e1f00dcd1d89827f6de960318552a969feb867e6"
+  integrity sha512-UOabWMDpklR6Kx/nXw89NzD4IqUdM/wkrMUTOpP7otT/9qfvQOnWsIIqXj9QHt4LwJFYKGBRUJqNh+o/V6Yhow==
+
 react-ga@^3.3.0:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-3.3.1.tgz#d8e1f4e05ec55ed6ff944dcb14b99011dfaf9504"
@@ -1252,6 +1269,11 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+regenerator-runtime@^0.13.11:
+  version "0.13.11"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
+  integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
 
 registry-auth-token@^4.0.0:
   version "4.2.2"
