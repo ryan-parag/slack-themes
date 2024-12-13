@@ -239,6 +239,10 @@ export default function Playground() {
           </div>
         </div>
         <div className="hidden md:block w-full flex-1 h-full bg-zinc-100 dark:bg-zinc-800 relative">
+        <div class="bg-info-0 border-l-4 border-info-500 text-info-900 p-4" role="alert">
+          <p class="font-bold">Be Warned</p>
+          <p>Something not ideal might be happening.</p>
+        </div>
           <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-64">
             <Theme
               minimalHeader={toggle}
