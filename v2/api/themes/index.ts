@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import { randomUUID } from 'crypto'
-import { turso } from '../_lib/turso'
-import { getAuthUserId } from '../_lib/auth'
-import type { ThemeSeeds } from '../../src/utils/themeGenerator'
+import { turso } from '../_lib/turso.js'
+import { getAuthUserId } from '../_lib/auth.js'
+import type { ThemeSeeds } from '../../src/utils/themeGenerator.js'
 
 interface ThemeRow {
   id: string
