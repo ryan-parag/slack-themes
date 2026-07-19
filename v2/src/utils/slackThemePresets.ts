@@ -21,6 +21,8 @@
  *   top_nav_text          text color of the top nav bar (IA themes only)
  */
 
+import type { ResolvedSlackTheme } from "@/components/SlackSidebarPreview";
+
 /** How the active theme was chosen. */
 export const ThemeMode = {
   CUSTOM: "custom_theme",
@@ -58,7 +60,9 @@ export const ThemeName = {
   ECO: "eco_theme",
 };
 
-const light = (overrides) => ({
+type PresetOverrides = Omit<ResolvedSlackTheme, "badge_text_color">;
+
+const light = (overrides: PresetOverrides): ResolvedSlackTheme => ({
   badge_text_color: "#FFFFFF",
   ...overrides,
 });
@@ -190,7 +194,7 @@ export const LIGHT_PRESETS = {
 };
 LIGHT_PRESETS[ThemeName.AUBERGINE_BRIGHT] = LIGHT_PRESETS[ThemeName.DEFAULT];
 
-const dark = (overrides) => ({
+const dark = (overrides: PresetOverrides): ResolvedSlackTheme => ({
   badge_text_color: "#FFFFFF",
   ...overrides,
 });

@@ -9,6 +9,21 @@
 
 import { contrastRatio } from "./slackThemeColors";
 import { ThemeMode, ThemeName, LIGHT_PRESETS, DARK_PRESETS } from "./slackThemePresets";
+import type { CustomThemeValues } from "@/store/customThemeStore";
+import type { ResolvedSlackTheme } from "@/components/SlackSidebarPreview";
+
+interface TopNavOverride {
+  top_nav_bg?: string;
+  top_nav_text?: string;
+}
+
+interface ResolveSlackThemeOptions {
+  mode?: "light" | "dark";
+  themeMode?: string;
+  themeName?: string;
+  customValues?: CustomThemeValues;
+  topNavOverride?: TopNavOverride;
+}
 
 const CUSTOM_KEYS = [
   "column_bg",
@@ -21,34 +36,37 @@ const CUSTOM_KEYS = [
   "badge",
 ];
 
-const isFilledHex = (value) =>
+const isFilledHex = (value: unknown) =>
   typeof value === "string" && /^#?[0-9a-f]{3,8}$/i.test(value);
 
 /** True if `values` has every key a fully custom (non-IA) theme needs. */
-export function isCustomTheme(values) {
+export function isCustomTheme(values: CustomThemeValues | undefined) {
+  const record = values as unknown as Record<string, unknown> | undefined;
   return !!(
-    values &&
-    CUSTOM_KEYS.every((key) => isFilledHex(values[key])) &&
+    record &&
+    CUSTOM_KEYS.every((key) => isFilledHex(record[key])) &&
     ["top_nav_bg", "top_nav_text"].every(
-      (key) => values[key] === undefined || isFilledHex(values[key])
+      (key) => record[key] === undefined || isFilledHex(record[key])
     )
   );
 }
 
 /** True if `values` at least has a valid top-nav override (IA theming). */
-export function isIaTheme(values) {
-  return !!(values && ["top_nav_bg", "top_nav_text"].every((key) => isFilledHex(values[key])));
+export function isIaTheme(values: TopNavOverride | undefined) {
+  const record = values as Record<string, unknown> | undefined;
+  return !!(record && ["top_nav_bg", "top_nav_text"].every((key) => isFilledHex(record[key])));
 }
 
 /**
  * Fill in the derived fields (top_nav_bg/top_nav_text/badge_text_color) for
  * a user-supplied custom palette, the same way Slack's client does.
  */
-export function convertCustomThemeToTheme(customValues, topNavOverride) {
-  const topNavText =
-    customValues.top_nav_text || topNavOverride?.top_nav_text || customValues.text_color;
+export function convertCustomThemeToTheme(
+  customValues: CustomThemeValues,
+  topNavOverride?: TopNavOverride
+): ResolvedSlackTheme {
+  const topNavText = topNavOverride?.top_nav_text || customValues.text_color;
   const topNavBg =
-    customValues.top_nav_bg ||
     topNavOverride?.top_nav_bg ||
     (contrastRatio(customValues.text_color, customValues.menu_bg) >= 4.5
       ? customValues.menu_bg
@@ -72,19 +90,6 @@ export function convertCustomThemeToTheme(customValues, topNavOverride) {
 /**
  * Resolve a user's theme preferences into the final palette object the
  * sidebar (and top nav) should render with. Mirrors Slack's `ze` selector.
- *
- * @param {Object} options
- * @param {"light"|"dark"} [options.mode="dark"] Workspace color scheme.
- * @param {string} [options.themeMode=ThemeMode.DEFAULT] One of ThemeMode.*.
- *   Use ThemeMode.CUSTOM when the user has picked a fully custom palette.
- * @param {string} [options.themeName=ThemeName.DEFAULT] One of ThemeName.*,
- *   used when themeMode isn't CUSTOM/WORKSPACE_DEFAULT/ORG_DEFAULT.
- * @param {Object} [options.customValues] Custom hex values (column_bg, etc.)
- *   Required when themeMode is ThemeMode.CUSTOM.
- * @param {Object} [options.topNavOverride] Optional separate top-nav colors
- *   ({ top_nav_bg, top_nav_text }), for workspaces that theme the top bar
- *   independently of the sidebar.
- * @returns {Object} The resolved palette, e.g. { column_bg, menu_bg, ... }.
  */
 export function resolveSlackTheme({
   mode = "dark",
@@ -92,7 +97,7 @@ export function resolveSlackTheme({
   themeName = ThemeName.DEFAULT,
   customValues,
   topNavOverride,
-} = {}) {
+}: ResolveSlackThemeOptions = {}): ResolvedSlackTheme {
   const presets = mode === "dark" ? DARK_PRESETS : LIGHT_PRESETS;
   const basePalette = presets[ThemeName.DEFAULT];
 

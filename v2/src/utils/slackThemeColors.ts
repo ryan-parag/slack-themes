@@ -9,8 +9,7 @@
  */
 
 /** Convert a hex color string to an [r, g, b] (or [r, g, b, a]) array. */
-export function hexToRGB(hex) {
-  if (!hex) return null;
+export function hexToRGB(hex: string): number[] {
   const clean = hex[0] === "#" ? hex.slice(1) : hex;
   const value = parseInt(clean, 16);
   const hasAlpha = clean.length > 6;
@@ -19,7 +18,7 @@ export function hexToRGB(hex) {
 }
 
 /** Convert an [r, g, b] (or [r, g, b, a]) array back to a hex string. */
-export function rgbToHex(channels) {
+export function rgbToHex(channels: number[]): string {
   const hex = channels
     .map((c) => {
       const h = c.toString(16);
@@ -31,7 +30,7 @@ export function rgbToHex(channels) {
 }
 
 /** Blend two hex colors together. weight=1 -> all colorA, weight=0 -> all colorB. */
-export function mixColors(colorA, colorB, weight = 0.5) {
+export function mixColors(colorA: string, colorB: string, weight = 0.5): string {
   const a = hexToRGB(colorA);
   const b = hexToRGB(colorB);
   const mixed = a.map((channel, i) => Math.round(channel * weight + b[i] * (1 - weight)));
@@ -39,7 +38,7 @@ export function mixColors(colorA, colorB, weight = 0.5) {
 }
 
 /** Same as mixColors but returns a hex string instead of an rgb() string. */
-export function mixColorsToHex(colorA, colorB, weight = 0.5) {
+export function mixColorsToHex(colorA: string, colorB: string, weight = 0.5): string {
   const a = hexToRGB(colorA);
   const b = hexToRGB(colorB);
   const mixed = a.map((channel, i) => Math.round(channel * weight + b[i] * (1 - weight)));
@@ -47,28 +46,28 @@ export function mixColorsToHex(colorA, colorB, weight = 0.5) {
 }
 
 /** Apply an alpha channel to a hex color, returning an rgba() string. */
-export function setOpacity(hex, alpha) {
+export function setOpacity(hex: string | undefined, alpha: number | undefined): string | null {
   if (!hex || alpha == null) return null;
   const [r, g, b] = hexToRGB(hex).slice(0, 3);
   return `rgba(${r},${g},${b},${alpha})`;
 }
 
 /** Darken a hex color by subtracting `amount` (0-255) from each channel. */
-export function darkenHex(hex, amount, { outputHex = false } = {}) {
+export function darkenHex(hex: string, amount: number, { outputHex = false } = {}): string {
   const rgb = hexToRGB(hex).map((c) => Math.min(Math.max(c - amount, 0), 255));
   return outputHex ? rgbToHex(rgb) : `rgb(${rgb.join(",")})`;
 }
 
 /** Lighten a hex color by adding `amount` (0-255) to each channel. */
-export function lightenHex(hex, amount, { outputHex = false } = {}) {
+export function lightenHex(hex: string, amount: number, { outputHex = false } = {}): string {
   const rgb = hexToRGB(hex).map((c) => Math.max(Math.min(c + amount, 255), 0));
   return outputHex ? rgbToHex(rgb) : `rgb(${rgb.join(",")})`;
 }
 
 /** WCAG-style relative luminance of a hex color, 0 (black) to 1 (white). */
-export function relativeLuminance(hex) {
+export function relativeLuminance(hex: string | undefined): number {
   if (!hex) return 0;
-  const component = (c) => {
+  const component = (c: number) => {
     const v = c / 255;
     return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
   };
@@ -77,14 +76,14 @@ export function relativeLuminance(hex) {
 }
 
 /** WCAG contrast ratio between two hex colors (1 = no contrast, 21 = max). */
-export function contrastRatio(hexA, hexB) {
+export function contrastRatio(hexA: string | undefined, hexB: string | undefined): number {
   const lumA = relativeLuminance(hexA);
   const lumB = relativeLuminance(hexB);
   return (Math.max(lumA, lumB) + 0.05) / (Math.min(lumA, lumB) + 0.05);
 }
 
 /** Whether a light (#fff) or dark (#1d1c1d) foreground reads better on this background. */
-export function shouldUseLightForeground(backgroundHex) {
+export function shouldUseLightForeground(backgroundHex: string): boolean {
   return contrastRatio(backgroundHex, "#ffffff") > contrastRatio(backgroundHex, "#1d1c1d");
 }
 
@@ -92,7 +91,7 @@ const HEX6 = /^#?[A-Fa-f0-9]{6}$/;
 const HEX8 = /^#?[A-Fa-f0-9]{8}$/;
 
 /** Normalize a hex string: uppercase, expand shorthand, optionally require/pad alpha. */
-export function normalizeColor(hex, withAlpha = false) {
+export function normalizeColor(hex: string | undefined, withAlpha = false): string | undefined {
   if (!hex) return undefined;
   let value = hex.trim().toUpperCase();
   if (value[0] === "#") value = value.slice(1);
@@ -108,6 +107,6 @@ export function normalizeColor(hex, withAlpha = false) {
 }
 
 /** Loose validity check used for theme-color form inputs. */
-export function isValidColor(hex) {
+export function isValidColor(hex: unknown): boolean {
   return !!hex && typeof hex === "string" && /^#?([0-9a-f]{6})$/i.test(hex);
 }
